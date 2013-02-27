@@ -8,8 +8,6 @@
   "machineName": "H5P.Summary",
   "author": "Amendor AS",
   "license": "cc-by-sa",
-  "preloadedDependencies": [
-  ],
   "preloadedCss": [
     {"path": "css/summary.css"}
   ],
