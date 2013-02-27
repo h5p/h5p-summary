@@ -1,0 +1,24 @@
+{
+  "title": "Boardgame",
+  "description": "The user is presented with a ...",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 10,
+  "runnable": 1,
+  "machineName": "H5P.Summary",
+  "author": "Amendor AS",
+  "license": "cc-by-sa",
+  "preloadedDependencies": [
+    {"machineName": "EmbeddedJS", "majorVersion": 1, "minorVersion": 0, "defaultStyles": true},
+    {"machineName": "H5P.MultiChoice", "majorVersion": 1, "minorVersion": 0, "defaultStyles": true},
+    {"machineName": "H5P.QuestionSet", "majorVersion": 1, "minorVersion": 0, "defaultStyles": true}
+  ],
+  "preloadedCss": [
+    {"path": "css/summary.css"}
+  ],
+  "preloadedJs": [
+    {"path": "js/summary.js"}
+  ],
+  "w": 635,
+  "h": 500
+}
