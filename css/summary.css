@@ -18,6 +18,9 @@
 .failed {
 	background: url(img/cross.png) no-repeat center right;
 }
-.evaluation-final {
+.score-intermediate {
+	font-weight: bold;
+}
+.score-final {
 	font-weight: bold;
 }

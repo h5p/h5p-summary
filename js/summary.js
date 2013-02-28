@@ -48,10 +48,10 @@ H5P.Summary = function (options, contentId) {
 	}
 
 	// Create content
-	var $summary = $('<div class="summary" id="summary-list" xpanel="'+i+'" style="background-color: lightgray; height: 200px">');
+	var $summary = $('<div class="summary" id="summary-list" style="background-color: lightgray; height: 200px">');
 	var $evaluation = $('<div class="evaluation" id="option-list" style="">Velg riktig alternativ til å legge til oppsummeringen</div>');
-	var $score = $('<div class="score" id="score" style="float: right"></div>');
-	var $options = $('<div class="options" id="option-list" xpanel="'+i+'" style="padding: 10px; overflow: hidden; background-color: white; height: 150px">');
+	var $score = $('<div class="score-intermediate" id="score" style="float: right"></div>');
+	var $options = $('<div class="options" id="option-list" style="padding: 10px; overflow: hidden; background-color: white; height: 150px">');
 
 	// Insert content
 	$myDom.append($summary);
@@ -94,16 +94,18 @@ H5P.Summary = function (options, contentId) {
 						$next_panel.css({ display: 'block' });
 					}
 					else {
+						// Hide intermediate evaluation
+						$score.html('');
+
 						// Show final evaluation
-						$('#score', $myDom).html('');
-						var $evaluation = $('<div class="evaluation-final" id="" style="">OK. Du hadde '+score+' feil</div>');
+						var $evaluation = $('<div class="score-final" id="" style="">OK. Du hadde '+score+' feil</div>');
 						$summary.append($evaluation);
 					}
 				}
 				else {
 					// Remove event handler (prevent repeated clicks)
 					$el.off('click');
-					$('#score', $myDom).html('Antall feil: ' + (++score));
+					$score.html('Antall feil: ' + (++score));
 				}
 			});
 			$page.append($node);
@@ -117,7 +119,6 @@ H5P.Summary = function (options, contentId) {
 		return this;
   };
 
-  // Masquerade the main object to hide inner properties and functions.
   var returnObject = {
     attach: attach // Attach to DOM object
   };
