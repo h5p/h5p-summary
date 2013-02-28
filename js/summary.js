@@ -21,7 +21,7 @@ H5P.Summary = function (options, contentId) {
 
 		// Render own DOM into target.
 		$myDom = $target;
-		$myDom.css({ border: '1px solid red', padding: '10px', backgroundColor: 'lightgrey'});
+		$myDom.css({ border: '1px solid darkgrey', padding: '10px', backgroundColor: 'lightgrey'});
 
 		var elements = Array();
 
@@ -35,7 +35,6 @@ H5P.Summary = function (options, contentId) {
 					id: c++,
 					node: j,
 					text: options.summaries[i][j],
-					correct: j == 0 // First summary is correct
 				};
 			}
 
@@ -66,7 +65,6 @@ H5P.Summary = function (options, contentId) {
 
 		for (var j = 0; j < elements[i].length; j++) {
 			var $node = $('<div id="node-'+elements[i][j].id+'" class="summary-entry" node="'+elements[i][j].id+'">'+elements[i][j].text+'</div>');
-			$node.correct = elements[i][j].correct;
 			$node.css({border: '3px solid green'});
 
 			// Add click event
@@ -98,7 +96,7 @@ H5P.Summary = function (options, contentId) {
 					else {
 						// Show final evaluation
 						var $score = $('#score', $myDom);
-						var $evaluation = $('<div class="" id="" style="">OK. Du hadde '+score+' feil</div>');
+						var $evaluation = $('<div class="evaluation-final" id="" style="">OK. Du hadde '+score+' feil</div>');
 						$summary.append($evaluation);
 						$score.html('');
 					}

@@ -1,4 +1,5 @@
 .summary {
+	font-size: 14px;
   font-family: Arial, "Liberation Sans", sans-serif;
 }
 .summary-entries div {
@@ -6,6 +7,7 @@
 	font-size: 14px;
 	cursor: pointer;
 	margin-bottom: 5px;
+	font-weight: bold;
 }
 .summary-entries div:hover {
 	color: darkblue;
@@ -15,4 +17,7 @@
 }
 .failed {
 	background: url(img/cross.png) no-repeat center right;
+}
+.evaluation-final {
+	font-weight: bold;
 }
