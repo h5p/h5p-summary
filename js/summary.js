@@ -49,7 +49,7 @@ H5P.Summary = function (options, contentId) {
 	}
 
 	// Create content
-	var $summary = $('<div class="summary" id="summary-list">');
+	var $summary = $('<ul class="summary" id="summary-list"></ul>');
 	var $evaluation = $('<div class="evaluation" id="option-list">Velg riktig alternativ til å legge til oppsummeringen</div>');
 	var $score = $('<div class="score-intermediate" id="score"></div>');
 	var $options = $('<div class="options" id="option-list">');
@@ -62,25 +62,25 @@ H5P.Summary = function (options, contentId) {
 
 	// Add elements to content
 	for (var i = 0; i < elements.length; i++) {
-		var $page = $('<div class="summary-entries" id="panel-'+i+'" xpanel="'+i+'">');
+		var $page = $('<ul class="summary-entries" id="panel-'+i+'" data-panel="'+i+'"></ul>');
 
 		for (var j = 0; j < elements[i].length; j++) {
-			var $node = $('<div id="node-'+elements[i][j].id+'" node="'+elements[i][j].id+'">'+elements[i][j].text+'</div>');
+			var $node = $('<li id="node-'+elements[i][j].id+'" data-node="'+elements[i][j].id+'">'+elements[i][j].text+'</li>');
 
 			// Add click event
 			$node.click(function(){
 				var $el = $('#'+this.id, $myDom);
-				var node_id = parseInt($el.attr('node'));
+				var node_id = parseInt($el.attr('data-node'));
 				var classname = answer[node_id] ? 'success' : 'failed';
 
 				$el.addClass(classname);
 
 				// Correct answer?
 				if(answer[node_id]){
-					var $answer = $('<div class="" id="">'+$el.html()+'</div>');
+					var $answer = $('<li class="" id="">'+$el.html()+'</li>');
 					$summary.append($answer);
 
-					var panel = parseInt($el.parent().attr('xpanel'));
+					var panel = parseInt($el.parent().attr('data-panel'));
 					var $curr_panel = $('#panel-'+panel, $myDom);
 					var $next_panel = $('#panel-'+(panel + 1), $myDom);
 
