@@ -48,10 +48,10 @@ H5P.Summary = function (options, contentId) {
 	}
 
 	// Create content
-	var $summary = $('<div class="summary" id="summary-list" style="background-color: lightgray; height: 200px">');
-	var $evaluation = $('<div class="evaluation" id="option-list" style="">Velg riktig alternativ til å legge til oppsummeringen</div>');
-	var $score = $('<div class="score-intermediate" id="score" style="float: right"></div>');
-	var $options = $('<div class="options" id="option-list" style="padding: 10px; overflow: hidden; background-color: white; height: 150px">');
+	var $summary = $('<div class="summary" id="summary-list">');
+	var $evaluation = $('<div class="evaluation" id="option-list">Velg riktig alternativ til å legge til oppsummeringen</div>');
+	var $score = $('<div class="score-intermediate" id="score"></div>');
+	var $options = $('<div class="options" id="option-list">');
 
 	// Insert content
 	$myDom.append($summary);
@@ -61,7 +61,7 @@ H5P.Summary = function (options, contentId) {
 
 	// Add elements to content
 	for (var i = 0; i < elements.length; i++) {
-		var $page = $('<div class="summary-entries" id="panel-'+i+'" xpanel="'+i+'" style="display: none">');
+		var $page = $('<div class="summary-entries" id="panel-'+i+'" xpanel="'+i+'">');
 
 		for (var j = 0; j < elements[i].length; j++) {
 			var $node = $('<div id="node-'+elements[i][j].id+'" class="summary-entry" node="'+elements[i][j].id+'">'+elements[i][j].text+'</div>');
@@ -77,7 +77,7 @@ H5P.Summary = function (options, contentId) {
 
 				// Correct answer?
 				if(answer[node_id]){
-					var $answer = $('<div class="" id="" style="">'+$el.html()+'</div>');
+					var $answer = $('<div class="" id="">'+$el.html()+'</div>');
 					$summary.append($answer);
 
 					var panel = parseInt($el.parent().attr('xpanel'));
@@ -98,7 +98,7 @@ H5P.Summary = function (options, contentId) {
 						$score.html('');
 
 						// Show final evaluation
-						var $evaluation = $('<div class="score-final" id="" style="">OK. Du hadde '+score+' feil</div>');
+						var $evaluation = $('<div class="score-final" id="">OK. Du hadde '+score+' feil</div>');
 						$summary.append($evaluation);
 					}
 				}
@@ -114,8 +114,9 @@ H5P.Summary = function (options, contentId) {
 		$options.append($page);
 	}
 
-		var $c = $('#panel-0', $myDom);
-		$c.css({ display: 'block' });
+		// Show first panel
+		$('#panel-0', $myDom).css({ display: 'block' });
+
 		return this;
   };
 

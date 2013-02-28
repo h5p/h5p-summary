@@ -1,6 +1,17 @@
 .summary {
 	font-size: 14px;
-  font-family: Arial, "Liberation Sans", sans-serif;
+	font-family: Arial, "Liberation Sans", sans-serif;
+	height: 200px;
+	background-color: lightgrey;
+}
+.options {
+	padding: 10px;
+	overflow: hidden;
+	background-color: white;
+	height: 150px
+}
+.summary-entries {
+	display: none;
 }
 .summary-entries div {
 	padding: 5px;
@@ -20,6 +31,7 @@
 }
 .score-intermediate {
 	font-weight: bold;
+	float: right;
 }
 .score-final {
 	font-weight: bold;
