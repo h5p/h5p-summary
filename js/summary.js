@@ -21,6 +21,7 @@ H5P.Summary = function (options, contentId) {
 
 		// Render own DOM into target.
 		$myDom = $target;
+    // TODO: Move to css
 		$myDom.css({ border: '1px solid darkgrey', padding: '10px', backgroundColor: 'lightgrey'});
 
 		var elements = Array();
@@ -34,7 +35,7 @@ H5P.Summary = function (options, contentId) {
 				elements[i][j] = {
 					id: c++,
 					node: j,
-					text: options.summaries[i][j],
+					text: options.summaries[i][j]
 				};
 			}
 
@@ -48,6 +49,8 @@ H5P.Summary = function (options, contentId) {
 	}
 
 	// Create content
+  // TODO: Move styling to .css file
+  // TODO: xpanel probably isn't a valid html propery, use data-xpanel
 	var $summary = $('<div class="summary" id="summary-list" xpanel="'+i+'" style="background-color: lightgray; height: 200px">');
 	var $evaluation = $('<div class="evaluation" id="option-list" style="">Velg riktig alternativ til å legge til oppsummeringen</div>');
 	var $score = $('<div class="score" id="score" style="float: right"></div>');
