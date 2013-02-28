@@ -64,8 +64,7 @@ H5P.Summary = function (options, contentId) {
 		var $page = $('<div class="summary-entries" id="panel-'+i+'" xpanel="'+i+'">');
 
 		for (var j = 0; j < elements[i].length; j++) {
-			var $node = $('<div id="node-'+elements[i][j].id+'" class="summary-entry" node="'+elements[i][j].id+'">'+elements[i][j].text+'</div>');
-			$node.css({border: '3px solid green'});
+			var $node = $('<div id="node-'+elements[i][j].id+'" node="'+elements[i][j].id+'">'+elements[i][j].text+'</div>');
 
 			// Add click event
 			$node.click(function(){
