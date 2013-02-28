@@ -1,8 +1,20 @@
 .summary {
 	font-size: 14px;
-  font-family: Arial, "Liberation Sans", sans-serif;
+	font-family: Arial, "Liberation Sans", sans-serif;
+	height: 200px;
+	background-color: lightgrey;
+}
+.options {
+	padding: 10px;
+	overflow: hidden;
+	background-color: white;
+	height: 150px
+}
+.summary-entries {
+	display: none;
 }
 .summary-entries div {
+	border: 3px solid green;
 	padding: 5px;
 	font-size: 14px;
 	cursor: pointer;
@@ -18,6 +30,10 @@
 .failed {
 	background: url(img/cross.png) no-repeat center right;
 }
-.evaluation-final {
+.score-intermediate {
+	font-weight: bold;
+	float: right;
+}
+.score-final {
 	font-weight: bold;
 }
