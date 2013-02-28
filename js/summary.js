@@ -72,7 +72,7 @@ H5P.Summary = function (options, contentId) {
 				var $el = $('#'+this.id, $myDom);
 				var node_id = parseInt($el.attr('node'));
 				var classname = answer[node_id] ? 'success' : 'failed';
-				console.log('Node '+node_id+' clicked '+$el.attr('id') + " panel=" + $el.parent().attr('id'));
+
 				$el.addClass(classname);
 
 				// Correct answer?
@@ -95,18 +95,15 @@ H5P.Summary = function (options, contentId) {
 					}
 					else {
 						// Show final evaluation
-						var $score = $('#score', $myDom);
+						$('#score', $myDom).html('');
 						var $evaluation = $('<div class="evaluation-final" id="" style="">OK. Du hadde '+score+' feil</div>');
 						$summary.append($evaluation);
-						$score.html('');
 					}
 				}
 				else {
 					// Remove event handler (prevent repeated clicks)
-					score++;
 					$el.off('click');
-					var $score = $('#score', $myDom);
-					$score.html('Antall feil: ' + score);
+					$('#score', $myDom).html('Antall feil: ' + (++score));
 				}
 			});
 			$page.append($node);
