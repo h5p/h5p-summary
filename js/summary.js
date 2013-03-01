@@ -44,6 +44,7 @@ H5P.Summary = function (options, contentId) {
 	var $evaluation = $('<div class="evaluation" id="option-list">Velg riktig alternativ til å legge til oppsummeringen</div>');
 	var $score = $('<div class="score-intermediate" id="score"></div>');
 	var $options = $('<div class="options" id="option-list">');
+	var options_padding = parseInt($options.css('paddingLeft'));
 
 	// Insert content
 	$myDom.append($summary);
@@ -99,8 +100,8 @@ H5P.Summary = function (options, contentId) {
 						$answer.animate(
 							{
 								top: summary.top+offset,
-								left: '-=5px',
-								width: '+=10px'
+								left: '-='+options_padding+'px',
+								width: '+='+(options_padding*2)+'px'
 							},
 							{
 								complete: function(){
