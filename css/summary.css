@@ -1,5 +1,5 @@
 .h5p-content{
-	border: 1px solid darkgrey;
+	border: 1px solid #CCCCCC;
 	background-color: #F5F5F5;
 	padding: 10px;
 }
@@ -28,7 +28,10 @@ ul.summary-entries {
 	margin: 0px;
 }
 .evaluation {
-	padding: 5px 5px 0px 5px;
+	padding: 5px 5px 2px 5px;
+}
+.answer {
+	display: none;
 }
 .claim,.answer {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;

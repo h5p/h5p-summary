@@ -1,35 +1,28 @@
 window.H5P = window.H5P || {};
 
-var score = 0;
-
 H5P.Summary = function (options, contentId) {
+	var offset = 0;
+
 	if ( !(this instanceof H5P.Summary) ){
 		return new H5P.Summary(options, contentId);
 	}
 
-	var $ = H5P.jQuery;
-
-	var params = options;
-	var $myDom;
+	var score = 0;
 	var answer = Array();
 
 	// Function for attaching the multichoice to a DOM element.
 	var attach = function (target) {
-		var $target;
-
-		$target = typeof(target) === "string" ? $("#" + target) : $(target);
-
-		// Render own DOM into target.
-		$myDom = $target;
-
+		var c=0; // element counter
 		var elements = Array();
+		var $ = H5P.jQuery;
+		var $target = typeof(target) === "string" ? $("#" + target) : $(target);
+		var $myDom = $target;
 
 		// Create array objects
-		var c=0;
 		for (var i = 0; i < options.summaries.length; i++) {
 			elements[i] = Array();
 			for (var j = 0; j < options.summaries[i].length; j++) {
-				answer[c] = j == 0;
+				answer[c] = j == 0; // First claim is correct
 				elements[i][j] = {
 					id: c++,
 					node: j,
@@ -46,7 +39,7 @@ H5P.Summary = function (options, contentId) {
 			}
 		}
 
-	// Create content
+	// Create content panels
 	var $summary = $('<ul class="summary" id="summary-list"></ul>');
 	var $evaluation = $('<div class="evaluation" id="option-list">Velg riktig alternativ til å legge til oppsummeringen</div>');
 	var $score = $('<div class="score-intermediate" id="score"></div>');
@@ -63,20 +56,45 @@ H5P.Summary = function (options, contentId) {
 		var $page = $('<ul class="summary-entries" id="panel-'+i+'" data-panel="'+i+'"></ul>');
 
 		for (var j = 0; j < elements[i].length; j++) {
-			var $node = $('<li id="node-'+elements[i][j].id+'" class="claim" data-node="'+elements[i][j].id+'">'+elements[i][j].text+'</li>');
+			var $node = $('<li id="node-'+elements[i][j].id+'" class="claim">'+elements[i][j].text+'</li>');
 
 			// Add click event
 			$node.click(function(){
 				var $el = $('#'+this.id, $myDom);
-				var node_id = parseInt($el.attr('data-node'));
+				var node_id = parseInt(this.id.replace(/[a-z\-]+/,''));
 				var classname = answer[node_id] ? 'success' : 'failed';
 
 				$el.addClass(classname);
 
 				// Correct answer?
 				if(answer[node_id]){
+					var position = $el.position();
+					var summary = $summary.position();
 					var $answer = $('<li class="answer" id="">'+$el.html()+'</li>');
+
+
+					// Insert correct claim into summary
 					$summary.append($answer);
+
+					// Move into position
+					var w = $el.css('width');
+					var h = $el.css('height');
+					$answer.css('display', 'block');
+					$answer.css('height', h);
+					$answer.css('width', w);
+					$answer.css('position', 'absolute');
+					$answer.css('top', position.top);
+					$answer.css('left', position.left);
+					$answer.animate({
+						top:summary.top+offset,
+					});
+
+					// Calculate next position
+					var tpadding = parseInt($answer.css('paddingTop'))*2;
+					var tmargin = parseInt($answer.css('marginBottom'));
+					var theight = parseInt($answer.css('height'));
+					offset += theight + tpadding + tmargin;
+
 
 					var panel = parseInt($el.parent().attr('data-panel'));
 					var $curr_panel = $('#panel-'+panel, $myDom);
@@ -97,7 +115,8 @@ H5P.Summary = function (options, contentId) {
 							$score.html('');
 
 							// Show final evaluation
-							var $evaluation = $('<div class="score-final" id="">OK. Du hadde '+score+' feil</div>');
+							var message = score ? 'OK. Du hadde '+score+' feil' : 'Gratulerer! Du hadde ingen feil!';
+							var $evaluation = $('<div class="score-final" id="">'+message+'</div>');
 							$summary.append($evaluation);
 						}
 					});
