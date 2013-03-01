@@ -72,11 +72,10 @@ H5P.Summary = function (options, contentId) {
 					var summary = $summary.position();
 					var $answer = $('<li class="answer" id="">'+$el.html()+'</li>');
 
-
 					// Insert correct claim into summary
 					$summary.append($answer);
 
-					// Move into position
+					// Move into position over clicked element
 					var w = $el.css('width');
 					var h = $el.css('height');
 					$answer.css('display', 'block');
@@ -86,18 +85,17 @@ H5P.Summary = function (options, contentId) {
 					$answer.css('top', position.top);
 					$answer.css('left', position.left);
 
-					// Calculate next position
-
 					var panel = parseInt($el.parent().attr('data-panel'));
 					var $curr_panel = $('#panel-'+panel, $myDom);
 					var $next_panel = $('#panel-'+(panel + 1), $myDom);
 					var height = $curr_panel.parent().css('height');
 
-					// Hide this question set panel
+					// Fade out current panel
 					$curr_panel.fadeOut('fast', function() {
-						// Force height to latest height
+						// Force panel height to recorded height
 						$curr_panel.parent().css('height', height);
 
+						// Animate answer to summary
 						$answer.animate(
 							{
 								top: summary.top+offset,
@@ -106,15 +104,16 @@ H5P.Summary = function (options, contentId) {
 							},
 							{
 								complete: function(){
+									// Remove position (becomes inline);
 									$(this).css('position', '');
 
-									// Calculate offset
+									// Calculate offset for next summary item
 									var tpadding = parseInt($answer.css('paddingTop'))*2;
 									var tmargin = parseInt($answer.css('marginBottom'));
 									var theight = parseInt($answer.css('height'));
 									offset += theight + tpadding + tmargin + 1;
 
-									// Show next if present
+									// Show next panel if present
 									if($next_panel.attr('id')){
 										$curr_panel.parent().css('height', 'auto');
 										$next_panel.fadeIn('fast', function() {
