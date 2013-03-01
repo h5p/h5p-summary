@@ -32,6 +32,7 @@ ul.summary-entries {
 }
 .answer {
 	display: none;
+	z-index: 5;
 }
 .claim,.answer {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;

@@ -85,16 +85,8 @@ H5P.Summary = function (options, contentId) {
 					$answer.css('position', 'absolute');
 					$answer.css('top', position.top);
 					$answer.css('left', position.left);
-					$answer.animate({
-						top:summary.top+offset,
-					});
 
 					// Calculate next position
-					var tpadding = parseInt($answer.css('paddingTop'))*2;
-					var tmargin = parseInt($answer.css('marginBottom'));
-					var theight = parseInt($answer.css('height'));
-					offset += theight + tpadding + tmargin;
-
 
 					var panel = parseInt($el.parent().attr('data-panel'));
 					var $curr_panel = $('#panel-'+panel, $myDom);
@@ -102,23 +94,44 @@ H5P.Summary = function (options, contentId) {
 					var height = $curr_panel.parent().css('height');
 
 					// Hide this question set panel
-					$curr_panel.fadeOut('slow', function() {
-						// Show next if present
-						if($next_panel.attr('id')){
-							$next_panel.css({ display: 'block' });
-						}
-						else {
-							// Force height to latest height
-							$curr_panel.parent().css('height', height);
+					$curr_panel.fadeOut('fast', function() {
+						// Force height to latest height
+						$curr_panel.parent().css('height', height);
 
-							// Hide intermediate evaluation
-							$score.html('');
+						$answer.animate(
+							{
+								top: summary.top+offset,
+								left: '-=5px',
+								width: '+=10px'
+							},
+							{
+								complete: function(){
+									$(this).css('position', '');
 
-							// Show final evaluation
-							var message = score ? 'OK. Du hadde '+score+' feil' : 'Gratulerer! Du hadde ingen feil!';
-							var $evaluation = $('<div class="score-final" id="">'+message+'</div>');
-							$summary.append($evaluation);
-						}
+									// Calculate offset
+									var tpadding = parseInt($answer.css('paddingTop'))*2;
+									var tmargin = parseInt($answer.css('marginBottom'));
+									var theight = parseInt($answer.css('height'));
+									offset += theight + tpadding + tmargin + 1;
+
+									// Show next if present
+									if($next_panel.attr('id')){
+										$curr_panel.parent().css('height', 'auto');
+										$next_panel.fadeIn('fast', function() {
+										});
+									}
+									else {
+										// Hide intermediate evaluation
+										$score.html('');
+
+										// Show final evaluation
+										var message = score ? 'OK. Du hadde '+score+' feil' : 'Gratulerer! Du hadde ingen feil!';
+										var $evaluation = $('<div class="score-final" id="">'+message+'</div>');
+										$summary.append($evaluation);
+									}
+								}
+							}
+						);
 					});
 				}
 				else {
