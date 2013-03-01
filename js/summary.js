@@ -86,9 +86,8 @@ H5P.Summary = function (options, contentId) {
 					var $next_panel = $('#panel-'+(panel + 1), $myDom);
 
 					// Hide this question set panel
-					$curr_panel.slideUp('slow', function() {
+					$curr_panel.fadeOut('slow', function() {
 						console.log("Fade out done " + this);
-					});
 
 					// Show next if present
 					if($next_panel.attr('id')){
@@ -102,6 +101,7 @@ H5P.Summary = function (options, contentId) {
 						var $evaluation = $('<div class="score-final" id="">OK. Du hadde '+score+' feil</div>');
 						$summary.append($evaluation);
 					}
+					});
 				}
 				else {
 					// Remove event handler (prevent repeated clicks)
