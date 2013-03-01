@@ -81,23 +81,25 @@ H5P.Summary = function (options, contentId) {
 					var panel = parseInt($el.parent().attr('data-panel'));
 					var $curr_panel = $('#panel-'+panel, $myDom);
 					var $next_panel = $('#panel-'+(panel + 1), $myDom);
+					var height = $curr_panel.parent().css('height');
 
 					// Hide this question set panel
 					$curr_panel.fadeOut('slow', function() {
-						console.log("Fade out done " + this);
+						// Show next if present
+						if($next_panel.attr('id')){
+							$next_panel.css({ display: 'block' });
+						}
+						else {
+							// Force height to latest height
+							$curr_panel.parent().css('height', height);
 
-					// Show next if present
-					if($next_panel.attr('id')){
-						$next_panel.css({ display: 'block' });
-					}
-					else {
-						// Hide intermediate evaluation
-						$score.html('');
+							// Hide intermediate evaluation
+							$score.html('');
 
-						// Show final evaluation
-						var $evaluation = $('<div class="score-final" id="">OK. Du hadde '+score+' feil</div>');
-						$summary.append($evaluation);
-					}
+							// Show final evaluation
+							var $evaluation = $('<div class="score-final" id="">OK. Du hadde '+score+' feil</div>');
+							$summary.append($evaluation);
+						}
 					});
 				}
 				else {
