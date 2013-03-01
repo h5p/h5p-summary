@@ -13,22 +13,28 @@
 .summary-entries {
 	display: none;
 }
-.summary-entries div {
+ul.summary-entries {
+	padding: 0px;
+	margin: 0px;
+}
+.claim {
+	list-style-type: none;
 	border: 3px solid green;
 	padding: 5px;
 	font-size: 14px;
 	cursor: pointer;
 	margin-bottom: 5px;
 	font-weight: bold;
+	background: none;
 }
-.summary-entries div:hover {
-	color: darkblue;
-}
-.success {
+li.success {
 	background: url(img/tick.png) no-repeat top right;
 }
-.failed {
+li.failed {
 	background: url(img/cross.png) no-repeat center right;
+}
+.summary-entries li:hover {
+	color: blue;
 }
 .score-intermediate {
 	font-weight: bold;

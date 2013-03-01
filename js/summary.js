@@ -21,6 +21,7 @@ H5P.Summary = function (options, contentId) {
 
 		// Render own DOM into target.
 		$myDom = $target;
+
     // TODO: Move to css
 		$myDom.css({ border: '1px solid darkgrey', padding: '10px', backgroundColor: 'lightgrey'});
 
@@ -39,14 +40,14 @@ H5P.Summary = function (options, contentId) {
 				};
 			}
 
-		// Randomize elements
-		for (var k = elements[i].length - 1; k > 0; k--) {
-			var j = Math.floor(Math.random() * (k + 1));
-			var temp = elements[i][k];
-			elements[i][k] = elements[i][j];
-			elements[i][j] = temp;
+			// Randomize elements
+			for (var k = elements[i].length - 1; k > 0; k--) {
+				var j = Math.floor(Math.random() * (k + 1));
+				var temp = elements[i][k];
+				elements[i][k] = elements[i][j];
+				elements[i][j] = temp;
+			}
 		}
-	}
 
 	// Create content
 	var $summary = $('<ul class="summary" id="summary-list"></ul>');
@@ -65,7 +66,7 @@ H5P.Summary = function (options, contentId) {
 		var $page = $('<ul class="summary-entries" id="panel-'+i+'" data-panel="'+i+'"></ul>');
 
 		for (var j = 0; j < elements[i].length; j++) {
-			var $node = $('<li id="node-'+elements[i][j].id+'" data-node="'+elements[i][j].id+'">'+elements[i][j].text+'</li>');
+			var $node = $('<li id="node-'+elements[i][j].id+'" class="claim" data-node="'+elements[i][j].id+'">'+elements[i][j].text+'</li>');
 
 			// Add click event
 			$node.click(function(){
@@ -77,7 +78,7 @@ H5P.Summary = function (options, contentId) {
 
 				// Correct answer?
 				if(answer[node_id]){
-					var $answer = $('<li class="" id="">'+$el.html()+'</li>');
+					var $answer = $('<li class="answer" id="">'+$el.html()+'</li>');
 					$summary.append($answer);
 
 					var panel = parseInt($el.parent().attr('data-panel'));
