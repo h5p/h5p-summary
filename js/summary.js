@@ -22,9 +22,6 @@ H5P.Summary = function (options, contentId) {
 		// Render own DOM into target.
 		$myDom = $target;
 
-    // TODO: Move to css
-		$myDom.css({ border: '1px solid darkgrey', padding: '10px', backgroundColor: 'lightgrey'});
-
 		var elements = Array();
 
 		// Create array objects

@@ -1,16 +1,24 @@
+.h5p-content{
+	border: 1px solid darkgrey;
+	background-color: #EEEEEE;
+	padding: 10px;
+}
 .summary {
+	margin: 0px;
 	font-size: 14px;
 	font-family: Arial, "Liberation Sans", sans-serif;
 	height: 200px;
-	background-color: lightgrey;
 }
 .options {
 	padding: 5px;
-	overflow: hidden;
+	overflow: auto;
 	background-color: white;
 	height: 150px
 	border: 1px solid #cdcdcd;
 	padding-bottom: 0px;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
 }
 .summary-entries {
 	display: none;
@@ -70,4 +78,5 @@ li.failed {
 }
 .score-final {
 	font-weight: bold;
+	padding: 0px 5px;
 }
