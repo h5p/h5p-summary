@@ -27,23 +27,22 @@ H5P.Summary = function (options, contentId) {
     $target.addClass('summary-content');
 
     function do_final_evaluation(container, score) {
-		var error_count = 0;
+      var error_count = 0;
 
-		// Count boards without errors
+      // Count boards without errors
       for (var i = 0; i < options.summaries.length; i++) {
-			error_count += options.summaries[i].error_count ? 1 : 0;
-		}
+        error_count += options.summaries[i].error_count ? 1 : 0;
+      }
 
-		// Calculate percentage
-		var percent = 100 - (error_count / options.summaries.length * 100);
+      // Calculate percentage
+      var percent = 100 - (error_count / options.summaries.length * 100);
 
-		// Find evaluation message
-		for(var i = 0; i < evaluation_message.length; i++) {
-			if(percent >= evaluation_message[i].from) {
-				break;
-			}
-		}
-console.log("E="+error_count + " P=" + percent + " i=" + i);
+      // Find evaluation message
+      for(var i = 0; i < evaluation_message.length; i++) {
+        if(percent >= evaluation_message[i].from) {
+          break;
+        }
+      }
 
       // Show final evaluation
       var message = evaluation_message[i].title + ". Du hadde "+(options.summaries.length-error_count)+" av " + options.summaries.length + " brett ("+Math.round(percent)+"%) uten feil. " + evaluation_message[i].message;
@@ -99,6 +98,7 @@ console.log("E="+error_count + " P=" + percent + " i=" + i);
         // - Add claim to summary list
         // - Move claim over clicked element
         // - Animate correct claim into correct position
+        // - Show next panel
         // When wrong claim is clicked:
         // - Remove clickable
         // - Add error background image (css)
@@ -142,7 +142,7 @@ console.log("E="+error_count + " P=" + percent + " i=" + i);
                   step: function(){
                     // Need to reposition background image on each step as el width grows in animation
                     $(this).css('background-position', (parseInt($(this).innerWidth()) - 25) + 'px center');
-						},
+                  },
                   complete: function(){
                     // Remove position (becomes inline);
                     $(this).css('position', '');
@@ -176,9 +176,8 @@ console.log("E="+error_count + " P=" + percent + " i=" + i);
             $el.removeClass('summary-claim-unclicked');
             $el.css('background-position', (parseInt($el.innerWidth()) - 25) + 'px center');
             $score.html('Antall feil: ' + (++score));
-				panel_id = $el.parent().attr('data-panel');
+            panel_id = $el.parent().attr('data-panel');
             options.summaries[panel_id].error_count++;
-console.log("P=" + panel_id);
           }
         });
         $page.append($node);
