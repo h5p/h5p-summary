@@ -3,13 +3,14 @@
   background-color: #F5F5F5;
   padding: 10px;
 }
+.summary-content ul {
+  margin: 0px;
+  padding: 0px;
+}
 .summary-container {
-  height: 200px;
+  height: 300px;
   font-size: 14px;
   font-family: Arial, "Liberation Sans", sans-serif;
-}
-.summary-container ul {
-  margin: 0px;
 }
 .summary-options {
   padding: 5px;
@@ -24,8 +25,6 @@
 }
 .summary-options ul {
   display: none;
-  padding: 0px;
-  margin: 0px;
 }
 .summary-evaluation {
   padding: 5px 5px 2px 5px;
@@ -68,10 +67,6 @@
   color: #444444;
   cursor: pointer;
 }
-.summary-claim:active {
-  position: relative;
-  top: 1px;
-}
 li.summary-failed {
   background-repeat: no-repeat;
   background-image: url(img/cross.png);
@@ -84,4 +79,19 @@ li.summary-failed {
 .summary-container div {
   font-weight: bold;
   padding: 0px 5px;
+  background-repeat: no-repeat;
+  background-position: center right;
+  height: 30px;
+}
+.score-over-100 {
+	background-image: url(img/response-100.png);
+}
+.score-over-70 {
+	background-image: url(img/response-70.png);
+}
+.score-over-40 {
+	background-image: url(img/response-40.png);
+}
+.score-over-0 {
+	background-image: url(img/response-0.png);
 }

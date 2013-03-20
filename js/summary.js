@@ -9,6 +9,13 @@ H5P.Summary = function (options, contentId) {
   var score = 0;
   var answer = Array();
 
+  var evaluation_message = [
+    { from: 100, title: 'Perfekt', message: 'Gratulerer, dette hadde du full kontroll på!' },
+    { from: 70,  title: 'Bra', message: 'Dette kan du godt' },
+    { from: 40,  title: 'Noe bra', message: 'Du må lese mer' },
+    { from: 0,   title: 'Elendig', message: 'Er du sikker på at dette er noe for deg?'}
+  ];
+
   // Function for attaching the multichoice to a DOM element.
   var attach = function (target) {
     var c=0; // element counter
@@ -19,8 +26,35 @@ H5P.Summary = function (options, contentId) {
 
     $target.addClass('summary-content');
 
+    function do_final_evaluation(container, score) {
+		var error_count = 0;
+
+		// Count boards without errors
+      for (var i = 0; i < options.summaries.length; i++) {
+			error_count += options.summaries[i].error_count ? 1 : 0;
+		}
+
+		// Calculate percentage
+		var percent = 100 - (error_count / options.summaries.length * 100);
+
+		// Find evaluation message
+		for(var i = 0; i < evaluation_message.length; i++) {
+			if(percent >= evaluation_message[i].from) {
+				break;
+			}
+		}
+console.log("E="+error_count + " P=" + percent + " i=" + i);
+
+      // Show final evaluation
+      var message = evaluation_message[i].title + ". Du hadde "+(options.summaries.length-error_count)+" av " + options.summaries.length + " brett ("+Math.round(percent)+"%) uten feil. " + evaluation_message[i].message;
+      var evaluation = $('<div class="score-over-'+evaluation_message[i].from+'">'+message+'</div>');
+      container.append(evaluation);
+    }
+
     // Create array objects
     for (var i = 0; i < options.summaries.length; i++) {
+      options.summaries[i].error_count = 0;
+
       elements[i] = Array();
       for (var j = 0; j < options.summaries[i].length; j++) {
         answer[c] = j == 0; // First claim is correct
@@ -128,10 +162,7 @@ H5P.Summary = function (options, contentId) {
                       // Hide intermediate evaluation
                       $score.html('');
 
-                      // Show final evaluation
-                      var message = score ? 'OK. Du hadde '+score+' feil' : 'Gratulerer! Du hadde ingen feil!';
-                      var $evaluation = $('<div>'+message+'</div>');
-                      $summary_container.append($evaluation);
+                      do_final_evaluation($summary_container, score);
                     }
                   }
                 }
@@ -145,6 +176,9 @@ H5P.Summary = function (options, contentId) {
             $el.removeClass('summary-claim-unclicked');
             $el.css('background-position', (parseInt($el.innerWidth()) - 25) + 'px center');
             $score.html('Antall feil: ' + (++score));
+				panel_id = $el.parent().attr('data-panel');
+            options.summaries[panel_id].error_count++;
+console.log("P=" + panel_id);
           }
         });
         $page.append($node);
