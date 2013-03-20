@@ -39,10 +39,10 @@ H5P.Summary = function (options, contentId) {
 
     // Create content panels
     var $summary_container = $('<div class="summary-container"></div>');
-    var $summary_list = $('<ul class="summary"></ul>');
-    var $evaluation = $('<div class="evaluation">Velg riktig alternativ til å legge til oppsummeringen</div>');
-    var $score = $('<div class="score-intermediate"></div>');
-    var $options = $('<div class="options">');
+    var $summary_list = $('<ul></ul>');
+    var $evaluation = $('<div class="summary-evaluation">Velg riktig alternativ til å legge til oppsummeringen</div>');
+    var $score = $('<div></div>');
+    var $options = $('<div class="summary-options">');
     var options_padding = parseInt($options.css('paddingLeft'));
 
     // Insert content
@@ -54,31 +54,34 @@ H5P.Summary = function (options, contentId) {
 
     // Add elements to content
     for (var i = 0; i < elements.length; i++) {
-      var $page = $('<ul class="summary-entries" id="panel-'+i+'" data-panel="'+i+'"></ul>');
+      var $page = $('<ul id="panel-'+i+'" data-panel="'+i+'"></ul>');
 
       for (var j = 0; j < elements[i].length; j++) {
-        var $node = $('<li id="summary-node-'+elements[i][j].id+'" class="summary-claim summary-claim-unclicked">'+elements[i][j].text+'</li>');
+        var $node = $('<li id="summary-node-'+elements[i][j].id+'" class="summary-claim-unclicked">'+elements[i][j].text+'</li>');
 
-        // Add click event
+        // When correct claim is clicked:
+        // - Add claim to summary list
+        // - Move claim over clicked element
+        // - Animate correct claim into correct position
+        // When wrong claim is clicked:
+        // - Remove clickable
+        // - Add error background image (css)
         $node.click(function(){
           var $el = $('#'+this.id, $myDom);
           var node_id = parseInt(this.id.replace(/[a-z\-]+/,''));
           var classname = answer[node_id] ? 'success' : 'failed';
 
-          // $el.addClass(classname);
-
           // Correct answer?
           if(answer[node_id]){
             var position = $el.position();
             var summary = $summary_list.position();
-            var $answer = $('<li class="summary-answer summary-success">'+$el.html()+'</li>');
+            var $answer = $('<li>'+$el.html()+'</li>');
 
             // Insert correct claim into summary list
             $summary_list.append($answer);
 
             // Move into position over clicked element
-            $answer.css('display', 'block');
-            $answer.css({ width: $el.css('width'), height: $el.css('height') });
+            $answer.css({ display: 'block', width: $el.css('width'), height: $el.css('height') });
             $answer.css({ position: 'absolute', top: position.top, left: position.left });
             $answer.css('background-position', (parseInt($el.innerWidth()) - 25) + 'px center');
 
@@ -117,8 +120,7 @@ H5P.Summary = function (options, contentId) {
                     // Show next panel if present
                     if($next_panel.attr('id')){
                       $curr_panel.parent().css('height', 'auto');
-                      $next_panel.fadeIn('fast', function() {
-                      });
+                      $next_panel.fadeIn('fast');
                     }
                     else {
                       // Hide intermediate evaluation
@@ -126,7 +128,7 @@ H5P.Summary = function (options, contentId) {
 
                       // Show final evaluation
                       var message = score ? 'OK. Du hadde '+score+' feil' : 'Gratulerer! Du hadde ingen feil!';
-                      var $evaluation = $('<div class="score-final">'+message+'</div>');
+                      var $evaluation = $('<div>'+message+'</div>');
                       $summary_container.append($evaluation);
                     }
                   }
@@ -135,7 +137,7 @@ H5P.Summary = function (options, contentId) {
             });
           }
           else {
-            // Remove event handler (prevent repeated clicks)
+            // Remove event handler (prevent repeated clicks) and mouseover effect
             $el.off('click');
             $el.addClass('summary-failed');
             $el.removeClass('summary-claim-unclicked');

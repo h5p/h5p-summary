@@ -1,4 +1,4 @@
-.h5p-content{
+.h5p-content {
   border: 1px solid #CCCCCC;
   background-color: #F5F5F5;
   padding: 10px;
@@ -8,10 +8,10 @@
   font-size: 14px;
   font-family: Arial, "Liberation Sans", sans-serif;
 }
-.summary {
+.summary-container ul {
   margin: 0px;
 }
-.options {
+.summary-options {
   padding: 5px;
   overflow: auto;
   background-color: white;
@@ -22,21 +22,15 @@
   -webkit-border-radius: 6px;
   border-radius: 6px;
 }
-.summary-entries {
+.summary-options ul {
   display: none;
-}
-ul.summary-entries {
   padding: 0px;
   margin: 0px;
 }
-.evaluation {
+.summary-evaluation {
   padding: 5px 5px 2px 5px;
 }
-.summary-answer {
-  display: none;
-  z-index: 5;
-}
-.summary-claim,.summary-answer {
+.summary-options li,.summary-container li {
   -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
   -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
   box-shadow: inset 0px 1px 0px 0px #ffffff;
@@ -59,6 +53,13 @@ ul.summary-entries {
   margin-bottom: 5px;
   padding-right: 30px;
 }
+.summary-container li {
+  display: none;
+  z-index: 5;
+  background-repeat: no-repeat;
+  background-image: url(img/tick.png);
+  background-position: center right;
+}
 .summary-claim-unclicked:hover {
   background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
   background: -moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
@@ -71,21 +72,16 @@ ul.summary-entries {
   position: relative;
   top: 1px;
 }
-li.summary-success {
-  background-repeat: no-repeat;
-  background-image: url(img/tick.png);
-  background-position: center right;
-}
 .summary-failed {
   background-repeat: no-repeat;
   background-image: url(img/cross.png);
   background-position: center right;
 }
-.score-intermediate {
+.summary-evaluation div {
   font-weight: bold;
   float: right;
 }
-.score-final {
+.summary-container div {
   font-weight: bold;
   padding: 0px 5px;
 }
