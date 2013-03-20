@@ -17,6 +17,8 @@ H5P.Summary = function (options, contentId) {
     var $target = typeof(target) === "string" ? $("#" + target) : $(target);
     var $myDom = $target;
 
+    $target.addClass('summary-content');
+
     // Create array objects
     for (var i = 0; i < options.summaries.length; i++) {
       elements[i] = Array();

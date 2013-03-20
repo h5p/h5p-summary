@@ -1,4 +1,4 @@
-.h5p-content {
+.summary-content {
   border: 1px solid #CCCCCC;
   background-color: #F5F5F5;
   padding: 10px;
@@ -30,7 +30,7 @@
 .summary-evaluation {
   padding: 5px 5px 2px 5px;
 }
-.summary-options li,.summary-container li {
+.summary-content li {
   -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
   -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
   box-shadow: inset 0px 1px 0px 0px #ffffff;
@@ -72,7 +72,7 @@
   position: relative;
   top: 1px;
 }
-.summary-failed {
+li.summary-failed {
   background-repeat: no-repeat;
   background-image: url(img/cross.png);
   background-position: center right;
