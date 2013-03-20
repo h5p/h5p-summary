@@ -1,152 +1,157 @@
 window.H5P = window.H5P || {};
 
 H5P.Summary = function (options, contentId) {
-	if ( !(this instanceof H5P.Summary) ){
-		return new H5P.Summary(options, contentId);
-	}
+  if ( !(this instanceof H5P.Summary) ){
+    return new H5P.Summary(options, contentId);
+  }
 
-	var offset = 0;
-	var score = 0;
-	var answer = Array();
+  var offset = 0;
+  var score = 0;
+  var answer = Array();
 
-	// Function for attaching the multichoice to a DOM element.
-	var attach = function (target) {
-		var c=0; // element counter
-		var elements = Array();
-		var $ = H5P.jQuery;
-		var $target = typeof(target) === "string" ? $("#" + target) : $(target);
-		var $myDom = $target;
+  // Function for attaching the multichoice to a DOM element.
+  var attach = function (target) {
+    var c=0; // element counter
+    var elements = Array();
+    var $ = H5P.jQuery;
+    var $target = typeof(target) === "string" ? $("#" + target) : $(target);
+    var $myDom = $target;
 
-		// Create array objects
-		for (var i = 0; i < options.summaries.length; i++) {
-			elements[i] = Array();
-			for (var j = 0; j < options.summaries[i].length; j++) {
-				answer[c] = j == 0; // First claim is correct
-				elements[i][j] = {
-					id: c++,
-					text: options.summaries[i][j]
-				};
-			}
+    // Create array objects
+    for (var i = 0; i < options.summaries.length; i++) {
+      elements[i] = Array();
+      for (var j = 0; j < options.summaries[i].length; j++) {
+        answer[c] = j == 0; // First claim is correct
+        elements[i][j] = {
+          id: c++,
+          text: options.summaries[i][j]
+        };
+      }
 
-			// Randomize elements
-			for (var k = elements[i].length - 1; k > 0; k--) {
-				var j = Math.floor(Math.random() * (k + 1));
-				var temp = elements[i][k];
-				elements[i][k] = elements[i][j];
-				elements[i][j] = temp;
-			}
-		}
+      // Randomize elements
+      for (var k = elements[i].length - 1; k > 0; k--) {
+        var j = Math.floor(Math.random() * (k + 1));
+        var temp = elements[i][k];
+        elements[i][k] = elements[i][j];
+        elements[i][j] = temp;
+      }
+    }
 
-		// Create content panels
-		var $summary = $('<ul class="summary" id="summary-list"></ul>');
-		var $evaluation = $('<div class="evaluation" id="option-list">Velg riktig alternativ til å legge til oppsummeringen</div>');
-		var $score = $('<div class="score-intermediate" id="score"></div>');
-		var $options = $('<div class="options" id="option-list">');
-		var options_padding = parseInt($options.css('paddingLeft'));
+    // Create content panels
+    var $summary_container = $('<div class="summary-container"></div>');
+    var $summary_list = $('<ul class="summary"></ul>');
+    var $evaluation = $('<div class="evaluation">Velg riktig alternativ til å legge til oppsummeringen</div>');
+    var $score = $('<div class="score-intermediate"></div>');
+    var $options = $('<div class="options">');
+    var options_padding = parseInt($options.css('paddingLeft'));
 
-		// Insert content
-		$myDom.append($summary);
-		$evaluation.append($score);
-		$myDom.append($evaluation);
-		$myDom.append($options);
+    // Insert content
+    $summary_container.append($summary_list);
+    $myDom.append($summary_container);
+    $evaluation.append($score);
+    $myDom.append($evaluation);
+    $myDom.append($options);
 
-		// Add elements to content
-		for (var i = 0; i < elements.length; i++) {
-			var $page = $('<ul class="summary-entries" id="panel-'+i+'" data-panel="'+i+'"></ul>');
+    // Add elements to content
+    for (var i = 0; i < elements.length; i++) {
+      var $page = $('<ul class="summary-entries" id="panel-'+i+'" data-panel="'+i+'"></ul>');
 
-			for (var j = 0; j < elements[i].length; j++) {
-				var $node = $('<li id="node-'+elements[i][j].id+'" class="claim">'+elements[i][j].text+'</li>');
+      for (var j = 0; j < elements[i].length; j++) {
+        var $node = $('<li id="summary-node-'+elements[i][j].id+'" class="summary-claim summary-claim-unclicked">'+elements[i][j].text+'</li>');
 
-				// Add click event
-				$node.click(function(){
-					var $el = $('#'+this.id, $myDom);
-					var node_id = parseInt(this.id.replace(/[a-z\-]+/,''));
-					var classname = answer[node_id] ? 'success' : 'failed';
+        // Add click event
+        $node.click(function(){
+          var $el = $('#'+this.id, $myDom);
+          var node_id = parseInt(this.id.replace(/[a-z\-]+/,''));
+          var classname = answer[node_id] ? 'success' : 'failed';
 
-					$el.addClass(classname);
+          // $el.addClass(classname);
 
-					// Correct answer?
-					if(answer[node_id]){
-						var position = $el.position();
-						var summary = $summary.position();
-						var $answer = $('<li class="answer" id="">'+$el.html()+'</li>');
+          // Correct answer?
+          if(answer[node_id]){
+            var position = $el.position();
+            var summary = $summary_list.position();
+            var $answer = $('<li class="summary-answer summary-success">'+$el.html()+'</li>');
 
-						// Insert correct claim into summary
-						$summary.append($answer);
+            // Insert correct claim into summary list
+            $summary_list.append($answer);
 
-						// Move into position over clicked element
-						var w = $el.css('width');
-						var h = $el.css('height');
-						$answer.css('display', 'block');
-						$answer.css('height', h);
-						$answer.css('width', w);
-						$answer.css('position', 'absolute');
-						$answer.css('top', position.top);
-						$answer.css('left', position.left);
+            // Move into position over clicked element
+            $answer.css('display', 'block');
+            $answer.css({ width: $el.css('width'), height: $el.css('height') });
+            $answer.css({ position: 'absolute', top: position.top, left: position.left });
+            $answer.css('background-position', (parseInt($el.innerWidth()) - 25) + 'px center');
 
-						var panel = parseInt($el.parent().attr('data-panel'));
-						var $curr_panel = $('#panel-'+panel, $myDom);
-						var $next_panel = $('#panel-'+(panel + 1), $myDom);
-						var height = $curr_panel.parent().css('height');
+            var panel = parseInt($el.parent().attr('data-panel'));
+            var $curr_panel = $('#panel-'+panel, $myDom);
+            var $next_panel = $('#panel-'+(panel + 1), $myDom);
+            var height = $curr_panel.parent().css('height');
 
-						// Fade out current panel
-						$curr_panel.fadeOut('fast', function() {
-							// Force panel height to recorded height
-							$curr_panel.parent().css('height', height);
+            // Fade out current panel
+            $curr_panel.fadeOut('fast', function() {
+              // Force panel height to recorded height
+              $curr_panel.parent().css('height', height);
 
-							// Animate answer to summary
-							$answer.animate(
-								{
-									top: summary.top+offset,
-									left: '-='+options_padding+'px',
-									width: '+='+(options_padding*2)+'px'
-								},
-								{
-									complete: function(){
-										// Remove position (becomes inline);
-										$(this).css('position', '');
+              // Animate answer to summary
+              $answer.animate(
+                {
+                  top: summary.top+offset,
+                  left: '-='+options_padding+'px',
+                  width: '+='+(options_padding*2)+'px'
+                },
+                {
+                  step: function(){
+                    // Need to reposition background image on each step as el width grows in animation
+                    $(this).css('background-position', (parseInt($(this).innerWidth()) - 25) + 'px center');
+						},
+                  complete: function(){
+                    // Remove position (becomes inline);
+                    $(this).css('position', '');
 
-										// Calculate offset for next summary item
-										var tpadding = parseInt($answer.css('paddingTop'))*2;
-										var tmargin = parseInt($answer.css('marginBottom'));
-										var theight = parseInt($answer.css('height'));
-										offset += theight + tpadding + tmargin + 1;
+                    // Calculate offset for next summary item
+                    var tpadding = parseInt($answer.css('paddingTop'))*2;
+                    var tmargin = parseInt($answer.css('marginBottom'));
+                    var theight = parseInt($answer.css('height'));
+                    offset += theight + tpadding + tmargin + 1;
 
-										// Show next panel if present
-										if($next_panel.attr('id')){
-											$curr_panel.parent().css('height', 'auto');
-											$next_panel.fadeIn('fast', function() {
-											});
-										}
-										else {
-											// Hide intermediate evaluation
-											$score.html('');
+                    // Show next panel if present
+                    if($next_panel.attr('id')){
+                      $curr_panel.parent().css('height', 'auto');
+                      $next_panel.fadeIn('fast', function() {
+                      });
+                    }
+                    else {
+                      // Hide intermediate evaluation
+                      $score.html('');
 
-											// Show final evaluation
-											var message = score ? 'OK. Du hadde '+score+' feil' : 'Gratulerer! Du hadde ingen feil!';
-											var $evaluation = $('<div class="score-final" id="">'+message+'</div>');
-											$summary.append($evaluation);
-										}
-									}
-								}
-							);
-						});
-					}
-					else {
-						// Remove event handler (prevent repeated clicks)
-						$el.off('click');
-						$score.html('Antall feil: ' + (++score));
-					}
-				});
-				$page.append($node);
-			}
-			$options.append($page);
-		}
+                      // Show final evaluation
+                      var message = score ? 'OK. Du hadde '+score+' feil' : 'Gratulerer! Du hadde ingen feil!';
+                      var $evaluation = $('<div class="score-final">'+message+'</div>');
+                      $summary_container.append($evaluation);
+                    }
+                  }
+                }
+              );
+            });
+          }
+          else {
+            // Remove event handler (prevent repeated clicks)
+            $el.off('click');
+            $el.addClass('summary-failed');
+            $el.removeClass('summary-claim-unclicked');
+            $el.css('background-position', (parseInt($el.innerWidth()) - 25) + 'px center');
+            $score.html('Antall feil: ' + (++score));
+          }
+        });
+        $page.append($node);
+      }
+      $options.append($page);
+    }
 
-		// Show first panel
-		$('#panel-0', $myDom).css({ display: 'block' });
+    // Show first panel
+    $('#panel-0', $myDom).css({ display: 'block' });
 
-		return this;
+    return this;
   };
 
   var returnObject = {
