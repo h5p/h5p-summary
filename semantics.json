@@ -25,7 +25,7 @@
     "entity": "response",
     "max": 10,
     "field": {
-      "name": "response",
+      "name": "respons",
       "type": "group",
       "fields": [
          {
