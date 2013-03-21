@@ -17,5 +17,33 @@
         "description": "Påstand, øverste påstand er riktig."
       }
     }
+  },
+  {
+    "name": "response",
+    "type": "list",
+    "label": "Tilbakemeldinger på oppgaven",
+    "entity": "response",
+    "max": 10,
+    "field": {
+      "name": "response",
+      "type": "group",
+      "fields": [
+         {
+           "name": "from",
+           "type": "number",
+           "label": "Fra (%)"
+         },
+         {
+           "name": "title",
+           "type": "text",
+           "label": "Tittel"
+         },
+         {
+           "name": "message",
+           "type": "text",
+           "label": "Melding"
+         }
+      ]
+    }
   }
 ]

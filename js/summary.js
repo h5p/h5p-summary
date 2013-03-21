@@ -9,13 +9,6 @@ H5P.Summary = function (options, contentId) {
   var score = 0;
   var answer = Array();
 
-  var evaluation_message = [
-    { from: 100, title: 'Perfekt', message: 'Gratulerer, dette hadde du full kontroll på!' },
-    { from: 70,  title: 'Bra', message: 'Dette kan du godt' },
-    { from: 40,  title: 'Noe bra', message: 'Du må lese mer' },
-    { from: 0,   title: 'Elendig', message: 'Er du sikker på at dette er noe for deg?'}
-  ];
-
   // Function for attaching the multichoice to a DOM element.
   var attach = function (target) {
     var c=0; // element counter
@@ -38,15 +31,15 @@ H5P.Summary = function (options, contentId) {
       var percent = 100 - (error_count / options.summaries.length * 100);
 
       // Find evaluation message
-      for(var i = 0; i < evaluation_message.length; i++) {
-        if(percent >= evaluation_message[i].from) {
+      for(var i = 0; i < options.response.length; i++) {
+        if(percent >= options.response[i].from) {
           break;
         }
       }
 
       // Show final evaluation
-      var message = evaluation_message[i].title + ". Du hadde "+(options.summaries.length-error_count)+" av " + options.summaries.length + " brett ("+Math.round(percent)+"%) uten feil. " + evaluation_message[i].message;
-      var evaluation = $('<div class="score-over-'+evaluation_message[i].from+'">'+message+'</div>');
+      var message = options.response[i].title + ". Du hadde "+(options.summaries.length-error_count)+" av " + options.summaries.length + " brett ("+Math.round(percent)+"%) uten feil. " + options.response[i].message;
+      var evaluation = $('<div class="score-over-'+options.response[i].from+'">'+message+'</div>');
       container.append(evaluation);
     }
 
