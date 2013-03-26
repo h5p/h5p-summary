@@ -6,9 +6,10 @@
 .summary-content ul {
   margin: 0px;
   padding: 0px;
+  display: block;
 }
 .summary-container {
-  height: 300px;
+  height: 50px;
   font-size: 14px;
   font-family: Arial, "Liberation Sans", sans-serif;
 }
@@ -76,12 +77,17 @@ li.summary-failed {
   font-weight: bold;
   float: right;
 }
-.summary-container div {
-  font-weight: bold;
+.summary-options div {
+  font-size: 14px;
+  display: none;
   padding: 0px 5px;
   background-repeat: no-repeat;
   background-position: center right;
   height: 30px;
+}
+.summary-options h2 {
+  font-size: 24px;
+  font-weight: bold;
 }
 .score-over-100 {
 	background-image: url(img/response-100.png);

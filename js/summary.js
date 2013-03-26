@@ -19,7 +19,14 @@ H5P.Summary = function (options, contentId) {
 
     $target.addClass('summary-content');
 
-    function do_final_evaluation(container, score) {
+    function adjustTargetHeight(container, elements, el) {
+		var new_height = parseInt(elements.outerHeight()) + parseInt(el.outerHeight()) + parseInt(el.css('marginBottom')) + parseInt(el.css('marginTop'));
+      if(new_height > parseInt(container.css('height'))) {
+        container.animate({ height: new_height });
+      }
+    }
+
+    function do_final_evaluation(container, options_panel, list, score) {
       var error_count = 0;
 
       // Count boards without errors
@@ -38,9 +45,12 @@ H5P.Summary = function (options, contentId) {
       }
 
       // Show final evaluation
-      var message = options.response[i].title + ". Du hadde "+(options.summaries.length-error_count)+" av " + options.summaries.length + " brett ("+Math.round(percent)+"%) uten feil. " + options.response[i].message;
+      var summary = options.summary.replace('@score', options.summaries.length-error_count).replace('@total', options.summaries.length).replace('@percent', Math.round(percent));
+      var message = '<h2>' + options.response[i].title + "</h2>" + summary + "<br/>" + options.response[i].message;
       var evaluation = $('<div class="score-over-'+options.response[i].from+'">'+message+'</div>');
-      container.append(evaluation);
+      options_panel.append(evaluation);
+		evaluation.fadeIn('slow');
+      // adjustTargetHeight(container, list, evaluation);
     }
 
     // Create array objects
@@ -108,6 +118,7 @@ H5P.Summary = function (options, contentId) {
 
             // Insert correct claim into summary list
             $summary_list.append($answer);
+            adjustTargetHeight($summary_container, $summary_list, $answer);
 
             // Move into position over clicked element
             $answer.css({ display: 'block', width: $el.css('width'), height: $el.css('height') });
@@ -153,9 +164,9 @@ H5P.Summary = function (options, contentId) {
                     }
                     else {
                       // Hide intermediate evaluation
-                      $score.html('');
+                      $evaluation.html('&nbsp;');
 
-                      do_final_evaluation($summary_container, score);
+                      do_final_evaluation($summary_container, $options, $summary_list, score);
                     }
                   }
                 }
