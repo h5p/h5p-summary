@@ -38,16 +38,33 @@ H5P.Summary = function (options, contentId) {
       var percent = 100 - (error_count / options.summaries.length * 100);
 
       // Find evaluation message
-      for(var i = 0; i < options.response.length; i++) {
-        if(percent >= options.response[i].from) {
+      var from = 0;
+      for (var i in options.response) {
+        switch(i) {
+        case "scorePerfect":
+          from = 100;
+          break;
+        case "scoreOver70":
+          from = 70;
+          break;
+        case "scoreOver40":
+          from = 40;
+          break;
+        case "scoreOver0":
+          from = 0;
+          break;
+        }
+        if(percent >= from) {
           break;
         }
       }
+      console.log("percent =" + percent + " from=" + from);
+// return;
 
       // Show final evaluation
       var summary = options.summary.replace('@score', options.summaries.length-error_count).replace('@total', options.summaries.length).replace('@percent', Math.round(percent));
       var message = '<h2>' + options.response[i].title + "</h2>" + summary + "<br/>" + options.response[i].message;
-      var evaluation = $('<div class="score-over-'+options.response[i].from+'">'+message+'</div>');
+      var evaluation = $('<div class="score-over-'+from+'">'+message+'</div>');
       options_panel.append(evaluation);
 		evaluation.fadeIn('slow');
       // adjustTargetHeight(container, list, evaluation);

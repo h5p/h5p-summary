@@ -9,15 +9,14 @@
   display: block;
 }
 .summary-container {
-  height: 50px;
+  height: 100px;
   font-size: 14px;
   font-family: Arial, "Liberation Sans", sans-serif;
 }
 .summary-options {
   padding: 5px;
-  overflow: auto;
+  height: auto;
   background-color: white;
-  height: 150px;
   border: 1px solid #cdcdcd;
   padding-bottom: 0px;
   -moz-border-radius: 6px;

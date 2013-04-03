@@ -20,31 +20,78 @@
   },
   {
     "name": "response",
-    "type": "list",
     "label": "Tilbakemeldinger på oppgaven",
-    "entity": "response",
-    "max": 10,
-    "field": {
-      "name": "respons",
-      "type": "group",
-      "fields": [
-         {
-           "name": "from",
-           "type": "number",
-           "label": "Fra (%)"
-         },
-         {
-           "name": "title",
-           "type": "text",
-           "label": "Tittel"
-         },
-         {
-           "name": "message",
-           "type": "text",
-           "label": "Melding"
-         }
-      ]
-    }
+    "type": "group",
+    "fields": [
+      {
+        "label": "Alt riktig",
+        "name": "scorePerfect",
+        "type": "group",
+        "fields": [
+           {
+             "name": "title",
+             "type": "text",
+             "label": "Tittel"
+           },
+           {
+             "name": "message",
+             "type": "text",
+             "label": "Melding"
+           }
+        ]
+      },
+      {
+        "label": "Over 70%",
+        "name": "scoreOver70",
+        "type": "group",
+        "fields": [
+           {
+             "name": "title",
+             "type": "text",
+             "label": "Tittel"
+           },
+           {
+             "name": "message",
+             "type": "text",
+             "label": "Melding"
+           }
+        ]
+      },
+      {
+        "label": "Over 40%",
+        "name": "scoreOver40",
+        "type": "group",
+        "fields": [
+           {
+             "name": "title",
+             "type": "text",
+             "label": "Tittel"
+           },
+           {
+             "name": "message",
+             "type": "text",
+             "label": "Melding"
+           }
+        ]
+      },
+      {
+        "label": "Over 0%",
+        "name": "scoreOver0",
+        "type": "group",
+        "fields": [
+           {
+             "name": "title",
+             "type": "text",
+             "label": "Tittel"
+           },
+           {
+             "name": "message",
+             "type": "text",
+             "label": "Melding"
+           }
+        ]
+      }
+    ]
   },
   {
     "name": "summary",
