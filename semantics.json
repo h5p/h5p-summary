@@ -9,12 +9,12 @@
     "field": {
       "name": "summary",
       "type": "list",
-      "label": "Påstander",
+      "label": "Påstander, første påstand er riktig.",
       "field": {
         "name": "text",
         "type": "text",
         "label": "Påstand",
-        "description": "Påstand, øverste påstand er riktig."
+        "description": "Påstand, første påstand er riktig."
       }
     }
   },
