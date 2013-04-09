@@ -13,8 +13,7 @@
       "field": {
         "name": "text",
         "type": "text",
-        "label": "Påstand",
-        "description": "Påstand, første påstand er riktig."
+        "label": "Påstand"
       }
     }
   },
