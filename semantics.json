@@ -5,7 +5,7 @@
     "label": "Summaries",
     "description": "Liste av lister med påstander.",
     "entity": "summary",
-    "max": 20,
+    "max": 100,
     "field": {
       "name": "summary",
       "type": "list",
