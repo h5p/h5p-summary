@@ -57,7 +57,7 @@
   z-index: 5;
   background-repeat: no-repeat;
   background-image: url(img/tick.png);
-  background-position: center right;
+  background-position: 98% 50%;
   background-size: 1.143em 1.143em;
 }
 .summary-claim-unclicked:hover {
@@ -71,7 +71,7 @@
 li.summary-failed {
   background-repeat: no-repeat;
   background-image: url(img/cross.png);
-  background-position: center right;
+  background-position: 98% 50%;
   background-size: 1.143em 1.143em;
 }
 .summary-evaluation div {
