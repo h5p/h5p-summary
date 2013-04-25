@@ -145,7 +145,6 @@ H5P.Summary = function (options, contentId) {
             // Move into position over clicked element
             $answer.css({ display: 'block', width: $el.css('width'), height: $el.css('height') });
             $answer.css({ position: 'absolute', top: position.top, left: position.left });
-            $answer.css('background-position', (parseInt($el.innerWidth()) - 25) + 'px center');
 
             var panel = parseInt($el.parent().attr('data-panel'));
             var $curr_panel = $('.h5p-panel:eq(' + panel + ')', $myDom);
@@ -165,13 +164,9 @@ H5P.Summary = function (options, contentId) {
                   width: '+='+(options_padding*2)+'px'
                 },
                 {
-                  step: function(){
-                    // Need to reposition background image on each step as el width grows in animation
-                    $(this).css('background-position', (parseInt($(this).innerWidth()) - 25) + 'px center');
-                  },
                   complete: function(){
                     // Remove position (becomes inline);
-                    $(this).css('position', '').css({width: '', height: '', top: '', left: '', backgroundPosition: '98% 50%'});
+                    $(this).css('position', '').css({width: '', height: '', top: '', left: ''});
 
                     // Calculate offset for next summary item
                     var tpadding = parseInt($answer.css('paddingTop'))*2;
@@ -200,7 +195,6 @@ H5P.Summary = function (options, contentId) {
             $el.off('click');
             $el.addClass('summary-failed');
             $el.removeClass('summary-claim-unclicked');
-            $el.css('background-position', (parseInt($el.innerWidth()) - 25) + 'px center');
             $score.html('Antall feil: ' + (++score));
             panel_id = $el.parent().attr('data-panel');
             error_counts[panel_id]++;
