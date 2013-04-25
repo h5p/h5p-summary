@@ -9,6 +9,32 @@ H5P.Summary = function (options, contentId) {
   var score = 0;
   var answer = Array();
   var error_counts = Array();
+  var that = this;
+  this.options = H5P.jQuery.extend({}, {
+    response: {
+      scorePerfect:
+      {
+        title: "PERFECT!",
+        message: "You got everything correct on your first try. Be proud!"
+      },
+      scoreOver70:
+      {
+        title: "Great!",
+        message: "You got most of the statements correct on your first try!"
+      },
+      scoreOver40:
+      {
+        title: "Ok",
+        message: "You got some of the statements correct on your first try. There is still room for improvement."
+      },
+      scoreOver0:
+      {
+        title: "Not good",
+        message: "You need to work more on this"
+      }
+    },
+    summary: "You got @score of @total statements (@percent %) correct."
+  }, options);
 
   // Function for attaching the multichoice to a DOM element.
   var attach = function (target) {
@@ -19,8 +45,8 @@ H5P.Summary = function (options, contentId) {
     var $myDom = $target;
 
     $target.addClass('summary-content');
-    
-    if (options.summaries === undefined) {
+
+    if (that.options.summaries === undefined) {
       return;
     }
 
@@ -44,7 +70,7 @@ H5P.Summary = function (options, contentId) {
 
       // Find evaluation message
       var from = 0;
-      for (var i in options.response) {
+      for (var i in that.options.response) {
         switch(i) {
         case "scorePerfect":
           from = 100;
@@ -67,8 +93,8 @@ H5P.Summary = function (options, contentId) {
 // return;
 
       // Show final evaluation
-      var summary = options.summary.replace('@score', options.summaries.length-error_count).replace('@total', options.summaries.length).replace('@percent', Math.round(percent));
-      var message = '<h2>' + options.response[i].title + "</h2>" + summary + "<br/>" + options.response[i].message;
+      var summary = that.options.summary.replace('@score', that.options.summaries.length-error_count).replace('@total', that.options.summaries.length).replace('@percent', Math.round(percent));
+      var message = '<h2>' + that.options.response[i].title + "</h2>" + summary + "<br/>" + that.options.response[i].message;
       var evaluation = $('<div class="score-over-'+from+'">'+message+'</div>');
       options_panel.append(evaluation);
 		evaluation.fadeIn('slow');
@@ -76,15 +102,15 @@ H5P.Summary = function (options, contentId) {
     }
 
     // Create array objects
-    for (var i = 0; i < options.summaries.length; i++) {
+    for (var i = 0; i < that.options.summaries.length; i++) {
       error_counts[i] = 0;
 
       elements[i] = Array();
-      for (var j = 0; j < options.summaries[i].length; j++) {
+      for (var j = 0; j < that.options.summaries[i].length; j++) {
         answer[c] = j === 0; // First claim is correct
         elements[i][j] = {
           id: c++,
-          text: options.summaries[i][j]
+          text: that.options.summaries[i][j]
         };
       }
 

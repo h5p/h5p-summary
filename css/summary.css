@@ -83,7 +83,7 @@ li.summary-failed {
   display: none;
   padding: 0 0.357em;
   background-repeat: no-repeat;
-  background-position: center right;
+  background-position: top right;
 }
 .summary-options h2 {
   font-size: 1.5em;

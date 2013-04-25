@@ -2,91 +2,100 @@
   {
     "name": "summaries",
     "type": "list",
-    "label": "Summaries",
-    "description": "Liste av lister med påstander.",
-    "entity": "summary",
+    "label": "Summary",
+    "description": "List of summaries",
+    "entity": "statements",
     "max": 100,
     "field": {
       "name": "summary",
       "type": "list",
-      "label": "Påstander, første påstand er riktig.",
+      "label": "List of statements for the summary. The first statement is correct.",
+      "entity": "statement",
       "field": {
         "name": "text",
         "type": "text",
-        "label": "Påstand"
+        "label": "Statement"
       }
     }
   },
   {
     "name": "response",
-    "label": "Tilbakemeldinger på oppgaven",
+    "label": "Feedback",
     "type": "group",
     "fields": [
       {
-        "label": "Alt riktig",
+        "label": "Everything correct",
         "name": "scorePerfect",
         "type": "group",
         "fields": [
            {
              "name": "title",
              "type": "text",
-             "label": "Tittel"
+             "label": "Feedback title",
+             "default": "PERFECT!"
            },
            {
              "name": "message",
              "type": "text",
-             "label": "Melding"
+             "label": "Feedback message",
+             "default": "You got everything correct on your first try. Be proud!"
            }
         ]
       },
       {
-        "label": "Over 70%",
+        "label": "70 % - 99 % correct",
         "name": "scoreOver70",
         "type": "group",
         "fields": [
            {
              "name": "title",
              "type": "text",
-             "label": "Tittel"
+             "label": "Feedback title",
+             "default": "Great!"
            },
            {
              "name": "message",
              "type": "text",
-             "label": "Melding"
+             "label": "Feedback message",
+             "default": "You got most of the statements correct on your first try!"
            }
         ]
       },
       {
-        "label": "Over 40%",
+        "label": "40 % - 69 % correct",
         "name": "scoreOver40",
         "type": "group",
         "fields": [
            {
              "name": "title",
              "type": "text",
-             "label": "Tittel"
+             "label": "Feedback title",
+             "default": "Ok"
            },
            {
              "name": "message",
              "type": "text",
-             "label": "Melding"
+             "label": "Feedback message",
+             "default": "You got some of the statements correct on your first try. There is still room for improvement."
            }
         ]
       },
       {
-        "label": "Over 0%",
+        "label": "0 % - 39 % correct",
         "name": "scoreOver0",
         "type": "group",
         "fields": [
            {
              "name": "title",
              "type": "text",
-             "label": "Tittel"
+             "label": "Feedback title",
+             "default": "Not good"
            },
            {
              "name": "message",
              "type": "text",
-             "label": "Melding"
+             "label": "Feedback message",
+             "default": "You need to work more on this"
            }
         ]
       }
@@ -95,7 +104,8 @@
   {
     "name": "summary",
     "type": "text",
-    "label": "Oppsummering",
-    "description": "Eks: Du hadde @score av @total brett (@percent%) uten feil."
+    "label": "Feedback summary",
+    "default": "You got @score of @total statements (@percent %) correct.",
+    "description": "Available variables: @score, @total, @percent. Example: You got @score of @total statements (@percent %) correct."
   }
 ]
