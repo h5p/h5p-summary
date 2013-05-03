@@ -20,8 +20,9 @@
   },
   {
     "name": "response",
-    "label": "Feedback",
+    "label": "Summary feedback",
     "type": "group",
+    "common": true
     "fields": [
       {
         "label": "Everything correct",
@@ -106,6 +107,7 @@
     "type": "text",
     "label": "Feedback summary",
     "default": "You got @score of @total statements (@percent %) correct.",
-    "description": "Available variables: @score, @total, @percent. Example: You got @score of @total statements (@percent %) correct."
+    "description": "Available variables: @score, @total, @percent. Example: You got @score of @total statements (@percent %) correct.",
+    "common": true
   }
 ]
