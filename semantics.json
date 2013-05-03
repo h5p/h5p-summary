@@ -22,7 +22,7 @@
     "name": "response",
     "label": "Summary feedback",
     "type": "group",
-    "common": true
+    "common": true,
     "fields": [
       {
         "label": "Everything correct",
