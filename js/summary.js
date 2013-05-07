@@ -36,6 +36,22 @@ H5P.Summary = function (options, contentId) {
     summary: "You got @score of @total statements (@percent %) correct."
   }, options);
 
+  var countErrors = function () {
+    var error_count = 0;
+
+    // Count boards without errors
+    for (var i = 0; i < that.options.summaries.length; i++) {
+      if (error_counts[i] === undefined) {
+        error_count++;
+      }
+      else {
+        error_count += error_counts[i] ? 1 : 0;
+      }
+    }
+
+    return error_count;
+  };
+
   // Function for attaching the multichoice to a DOM element.
   var attach = function (target) {
     var c=0; // element counter
@@ -58,12 +74,7 @@ H5P.Summary = function (options, contentId) {
     }
 
     function do_final_evaluation(container, options_panel, list, score) {
-      var error_count = 0;
-
-      // Count boards without errors
-      for (var i = 0; i < error_counts.length; i++) {
-        error_count += error_counts[i] ? 1 : 0;
-      }
+      var error_count = countErrors();
 
       // Calculate percentage
       var percent = 100 - (error_count / error_counts.length * 100);
@@ -89,8 +100,6 @@ H5P.Summary = function (options, contentId) {
           break;
         }
       }
-      console.log("percent =" + percent + " from=" + from);
-// return;
 
       // Show final evaluation
       var summary = that.options.summary.replace('@score', that.options.summaries.length-error_count).replace('@total', that.options.summaries.length).replace('@percent', Math.round(percent));
@@ -103,8 +112,6 @@ H5P.Summary = function (options, contentId) {
 
     // Create array objects
     for (var i = 0; i < that.options.summaries.length; i++) {
-      error_counts[i] = 0;
-
       elements[i] = Array();
       for (var j = 0; j < that.options.summaries[i].length; j++) {
         answer[c] = j === 0; // First claim is correct
@@ -157,6 +164,10 @@ H5P.Summary = function (options, contentId) {
           var $el = $(this);
           var node_id = $el.attr('data-bit');
           var classname = answer[node_id] ? 'success' : 'failed';
+          panel_id = $el.parent().attr('data-panel');
+          if (error_counts[panel_id] === undefined) {
+            error_counts[panel_id] = 0;
+          }
 
           // Correct answer?
           if(answer[node_id]){
@@ -222,7 +233,6 @@ H5P.Summary = function (options, contentId) {
             $el.addClass('summary-failed');
             $el.removeClass('summary-claim-unclicked');
             $score.html('Antall feil: ' + (++score));
-            panel_id = $el.parent().attr('data-panel');
             error_counts[panel_id]++;
           }
         });
@@ -238,7 +248,10 @@ H5P.Summary = function (options, contentId) {
   };
 
   var returnObject = {
-    attach: attach // Attach to DOM object
+    attach: attach, // Attach to DOM object
+    showSolutions: function () {},
+    getMaxScore: function () { return that.options.summaries.length; },
+    getScore: function () { return that.options.summaries.length - countErrors(); }
   };
 
   return returnObject;
