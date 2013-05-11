@@ -75,7 +75,6 @@ li.summary-failed {
 }
 .summary-evaluation div {
   font-weight: bold;
-  float: right;
 }
 .summary-options div {
   font-size: 0.875em;
