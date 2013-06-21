@@ -19,6 +19,14 @@
     }
   },
   {
+    "name": "intro",
+    "type": "text",
+    "label": "Introduction text",
+    "default": "Choose the correct statement.",
+    "description": "Will be displayed above the summary task.",
+    "common": true
+  },
+  {
     "name": "response",
     "label": "Summary feedback",
     "type": "group",
