@@ -3,6 +3,7 @@
     "name": "summaries",
     "type": "list",
     "label": "Summary",
+    "widget": "verticalTabs",
     "description": "List of summaries",
     "entity": "statements",
     "max": 100,
