@@ -5,7 +5,7 @@
       "description": "Liste av påstander",
       "entity": "påstander",
       "field": {
-        "label": "Påstander til oppsummeringen. Første påstand er riktig.",
+        "label": "Påstander til oppsummeringen. Første påstand er riktig. Påstandene vil bli stokket om ved visning.",
         "entity": "påstand",
         "field": {
           "label": "Påstand"

@@ -10,7 +10,8 @@ H5P.Summary = function (options, contentId) {
   var answer = Array();
   var error_counts = Array();
   var that = this;
-  this.options = H5P.jQuery.extend({}, {
+  this.options = H5P.jQuery.extend(true, {}, {
+    intro: "Choose the correct statement.",
     response: {
       scorePerfect:
       {
@@ -133,7 +134,7 @@ H5P.Summary = function (options, contentId) {
     // Create content panels
     var $summary_container = $('<div class="summary-container"></div>');
     var $summary_list = $('<ul></ul>');
-    var $evaluation = $('<div class="summary-evaluation">Velg riktig alternativ til å legge til oppsummeringen</div>');
+    var $evaluation = $('<div class="summary-evaluation">' + that.options.intro + '</div>');
     var $score = $('<div></div>');
     var $options = $('<div class="summary-options">');
     var options_padding = parseInt($options.css('paddingLeft'));
