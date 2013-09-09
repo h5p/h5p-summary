@@ -24,6 +24,7 @@
 }
 .summary-options ul {
   display: none;
+  list-style: none;
 }
 .summary-evaluation {
   padding: 0.3125em 0.3125em 0.125em 0.3125em;
