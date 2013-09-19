@@ -34,7 +34,8 @@ H5P.Summary = function (options, contentId) {
         message: "You need to work more on this"
       }
     },
-    summary: "You got @score of @total statements (@percent %) correct."
+    summary: "You got @score of @total statements (@percent %) correct.",
+    postUserStatistics: (H5P.postUserStatistics === true)
   }, options);
 
   var countErrors = function () {
@@ -100,6 +101,10 @@ H5P.Summary = function (options, contentId) {
         if(percent >= from) {
           break;
         }
+      }
+
+      if (that.options.postUserStatistics === true) {
+        H5P.setFinished(contentId, that.options.summaries.length - error_count, that.options.summaries.length);
       }
 
       // Show final evaluation
