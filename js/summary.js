@@ -1,7 +1,7 @@
 var H5P = H5P || {};
 
-H5P.Summary = function (options, contentId) {
-  if ( !(this instanceof H5P.Summary) ){
+H5P.Summary = function(options, contentId) {
+  if (!(this instanceof H5P.Summary)) {
     return new H5P.Summary(options, contentId);
   }
 
@@ -10,35 +10,38 @@ H5P.Summary = function (options, contentId) {
   var answer = Array();
   var error_counts = Array();
   var that = this;
-  this.options = H5P.jQuery.extend(true, {}, {
-    intro: "Choose the correct statement.",
+  this.options = H5P.jQuery.extend({}, {
     response: {
       scorePerfect:
-      {
-        title: "PERFECT!",
-        message: "You got everything correct on your first try. Be proud!"
-      },
+              {
+                title: "PERFECT!",
+                message: "You got everything correct on your first try. Be proud!"
+              },
       scoreOver70:
-      {
-        title: "Great!",
-        message: "You got most of the statements correct on your first try!"
-      },
+              {
+                title: "Great!",
+                message: "You got most of the statements correct on your first try!"
+              },
       scoreOver40:
-      {
-        title: "Ok",
-        message: "You got some of the statements correct on your first try. There is still room for improvement."
-      },
+              {
+                title: "Ok",
+                message: "You got some of the statements correct on your first try. There is still room for improvement."
+              },
       scoreOver0:
-      {
-        title: "Not good",
-        message: "You need to work more on this"
-      }
+              {
+                title: "Not good",
+                message: "You need to work more on this"
+              }
     },
     summary: "You got @score of @total statements (@percent %) correct.",
-    postUserStatistics: (H5P.postUserStatistics === true)
+    resultLabel: "Your result:",
+    intro: "Choose the correct statement.",
+    solvedLabel: "Solved:",
+    scoreLabel: "Wrong answers:"   
+    
   }, options);
 
-  var countErrors = function () {
+  var countErrors = function() {
     var error_count = 0;
 
     // Count boards without errors
@@ -55,8 +58,8 @@ H5P.Summary = function (options, contentId) {
   };
 
   // Function for attaching the multichoice to a DOM element.
-  var attach = function (target) {
-    var c=0; // element counter
+  var attach = function(target) {
+    var c = 0; // element counter
     var elements = Array();
     var $ = H5P.jQuery;
     var $target = typeof(target) === "string" ? $("#" + target) : $(target);
@@ -69,9 +72,10 @@ H5P.Summary = function (options, contentId) {
     }
 
     function adjustTargetHeight(container, elements, el) {
-		var new_height = parseInt(elements.outerHeight()) + parseInt(el.outerHeight()) + parseInt(el.css('marginBottom')) + parseInt(el.css('marginTop'));
-      if(new_height > parseInt(container.css('height'))) {
-        container.animate({ height: new_height });
+      console.log(parseInt(elements.outerHeight()), parseInt(el.outerHeight()), parseInt(el.css('marginBottom')), parseInt(el.css('marginTop')));
+      var new_height = parseInt(elements.outerHeight()) + parseInt(el.outerHeight()) + parseInt(el.css('marginBottom')) + parseInt(el.css('marginTop'));
+      if (new_height > parseInt(container.css('height'))) {
+        container.animate({height: new_height});
       }
     }
 
@@ -84,35 +88,35 @@ H5P.Summary = function (options, contentId) {
       // Find evaluation message
       var from = 0;
       for (var i in that.options.response) {
-        switch(i) {
-        case "scorePerfect":
-          from = 100;
-          break;
-        case "scoreOver70":
-          from = 70;
-          break;
-        case "scoreOver40":
-          from = 40;
-          break;
-        case "scoreOver0":
-          from = 0;
+        switch (i) {
+          case "scorePerfect":
+            from = 100;
+            break;
+          case "scoreOver70":
+            from = 70;
+            break;
+          case "scoreOver40":
+            from = 40;
+            break;
+          case "scoreOver0":
+            from = 0;
+            break;
+        }
+        if (percent >= from) {
           break;
         }
-        if(percent >= from) {
-          break;
-        }
-      }
-
-      if (that.options.postUserStatistics === true) {
-        H5P.setFinished(contentId, that.options.summaries.length - error_count, that.options.summaries.length);
       }
 
       // Show final evaluation
-      var summary = that.options.summary.replace('@score', that.options.summaries.length-error_count).replace('@total', that.options.summaries.length).replace('@percent', Math.round(percent));
+      var summary = that.options.summary.replace('@score', that.options.summaries.length - error_count).replace('@total', that.options.summaries.length).replace('@percent', Math.round(percent));
       var message = '<h2>' + that.options.response[i].title + "</h2>" + summary + "<br/>" + that.options.response[i].message;
-      var evaluation = $('<div class="score-over-'+from+'">'+message+'</div>');
+      var evaluation = $('<div class="evaluation-container"></div>');
+      var evaluation_emoticon = $('<span class="evaluation-emoticon-score-over-' + from + '"></span>');
+      var evaluation_message = $('<div class="evaluation-message">' + message + '</div>');
       options_panel.append(evaluation);
-		evaluation.fadeIn('slow');
+      evaluation.append(evaluation_emoticon);
+      evaluation.append(evaluation_message);
+      evaluation.fadeIn('slow');
       // adjustTargetHeight(container, list, evaluation);
     }
 
@@ -139,24 +143,30 @@ H5P.Summary = function (options, contentId) {
     // Create content panels
     var $summary_container = $('<div class="summary-container"></div>');
     var $summary_list = $('<ul></ul>');
-    var $evaluation = $('<div class="summary-evaluation">' + that.options.intro + '</div>');
-    var $score = $('<div></div>');
-    var $options = $('<div class="summary-options">');
+    var $evaluation = $('<div class="summary-evaluation"></div>');
+    var $evaluation_content = $('<span class="summary-evaluation-content">' + that.options.intro + '</span>');
+    var $score = $('<div class="summary-score"></div>');
+    var $options = $('<div class="summary-options"></div>');
+    var $progress = $('<div class="summary-progress"></div>');
     var options_padding = parseInt($options.css('paddingLeft'));
 
     // Insert content
     $summary_container.append($summary_list);
     $myDom.append($summary_container);
-    $evaluation.append($score);
     $myDom.append($evaluation);
     $myDom.append($options);
+    $evaluation.append($evaluation_content);
+    $evaluation.append($progress);
+    $evaluation.append($score);
+
+    $progress.html(that.options.solvedLabel + ' 0/' + that.options.summaries.length);
 
     // Add elements to content
     for (var i = 0; i < elements.length; i++) {
-      var $page = $('<ul class="h5p-panel" data-panel="'+i+'"></ul>');
+      var $page = $('<ul class="h5p-panel" data-panel="' + i + '"></ul>');
 
       for (var j = 0; j < elements[i].length; j++) {
-        var $node = $('<li data-bit="'+elements[i][j].id+'" class="summary-claim-unclicked">'+elements[i][j].text+'</li>');
+        var $node = $('<li data-bit="' + elements[i][j].id + '" class="summary-claim-unclicked">' + elements[i][j].text + '</li>');
 
         // When correct claim is clicked:
         // - Add claim to summary list
@@ -166,29 +176,36 @@ H5P.Summary = function (options, contentId) {
         // When wrong claim is clicked:
         // - Remove clickable
         // - Add error background image (css)
-        $node.click(function(){
+        $node.click(function() {
           var $el = $(this);
           var node_id = $el.attr('data-bit');
           var classname = answer[node_id] ? 'success' : 'failed';
-          panel_id = $el.parent().attr('data-panel');
+          panel_id = $el.parent().data('panel');
           if (error_counts[panel_id] === undefined) {
             error_counts[panel_id] = 0;
           }
 
           // Correct answer?
-          if(answer[node_id]){
+          if (answer[node_id]) {
             var position = $el.position();
             var summary = $summary_list.position();
-            var $answer = $('<li>'+$el.html()+'</li>');
+            var $answer = $('<li>' + $el.html() + '</li>');
+
+            $progress.html(that.options.solvedLabel + ' '  + (panel_id + 1) + '/' + that.options.summaries.length);
 
             // Insert correct claim into summary list
             $summary_list.append($answer);
             adjustTargetHeight($summary_container, $summary_list, $answer);
-
+           
             // Move into position over clicked element
-            $answer.css({ display: 'block', width: $el.css('width'), height: $el.css('height') });
-            $answer.css({ position: 'absolute', top: position.top, left: position.left });
-
+            $answer.css({display: 'block', width: $el.css('width'), height: $el.css('height')});
+            $answer.css({position: 'absolute', top: position.top, left: position.left});
+            $answer.css({backgroundColor: '#d1e2ce', borderColor: '#afcdaa'});
+            setTimeout(function () {
+              $answer.css({backgroundColor: '', borderColor: ''});
+            }, 1);
+            //$answer.animate({backgroundColor: '#eee'}, 'slow');
+            
             var panel = parseInt($el.parent().attr('data-panel'));
             var $curr_panel = $('.h5p-panel:eq(' + panel + ')', $myDom);
             var $next_panel = $('.h5p-panel:eq(' + (panel + 1) + ')', $myDom);
@@ -201,35 +218,35 @@ H5P.Summary = function (options, contentId) {
 
               // Animate answer to summary
               $answer.animate(
-                {
-                  top: summary.top+offset,
-                  left: '-='+options_padding+'px',
-                  width: '+='+(options_padding*2)+'px'
-                },
-                {
-                  complete: function(){
-                    // Remove position (becomes inline);
-                    $(this).css('position', '').css({width: '', height: '', top: '', left: ''});
+                      {
+                        top: summary.top + offset,
+                        left: '-=' + options_padding + 'px',
+                        width: '+=' + (options_padding * 2) + 'px'
+                      },
+              {
+                complete: function() {
+                  // Remove position (becomes inline);
+                  $(this).css('position', '').css({width: '', height: '', top: '', left: ''});
 
-                    // Calculate offset for next summary item
-                    var tpadding = parseInt($answer.css('paddingTop'))*2;
-                    var tmargin = parseInt($answer.css('marginBottom'));
-                    var theight = parseInt($answer.css('height'));
-                    offset += theight + tpadding + tmargin + 1;
+                  // Calculate offset for next summary item
+                  var tpadding = parseInt($answer.css('paddingTop')) * 2;
+                  var tmargin = parseInt($answer.css('marginBottom'));
+                  var theight = parseInt($answer.css('height'));
+                  offset += theight + tpadding + tmargin + 1;
 
-                    // Show next panel if present
-                    if($next_panel.length){
-                      $curr_panel.parent().css('height', 'auto');
-                      $next_panel.fadeIn('fast');
-                    }
-                    else {
-                      // Hide intermediate evaluation
-                      $evaluation.html('&nbsp;');
+                  // Show next panel if present
+                  if ($next_panel.length) {
+                    $curr_panel.parent().css('height', 'auto');
+                    $next_panel.fadeIn('fast');
+                  }
+                  else {
+                    // Hide intermediate evaluation
+                    $evaluation_content.html(that.options.resultLabel);
 
-                      do_final_evaluation($summary_container, $options, $summary_list, score);
-                    }
+                    do_final_evaluation($summary_container, $options, $summary_list, score);
                   }
                 }
+              }
               );
             });
           }
@@ -238,7 +255,9 @@ H5P.Summary = function (options, contentId) {
             $el.off('click');
             $el.addClass('summary-failed');
             $el.removeClass('summary-claim-unclicked');
-            $score.html('Antall feil: ' + (++score));
+
+            $('.summary-score').css('display', 'block');
+            $score.html(that.options.scoreLabel + ' ' + (++score));
             error_counts[panel_id]++;
           }
         });
@@ -248,16 +267,21 @@ H5P.Summary = function (options, contentId) {
     }
 
     // Show first panel
-    $('.h5p-panel:first', $myDom).css({ display: 'block' });
+    $('.h5p-panel:first', $myDom).css({display: 'block'});
 
     return this;
   };
 
   var returnObject = {
     attach: attach, // Attach to DOM object
-    showSolutions: function () {},
-    getMaxScore: function () { return that.options.summaries.length; },
-    getScore: function () { return that.options.summaries.length - countErrors(); }
+    showSolutions: function() {
+    },
+    getMaxScore: function() {
+      return that.options.summaries.length;
+    },
+    getScore: function() {
+      return that.options.summaries.length - countErrors();
+    }
   };
 
   return returnObject;

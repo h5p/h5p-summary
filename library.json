@@ -3,7 +3,7 @@
   "description": "The user is presented with a ...",
   "majorVersion": 1,
   "minorVersion": 0,
-  "patchVersion": 21,
+  "patchVersion": 18,
   "runnable": 1,
   "machineName": "H5P.Summary",
   "author": "Amendor AS",
@@ -15,12 +15,5 @@
     {"path": "js/summary.js"}
   ],
   "w": 635,
-  "h": 500,
-  "editorDependencies": [
-    {
-      "machineName": "H5PEditor.VerticalTabs",
-      "majorVersion": 1,
-      "minorVersion": 0
-    }
-  ]
+  "h": 500
 }
