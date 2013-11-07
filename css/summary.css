@@ -1,6 +1,16 @@
+/* IcoMoon font licensed under the GNU General Public License: http://www.gnu.org/licenses/gpl.html */
+@font-face {
+  font-family: 'icomoon';
+  src:url('../fonts/icomoon.eot');
+  src:url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.woff') format('woff'),
+    url('../fonts/icomoon.ttf') format('truetype'),
+    url('../fonts/icomoon.svg#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .summary-content {
-  border: 0.0625em solid #CCCCCC;
-  background-color: #F5F5F5;
   padding: 0.625em;
 }
 .summary-content ul {
@@ -9,98 +19,207 @@
   display: block;
 }
 .summary-container {
-  font-size: 0.875em;
+  font-size: 1em;
   font-family: Arial, "Liberation Sans", sans-serif;
+  background-color: #eee;
+  border-radius: 0.4em;
 }
 .summary-options {
-  padding: 0.3125em;
   height: auto;
   background-color: white;
-  border: 0.0625em solid #cdcdcd;
-  padding-bottom: 0;
-  -moz-border-radius: 0.375em;
-  -webkit-border-radius: 0.375em;
-  border-radius: 0.375em;
+  padding: 0;
 }
 .summary-options ul {
   display: none;
-  list-style: none;
+  /*list-style: none;*/
 }
 .summary-evaluation {
-  padding: 0.3125em 0.3125em 0.125em 0.3125em;
+  margin: 0 0 0.8em;
+  border-bottom: 0.1em solid #ddd;
+  padding: 1em 0 0.4em;
 }
 .summary-content li {
-  -moz-box-shadow: inset 0 0.0625em 0 0 #fff;
-  -webkit-box-shadow: inset 0 0.0625em 0 0 #fff;
-  box-shadow: inset 0 0.0625em 0 0 #fff;
-  background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
-  background: -moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
   background-color: #ededed;
-  -moz-border-radius: 0.375em;
-  -webkit-border-radius: 0.375em;
-  border-radius: 0.375em;
-  border: 1px solid #dcdcdc;
+  -moz-border-radius: 0.3em;
+  -webkit-border-radius: 0.3em;
+  border-radius: 0.3em;
+  border: 0.1em solid #dcdcdc;
   color: #777;
-  font-family: arial;
-  font-size: 0.9375em;
-  font-weight: bold;
+  font-family: Arial, "Liberation Sans", sans-serif;
+  font-size: 1em;
   padding: 0.375em 0.875em;
   text-decoration: none;
-  text-shadow: 0.0625em 0.0625em 0 #fff;
   margin: 0;
   margin-bottom: 0.3125em;
-  padding-right: 1.875em;
+  background: -moz-linear-gradient(top,  rgba(237,237,237,0.9) 0%, rgba(237,237,237,0.9) 1%, rgba(223,223,223,0.9) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(237,237,237,0.9)), color-stop(1%,rgba(237,237,237,0.9)), color-stop(100%,rgba(223,223,223,0.9))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(237,237,237,0.9) 0%,rgba(237,237,237,0.9) 1%,rgba(223,223,223,0.9) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(237,237,237,0.9) 0%,rgba(237,237,237,0.9) 1%,rgba(223,223,223,0.9) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(237,237,237,0.9) 0%,rgba(237,237,237,0.9) 1%,rgba(223,223,223,0.9) 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6ededed', endColorstr='#e6dfdfdf',GradientType=0 ); /* IE6-9 */
 }
 .summary-container li {
   display: none;
   z-index: 5;
-  background-repeat: no-repeat;
-  background-image: url(img/tick.png);
-  background-position: 98% 50%;
-  background-size: 1.143em 1.143em;
+  margin: 0;
+  border: 0;
+  background: none;
+
+  -webkit-transition: background-color 1000ms linear, border-color 1000ms linear;
+  -moz-transition: background-color 1000ms linear, border-color 1000ms linear;
+  -o-transition: background-color 1000ms linear, border-color 1000ms linear;
+  -ms-transition: background-color 1000ms linear, border-color 1000ms linear;
+  transition: background-color 1000ms linear, border-color 1000ms linear;
+}
+.summary-container li:before {
+  text-decoration: none;
+  content: "\f00c";
+  font-family: FontAwesome;
+  color: #39692e;
+  float: right;
 }
 .summary-claim-unclicked:hover {
-  background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
-  background: -moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
-  filter:progid: DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
-  background-color: #dfdfdf;
-  color: #444;
   cursor: pointer;
+  filter: none;
+  border: 0.1em solid #ddcae0;
+
+  background: rgb(238,228,239); /* Old browsers */
+  background: -moz-linear-gradient(top,  rgba(238,228,239,1) 0%, rgba(231,221,232,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,228,239,1)), color-stop(100%,rgba(231,221,232,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(238,228,239,1) 0%,rgba(231,221,232,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(238,228,239,1) 0%,rgba(231,221,232,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(238,228,239,1) 0%,rgba(231,221,232,1) 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eee4ef', endColorstr='#e7dde8',GradientType=0 ); /* IE6-9 */
 }
+
 li.summary-failed {
-  background-repeat: no-repeat;
-  background-image: url(img/cross.png);
-  background-position: 98% 50%;
-  background-size: 1.143em 1.143em;
-}
-.summary-evaluation div {
+  color: #c33f62;
+  border: 0.1em solid #ce9b9b;
+  background: #e6ced1;
+  text-decoration: line-through;
   font-weight: bold;
 }
+li.summary-failed:before {
+  text-decoration: none;
+  content: "\f00d";
+  font-family: FontAwesome;
+  color: #c33f62;
+  float: right;
+}
+
 .summary-options div {
-  font-size: 0.875em;
-  display: none;
-  padding: 0 0.357em;
+  font-size: 1em;
+  padding: 0;
   background-repeat: no-repeat;
   background-position: top right;
 }
+
+.summary-score {
+  display: none;
+  float: right;
+  background: #e6ced1;
+  -moz-border-radius: 0.3em;
+  -webkit-border-radius: 0.3em;
+  border-radius: 0.3em;
+  padding: 0.1em 0.3em;
+  font-weight: normal;
+  margin-right: 0.3em;
+}
+.summary-score:before {
+  text-decoration: none;
+  content: "\f00d";
+  font-family: FontAwesome;
+  color: #c33f62;
+  float: left;
+  margin-right: 0.3em;
+  top: 0.1em;
+}
+
+.summary-progress {
+  float: right;
+  background: #d1e2ce;
+  -moz-border-radius: 0.3em;
+  -webkit-border-radius: 0.3em;
+  border-radius: 0.3em;
+  padding: 0.1em 0.3em;
+  font-weight: normal;
+}
+.summary-progress:before {
+  text-decoration: none;
+  content: "\f00c";
+  font-family: FontAwesome;
+  color: #39692e;
+  float: left;
+  margin-right: 0.3em;
+}
+
 .summary-options h2 {
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: bold;
+  padding-bottom: 0.5em;
 }
-.score-over-100 {
-	background-image: url(img/response-100.png);
-  background-size: 2.429em 2.286em;
+.summary-options .evaluation-container {
+  display: block;
 }
-.score-over-70 {
-	background-image: url(img/response-70.png);
-  background-size: 2.643em 2.143em;
+
+.summary-options .evaluation-container .evaluation-emoticon-score-over-100:before {
+  display: block;
+  float: left;
+  font-family: IcoMoon;
+  content: "\e606";
+  font-size: 5em;
+  top: 0.5em;
+  position: relative;
 }
-.score-over-40 {
-	background-image: url(img/response-40.png);
-  background-size: 2.714em 2.214em;
+
+.summary-options .evaluation-container .evaluation-emoticon-score-over-70:before {
+  display: block;
+  float: left;
+  font-family: IcoMoon;
+  content: "\e604";
+  font-size: 5em;
+  top: 0.5em;
+  position: relative;
 }
-.score-over-0 {
-	background-image: url(img/response-0.png);
-  background-size: 2.429em 2.429em;
+
+.summary-options .evaluation-container .evaluation-emoticon-score-over-40:before {
+  display: block;
+  float: left;
+  font-family: IcoMoon;
+  content: "\e605";
+  font-size: 5em;
+  top: 0.5em;
+  position: relative;
+}
+
+.summary-options .evaluation-container .evaluation-emoticon-score-over-0:before {
+  display: block;
+  font-family: IcoMoon;
+  float: left;
+  content: "\e607";
+  font-size: 5em;
+  top: 0.5em;
+  position: relative;
+}
+
+.summary-options .evaluation-container .evaluation-message {
+  display: block;
+  background: #eee;
+  padding: 1em;
+  border-radius: 1em;
+  margin-left: 6.5em;
+  position: relative;
+}
+
+.summary-options .evaluation-container .evaluation-message:before {
+  content: "";
+  position: absolute;
+  left: -15px;
+  top: 36px;
+  height: 0;
+  width: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 15px solid #eee;
+  display: inline-block;
 }

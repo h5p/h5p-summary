@@ -10,7 +10,7 @@
     "field": {
       "name": "summary",
       "type": "list",
-      "label": "List of statements for the summary. The first statement is correct. The statements will be shuffled on display.",
+      "label": "List of statements for the summary. The first statement is correct.",
       "entity": "statement",
       "field": {
         "name": "text",
@@ -25,6 +25,30 @@
     "label": "Introduction text",
     "default": "Choose the correct statement.",
     "description": "Will be displayed above the summary task.",
+    "common": true
+  },
+  {
+    "name": "solvedLabel",
+    "type": "text",
+    "label": "Text displayed before number of statements solved in the summary task.",
+    "default": "Solved:",
+    "description": "Will be displayed above the statements. Example: 'Solved: 2/5'",
+    "common": true
+  },
+  {
+    "name": "scoreLabel",
+    "type": "text",
+    "label": "Text displayed before number of wrong statements selected in the summary task.",
+    "default": "Wrong answers:",
+    "description": "Will be displayed above the statements. Example: 'Wrong answers: 4'",
+    "common": true
+  },
+  {
+    "name": "resultLabel",
+    "type": "text",
+    "label": "Summary feedback header",
+    "default": "Your result",
+    "description": "Will be displayed above the summary feedback.",
     "common": true
   },
   {

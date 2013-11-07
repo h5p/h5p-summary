@@ -5,7 +5,7 @@
       "description": "Liste av påstandar",
       "entity": "påstandar",
       "field": {
-        "label": "Påstandar til oppsummeringen. Første påstand er riktig. Påstandane vil bli stokka ved visning.",
+        "label": "Påstandar til oppsummeringa. Første påstand er riktig.",
         "entity": "påstand",
         "field": {
           "label": "Påstand"
@@ -15,10 +15,25 @@
     {
       "label": "Introduksjonstekst",
       "default": "Vel riktig påstand.",
-      "description": "Vil vises over oppsummeringsoppgåven."
+      "description": "Vil vises øvst i oppsummeringsoppgåva."
     },
     {
-      "label": "Tilbakemelding på oppsummeringsoppgåver",
+      "label": "Tekst som vises før antall påstandar som er løst i oppsummeringsoppgåva.",
+      "default": "Løst:",
+      "description": "Vil vises over påstandane. Eksempel: 'Løst: 2/5'"
+    },
+    {
+      "label": "Tekst som vises før antall feil påstander som er valgt i oppsummeringsoppgåva.",
+      "default": "Antall feil:",
+      "description": "Vil vises over påstandane. Eksempel: 'Antall feil: 4'"
+    },
+    {
+      "label": "Overskrift over tilbakemelding",
+      "default": "Ditt resultat:",
+      "description": "Vil vises over tilbakemelding på oppsummeringsoppgåva."
+    },
+    {
+      "label": "Tilbakemelding på oppsummeringsoppgåva",
       "fields": [
         {
           "label": "Alt riktig",
