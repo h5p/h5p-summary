@@ -1,7 +1,7 @@
 var H5P = H5P || {};
 
-H5P.Summary = function (options, contentId) {
-  if ( !(this instanceof H5P.Summary) ){
+H5P.Summary = function(options, contentId) {
+  if (!(this instanceof H5P.Summary)) {
     return new H5P.Summary(options, contentId);
   }
 
@@ -10,38 +10,38 @@ H5P.Summary = function (options, contentId) {
   var answer = Array();
   var error_counts = Array();
   var that = this;
-  this.options = H5P.jQuery.extend(true, {}, {
+  this.options = H5P.jQuery.extend({}, {
     response: {
       scorePerfect:
-      {
-        title: "PERFECT!",
-        message: "You got everything correct on your first try. Be proud!"
-      },
+              {
+                title: "PERFECT!",
+                message: "You got everything correct on your first try. Be proud!"
+              },
       scoreOver70:
-      {
-        title: "Great!",
-        message: "You got most of the statements correct on your first try!"
-      },
+              {
+                title: "Great!",
+                message: "You got most of the statements correct on your first try!"
+              },
       scoreOver40:
-      {
-        title: "Ok",
-        message: "You got some of the statements correct on your first try. There is still room for improvement."
-      },
+              {
+                title: "Ok",
+                message: "You got some of the statements correct on your first try. There is still room for improvement."
+              },
       scoreOver0:
-      {
-        title: "Not good",
-        message: "You need to work more on this"
-      }
+              {
+                title: "Not good",
+                message: "You need to work more on this"
+              }
     },
     summary: "You got @score of @total statements (@percent %) correct.",
-    postUserStatistics: (H5P.postUserStatistics === true),
     resultLabel: "Your result:",
     intro: "Choose the correct statement.",
     solvedLabel: "Solved:",
-    scoreLabel: "Wrong answers:"
+    scoreLabel: "Wrong answers:"   
+    
   }, options);
 
-  var countErrors = function () {
+  var countErrors = function() {
     var error_count = 0;
 
     // Count boards without errors
@@ -58,7 +58,7 @@ H5P.Summary = function (options, contentId) {
   };
 
   // Function for attaching the multichoice to a DOM element.
-  var attach = function (target) {
+  var attach = function(target) {
     var c = 0; // element counter
     var elements = Array();
     var $ = H5P.jQuery;
@@ -72,6 +72,7 @@ H5P.Summary = function (options, contentId) {
     }
 
     function adjustTargetHeight(container, elements, el) {
+      console.log(parseInt(elements.outerHeight()), parseInt(el.outerHeight()), parseInt(el.css('marginBottom')), parseInt(el.css('marginTop')));
       var new_height = parseInt(elements.outerHeight()) + parseInt(el.outerHeight()) + parseInt(el.css('marginBottom')) + parseInt(el.css('marginTop'));
       if (new_height > parseInt(container.css('height'))) {
         container.animate({height: new_height});
@@ -106,20 +107,21 @@ H5P.Summary = function (options, contentId) {
         }
       }
 
-      if (that.options.postUserStatistics === true) {
-        H5P.setFinished(contentId, that.options.summaries.length - error_count, that.options.summaries.length);
-      }
-
       // Show final evaluation
       var summary = that.options.summary.replace('@score', that.options.summaries.length - error_count).replace('@total', that.options.summaries.length).replace('@percent', Math.round(percent));
       var message = '<h2>' + that.options.response[i].title + "</h2>" + summary + "<br/>" + that.options.response[i].message;
       var evaluation = $('<div class="evaluation-container"></div>');
       var evaluation_emoticon = $('<span class="evaluation-emoticon-score-over-' + from + '"></span>');
       var evaluation_message = $('<div class="evaluation-message">' + message + '</div>');
+      var evaluation_message_arrow = $('<div class="evaluation-message-arrow"></div>');
+      var evaluation_message_arrow_top = $('<div class="evaluation-message-arrow-top"></div>');
       options_panel.append(evaluation);
       evaluation.append(evaluation_emoticon);
+      evaluation.append(evaluation_message_arrow);
+      evaluation.append(evaluation_message_arrow_top);
       evaluation.append(evaluation_message);
       evaluation.fadeIn('slow');
+      // adjustTargetHeight(container, list, evaluation);
     }
 
     // Create array objects
@@ -178,7 +180,7 @@ H5P.Summary = function (options, contentId) {
         // When wrong claim is clicked:
         // - Remove clickable
         // - Add error background image (css)
-        $node.click(function () {
+        $node.click(function() {
           var $el = $(this);
           var node_id = $el.attr('data-bit');
           var classname = answer[node_id] ? 'success' : 'failed';
@@ -198,7 +200,7 @@ H5P.Summary = function (options, contentId) {
             // Insert correct claim into summary list
             $summary_list.append($answer);
             adjustTargetHeight($summary_container, $summary_list, $answer);
-
+           
             // Move into position over clicked element
             $answer.css({display: 'block', width: $el.css('width'), height: $el.css('height')});
             $answer.css({position: 'absolute', top: position.top, left: position.left});
@@ -206,7 +208,8 @@ H5P.Summary = function (options, contentId) {
             setTimeout(function () {
               $answer.css({backgroundColor: '', borderColor: ''});
             }, 1);
-
+            //$answer.animate({backgroundColor: '#eee'}, 'slow');
+            
             var panel = parseInt($el.parent().attr('data-panel'));
             var $curr_panel = $('.h5p-panel:eq(' + panel + ')', $myDom);
             var $next_panel = $('.h5p-panel:eq(' + (panel + 1) + ')', $myDom);
@@ -219,35 +222,35 @@ H5P.Summary = function (options, contentId) {
 
               // Animate answer to summary
               $answer.animate(
-                {
-                  top: summary.top + offset,
-                  left: '-=' + options_padding + 'px',
-                  width: '+=' + (options_padding * 2) + 'px'
-                },
-                {
-                  complete: function () {
-                    // Remove position (becomes inline);
-                    $(this).css('position', '').css({width: '', height: '', top: '', left: ''});
+                      {
+                        top: summary.top + offset,
+                        left: '-=' + options_padding + 'px',
+                        width: '+=' + (options_padding * 2) + 'px'
+                      },
+              {
+                complete: function() {
+                  // Remove position (becomes inline);
+                  $(this).css('position', '').css({width: '', height: '', top: '', left: ''});
 
-                    // Calculate offset for next summary item
-                    var tpadding = parseInt($answer.css('paddingTop')) * 2;
-                    var tmargin = parseInt($answer.css('marginBottom'));
-                    var theight = parseInt($answer.css('height'));
-                    offset += theight + tpadding + tmargin + 1;
+                  // Calculate offset for next summary item
+                  var tpadding = parseInt($answer.css('paddingTop')) * 2;
+                  var tmargin = parseInt($answer.css('marginBottom'));
+                  var theight = parseInt($answer.css('height'));
+                  offset += theight + tpadding + tmargin + 1;
 
-                    // Show next panel if present
-                    if ($next_panel.length) {
-                      $curr_panel.parent().css('height', 'auto');
-                      $next_panel.fadeIn('fast');
-                    }
-                    else {
-                      // Hide intermediate evaluation
-                      $evaluation_content.html(that.options.resultLabel);
+                  // Show next panel if present
+                  if ($next_panel.length) {
+                    $curr_panel.parent().css('height', 'auto');
+                    $next_panel.fadeIn('fast');
+                  }
+                  else {
+                    // Hide intermediate evaluation
+                    $evaluation_content.html(that.options.resultLabel);
 
-                      do_final_evaluation($summary_container, $options, $summary_list, score);
-                    }
+                    do_final_evaluation($summary_container, $options, $summary_list, score);
                   }
                 }
+              }
               );
             });
           }
@@ -275,12 +278,12 @@ H5P.Summary = function (options, contentId) {
 
   var returnObject = {
     attach: attach, // Attach to DOM object
-    showSolutions: function () {
+    showSolutions: function() {
     },
-    getMaxScore: function () {
+    getMaxScore: function() {
       return that.options.summaries.length;
     },
-    getScore: function () {
+    getScore: function() {
       return that.options.summaries.length - countErrors();
     }
   };

@@ -1,6 +1,6 @@
 /* IcoMoon font licensed under the GNU General Public License: http://www.gnu.org/licenses/gpl.html */
 @font-face {
-  font-family: 'icomoon-summary';
+  font-family: 'icomoon';
   src:url('../fonts/icomoon.eot');
   src:url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
     url('../fonts/icomoon.woff') format('woff'),
@@ -10,8 +10,13 @@
   font-style: normal;
 }
 
+.summary {
+  font-family: Verdana, Arial, sans-serif;
+  background: #fff;
+}
 .summary-content {
   padding: 0.625em;
+  
 }
 .summary-content ul {
   margin: 0;
@@ -20,37 +25,39 @@
 }
 .summary-container {
   font-size: 1em;
-  font-family: Arial, "Liberation Sans", sans-serif;
-  background-color: #eee;
+  font-family: Verdana, "Liberation Sans", sans-serif;
+  background-color: #ffffff;
+  box-shadow: 0 0 0.5em #999;
   border-radius: 0.4em;
 }
 .summary-options {
   height: auto;
-  background-color: white;
   padding: 0;
 }
+
 .summary-options ul {
   display: none;
-  /*list-style: none;*/
 }
+
 .summary-evaluation {
   margin: 0 0 0.8em;
   border-bottom: 0.1em solid #ddd;
   padding: 1em 0 0.4em;
 }
+
 .summary-content li {
-  background-color: #ededed;
+  background-color: #e4e4e4;
   -moz-border-radius: 0.3em;
   -webkit-border-radius: 0.3em;
   border-radius: 0.3em;
   border: 0.1em solid #dcdcdc;
   color: #777;
-  font-family: Arial, "Liberation Sans", sans-serif;
   font-size: 1em;
   padding: 0.375em 0.875em;
   text-decoration: none;
-  margin: 0;
+  margin: 0;  
   margin-bottom: 0.3125em;
+
   background: -moz-linear-gradient(top,  rgba(237,237,237,0.9) 0%, rgba(237,237,237,0.9) 1%, rgba(223,223,223,0.9) 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(237,237,237,0.9)), color-stop(1%,rgba(237,237,237,0.9)), color-stop(100%,rgba(223,223,223,0.9))); /* Chrome,Safari4+ */
   background: -webkit-linear-gradient(top,  rgba(237,237,237,0.9) 0%,rgba(237,237,237,0.9) 1%,rgba(223,223,223,0.9) 100%); /* Chrome10+,Safari5.1+ */
@@ -58,13 +65,14 @@
   background: -ms-linear-gradient(top,  rgba(237,237,237,0.9) 0%,rgba(237,237,237,0.9) 1%,rgba(223,223,223,0.9) 100%); /* IE10+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6ededed', endColorstr='#e6dfdfdf',GradientType=0 ); /* IE6-9 */
 }
+
 .summary-container li {
   display: none;
   z-index: 5;
   margin: 0;
   border: 0;
   background: none;
-
+  
   -webkit-transition: background-color 1000ms linear, border-color 1000ms linear;
   -moz-transition: background-color 1000ms linear, border-color 1000ms linear;
   -o-transition: background-color 1000ms linear, border-color 1000ms linear;
@@ -74,7 +82,7 @@
 .summary-container li:before {
   text-decoration: none;
   content: "\f00c";
-  font-family: H5PFontAwesome;
+  font-family: FontAwesome;
   color: #39692e;
   float: right;
 }
@@ -91,7 +99,6 @@
   background: -ms-linear-gradient(top,  rgba(238,228,239,1) 0%,rgba(231,221,232,1) 100%); /* IE10+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eee4ef', endColorstr='#e7dde8',GradientType=0 ); /* IE6-9 */
 }
-
 li.summary-failed {
   color: #c33f62;
   border: 0.1em solid #ce9b9b;
@@ -99,17 +106,18 @@ li.summary-failed {
   text-decoration: line-through;
   font-weight: bold;
 }
+
 li.summary-failed:before {
   text-decoration: none;
   content: "\f00d";
-  font-family: H5PFontAwesome;
+  font-family: FontAwesome;
   color: #c33f62;
   float: right;
 }
 
 .summary-options div {
   font-size: 1em;
-  padding: 0;
+  padding:0;
   background-repeat: no-repeat;
   background-position: top right;
 }
@@ -122,13 +130,14 @@ li.summary-failed:before {
   -webkit-border-radius: 0.3em;
   border-radius: 0.3em;
   padding: 0.1em 0.3em;
-  font-weight: normal;
+  font-weight: normal;  
   margin-right: 0.3em;
 }
+
 .summary-score:before {
   text-decoration: none;
   content: "\f00d";
-  font-family: H5PFontAwesome;
+  font-family: FontAwesome;
   color: #c33f62;
   float: left;
   margin-right: 0.3em;
@@ -144,10 +153,11 @@ li.summary-failed:before {
   padding: 0.1em 0.3em;
   font-weight: normal;
 }
+
 .summary-progress:before {
   text-decoration: none;
   content: "\f00c";
-  font-family: H5PFontAwesome;
+  font-family: FontAwesome;
   color: #39692e;
   float: left;
   margin-right: 0.3em;
@@ -157,7 +167,8 @@ li.summary-failed:before {
   font-size: 1.2em;
   font-weight: bold;
   padding-bottom: 0.5em;
-}
+}  
+
 .summary-options .evaluation-container {
   display: block;
 }
@@ -165,7 +176,7 @@ li.summary-failed:before {
 .summary-options .evaluation-container .evaluation-emoticon-score-over-100:before {
   display: block;
   float: left;
-  font-family: icomoon-summary;
+  font-family: IcoMoon;
   content: "\e606";
   font-size: 5em;
   top: 0.5em;
@@ -175,7 +186,7 @@ li.summary-failed:before {
 .summary-options .evaluation-container .evaluation-emoticon-score-over-70:before {
   display: block;
   float: left;
-  font-family: icomoon-summary;
+  font-family: IcoMoon;
   content: "\e604";
   font-size: 5em;
   top: 0.5em;
@@ -185,7 +196,7 @@ li.summary-failed:before {
 .summary-options .evaluation-container .evaluation-emoticon-score-over-40:before {
   display: block;
   float: left;
-  font-family: icomoon-summary;
+  font-family: IcoMoon;
   content: "\e605";
   font-size: 5em;
   top: 0.5em;
@@ -194,7 +205,7 @@ li.summary-failed:before {
 
 .summary-options .evaluation-container .evaluation-emoticon-score-over-0:before {
   display: block;
-  font-family: icomoon-summary;
+  font-family: IcoMoon;
   float: left;
   content: "\e607";
   font-size: 5em;
@@ -204,14 +215,46 @@ li.summary-failed:before {
 
 .summary-options .evaluation-container .evaluation-message {
   display: block;
-  background: #eee;
+  background: #ffffff;
   padding: 1em;
   border-radius: 1em;
   margin-left: 6.5em;
   position: relative;
+  z-index: 1;
+  box-shadow: 0 0 0.5em #999;
 }
 
-.summary-options .evaluation-container .evaluation-message:before {
+.summary-options .evaluation-container .evaluation-message-arrow {
+  position: absolute;
+  left: 122px;
+  top: 180px;
+  height: 24px;
+  width: 24px;
+  display: inline-block;
+  box-shadow: 0 0 0.5em #999;
+  background: #fff;
+  
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg); /* IE 9 */
+  -webkit-transform: rotate(45deg); /* Safari and Chrome */
+}
+
+.summary-options .evaluation-container .evaluation-message-arrow-top {
+  position: absolute;
+  left: 122px;
+  top: 180px;
+  height: 25px;
+  width: 25px;
+  display: inline-block;
+  background: #fff;
+  z-index: 2;
+  
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg); /* IE 9 */
+  -webkit-transform: rotate(45deg); /* Safari and Chrome */
+}
+
+/*.summary-options .evaluation-container .evaluation-message:before {
   content: "";
   position: absolute;
   left: -15px;
@@ -220,6 +263,9 @@ li.summary-failed:before {
   width: 0;
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
-  border-right: 15px solid #eee;
+  border-right: 15px solid #ffffff;
   display: inline-block;
-}
+  box-shadow: 0 0 0.5em #999;
+}*/
+
+
