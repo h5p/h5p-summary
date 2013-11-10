@@ -148,7 +148,7 @@ H5P.Summary = function(options, contentId) {
     var $summary_container = $('<div class="summary-container"></div>');
     var $summary_list = $('<ul></ul>');
     var $evaluation = $('<div class="summary-evaluation"></div>');
-    var $evaluation_content = $('<span class="summary-evaluation-content">' + that.options.intro + '</span>');
+    var $evaluation_content = $('<div class="summary-evaluation-content">' + that.options.intro + '</div>');
     var $score = $('<div class="summary-score"></div>');
     var $options = $('<div class="summary-options"></div>');
     var $progress = $('<div class="summary-progress"></div>');

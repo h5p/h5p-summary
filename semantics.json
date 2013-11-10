@@ -21,9 +21,16 @@
   {
     "name": "intro",
     "type": "text",
+    "widget": "html",
     "label": "Introduction text",
     "default": "Choose the correct statement.",
     "description": "Will be displayed above the summary task.",
+    "enterMode": "p",
+    "tags": [
+      "strong",
+      "em",
+      "del"
+    ],
     "common": true
   },
   {
