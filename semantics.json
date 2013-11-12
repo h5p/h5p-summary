@@ -1,5 +1,20 @@
 [
   {
+    "name": "intro",
+    "type": "text",
+    "widget": "html",
+    "label": "Introduction text",
+    "default": "Choose the correct statement.",
+    "description": "Will be displayed above the summary task.",
+    "enterMode": "p",
+    "tags": [
+      "strong",
+      "em",
+      "u"
+    ],
+    "common": false
+  },
+  {
     "name": "summaries",
     "type": "list",
     "label": "Summary",
@@ -19,26 +34,11 @@
     }
   },
   {
-    "name": "intro",
-    "type": "text",
-    "widget": "html",
-    "label": "Introduction text",
-    "default": "Choose the correct statement.",
-    "description": "Will be displayed above the summary task.",
-    "enterMode": "p",
-    "tags": [
-      "strong",
-      "em",
-      "del"
-    ],
-    "common": true
-  },
-  {
     "name": "solvedLabel",
     "type": "text",
     "label": "Text displayed before number of statements solved in the summary task.",
-    "default": "Solved:",
-    "description": "Will be displayed above the statements. Example: 'Solved: 2/5'",
+    "default": "Progress:",
+    "description": "Will be displayed above the statements. Example: 'Progress: 2/5'",
     "common": true
   },
   {

@@ -37,8 +37,8 @@ H5P.Summary = function(options, contentId) {
     resultLabel: "Your result:",
     intro: "Choose the correct statement.",
     solvedLabel: "Solved:",
-    scoreLabel: "Wrong answers:"   
-    
+    scoreLabel: "Wrong answers:"
+
   }, options);
 
   var countErrors = function() {
@@ -72,7 +72,6 @@ H5P.Summary = function(options, contentId) {
     }
 
     function adjustTargetHeight(container, elements, el) {
-      console.log(parseInt(elements.outerHeight()), parseInt(el.outerHeight()), parseInt(el.css('marginBottom')), parseInt(el.css('marginTop')));
       var new_height = parseInt(elements.outerHeight()) + parseInt(el.outerHeight()) + parseInt(el.css('marginBottom')) + parseInt(el.css('marginTop'));
       if (new_height > parseInt(container.css('height'))) {
         container.animate({height: new_height});
@@ -200,7 +199,7 @@ H5P.Summary = function(options, contentId) {
             // Insert correct claim into summary list
             $summary_list.append($answer);
             adjustTargetHeight($summary_container, $summary_list, $answer);
-           
+
             // Move into position over clicked element
             $answer.css({display: 'block', width: $el.css('width'), height: $el.css('height')});
             $answer.css({position: 'absolute', top: position.top, left: position.left});
@@ -209,7 +208,7 @@ H5P.Summary = function(options, contentId) {
               $answer.css({backgroundColor: '', borderColor: ''});
             }, 1);
             //$answer.animate({backgroundColor: '#eee'}, 'slow');
-            
+
             var panel = parseInt($el.parent().attr('data-panel'));
             var $curr_panel = $('.h5p-panel:eq(' + panel + ')', $myDom);
             var $next_panel = $('.h5p-panel:eq(' + (panel + 1) + ')', $myDom);
