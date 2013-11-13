@@ -174,6 +174,7 @@ li.summary-failed:before {
   font-size: 1.2em;
   font-weight: bold;
   padding-bottom: 0.5em;
+  margin: 0;
 }
 
 .summary-options .evaluation-container {
@@ -222,56 +223,40 @@ li.summary-failed:before {
 }
 
 .summary-options .evaluation-container .evaluation-message {
+  position: relative;
   display: block;
   background: #ffffff;
   padding: 1em;
   border-radius: 1em;
   margin-left: 6.5em;
-  position: relative;
   z-index: 1;
-  box-shadow: 0 0 0.5em #999;
+  border: 1px solid #ccc;
+  -webkit-filter: drop-shadow(0 0 0.2em #999999);
+  filter: drop-shadow(0 0 0.2em #999999);
 }
 
-.summary-options .evaluation-container .evaluation-message-arrow {
-  position: absolute;
-  left: 91px;
-  top: 40px;
-  height: 24px;
-  width: 24px;
-  display: inline-block;
-  box-shadow: 0 0 0.5em #999;
-  background: #fff;
-
-  -webkit-transform: rotate(45deg); /* Safari and Chrome */
-  -ms-transform: rotate(45deg); /* IE 9 */
-  transform: rotate(45deg);
-}
-
-.summary-options .evaluation-container .evaluation-message-arrow-top {
-  position: absolute;
-  left: 92px;
-  top: 40px;
-  height: 25px;
-  width: 25px;
-  display: inline-block;
-  background: #fff;
-  z-index: 2;
-
-  -webkit-transform: rotate(45deg); /* Safari and Chrome */
-  -ms-transform: rotate(45deg); /* IE 9 */
-  transform: rotate(45deg);
-}
-
-/*.summary-options .evaluation-container .evaluation-message:before {
-  content: "";
-  position: absolute;
-  left: -15px;
-  top: 36px;
+.summary-options .evaluation-container .evaluation-message:before,
+.summary-options .evaluation-container .evaluation-message:after {
+  right: 100%;
+  border: solid transparent;
+  content: " ";
   height: 0;
   width: 0;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-  border-right: 15px solid #ffffff;
-  display: inline-block;
-  box-shadow: 0 0 0.5em #999;
-}*/
+  position: absolute;
+  pointer-events: none;
+}
+
+.summary-options .evaluation-container .evaluation-message:before {
+  margin-top: -16px;
+  top: 50%;
+  border-width: 16px;
+  border-color: transparent;
+  border-right-color: #ccc;
+}
+.summary-options .evaluation-container .evaluation-message:after {
+  margin-top: -15px;
+  top: 50%;
+  border-width: 15px;
+  border-color: transparent;
+  border-right-color: #ffffff;
+}
