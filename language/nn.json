@@ -1,6 +1,11 @@
 {
   "semantics": [
     {
+      "label": "Introduksjonstekst",
+      "default": "Vel riktig påstand.",
+      "description": "Vil vises øvst i oppsummeringsoppgåva."
+    },
+    {
       "label": "Oppsummering",
       "description": "Liste av påstandar",
       "entity": "påstandar",
@@ -11,11 +16,6 @@
           "label": "Påstand"
         }
       }
-    },
-    {
-      "label": "Introduksjonstekst",
-      "default": "Vel riktig påstand.",
-      "description": "Vil vises øvst i oppsummeringsoppgåva."
     },
     {
       "label": "Tekst som vises før antall påstandar som er løst i oppsummeringsoppgåva.",
