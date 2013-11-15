@@ -10,7 +10,13 @@
     "tags": [
       "strong",
       "em",
-      "u"
+      "u",
+      "a",
+      "ul",
+      "ol",
+      "h2",
+      "h3",
+      "hr"
     ],
     "common": false
   },
