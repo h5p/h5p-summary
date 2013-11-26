@@ -230,6 +230,7 @@ H5P.Summary = function(options, contentId) {
                 complete: function() {
                   // Remove position (becomes inline);
                   $(this).css('position', '').css({width: '', height: '', top: '', left: ''});
+                  $summary_container.css('height', '');
 
                   // Calculate offset for next summary item
                   var tpadding = parseInt($answer.css('paddingTop')) * 2;
