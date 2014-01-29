@@ -18,7 +18,7 @@
 .summary-content {
   padding: 0.625em;
 }
-.summary-content ul {
+.summary-content .summary-container > ul {
   margin: 0;
   padding: 0;
   display: block;
