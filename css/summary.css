@@ -31,8 +31,9 @@
   height: auto;
   padding: 0;
 }
-.summary-options ul {
+.summary-options ul.h5p-panel {
   display: none;
+  padding: 0;
 }
 
 .summary-evaluation {
@@ -178,44 +179,32 @@ li.summary-failed:before {
   position: relative;
 }
 
-.summary-options .evaluation-container .evaluation-emoticon-score-over-100:before {
+.summary-options .h5p-evaluation-emoticon {
   display: block;
   float: left;
   font-family: icomoon-summary;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 5em;
+  line-height: 1em;
+  position: absolute;
+  top: 50%;
+  margin-top: -0.55em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.summary-options .h5p-evaluation-emoticon.h5p-score-over-100:before {
   content: "\e606";
-  font-size: 5em;
-  top: 0.5em;
-  position: relative;
 }
-
-.summary-options .evaluation-container .evaluation-emoticon-score-over-70:before {
-  display: block;
-  float: left;
-  font-family: icomoon-summary;
+.summary-options .h5p-evaluation-emoticon.h5p-score-over-70:before {
   content: "\e604";
-  font-size: 5em;
-  top: 0.5em;
-  position: relative;
 }
-
-.summary-options .evaluation-container .evaluation-emoticon-score-over-40:before {
-  display: block;
-  float: left;
-  font-family: icomoon-summary;
+.summary-options .h5p-evaluation-emoticon.h5p-score-over-40:before {
   content: "\e605";
-  font-size: 5em;
-  top: 0.5em;
-  position: relative;
 }
-
-.summary-options .evaluation-container .evaluation-emoticon-score-over-0:before {
-  display: block;
-  font-family: icomoon-summary;
-  float: left;
+.summary-options .h5p-evaluation-emoticon.h5p-score-over-0:before {
   content: "\e607";
-  font-size: 5em;
-  top: 0.5em;
-  position: relative;
 }
 
 .summary-options .evaluation-container .evaluation-message {

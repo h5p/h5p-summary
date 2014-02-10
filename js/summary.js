@@ -110,14 +110,10 @@ H5P.Summary = function(options, contentId) {
       var summary = that.options.summary.replace('@score', that.options.summaries.length - error_count).replace('@total', that.options.summaries.length).replace('@percent', Math.round(percent));
       var message = '<h2>' + that.options.response[i].title + "</h2>" + summary + "<br/>" + that.options.response[i].message;
       var evaluation = $('<div class="evaluation-container"></div>');
-      var evaluation_emoticon = $('<span class="evaluation-emoticon-score-over-' + from + '"></span>');
+      var evaluation_emoticon = $('<span class="h5p-evaluation-emoticon h5p-score-over-' + from + '"></span>');
       var evaluation_message = $('<div class="evaluation-message">' + message + '</div>');
-      var evaluation_message_arrow = $('<div class="evaluation-message-arrow"></div>');
-      var evaluation_message_arrow_top = $('<div class="evaluation-message-arrow-top"></div>');
       options_panel.append(evaluation);
       evaluation.append(evaluation_emoticon);
-      evaluation.append(evaluation_message_arrow);
-      evaluation.append(evaluation_message_arrow_top);
       evaluation.append(evaluation_message);
       evaluation.fadeIn('slow');
       // adjustTargetHeight(container, list, evaluation);
