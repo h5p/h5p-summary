@@ -59,6 +59,7 @@ H5P.Summary = function(options, contentId) {
 
   // Function for attaching the multichoice to a DOM element.
   var attach = function(target) {
+    var self = this;
     var c = 0; // element counter
     var elements = Array();
     var $ = H5P.jQuery;
@@ -117,6 +118,8 @@ H5P.Summary = function(options, contentId) {
       evaluation.append(evaluation_message);
       evaluation.fadeIn('slow');
       // adjustTargetHeight(container, list, evaluation);
+      
+      self.$.trigger('resize');
     }
 
     // Create array objects
@@ -245,6 +248,7 @@ H5P.Summary = function(options, contentId) {
 
                     do_final_evaluation($summary_container, $options, $summary_list, score);
                   }
+                  self.$.trigger('resize');
                 }
               }
               );
@@ -260,6 +264,8 @@ H5P.Summary = function(options, contentId) {
             $score.html(that.options.scoreLabel + ' ' + (++score));
             error_counts[panel_id]++;
           }
+          
+          self.$.trigger('resize');
         });
         $page.append($node);
       }
@@ -269,10 +275,13 @@ H5P.Summary = function(options, contentId) {
     // Show first panel
     $('.h5p-panel:first', $myDom).css({display: 'block'});
 
+    self.$.trigger('resize');
+    
     return this;
   };
 
   var returnObject = {
+    $: H5P.jQuery(this),
     attach: attach, // Attach to DOM object
     showSolutions: function() {
     },
