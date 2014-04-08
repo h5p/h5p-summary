@@ -37,7 +37,10 @@
       "field": {
         "name": "text",
         "type": "text",
-        "label": "Statement"
+        "label": "Statement",
+        "widget": "html",
+        "enterMode": "p",
+        "tags": []
       }
     }
   },

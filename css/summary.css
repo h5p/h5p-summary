@@ -70,6 +70,11 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6ededed', endColorstr='#e6dfdfdf',GradientType=0 ); /* IE6-9 */
 }
 
+.summary-content .h5p-panel li > p {
+  margin: 0;
+  padding: 0;
+}
+
 .summary-container li {
   display: none;
   z-index: 5;
