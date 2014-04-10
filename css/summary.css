@@ -71,8 +71,11 @@
 }
 
 .summary-content li > p {
-  margin: 0;
+  margin: 0.4em 0 0 0;
   padding: 0;
+}
+.summary-content li > p:first-child {
+  margin: 0;
 }
 
 .summary-container li {
