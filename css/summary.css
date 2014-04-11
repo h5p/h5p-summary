@@ -84,6 +84,7 @@
   margin: 0;
   border: 0;
   background: none;
+  filter: none;
 
   -webkit-transition: background-color 1000ms linear, border-color 1000ms linear;
   -moz-transition: background-color 1000ms linear, border-color 1000ms linear;
