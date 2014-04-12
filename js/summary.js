@@ -40,12 +40,14 @@ H5P.Summary = function(options, contentId) {
     scoreLabel: "Wrong answers:"
 
   }, options);
+  
+  var summaries = that.options.summaries; 
 
   var countErrors = function() {
     var error_count = 0;
 
     // Count boards without errors
-    for (var i = 0; i < that.options.summaries.length; i++) {
+    for (var i = 0; i < summaries.length; i++) {
       if (error_counts[i] === undefined) {
         error_count++;
       }
@@ -61,14 +63,14 @@ H5P.Summary = function(options, contentId) {
   var attach = function(target) {
     var self = this;
     var c = 0; // element counter
-    var elements = Array();
+    var elements = [];
     var $ = H5P.jQuery;
     var $target = typeof(target) === "string" ? $("#" + target) : $(target);
     var $myDom = $target;
 
     $target.addClass('summary-content');
 
-    if (that.options.summaries === undefined) {
+    if (summaries === undefined || summaries.length === 0) {
       return;
     }
 
@@ -108,7 +110,7 @@ H5P.Summary = function(options, contentId) {
       }
 
       // Show final evaluation
-      var summary = that.options.summary.replace('@score', that.options.summaries.length - error_count).replace('@total', that.options.summaries.length).replace('@percent', Math.round(percent));
+      var summary = that.options.summary.replace('@score', summaries.length - error_count).replace('@total', summaries.length).replace('@percent', Math.round(percent));
       var message = '<h2>' + that.options.response[i].title + "</h2>" + summary + "<br/>" + that.options.response[i].message;
       var evaluation = $('<div class="evaluation-container"></div>');
       var evaluation_emoticon = $('<span class="h5p-evaluation-emoticon h5p-score-over-' + from + '"></span>');
@@ -123,22 +125,25 @@ H5P.Summary = function(options, contentId) {
     }
 
     // Create array objects
-    for (var i = 0; i < that.options.summaries.length; i++) {
-      elements[i] = Array();
-      for (var j = 0; j < that.options.summaries[i].length; j++) {
-        answer[c] = j === 0; // First claim is correct
-        elements[i][j] = {
+    for (var i = 0; i < summaries.length; i++) {
+      elements[i] = {
+        tip: summaries[i].tip,
+        summaries: []
+      };
+      for (var j = 0; j < summaries[i].summary.length; j++) {
+        answer[c] = (j === 0); // First claim is correct
+        elements[i].summaries[j] = {
           id: c++,
-          text: that.options.summaries[i][j]
+          text: summaries[i].summary[j]
         };
       }
 
       // Randomize elements
       for (var k = elements[i].length - 1; k > 0; k--) {
         var j = Math.floor(Math.random() * (k + 1));
-        var temp = elements[i][k];
-        elements[i][k] = elements[i][j];
-        elements[i][j] = temp;
+        var temp = elements[i].summaries[k];
+        elements[i].summaries[k] = elements[i].summaries[j];
+        elements[i].summaries[j] = temp;
       }
     }
 
@@ -161,14 +166,20 @@ H5P.Summary = function(options, contentId) {
     $evaluation.append($progress);
     $evaluation.append($score);
 
-    $progress.html(that.options.solvedLabel + ' 0/' + that.options.summaries.length);
+    $progress.html(that.options.solvedLabel + ' 0/' + summaries.length);
 
     // Add elements to content
     for (var i = 0; i < elements.length; i++) {
       var $page = $('<ul class="h5p-panel" data-panel="' + i + '"></ul>');
 
-      for (var j = 0; j < elements[i].length; j++) {
-        var $node = $('<li data-bit="' + elements[i][j].id + '" class="summary-claim-unclicked">' + elements[i][j].text + '</li>');
+      var element = elements[i];
+      // Create initial tip for first summary-list if tip is available
+      if (i==0 && element.tip !== undefined && element.tip.trim().length > 0) {
+        $evaluation_content.append(H5P.JoubelUI.createTip(element.tip));
+      }
+      
+      for (var j = 0; j < element.summaries.length; j++) {
+        var $node = $('<li data-bit="' + element.summaries[j].id + '" class="summary-claim-unclicked">' + element.summaries[j].text + '</li>');
 
         // When correct claim is clicked:
         // - Add claim to summary list
@@ -193,7 +204,7 @@ H5P.Summary = function(options, contentId) {
             var summary = $summary_list.position();
             var $answer = $('<li>' + $el.html() + '</li>');
 
-            $progress.html(that.options.solvedLabel + ' '  + (panel_id + 1) + '/' + that.options.summaries.length);
+            $progress.html(that.options.solvedLabel + ' '  + (panel_id + 1) + '/' + summaries.length);
 
             // Insert correct claim into summary list
             $summary_list.append($answer);
@@ -213,6 +224,12 @@ H5P.Summary = function(options, contentId) {
             var $next_panel = $('.h5p-panel:eq(' + (panel + 1) + ')', $myDom);
             var height = $curr_panel.parent().css('height');
 
+            // Update tip:
+            $evaluation_content.find('.joubel-tip-container').remove();
+            if (element.tip !== undefined && element.tip.trim().length > 0) {
+              $evaluation_content.append(H5P.JoubelUI.createTip(element.tip));
+            }
+            
             // Fade out current panel
             $curr_panel.fadeOut('fast', function() {
               // Force panel height to recorded height
@@ -220,37 +237,37 @@ H5P.Summary = function(options, contentId) {
 
               // Animate answer to summary
               $answer.animate(
-                      {
-                        top: summary.top + offset,
-                        left: '-=' + options_padding + 'px',
-                        width: '+=' + (options_padding * 2) + 'px'
-                      },
-              {
-                complete: function() {
-                  // Remove position (becomes inline);
-                  $(this).css('position', '').css({width: '', height: '', top: '', left: ''});
-                  $summary_container.css('height', '');
-
-                  // Calculate offset for next summary item
-                  var tpadding = parseInt($answer.css('paddingTop')) * 2;
-                  var tmargin = parseInt($answer.css('marginBottom'));
-                  var theight = parseInt($answer.css('height'));
-                  offset += theight + tpadding + tmargin + 1;
-
-                  // Show next panel if present
-                  if ($next_panel.length) {
-                    $curr_panel.parent().css('height', 'auto');
-                    $next_panel.fadeIn('fast');
+                {
+                  top: summary.top + offset,
+                  left: '-=' + options_padding + 'px',
+                  width: '+=' + (options_padding * 2) + 'px'
+                },
+                {
+                  complete: function() {
+                    // Remove position (becomes inline);
+                    $(this).css('position', '').css({width: '', height: '', top: '', left: ''});
+                    $summary_container.css('height', '');
+  
+                    // Calculate offset for next summary item
+                    var tpadding = parseInt($answer.css('paddingTop')) * 2;
+                    var tmargin = parseInt($answer.css('marginBottom'));
+                    var theight = parseInt($answer.css('height'));
+                    offset += theight + tpadding + tmargin + 1;
+  
+                    // Show next panel if present
+                    if ($next_panel.length) {
+                      $curr_panel.parent().css('height', 'auto');
+                      $next_panel.fadeIn('fast');
+                    }
+                    else {
+                      // Hide intermediate evaluation
+                      $evaluation_content.html(that.options.resultLabel);
+  
+                      do_final_evaluation($summary_container, $options, $summary_list, score);
+                    }
+                    self.$.trigger('resize');
                   }
-                  else {
-                    // Hide intermediate evaluation
-                    $evaluation_content.html(that.options.resultLabel);
-
-                    do_final_evaluation($summary_container, $options, $summary_list, score);
-                  }
-                  self.$.trigger('resize');
                 }
-              }
               );
             });
           }
@@ -286,10 +303,10 @@ H5P.Summary = function(options, contentId) {
     showSolutions: function() {
     },
     getMaxScore: function() {
-      return that.options.summaries.length;
+      return summaries.length;
     },
     getScore: function() {
-      return that.options.summaries.length - countErrors();
+      return summaries.length - countErrors();
     }
   };
 

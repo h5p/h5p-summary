@@ -77,7 +77,10 @@
 .summary-content li > p:first-child {
   margin: 0;
 }
-
+.summary-container li:not(:last-child) {
+  border-bottom: 1px solid #E9E9E9;
+  border-radius: 0;
+}
 .summary-container li {
   display: none;
   z-index: 5;
@@ -253,4 +256,13 @@ li.summary-failed:before {
   border-width: 15px;
   border-color: transparent;
   border-right-color: #ffffff;
+}
+.summary-evaluation .joubel-tip-container {
+  position: relative;
+  top: 0.1em;
+  left: 0.1em;
+}
+.summary-evaluation .joubel-tip-icon {
+  line-height: 1;
+  font-size: 1.3em;
 }
