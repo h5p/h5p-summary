@@ -16,7 +16,7 @@
             "label": "Påstander til oppsummeringen. Første påstand er riktig.",
             "entity": "påstand",
             "field": {
-              "label": "Påstand",
+              "label": "Påstand"
             }
           },
           {
