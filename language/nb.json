@@ -23,8 +23,7 @@
             "label": "Tips",
             "fields": [
               {
-                "label": "Tips",
-                "description": "Et tips til hver liste av påstander"
+                "label": "Tipstekst"
               }
             ]
           }

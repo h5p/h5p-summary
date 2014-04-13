@@ -56,10 +56,9 @@
           "fields": [
             {
               "name": "tip",
-              "label": "Tip",
+              "label": "Tip text",
               "type": "text",
-              "optional": true,
-              "description": "A textual tip for each statement list"
+              "optional": true
             }
           ]
         }
