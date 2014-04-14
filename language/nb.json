@@ -53,11 +53,11 @@
           "fields": [
             {
               "label": "Tittel for tilbakemeldingen",
-              "default": "Alt rett: PERFEKT!"
+              "default": "Alt rett!"
             },
             {
               "label": "Tilbakemelding",
-              "default": "Du fikk alt rett på første forsøk. Vær stolt!"
+              "default": "Du fikk alt rett på første forsøk!"
             }
           ]
         },
@@ -83,7 +83,7 @@
             },
             {
               "label": "Tilbakemelding",
-              "default": "Du fikk noen av påstandene rett på første forsøk. Det er fortsatt rom for forbedring!"
+              "default": "Du fikk noen av påstandene rett. Prøv igjen!"
             }
           ]
         },
@@ -92,11 +92,11 @@
           "fields": [
             {
               "label": "Tittel for tilbakemeldingen",
-              "default": "0 % - 39 % rett: Ikke bra"
+              "default": "0 % - 39 % rett: Ikke bestått"
             },
             {
               "label": "Tilbakemelding",
-              "default": "Du må jobbe mer med dette."
+              "default": "Det var litt mange feil her. Prøv igjen!"
             }
           ]
         }

@@ -57,7 +57,7 @@
             },
             {
               "label": "Tilbakemelding",
-              "default": "Du fikk alt rett på første forsøk. Ver stolt!"
+              "default": "Du fikk alt rett . Ver stolt!"
             }
           ]
         },
@@ -83,7 +83,7 @@
             },
             {
               "label": "Tilbakemelding",
-              "default": "Du fikk nokre av påstandane rett på første forsøk. Det er ennå rom for forbetring!"
+              "default": "Du fikk nokre av påstandane rett . Det er ennå rom for forbetring!"
             }
           ]
         },
