@@ -46,6 +46,8 @@
 .summary-evaluation-content {
   display: block;
   float: left;
+  position: relative;
+  padding-right: 2em;
 }
 
 .summary-content li {
@@ -258,9 +260,9 @@ li.summary-failed:before {
   border-right-color: #ffffff;
 }
 .summary-evaluation .joubel-tip-container {
-  position: relative;
-  top: 0.1em;
-  left: 0.1em;
+  position: absolute;
+  top: -0.1em;
+  right: 0.1em;
 }
 .summary-evaluation .joubel-tip-icon {
   line-height: 1;
