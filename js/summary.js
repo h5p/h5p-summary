@@ -139,7 +139,7 @@ H5P.Summary = function(options, contentId) {
       }
 
       // Randomize elements
-      for (var k = elements[i].length - 1; k > 0; k--) {
+      for (var k = elements[i].summaries.length - 1; k > 0; k--) {
         var j = Math.floor(Math.random() * (k + 1));
         var temp = elements[i].summaries[k];
         elements[i].summaries[k] = elements[i].summaries[j];
