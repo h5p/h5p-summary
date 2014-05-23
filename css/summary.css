@@ -100,7 +100,7 @@
 .summary-container li:before {
   text-decoration: none;
   content: "\f00c";
-  font-family: H5PFontAwesome4;
+  font-family: 'H5PFontAwesome4';
   color: #39692e;
   float: right;
 }
@@ -128,7 +128,7 @@ li.summary-failed {
 li.summary-failed:before {
   text-decoration: none;
   content: "\f00d";
-  font-family: H5PFontAwesome4;
+  font-family: 'H5PFontAwesome4';
   color: #c33f62;
   float: right;
 }
@@ -155,7 +155,7 @@ li.summary-failed:before {
 .summary-score:before {
   text-decoration: none;
   content: "\f00d";
-  font-family: H5PFontAwesome4;
+  font-family: 'H5PFontAwesome4';
   color: #c33f62;
   float: left;
   margin-right: 0.3em;
@@ -175,7 +175,7 @@ li.summary-failed:before {
 .summary-progress:before {
   text-decoration: none;
   content: "\f00c";
-  font-family: H5PFontAwesome4;
+  font-family: 'H5PFontAwesome4';
   color: #39692e;
   float: left;
   margin-right: 0.3em;
