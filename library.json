@@ -3,7 +3,7 @@
   "description": "The user is presented with a ...",
   "majorVersion": 1,
   "minorVersion": 0,
-  "patchVersion": 36,
+  "patchVersion": 37,
   "runnable": 1,
   "machineName": "H5P.Summary",
   "author": "Amendor AS",
@@ -24,6 +24,13 @@
   ],
   "w": 635,
   "h": 500,
+  "preloadedDependencies": [
+    {
+      "machineName": "FontAwesome",
+      "majorVersion": 4,
+      "minorVersion": 1
+    }
+  ],
   "editorDependencies": [
     {
       "machineName": "H5PEditor.VerticalTabs",
