@@ -3,7 +3,7 @@
   "description": "The user is presented with a ...",
   "majorVersion": 1,
   "minorVersion": 0,
-  "patchVersion": 36,
+  "patchVersion": 37,
   "runnable": 1,
   "machineName": "H5P.Summary",
   "author": "Amendor AS",
@@ -23,7 +23,7 @@
   "preloadedDependencies": [
     {
       "machineName": "FontAwesome",
-      "majorVersion": 3,
+      "majorVersion": 4,
       "minorVersion": 1
     }
   ],
