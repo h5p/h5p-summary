@@ -20,9 +20,6 @@
 }
 
 .summary-container {
-  font-size: 1em;
-  font-family: Verdana, "Liberation Sans", sans-serif;
-  background-color: #ffffff;
   box-shadow: 0 0 0.5em #999;
   border-radius: 0.4em;
 }
