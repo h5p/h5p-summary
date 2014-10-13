@@ -4,7 +4,7 @@ H5P.Summary = function(options, contentId) {
   if (!(this instanceof H5P.Summary)) {
     return new H5P.Summary(options, contentId);
   }
-
+  this.id = contentId;
   var offset = 0;
   var score = 0;
   var answer = Array();
@@ -37,8 +37,8 @@ H5P.Summary = function(options, contentId) {
     resultLabel: "Your result:",
     intro: "Choose the correct statement.",
     solvedLabel: "Solved:",
-    scoreLabel: "Wrong answers:"
-
+    scoreLabel: "Wrong answers:",
+    postUserStatistics: (H5P.postUserStatistics === true)
   }, options);
   
   var summaries = that.options.summaries; 
@@ -121,7 +121,13 @@ H5P.Summary = function(options, contentId) {
       evaluation.fadeIn('slow');
       // adjustTargetHeight(container, list, evaluation);
       
+
       self.triggerH5PEvent('resize');
+
+      if (that.options.postUserStatistics === true) {
+        var myScore = Math.max(error_counts.length - error_count, 0);
+        that.triggerH5PxAPIEvent('completed', H5P.getxAPIScoredResult(myScore, error_counts.length));
+      }
     }
 
     // Create array objects
