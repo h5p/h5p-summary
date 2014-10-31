@@ -2,8 +2,8 @@
   "title": "Summary",
   "description": "The user is presented with a ...",
   "majorVersion": 1,
-  "minorVersion": 0,
-  "patchVersion": 38,
+  "minorVersion": 1,
+  "patchVersion": 6,
   "runnable": 1,
   "machineName": "H5P.Summary",
   "author": "Amendor AS",
@@ -29,6 +29,11 @@
       "machineName": "FontAwesome",
       "majorVersion": 4,
       "minorVersion": 1
+    },
+    {
+      "machineName": "H5P.JoubelUI",
+      "majorVersion": 1,
+      "minorVersion": 0
     }
   ],
   "editorDependencies": [

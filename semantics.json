@@ -29,19 +29,40 @@
     "max": 100,
     "min": 1,
     "field": {
-      "name": "summary",
-      "type": "list",
-      "label": "List of statements for the summary. The first statement is correct.",
-      "entity": "statement",
-      "min": 2,
-      "field": {
-        "name": "text",
-        "type": "text",
-        "label": "Statement",
-        "widget": "html",
-        "enterMode": "p",
-        "tags": []
-      }
+      "name": "statements",
+      "type": "group",
+      "label": "Statements",
+      "fields": [
+        {
+          "name": "summary",
+          "type": "list",
+          "label": "List of statements for the summary. The first statement is correct.",
+          "entity": "statement",
+          "min": 2,
+          "field": {
+            "name": "text",
+            "type": "text",
+            "label": "Statement",
+            "widget": "html",
+            "enterMode": "p",
+            "tags": []
+          }
+        },
+        {
+          "name": "tip",
+          "type": "group",
+          "label": "Tip",
+          "optional": true,
+          "fields": [
+            {
+              "name": "tip",
+              "label": "Tip text",
+              "type": "text",
+              "optional": true
+            }
+          ]
+        }
+      ]
     }
   },
   {
