@@ -10,11 +10,24 @@
       "description": "Liste av påstandar",
       "entity": "påstandar",
       "field": {
-        "label": "Påstandar til oppsummeringa. Første påstand er riktig.",
-        "entity": "påstand",
-        "field": {
-          "label": "Påstand"
-        }
+        "label": "Påstandar",
+        "fields": [
+          {
+            "label": "Påstandar til oppsummeringa. Første påstand er riktig.",
+            "entity": "påstand",
+            "field": {
+              "label": "Påstand"
+            }
+          },
+          {
+            "label": "Tips",
+            "fields": [
+              {
+                "label": "Tipstekst"
+              }
+            ]
+          }
+        ]
       }
     },
     {
