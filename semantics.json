@@ -23,6 +23,10 @@
   {
     "name": "summaries",
     "type": "list",
+    "widgets": [
+      "VerticalTabs",
+      "SummaryText"
+    ],
     "label": "Summary",
     "description": "List of summaries",
     "entity": "statements",
