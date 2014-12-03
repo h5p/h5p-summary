@@ -24,8 +24,14 @@
     "name": "summaries",
     "type": "list",
     "widgets": [
-      "VerticalTabs",
-      "SummaryText"
+      {
+        "name": "VerticalTabs",
+        "label": "Default"
+      },
+      {
+        "name": "SummaryTextualEditor",
+        "label": "Textual"
+      }
     ],
     "label": "Summary",
     "description": "List of summaries",
