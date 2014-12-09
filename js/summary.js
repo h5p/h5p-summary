@@ -122,11 +122,11 @@ H5P.Summary = function(options, contentId) {
       // adjustTargetHeight(container, list, evaluation);
       
 
-      self.triggerH5PEvent('resize');
+      self.trigger('resize');
 
       if (that.options.postUserStatistics === true) {
         var myScore = Math.max(error_counts.length - error_count, 0);
-        that.triggerH5PxAPIEvent('completed', H5P.getxAPIScoredResult(myScore, error_counts.length));
+        that.triggerXAPI('completed', {result: H5P.getxAPIScoredResult(myScore, error_counts.length)});
       }
     }
 
@@ -271,7 +271,7 @@ H5P.Summary = function(options, contentId) {
   
                       do_final_evaluation($summary_container, $options, $summary_list, score);
                     }
-                    self.triggerH5PEvent('resize');
+                    self.trigger('resize');
                   }
                 }
               );
@@ -288,7 +288,7 @@ H5P.Summary = function(options, contentId) {
             error_counts[panel_id]++;
           }
           
-          self.triggerH5PEvent('resize');
+          self.trigger('resize');
         });
         $page.append($node);
       }
@@ -298,7 +298,7 @@ H5P.Summary = function(options, contentId) {
     // Show first panel
     $('.h5p-panel:first', $myDom).css({display: 'block'});
 
-    self.triggerH5PEvent('resize');
+    self.trigger('resize');
     
     return this;
   };
