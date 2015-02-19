@@ -23,6 +23,16 @@
   {
     "name": "summaries",
     "type": "list",
+    "widgets": [
+      {
+        "name": "ListEditor",
+        "label": "Default"
+      },
+      {
+        "name": "SummaryTextualEditor",
+        "label": "Textual"
+      }
+    ],
     "label": "Summary",
     "description": "List of summaries",
     "entity": "statements",

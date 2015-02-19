@@ -4,7 +4,8 @@ H5P.Summary = function(options, contentId) {
   if (!(this instanceof H5P.Summary)) {
     return new H5P.Summary(options, contentId);
   }
-  this.id = contentId;
+  this.id = this.contentId = contentId;
+  H5P.EventDispatcher.call(this);
   var offset = 0;
   var score = 0;
   var answer = Array();
@@ -60,7 +61,7 @@ H5P.Summary = function(options, contentId) {
   };
 
   // Function for attaching the multichoice to a DOM element.
-  var attach = function(target) {
+  this.attach = function(target) {
     var self = this;
     var c = 0; // element counter
     var elements = [];
@@ -121,11 +122,12 @@ H5P.Summary = function(options, contentId) {
       evaluation.fadeIn('slow');
       // adjustTargetHeight(container, list, evaluation);
       
-      self.$.trigger('resize');
+
+      self.trigger('resize');
 
       if (that.options.postUserStatistics === true) {
-        var score = Math.max(error_counts.length - error_count, 0); 
-        H5P.setFinished(that.id, score, error_counts.length);
+        var myScore = Math.max(error_counts.length - error_count, 0);
+        that.triggerXAPICompleted(myScore, error_counts.length);
       }
     }
 
@@ -270,7 +272,7 @@ H5P.Summary = function(options, contentId) {
   
                       do_final_evaluation($summary_container, $options, $summary_list, score);
                     }
-                    self.$.trigger('resize');
+                    self.trigger('resize');
                   }
                 }
               );
@@ -287,7 +289,7 @@ H5P.Summary = function(options, contentId) {
             error_counts[panel_id]++;
           }
           
-          self.$.trigger('resize');
+          self.trigger('resize');
         });
         $page.append($node);
       }
@@ -297,23 +299,25 @@ H5P.Summary = function(options, contentId) {
     // Show first panel
     $('.h5p-panel:first', $myDom).css({display: 'block'});
 
-    self.$.trigger('resize');
+    self.trigger('resize');
     
     return this;
   };
-
-  var returnObject = {
-    $: H5P.jQuery(this),
-    attach: attach, // Attach to DOM object
-    showSolutions: function() {
-    },
-    getMaxScore: function() {
-      return summaries.length;
-    },
-    getScore: function() {
-      return summaries.length - countErrors();
-    }
+  
+  // Required questiontype contract function
+  this.showSolutions = function() {
+    // intentionally left blank, no solution view exists
   };
-
-  return returnObject;
+  
+  // Required questiontype contract function
+  this.getMaxScore = function() {
+    return summaries.length;
+  }
+  
+  this.getScore = function() {
+    return this.getMaxScore() - countErrors();
+  }
 };
+
+H5P.Summary.prototype = Object.create(H5P.EventDispatcher.prototype);
+H5P.Summary.prototype.constructor = H5P.Summary;
