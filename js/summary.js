@@ -41,8 +41,8 @@ H5P.Summary = function(options, contentId) {
     scoreLabel: "Wrong answers:",
     postUserStatistics: (H5P.postUserStatistics === true)
   }, options);
-  
-  var summaries = that.options.summaries; 
+
+  var summaries = that.options.summaries;
 
   var countErrors = function() {
     var error_count = 0;
@@ -121,14 +121,11 @@ H5P.Summary = function(options, contentId) {
       evaluation.append(evaluation_message);
       evaluation.fadeIn('slow');
       // adjustTargetHeight(container, list, evaluation);
-      
 
       self.trigger('resize');
 
-      if (that.options.postUserStatistics === true) {
-        var myScore = Math.max(error_counts.length - error_count, 0);
-        that.triggerXAPICompleted(myScore, error_counts.length);
-      }
+      var myScore = Math.max(error_counts.length - error_count, 0);
+      that.triggerXAPICompleted(myScore, error_counts.length);
     }
 
     // Create array objects
@@ -184,7 +181,7 @@ H5P.Summary = function(options, contentId) {
       if (i==0 && element.tip !== undefined && element.tip.trim().length > 0) {
         $evaluation_content.append(H5P.JoubelUI.createTip(element.tip));
       }
-      
+
       for (var j = 0; j < element.summaries.length; j++) {
         var $node = $('<li data-bit="' + element.summaries[j].id + '" class="summary-claim-unclicked">' + element.summaries[j].text + '</li>');
 
@@ -236,7 +233,7 @@ H5P.Summary = function(options, contentId) {
             if (element.tip !== undefined && element.tip.trim().length > 0) {
               $evaluation_content.append(H5P.JoubelUI.createTip(element.tip));
             }
-            
+
             // Fade out current panel
             $curr_panel.fadeOut('fast', function() {
               // Force panel height to recorded height
@@ -254,13 +251,13 @@ H5P.Summary = function(options, contentId) {
                     // Remove position (becomes inline);
                     $(this).css('position', '').css({width: '', height: '', top: '', left: ''});
                     $summary_container.css('height', '');
-  
+
                     // Calculate offset for next summary item
                     var tpadding = parseInt($answer.css('paddingTop')) * 2;
                     var tmargin = parseInt($answer.css('marginBottom'));
                     var theight = parseInt($answer.css('height'));
                     offset += theight + tpadding + tmargin + 1;
-  
+
                     // Show next panel if present
                     if ($next_panel.length) {
                       $curr_panel.parent().css('height', 'auto');
@@ -269,7 +266,7 @@ H5P.Summary = function(options, contentId) {
                     else {
                       // Hide intermediate evaluation
                       $evaluation_content.html(that.options.resultLabel);
-  
+
                       do_final_evaluation($summary_container, $options, $summary_list, score);
                     }
                     self.trigger('resize');
@@ -288,7 +285,7 @@ H5P.Summary = function(options, contentId) {
             $score.html(that.options.scoreLabel + ' ' + (++score));
             error_counts[panel_id]++;
           }
-          
+
           self.trigger('resize');
         });
         $page.append($node);
@@ -300,20 +297,20 @@ H5P.Summary = function(options, contentId) {
     $('.h5p-panel:first', $myDom).css({display: 'block'});
 
     self.trigger('resize');
-    
+
     return this;
   };
-  
+
   // Required questiontype contract function
   this.showSolutions = function() {
     // intentionally left blank, no solution view exists
   };
-  
+
   // Required questiontype contract function
   this.getMaxScore = function() {
     return summaries.length;
   }
-  
+
   this.getScore = function() {
     return this.getMaxScore() - countErrors();
   }
