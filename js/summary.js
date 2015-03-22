@@ -194,6 +194,7 @@ H5P.Summary = function(options, contentId) {
         // - Remove clickable
         // - Add error background image (css)
         $node.click(function() {
+          that.triggerXAPI('attempted');
           var $el = $(this);
           var node_id = $el.attr('data-bit');
           var classname = answer[node_id] ? 'success' : 'failed';
@@ -314,6 +315,9 @@ H5P.Summary = function(options, contentId) {
   this.getScore = function() {
     return this.getMaxScore() - countErrors();
   }
+  this.getH5PTitle = function() {
+    return H5P.createH5PTitle(this.options.intro);
+  };
 };
 
 H5P.Summary.prototype = Object.create(H5P.EventDispatcher.prototype);
