@@ -1,6 +1,6 @@
 var H5P = H5P || {};
 
-H5P.Summary = function(options, contentId) {
+H5P.Summary = function(options, contentId, contentData) {
   if (!(this instanceof H5P.Summary)) {
     return new H5P.Summary(options, contentId);
   }
@@ -9,7 +9,13 @@ H5P.Summary = function(options, contentId) {
   var offset = 0;
   var score = 0;
   var answer = Array();
-  var error_counts = Array();
+  var error_counts = [];
+  if (contentData && contentData.previousState !== undefined) {
+    error_counts = contentData.previousState.answers;
+    for (var i = 0; i < error_counts.length; i++) {
+      score += error_counts[i];
+    }
+  }
   var that = this;
   this.options = H5P.jQuery.extend({}, {
     response: {
@@ -122,10 +128,13 @@ H5P.Summary = function(options, contentId) {
       evaluation.fadeIn('slow');
       // adjustTargetHeight(container, list, evaluation);
 
+
       self.trigger('resize');
 
-      var myScore = Math.max(error_counts.length - error_count, 0);
-      that.triggerXAPICompleted(myScore, error_counts.length);
+      if (that.options.postUserStatistics === true) {
+        var myScore = Math.max(error_counts.length - error_count, 0);
+        that.triggerXAPICompleted(myScore, error_counts.length);
+      }
     }
 
     // Create array objects
@@ -161,6 +170,10 @@ H5P.Summary = function(options, contentId) {
     var $progress = $('<div class="summary-progress"></div>');
     var options_padding = parseInt($options.css('paddingLeft'));
 
+    if (score) {
+      $score.html(that.options.scoreLabel + ' ' + score).show();
+    }
+
     // Insert content
     $summary_container.append($summary_list);
     $myDom.append($summary_container);
@@ -170,13 +183,26 @@ H5P.Summary = function(options, contentId) {
     $evaluation.append($progress);
     $evaluation.append($score);
 
-    $progress.html(that.options.solvedLabel + ' 0/' + summaries.length);
+    $progress.html(that.options.solvedLabel + ' ' + error_counts.length + '/' + summaries.length);
 
     // Add elements to content
     for (var i = 0; i < elements.length; i++) {
+      var element = elements[i];
+
+      if (i <= error_counts.length - 1) {
+        for (var j = 0; j < element.summaries.length; j++) {
+          var sum = element.summaries[j];
+          if (answer[sum.id]) {
+            $summary_list.append('<li style="display:block">' + sum.text + '</li>');
+            break;
+          }
+        }
+        // Cannot use continue; due to id/animation system
+      }
+
       var $page = $('<ul class="h5p-panel" data-panel="' + i + '"></ul>');
 
-      var element = elements[i];
+
       // Create initial tip for first summary-list if tip is available
       if (i==0 && element.tip !== undefined && element.tip.trim().length > 0) {
         $evaluation_content.append(H5P.JoubelUI.createTip(element.tip));
@@ -289,13 +315,24 @@ H5P.Summary = function(options, contentId) {
 
           self.trigger('resize');
         });
+
         $page.append($node);
       }
+
       $options.append($page);
     }
 
-    // Show first panel
-    $('.h5p-panel:first', $myDom).css({display: 'block'});
+    if (error_counts.length === elements.length) {
+      $evaluation_content.html(that.options.resultLabel);
+      do_final_evaluation($summary_container, $options, $summary_list, score);
+    }
+    else {
+      // Show first panel
+      $('.h5p-panel:eq(' + (error_counts.length) + ')', $myDom).css({display: 'block'});
+      if (error_counts.length) {
+        offset = ($('.summary-claim-unclicked:visible:first', $myDom).outerHeight() * error_counts.length);
+      }
+    }
 
     self.trigger('resize');
 
@@ -310,13 +347,19 @@ H5P.Summary = function(options, contentId) {
   // Required questiontype contract function
   this.getMaxScore = function() {
     return summaries.length;
-  }
+  };
 
   this.getScore = function() {
     return this.getMaxScore() - countErrors();
   }
   this.getH5PTitle = function() {
     return H5P.createH5PTitle(this.options.intro);
+  };
+
+  this.getCurrentState = function () {
+    return {
+      answers: error_counts
+    };
   };
 };
 
