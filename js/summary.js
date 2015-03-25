@@ -8,12 +8,18 @@ H5P.Summary = function(options, contentId, contentData) {
   H5P.EventDispatcher.call(this);
   var offset = 0;
   var score = 0;
+  var progress = 0;
+  var answers = [];
   var answer = Array();
   var error_counts = [];
   if (contentData && contentData.previousState !== undefined) {
-    error_counts = contentData.previousState.answers;
-    for (var i = 0; i < error_counts.length; i++) {
-      score += error_counts[i];
+    progress = contentData.previousState.progress;
+    answers = contentData.previousState.answers;
+
+    for (var i = 0; i < answers.length; i++) {
+      if (answers[i]) {
+        score += answers[i].length;
+      }
     }
   }
   var that = this;
@@ -183,13 +189,13 @@ H5P.Summary = function(options, contentId, contentData) {
     $evaluation.append($progress);
     $evaluation.append($score);
 
-    $progress.html(that.options.solvedLabel + ' ' + error_counts.length + '/' + summaries.length);
+    $progress.html(that.options.solvedLabel + ' ' + progress + '/' + summaries.length);
 
     // Add elements to content
     for (var i = 0; i < elements.length; i++) {
       var element = elements[i];
-
-      if (i <= error_counts.length - 1) {
+      
+      if (i < progress) { // i is panel_id
         for (var j = 0; j < element.summaries.length; j++) {
           var sum = element.summaries[j];
           if (answer[sum.id]) {
@@ -209,7 +215,20 @@ H5P.Summary = function(options, contentId, contentData) {
       }
 
       for (var j = 0; j < element.summaries.length; j++) {
-        var $node = $('<li data-bit="' + element.summaries[j].id + '" class="summary-claim-unclicked">' + element.summaries[j].text + '</li>');
+        var summaryLineClass = 'summary-claim-unclicked';
+
+        // If progress is at current task
+        if (progress === i && answers[progress]) {
+          // Check if there are any previous wrong answers.
+          for (var k = 0; k < answers[progress].length; k++) {
+            if (answers[progress][k] === element.summaries[j].id) {
+              summaryLineClass = 'summary-failed';
+              break;
+            }
+          }
+        }
+
+        var $node = $('<li data-bit="' + element.summaries[j].id + '" class="' + summaryLineClass + '">' + element.summaries[j].text + '</li>');
 
         // When correct claim is clicked:
         // - Add claim to summary list
@@ -221,15 +240,16 @@ H5P.Summary = function(options, contentId, contentData) {
         // - Add error background image (css)
         $node.click(function() {
           var $el = $(this);
-          var node_id = $el.attr('data-bit');
+          var node_id = Number($el.attr('data-bit'));
           var classname = answer[node_id] ? 'success' : 'failed';
-          panel_id = $el.parent().data('panel');
+          panel_id = Number($el.parent().data('panel'));
           if (error_counts[panel_id] === undefined) {
             error_counts[panel_id] = 0;
           }
 
           // Correct answer?
           if (answer[node_id]) {
+            progress++;
             var position = $el.position();
             var summary = $summary_list.position();
             var $answer = $('<li>' + $el.html() + '</li>');
@@ -310,6 +330,10 @@ H5P.Summary = function(options, contentId, contentData) {
             $('.summary-score').css('display', 'block');
             $score.html(that.options.scoreLabel + ' ' + (++score));
             error_counts[panel_id]++;
+            if (answers[panel_id] === undefined) {
+              answers[panel_id] = [];
+            }
+            answers[panel_id].push(node_id);
           }
 
           self.trigger('resize');
@@ -327,8 +351,8 @@ H5P.Summary = function(options, contentId, contentData) {
     }
     else {
       // Show first panel
-      $('.h5p-panel:eq(' + (error_counts.length) + ')', $myDom).css({display: 'block'});
-      if (error_counts.length) {
+      $('.h5p-panel:eq(' + (progress) + ')', $myDom).css({display: 'block'});
+      if (progress) {
         offset = ($('.summary-claim-unclicked:visible:first', $myDom).outerHeight() * error_counts.length);
       }
     }
@@ -353,11 +377,10 @@ H5P.Summary = function(options, contentId, contentData) {
   };
 
   this.getCurrentState = function () {
-    if (error_counts.length) {
-      return {
-        answers: error_counts
-      };
-    }
+    return {
+      progress: progress,
+      answers: answers
+    };
   };
 };
 
