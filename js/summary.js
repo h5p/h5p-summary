@@ -194,7 +194,7 @@ H5P.Summary = function(options, contentId, contentData) {
     // Add elements to content
     for (var i = 0; i < elements.length; i++) {
       var element = elements[i];
-      
+
       if (i < progress) { // i is panel_id
         for (var j = 0; j < element.summaries.length; j++) {
           var sum = element.summaries[j];
@@ -239,6 +239,7 @@ H5P.Summary = function(options, contentId, contentData) {
         // - Remove clickable
         // - Add error background image (css)
         $node.click(function() {
+          that.triggerXAPI('attempted');
           var $el = $(this);
           var node_id = Number($el.attr('data-bit'));
           var classname = answer[node_id] ? 'success' : 'failed';
@@ -374,6 +375,10 @@ H5P.Summary = function(options, contentId, contentData) {
 
   this.getScore = function() {
     return this.getMaxScore() - countErrors();
+  };
+
+  this.getH5PTitle = function() {
+    return H5P.createH5PTitle(this.options.intro);
   };
 
   this.getCurrentState = function () {
