@@ -346,7 +346,7 @@ H5P.Summary = function(options, contentId, contentData) {
       $options.append($page);
     }
 
-    if (error_counts.length === elements.length) {
+    if (progress === elements.length) {
       $evaluation_content.html(that.options.resultLabel);
       do_final_evaluation($summary_container, $options, $summary_list, score);
     }
