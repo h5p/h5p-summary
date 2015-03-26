@@ -16,15 +16,13 @@ H5P.Summary = function(options, contentId, contentData) {
     progress = contentData.previousState.progress;
     answers = contentData.previousState.answers;
 
-    for (var i = 0; i < answers.length; i++) {
+    for (var i = 0; i < progress; i++) {
+      if (error_counts[i] === undefined) {
+        error_counts[i] = 0;
+      }
       if (answers[i]) {
         score += answers[i].length;
-        if (error_counts[i] === undefined) {
-          error_counts[i] = 1;
-        }
-        else {
-          error_counts[i]++;
-        }
+        error_counts[i]++;
       }
     }
   }
