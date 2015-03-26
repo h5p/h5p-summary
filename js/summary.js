@@ -19,6 +19,12 @@ H5P.Summary = function(options, contentId, contentData) {
     for (var i = 0; i < answers.length; i++) {
       if (answers[i]) {
         score += answers[i].length;
+        if (error_counts[i] === undefined) {
+          error_counts[i] = 1;
+        }
+        else {
+          error_counts[i]++;
+        }
       }
     }
   }
