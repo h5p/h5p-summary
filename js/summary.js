@@ -381,8 +381,8 @@ H5P.Summary = function(options, contentId, contentData) {
     return this.getMaxScore() - countErrors();
   };
 
-  this.getH5PTitle = function() {
-    return H5P.createH5PTitle(this.options.intro);
+  this.getTitle = function() {
+    return H5P.createTitle(this.options.intro);
   };
 
   this.getCurrentState = function () {
