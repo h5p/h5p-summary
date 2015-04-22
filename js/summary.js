@@ -1,6 +1,6 @@
 var H5P = H5P || {};
 
-H5P.Summary = function(options, contentId) {
+H5P.Summary = function(options, contentId, contentData) {
   if (!(this instanceof H5P.Summary)) {
     return new H5P.Summary(options, contentId);
   }
@@ -8,8 +8,24 @@ H5P.Summary = function(options, contentId) {
   H5P.EventDispatcher.call(this);
   var offset = 0;
   var score = 0;
+  var progress = 0;
+  var answers = [];
   var answer = Array();
-  var error_counts = Array();
+  var error_counts = [];
+  if (contentData && contentData.previousState !== undefined) {
+    progress = contentData.previousState.progress;
+    answers = contentData.previousState.answers;
+
+    for (var i = 0; i < progress; i++) {
+      if (error_counts[i] === undefined) {
+        error_counts[i] = 0;
+      }
+      if (answers[i]) {
+        score += answers[i].length;
+        error_counts[i]++;
+      }
+    }
+  }
   var that = this;
   this.options = H5P.jQuery.extend({}, {
     response: {
@@ -41,8 +57,8 @@ H5P.Summary = function(options, contentId) {
     scoreLabel: "Wrong answers:",
     postUserStatistics: (H5P.postUserStatistics === true)
   }, options);
-  
-  var summaries = that.options.summaries; 
+
+  var summaries = that.options.summaries;
 
   var countErrors = function() {
     var error_count = 0;
@@ -121,7 +137,7 @@ H5P.Summary = function(options, contentId) {
       evaluation.append(evaluation_message);
       evaluation.fadeIn('slow');
       // adjustTargetHeight(container, list, evaluation);
-      
+
 
       self.trigger('resize');
 
@@ -164,6 +180,10 @@ H5P.Summary = function(options, contentId) {
     var $progress = $('<div class="summary-progress"></div>');
     var options_padding = parseInt($options.css('paddingLeft'));
 
+    if (score) {
+      $score.html(that.options.scoreLabel + ' ' + score).show();
+    }
+
     // Insert content
     $summary_container.append($summary_list);
     $myDom.append($summary_container);
@@ -173,20 +193,46 @@ H5P.Summary = function(options, contentId) {
     $evaluation.append($progress);
     $evaluation.append($score);
 
-    $progress.html(that.options.solvedLabel + ' 0/' + summaries.length);
+    $progress.html(that.options.solvedLabel + ' ' + progress + '/' + summaries.length);
 
     // Add elements to content
     for (var i = 0; i < elements.length; i++) {
+      var element = elements[i];
+
+      if (i < progress) { // i is panel_id
+        for (var j = 0; j < element.summaries.length; j++) {
+          var sum = element.summaries[j];
+          if (answer[sum.id]) {
+            $summary_list.append('<li style="display:block">' + sum.text + '</li>');
+            break;
+          }
+        }
+        // Cannot use continue; due to id/animation system
+      }
+
       var $page = $('<ul class="h5p-panel" data-panel="' + i + '"></ul>');
 
-      var element = elements[i];
+
       // Create initial tip for first summary-list if tip is available
       if (i==0 && element.tip !== undefined && element.tip.trim().length > 0) {
         $evaluation_content.append(H5P.JoubelUI.createTip(element.tip));
       }
-      
+
       for (var j = 0; j < element.summaries.length; j++) {
-        var $node = $('<li data-bit="' + element.summaries[j].id + '" class="summary-claim-unclicked">' + element.summaries[j].text + '</li>');
+        var summaryLineClass = 'summary-claim-unclicked';
+
+        // If progress is at current task
+        if (progress === i && answers[progress]) {
+          // Check if there are any previous wrong answers.
+          for (var k = 0; k < answers[progress].length; k++) {
+            if (answers[progress][k] === element.summaries[j].id) {
+              summaryLineClass = 'summary-failed';
+              break;
+            }
+          }
+        }
+
+        var $node = $('<li data-bit="' + element.summaries[j].id + '" class="' + summaryLineClass + '">' + element.summaries[j].text + '</li>');
 
         // When correct claim is clicked:
         // - Add claim to summary list
@@ -197,16 +243,18 @@ H5P.Summary = function(options, contentId) {
         // - Remove clickable
         // - Add error background image (css)
         $node.click(function() {
+          that.triggerXAPI('attempted');
           var $el = $(this);
-          var node_id = $el.attr('data-bit');
+          var node_id = Number($el.attr('data-bit'));
           var classname = answer[node_id] ? 'success' : 'failed';
-          panel_id = $el.parent().data('panel');
+          panel_id = Number($el.parent().data('panel'));
           if (error_counts[panel_id] === undefined) {
             error_counts[panel_id] = 0;
           }
 
           // Correct answer?
           if (answer[node_id]) {
+            progress++;
             var position = $el.position();
             var summary = $summary_list.position();
             var $answer = $('<li>' + $el.html() + '</li>');
@@ -236,7 +284,7 @@ H5P.Summary = function(options, contentId) {
             if (element.tip !== undefined && element.tip.trim().length > 0) {
               $evaluation_content.append(H5P.JoubelUI.createTip(element.tip));
             }
-            
+
             // Fade out current panel
             $curr_panel.fadeOut('fast', function() {
               // Force panel height to recorded height
@@ -254,13 +302,13 @@ H5P.Summary = function(options, contentId) {
                     // Remove position (becomes inline);
                     $(this).css('position', '').css({width: '', height: '', top: '', left: ''});
                     $summary_container.css('height', '');
-  
+
                     // Calculate offset for next summary item
                     var tpadding = parseInt($answer.css('paddingTop')) * 2;
                     var tmargin = parseInt($answer.css('marginBottom'));
                     var theight = parseInt($answer.css('height'));
                     offset += theight + tpadding + tmargin + 1;
-  
+
                     // Show next panel if present
                     if ($next_panel.length) {
                       $curr_panel.parent().css('height', 'auto');
@@ -269,7 +317,7 @@ H5P.Summary = function(options, contentId) {
                     else {
                       // Hide intermediate evaluation
                       $evaluation_content.html(that.options.resultLabel);
-  
+
                       do_final_evaluation($summary_container, $options, $summary_list, score);
                     }
                     self.trigger('resize');
@@ -287,36 +335,62 @@ H5P.Summary = function(options, contentId) {
             $('.summary-score').css('display', 'block');
             $score.html(that.options.scoreLabel + ' ' + (++score));
             error_counts[panel_id]++;
+            if (answers[panel_id] === undefined) {
+              answers[panel_id] = [];
+            }
+            answers[panel_id].push(node_id);
           }
-          
+
           self.trigger('resize');
         });
+
         $page.append($node);
       }
+
       $options.append($page);
     }
 
-    // Show first panel
-    $('.h5p-panel:first', $myDom).css({display: 'block'});
+    if (progress === elements.length) {
+      $evaluation_content.html(that.options.resultLabel);
+      do_final_evaluation($summary_container, $options, $summary_list, score);
+    }
+    else {
+      // Show first panel
+      $('.h5p-panel:eq(' + (progress) + ')', $myDom).css({display: 'block'});
+      if (progress) {
+        offset = ($('.summary-claim-unclicked:visible:first', $myDom).outerHeight() * error_counts.length);
+      }
+    }
 
     self.trigger('resize');
-    
+
     return this;
   };
-  
+
   // Required questiontype contract function
   this.showSolutions = function() {
     // intentionally left blank, no solution view exists
   };
-  
+
   // Required questiontype contract function
   this.getMaxScore = function() {
     return summaries.length;
-  }
-  
+  };
+
   this.getScore = function() {
     return this.getMaxScore() - countErrors();
-  }
+  };
+
+  this.getTitle = function() {
+    return H5P.createTitle(this.options.intro);
+  };
+
+  this.getCurrentState = function () {
+    return {
+      progress: progress,
+      answers: answers
+    };
+  };
 };
 
 H5P.Summary.prototype = Object.create(H5P.EventDispatcher.prototype);

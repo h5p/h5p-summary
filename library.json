@@ -2,7 +2,7 @@
   "title": "Summary",
   "description": "Test your users with fill in the summary tasks.",
   "majorVersion": 1,
-  "minorVersion": 2,
+  "minorVersion": 3,
   "patchVersion": 0,
   "runnable": 1,
   "machineName": "H5P.Summary",
@@ -10,7 +10,7 @@
   "author": "Amendor AS",
   "coreApi": {
     "majorVersion": 1,
-    "minorVersion": 4
+    "minorVersion": 5
   },
   "preloadedCss": [
     {
