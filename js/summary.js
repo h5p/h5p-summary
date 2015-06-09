@@ -281,8 +281,10 @@ H5P.Summary = function(options, contentId, contentData) {
 
             // Update tip:
             $evaluation_content.find('.joubel-tip-container').remove();
-            if (element.tip !== undefined && element.tip.trim().length > 0) {
-              $evaluation_content.append(H5P.JoubelUI.createTip(element.tip));
+            if (elements[progress] !== undefined &&
+                elements[progress].tip !== undefined &&
+                elements[progress].tip.trim().length > 0) {
+              $evaluation_content.append(H5P.JoubelUI.createTip(elements[progress].tip));
             }
 
             // Fade out current panel
