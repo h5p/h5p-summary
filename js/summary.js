@@ -243,7 +243,7 @@ H5P.Summary = function(options, contentId, contentData) {
         // - Remove clickable
         // - Add error background image (css)
         $node.click(function() {
-          that.triggerXAPI('attempted');
+          that.triggerXAPI('interacted');
           var $el = $(this);
           var node_id = Number($el.attr('data-bit'));
           var classname = answer[node_id] ? 'success' : 'failed';
