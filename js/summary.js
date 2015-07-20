@@ -78,6 +78,7 @@ H5P.Summary = function(options, contentId, contentData) {
 
   // Function for attaching the multichoice to a DOM element.
   this.attach = function(target) {
+    this.setActivityStarted();
     var self = this;
     var c = 0; // element counter
     var elements = [];
@@ -143,7 +144,7 @@ H5P.Summary = function(options, contentId, contentData) {
 
       if (that.options.postUserStatistics === true) {
         var myScore = Math.max(error_counts.length - error_count, 0);
-        that.triggerXAPICompleted(myScore, error_counts.length);
+        that.triggerXAPIScored(myScore, error_counts.length, 'answered');
       }
     }
 
