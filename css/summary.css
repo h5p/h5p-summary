@@ -185,77 +185,6 @@ li.summary-failed:before {
   margin: 0;
 }
 
-.summary-options .evaluation-container {
-  display: block;
-  position: relative;
-}
-
-.summary-options .h5p-evaluation-emoticon {
-  display: block;
-  float: left;
-  font-family: icomoon-summary;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 5em;
-  line-height: 1em;
-  position: absolute;
-  top: 50%;
-  margin-top: -0.55em;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.summary-options .h5p-evaluation-emoticon.h5p-score-over-100:before {
-  content: "\e606";
-}
-.summary-options .h5p-evaluation-emoticon.h5p-score-over-70:before {
-  content: "\e604";
-}
-.summary-options .h5p-evaluation-emoticon.h5p-score-over-40:before {
-  content: "\e605";
-}
-.summary-options .h5p-evaluation-emoticon.h5p-score-over-0:before {
-  content: "\e607";
-}
-
-.summary-options .evaluation-container .evaluation-message {
-  position: relative;
-  display: block;
-  background: #ffffff;
-  padding: 1em;
-  border-radius: 1em;
-  margin-left: 6.5em;
-  z-index: 1;
-  border: 1px solid #ccc;
-  -webkit-filter: drop-shadow(0 0 0.2em #999999);
-  filter: drop-shadow(0 0 0.2em #999999);
-}
-
-.summary-options .evaluation-container .evaluation-message:before,
-.summary-options .evaluation-container .evaluation-message:after {
-  right: 100%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-}
-
-.summary-options .evaluation-container .evaluation-message:before {
-  margin-top: -16px;
-  top: 50%;
-  border-width: 16px;
-  border-color: transparent;
-  border-right-color: #ccc;
-}
-.summary-options .evaluation-container .evaluation-message:after {
-  margin-top: -15px;
-  top: 50%;
-  border-width: 15px;
-  border-color: transparent;
-  border-right-color: #ffffff;
-}
 .summary-evaluation .joubel-tip-container {
   position: absolute;
   top: -0.1em;
@@ -264,4 +193,9 @@ li.summary-failed:before {
 .summary-evaluation .joubel-tip-icon {
   line-height: 1;
   font-size: 1.3em;
+}
+
+/* Question specific styles */
+.h5p-question-content {
+  margin: 0;
 }
