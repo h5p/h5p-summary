@@ -374,16 +374,11 @@ H5P.Summary = (function ($, Question) {
 
     // Show final evaluation
     var summary = that.options.summary.replace('@score', that.summaries.length - error_count).replace('@total', that.summaries.length).replace('@percent', Math.round(percent));
-    console.log("setting final feedback!!!");
-    console.log(summary);
     this.setFeedback(summary, that.summaries.length - error_count, that.summaries.length);
 
     that.trigger('resize');
-
-    if (that.options.postUserStatistics === true) {
-      var myScore = Math.max(that.error_counts.length - error_count, 0);
-      that.triggerXAPIScored(myScore, that.error_counts.length, 'answered');
-    }
+    var myScore = Math.max(that.error_counts.length - error_count, 0);
+    that.triggerXAPIScored(myScore, that.error_counts.length, 'answered');
   };
 
   /**

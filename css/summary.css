@@ -10,44 +10,44 @@
   font-style: normal;
 }
 
-.summary-content {
+.h5p-summary .summary-content {
   padding: 0.625em;
 }
-.summary-content .summary-container > ul {
+.h5p-summary .summary-content .summary-container > ul {
   margin: 0;
   padding: 0;
   display: block;
 }
 
-.summary-container {
+.h5p-summary .summary-container {
   box-shadow: 0 0 0.5em #999;
   border-radius: 0.4em;
 }
 
-.summary-options {
+.h5p-summary .summary-options {
   height: auto;
   padding: 0;
 }
-.summary-options ul.h5p-panel {
+.h5p-summary .summary-options ul.h5p-panel {
   display: none;
   padding: 0;
 }
 
-.summary-evaluation {
+.h5p-summary .summary-evaluation {
   margin: 0 0 0.8em;
   border-bottom: 0.1em solid #ddd;
   padding: 1em 0 0.4em;
   overflow: hidden; /* Contain floated counters within the evaluation div */
 }
 
-.summary-evaluation-content {
+.h5p-summary .summary-evaluation-content {
   display: block;
   float: left;
   position: relative;
   padding-right: 2em;
 }
 
-.summary-content li {
+.h5p-summary .summary-content li {
   list-style: none;
   background-color: #e4e4e4;
   -moz-border-radius: 0.3em;
@@ -69,18 +69,18 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6ededed', endColorstr='#e6dfdfdf',GradientType=0 ); /* IE6-9 */
 }
 
-.summary-content li > p {
+.h5p-summary .summary-content li > p {
   margin: 0.4em 0 0 0;
   padding: 0;
 }
-.summary-content li > p:first-child {
+.h5p-summary .summary-content li > p:first-child {
   margin: 0;
 }
-.summary-container li:not(:last-child) {
+.h5p-summary .summary-container li:not(:last-child) {
   border-bottom: 1px solid #E9E9E9;
   border-radius: 0;
 }
-.summary-container li {
+.h5p-summary .summary-container li {
   display: none;
   z-index: 5;
   margin: 0;
@@ -94,14 +94,14 @@
   -ms-transition: background-color 1000ms linear, border-color 1000ms linear;
   transition: background-color 1000ms linear, border-color 1000ms linear;
 }
-.summary-container li:before {
+.h5p-summary .summary-container li:before {
   text-decoration: none;
   content: "\f00c";
   font-family: 'H5PFontAwesome4';
-  color: #39692e;
+  color: #255c41;
   float: right;
 }
-.summary-claim-unclicked:hover {
+.h5p-summary .summary-claim-unclicked:hover {
   cursor: pointer;
   filter: none;
   border: 0.1em solid #ddcae0;
@@ -114,33 +114,33 @@
   background: -ms-linear-gradient(top,  rgba(238,228,239,1) 0%,rgba(231,221,232,1) 100%); /* IE10+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eee4ef', endColorstr='#e7dde8',GradientType=0 ); /* IE6-9 */
 }
-li.summary-failed {
-  color: #c33f62;
-  border: 0.1em solid #ce9b9b;
-  background: #e6ced1;
+.h5p-summary li.summary-failed {
+  color: #b71c1c;
+  border: 0.1em solid #f7d0d0;
+  background: #f7d0d0;
   text-decoration: line-through;
   font-weight: bold;
 }
 
-li.summary-failed:before {
+.h5p-summary li.summary-failed:before {
   text-decoration: none;
   content: "\f00d";
   font-family: 'H5PFontAwesome4';
-  color: #c33f62;
+  color: #b71c1c;
   float: right;
 }
 
-.summary-options div {
+.h5p-summary .summary-options div {
   font-size: 1em;
   padding:0;
   background-repeat: no-repeat;
   background-position: top right;
 }
 
-.summary-score {
+.h5p-summary .summary-score {
   display: none;
   float: right;
-  background: #e6ced1;
+  background: #f7d0d0;
   -moz-border-radius: 0.3em;
   -webkit-border-radius: 0.3em;
   border-radius: 0.3em;
@@ -149,19 +149,19 @@ li.summary-failed:before {
   margin-right: 0.3em;
 }
 
-.summary-score:before {
+.h5p-summary .summary-score:before {
   text-decoration: none;
   content: "\f00d";
   font-family: 'H5PFontAwesome4';
-  color: #c33f62;
+  color: #b71c1c;
   float: left;
   margin-right: 0.3em;
   top: 0.1em;
 }
 
-.summary-progress {
+.h5p-summary .summary-progress {
   float: right;
-  background: #d1e2ce;
+  background: #9dd8bb;
   -moz-border-radius: 0.3em;
   -webkit-border-radius: 0.3em;
   border-radius: 0.3em;
@@ -169,33 +169,33 @@ li.summary-failed:before {
   font-weight: normal;
 }
 
-.summary-progress:before {
+.h5p-summary .summary-progress:before {
   text-decoration: none;
   content: "\f00c";
   font-family: 'H5PFontAwesome4';
-  color: #39692e;
+  color: #255c41;
   float: left;
   margin-right: 0.3em;
 }
 
-.summary-options h2 {
+.h5p-summary .summary-options h2 {
   font-size: 1.2em;
   font-weight: bold;
   padding-bottom: 0.5em;
   margin: 0;
 }
 
-.summary-evaluation .joubel-tip-container {
+.h5p-summary .summary-evaluation .joubel-tip-container {
   position: absolute;
   top: -0.1em;
   right: 0.1em;
 }
-.summary-evaluation .joubel-tip-icon {
+.h5p-summary .summary-evaluation .joubel-tip-icon {
   line-height: 1;
   font-size: 1.3em;
 }
 
 /* Question specific styles */
-.h5p-question-content {
+.h5p-summary .h5p-question-content {
   margin: 0;
 }
