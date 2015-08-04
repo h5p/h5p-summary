@@ -234,7 +234,7 @@ H5P.Summary = (function ($, Question) {
             // Move into position over clicked element
             $answer.css({display: 'block', width: $el.css('width'), height: $el.css('height')});
             $answer.css({position: 'absolute', top: position.top, left: position.left});
-            $answer.css({backgroundColor: '#d1e2ce', borderColor: '#afcdaa'});
+            $answer.css({backgroundColor: '#9dd8bb', borderColor: '#255c41'});
             setTimeout(function () {
               $answer.css({backgroundColor: '', borderColor: ''});
             }, 1);
@@ -331,6 +331,7 @@ H5P.Summary = (function ($, Question) {
     }
 
     that.trigger('resize');
+    this.$myDom = $myDom;
 
     return $myDom;
   };
@@ -371,6 +372,9 @@ H5P.Summary = (function ($, Question) {
         break;
       }
     }
+
+    // Remove summary-evaluation container
+    this.$myDom.find('.summary-evaluation').remove();
 
     // Show final evaluation
     var summary = that.options.summary.replace('@score', that.summaries.length - error_count).replace('@total', that.summaries.length).replace('@percent', Math.round(percent));

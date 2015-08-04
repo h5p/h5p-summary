@@ -10,9 +10,6 @@
   font-style: normal;
 }
 
-.h5p-summary .summary-content {
-  padding: 0.625em;
-}
 .h5p-summary .summary-content .summary-container > ul {
   margin: 0;
   padding: 0;
@@ -22,11 +19,13 @@
 .h5p-summary .summary-container {
   box-shadow: 0 0 0.5em #999;
   border-radius: 0.4em;
+  margin: 1.5em 0;
 }
 
 .h5p-summary .summary-options {
   height: auto;
   padding: 0;
+  margin: 1.5em 0;
 }
 .h5p-summary .summary-options ul.h5p-panel {
   display: none;
@@ -34,10 +33,8 @@
 }
 
 .h5p-summary .summary-evaluation {
-  margin: 0 0 0.8em;
-  border-bottom: 0.1em solid #ddd;
-  padding: 1em 0 0.4em;
   overflow: hidden; /* Contain floated counters within the evaluation div */
+  margin: 1.5em 0;
 }
 
 .h5p-summary .summary-evaluation-content {
@@ -45,6 +42,7 @@
   float: left;
   position: relative;
   padding-right: 2em;
+  font-size: 1.125em;
 }
 
 .h5p-summary .summary-content li {
@@ -54,7 +52,7 @@
   -webkit-border-radius: 0.3em;
   border-radius: 0.3em;
   border: 0.1em solid #dcdcdc;
-  color: #777;
+  color: #000;
   font-size: 1em;
   padding: 0.375em 0.875em;
   text-decoration: none;
@@ -193,9 +191,4 @@
 .h5p-summary .summary-evaluation .joubel-tip-icon {
   line-height: 1;
   font-size: 1.3em;
-}
-
-/* Question specific styles */
-.h5p-summary .h5p-question-content {
-  margin: 0;
 }
