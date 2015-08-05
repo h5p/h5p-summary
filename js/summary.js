@@ -50,7 +50,7 @@ H5P.Summary = (function ($, Question) {
           message: "You need to work more on this"
         }
       },
-      summary: "You got @score of @total statements (@percent %) correct.",
+      summary: "You got @score of @total statements (@percent %) correct on your first try.",
       resultLabel: "Your result:",
       intro: "Choose the correct statement.",
       solvedLabel: "Solved:",

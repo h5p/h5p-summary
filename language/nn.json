@@ -104,7 +104,7 @@
     },
     {
       "label": "Visning av resultat",
-      "default": "Du fikk @score av @total påstandar (@percent %) rett.",
+      "default": "Du fikk @score av @total påstandar (@percent %) rett på første forsøk.",
       "description": "Tilgjengelige variablar: @score, @total, @percent. Eksempel: Du fikk @score av @total påstandar (@percent %) rett."
     }
   ]
