@@ -192,3 +192,8 @@
   line-height: 1;
   font-size: 1.3em;
 }
+
+.h5p-summary .summary-feedback {
+  display: inline-block;
+  float: right;
+}

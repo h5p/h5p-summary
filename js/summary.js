@@ -142,6 +142,7 @@ H5P.Summary = (function ($, Question) {
     var $evaluation = $('<div class="summary-evaluation"></div>');
     var $evaluation_content = $('<div class="summary-evaluation-content">' + that.options.intro + '</div>');
     var $score = $('<div class="summary-score"></div>');
+    var $summaryFeedback = $('<div class="summary-feedback"></div>');
     var $options = $('<div class="summary-options"></div>');
     var $progress = $('<div class="summary-progress"></div>');
     var options_padding = parseInt($options.css('paddingLeft'));
@@ -156,8 +157,9 @@ H5P.Summary = (function ($, Question) {
     $myDom.append($evaluation);
     $myDom.append($options);
     $evaluation.append($evaluation_content);
-    $evaluation.append($progress);
-    $evaluation.append($score);
+    $evaluation.append($summaryFeedback);
+    $summaryFeedback.append($progress);
+    $summaryFeedback.append($score);
 
     $progress.html(that.options.solvedLabel + ' ' + this.progress + '/' + that.summaries.length);
 
