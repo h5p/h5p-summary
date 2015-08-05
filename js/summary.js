@@ -302,7 +302,7 @@ H5P.Summary = (function ($, Question) {
             $el.addClass('summary-failed');
             $el.removeClass('summary-claim-unclicked');
 
-            $('.summary-score').css('display', 'block');
+            $summaryFeedback.children('.summary-score').css('display', 'block');
             $score.html(that.options.scoreLabel + ' ' + (++that.score));
             that.error_counts[panel_id]++;
             if (that.answers[panel_id] === undefined) {

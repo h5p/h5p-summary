@@ -39,9 +39,13 @@
 
 .h5p-summary .summary-evaluation-content {
   display: block;
-  position: relative;
   padding-right: 2em;
   font-size: 1.125em;
+  float: left;
+}
+
+.h5p-summary .summary-evaluation-content > p {
+  margin: 0;
 }
 
 .h5p-summary .summary-content li {
