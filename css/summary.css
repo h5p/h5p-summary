@@ -125,6 +125,7 @@
   font-family: 'H5PFontAwesome4';
   color: #b71c1c;
   float: right;
+  line-height: 1.25;
 }
 
 .h5p-summary .summary-options div {
