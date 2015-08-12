@@ -168,7 +168,7 @@ H5P.Summary = (function ($, Question) {
       var element = elements[i];
 
       if (i < that.progress) { // i is panel_id
-        for (var j = 0; j < element.that.summaries.length; j++) {
+        for (var j = 0; j < element.summaries.length; j++) {
           var sum = element.summaries[j];
           if (that.answer[sum.id]) {
             $summary_list.append('<li style="display:block">' + sum.text + '</li>');
