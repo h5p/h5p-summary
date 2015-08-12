@@ -50,11 +50,11 @@
 
 .h5p-summary .summary-content li {
   list-style: none;
-  background-color: rgba(237,237,237,0.9);
+  background-color: #ddd;
   -moz-border-radius: 0.3em;
   -webkit-border-radius: 0.3em;
   border-radius: 0.3em;
-  border: 0.1em solid rgba(237,237,237,0.9);
+  border: 0.1em solid #ddd;
   color: #000;
   font-size: 1em;
   padding: 0.375em 0.875em;
@@ -104,9 +104,9 @@
 .h5p-summary .summary-claim-unclicked:hover {
   cursor: pointer;
   filter: none;
-  border: 0.1em solid rgb(238,228,239);
+  border: 0.1em solid #e4d2e4;
 
-  background: rgb(238,228,239); /* Old browsers */
+  background: #e4d2e4;
 }
 
 .h5p-summary li.summary-failed > p,
