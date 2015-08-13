@@ -105,7 +105,7 @@ H5P.Summary = (function ($, Question) {
     var c = 0; // element counter
     var elements = [];
     var $ = H5P.jQuery;
-    var $myDom = $('<div>', {
+    this.$myDom = $('<div>', {
       'class': 'summary-content'
     });
 
@@ -153,9 +153,9 @@ H5P.Summary = (function ($, Question) {
 
     // Insert content
     $summary_container.append($summary_list);
-    $myDom.append($summary_container);
-    $myDom.append($evaluation);
-    $myDom.append($options);
+    this.$myDom.append($summary_container);
+    this.$myDom.append($evaluation);
+    this.$myDom.append($options);
     $evaluation.append($evaluation_content);
     $evaluation.append($summaryFeedback);
     $summaryFeedback.append($progress);
@@ -243,8 +243,8 @@ H5P.Summary = (function ($, Question) {
             //$answer.animate({backgroundColor: '#eee'}, 'slow');
 
             var panel = parseInt($el.parent().attr('data-panel'));
-            var $curr_panel = $('.h5p-panel:eq(' + panel + ')', $myDom);
-            var $next_panel = $('.h5p-panel:eq(' + (panel + 1) + ')', $myDom);
+            var $curr_panel = $('.h5p-panel:eq(' + panel + ')', that.$myDom);
+            var $next_panel = $('.h5p-panel:eq(' + (panel + 1) + ')', that.$myDom);
             var height = $curr_panel.parent().css('height');
 
             // Update tip:
@@ -326,16 +326,15 @@ H5P.Summary = (function ($, Question) {
     }
     else {
       // Show first panel
-      $('.h5p-panel:eq(' + (that.progress) + ')', $myDom).css({display: 'block'});
+      $('.h5p-panel:eq(' + (that.progress) + ')', that.$myDom).css({display: 'block'});
       if (that.progress) {
-        that.offset = ($('.summary-claim-unclicked:visible:first', $myDom).outerHeight() * that.error_counts.length);
+        that.offset = ($('.summary-claim-unclicked:visible:first', that.$myDom).outerHeight() * that.error_counts.length);
       }
     }
 
     that.trigger('resize');
-    this.$myDom = $myDom;
 
-    return $myDom;
+    return this.$myDom;
   };
 
   /**
@@ -445,4 +444,3 @@ H5P.Summary = (function ($, Question) {
   return Summary;
 
 })(H5P.jQuery, H5P.Question);
-
