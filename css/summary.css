@@ -104,9 +104,9 @@
 .h5p-summary .summary-claim-unclicked:hover {
   cursor: pointer;
   filter: none;
-  border: 0.1em solid #e4d2e4;
+  border: 0.1em solid #edd6e9;
 
-  background: #e4d2e4;
+  background: #edd6e9;
 }
 
 .h5p-summary li.summary-failed > p,
