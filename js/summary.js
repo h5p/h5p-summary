@@ -71,7 +71,7 @@ H5P.Summary = (function ($, Question) {
     };
 
     this.getScore = function() {
-      return this.getMaxScore() - countErrors();
+      return this.getMaxScore() - this.countErrors();
     };
 
     this.getTitle = function() {
