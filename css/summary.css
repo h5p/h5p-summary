@@ -17,9 +17,10 @@
 }
 
 .h5p-summary .summary-container {
-  box-shadow: 0 0 0.5em #999;
-  border-radius: 0.4em;
   margin: 1.5em 0;
+  border-radius: 0.25em;
+  border: 1px solid #ddd;
+  background-color: #fff;
 }
 
 .h5p-summary .summary-options {
@@ -74,7 +75,7 @@
   margin: 0;
 }
 .h5p-summary .summary-container li:not(:last-child) {
-  border-bottom: 1px solid #E9E9E9;
+  border-bottom: 1px solid #ddd;
   border-radius: 0;
 }
 .h5p-summary .summary-container li {
