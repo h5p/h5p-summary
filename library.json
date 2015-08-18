@@ -3,7 +3,7 @@
   "description": "Test your users with fill in the summary tasks.",
   "majorVersion": 1,
   "minorVersion": 3,
-  "patchVersion": 1,
+  "patchVersion": 2,
   "runnable": 1,
   "machineName": "H5P.Summary",
   "license": "MIT",
