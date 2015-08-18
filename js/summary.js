@@ -374,9 +374,6 @@ H5P.Summary = (function ($, Question) {
       }
     }
 
-    // Remove summary-evaluation container
-    this.$myDom.find('.summary-evaluation').remove();
-
     // Show final evaluation
     var summary = that.options.summary.replace('@score', that.summaries.length - error_count).replace('@total', that.summaries.length).replace('@percent', Math.round(percent));
     this.setFeedback(summary, that.summaries.length - error_count, that.summaries.length);
