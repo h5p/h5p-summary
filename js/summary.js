@@ -172,6 +172,7 @@ H5P.Summary = (function ($, Question) {
           var sum = element.summaries[j];
           if (that.answer[sum.id]) {
             $summary_list.append('<li style="display:block">' + sum.text + '</li>');
+            $summary_container.addClass('has-results');
             break;
           }
         }
@@ -231,14 +232,15 @@ H5P.Summary = (function ($, Question) {
 
             // Insert correct claim into summary list
             $summary_list.append($answer);
+            $summary_container.addClass('has-results');
             that.adjustTargetHeight($summary_container, $summary_list, $answer);
 
             // Move into position over clicked element
             $answer.css({display: 'block', width: $el.css('width'), height: $el.css('height')});
             $answer.css({position: 'absolute', top: position.top, left: position.left});
-            $answer.css({backgroundColor: '#9dd8bb', borderColor: '#255c41'});
+            $answer.css({backgroundColor: '#9dd8bb', border: ''});
             setTimeout(function () {
-              $answer.css({backgroundColor: '', borderColor: ''});
+              $answer.css({backgroundColor: ''});
             }, 1);
             //$answer.animate({backgroundColor: '#eee'}, 'slow');
 
@@ -246,6 +248,9 @@ H5P.Summary = (function ($, Question) {
             var $curr_panel = $('.h5p-panel:eq(' + panel + ')', that.$myDom);
             var $next_panel = $('.h5p-panel:eq(' + (panel + 1) + ')', that.$myDom);
             var height = $curr_panel.parent().css('height');
+
+            // Disable panel while waiting for animation
+            $curr_panel.addClass('panel-disabled');
 
             // Update tip:
             $evaluation_content.find('.joubel-tip-container').remove();
@@ -255,46 +260,46 @@ H5P.Summary = (function ($, Question) {
               $evaluation_content.append(H5P.JoubelUI.createTip(elements[that.progress].tip));
             }
 
-            // Fade out current panel
-            $curr_panel.fadeOut('fast', function() {
-              // Force panel height to recorded height
-              $curr_panel.parent().css('height', '');
+            $answer.animate(
+              {
+                top: summary.top + that.offset,
+                left: '-=' + options_padding + 'px',
+                width: '+=' + (options_padding * 2) + 'px'
+              },
+              {
+                complete: function() {
+                  // Remove position (becomes inline);
+                  $(this).css('position', '').css({
+                    width: '',
+                    height: '',
+                    top: '',
+                    left: ''
+                  });
+                  $summary_container.css('height', '');
 
-              // Animate answer to summary
-              $answer.animate(
-                {
-                  top: summary.top + that.offset,
-                  left: '-=' + options_padding + 'px',
-                  width: '+=' + (options_padding * 2) + 'px'
-                },
-                {
-                  complete: function() {
-                    // Remove position (becomes inline);
-                    $(this).css('position', '').css({width: '', height: '', top: '', left: ''});
-                    $summary_container.css('height', '');
+                  // Calculate offset for next summary item
+                  var tpadding = parseInt($answer.css('paddingTop')) * 2;
+                  var tmargin = parseInt($answer.css('marginBottom'));
+                  var theight = parseInt($answer.css('height'));
+                  that.offset += theight + tpadding + tmargin + 1;
 
-                    // Calculate offset for next summary item
-                    var tpadding = parseInt($answer.css('paddingTop')) * 2;
-                    var tmargin = parseInt($answer.css('marginBottom'));
-                    var theight = parseInt($answer.css('height'));
-                    that.offset += theight + tpadding + tmargin + 1;
-
+                  // Fade out current panel
+                  $curr_panel.fadeOut('fast', function () {
+                    $curr_panel.parent().css('height', 'auto');
                     // Show next panel if present
                     if ($next_panel.length) {
-                      $curr_panel.parent().css('height', 'auto');
                       $next_panel.fadeIn('fast');
-                    }
-                    else {
+                    } else {
                       // Hide intermediate evaluation
                       $evaluation_content.html(that.options.resultLabel);
 
                       that.do_final_evaluation($summary_container, $options, $summary_list, that.score);
                     }
                     that.trigger('resize');
-                  }
+                  });
                 }
-              );
-            });
+              }
+            );
           }
           else {
             // Remove event handler (prevent repeated clicks) and mouseover effect
