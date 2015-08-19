@@ -17,7 +17,7 @@
 }
 
 .h5p-summary .summary-container {
-  margin: 1.5em 0;
+  margin: 1em 0;
   background-color: #fff;
 }
 
@@ -29,7 +29,7 @@
 .h5p-summary .summary-options {
   height: auto;
   padding: 0;
-  margin: 1.5em 0;
+  margin: 1em 0;
 }
 .h5p-summary .summary-options ul.h5p-panel {
   display: none;
@@ -42,7 +42,7 @@
 
 .h5p-summary .summary-evaluation {
   overflow: hidden; /* Contain floated counters within the evaluation div */
-  margin: 1.5em 0;
+  margin: 1em 0;
 }
 
 .h5p-summary .summary-evaluation-content {
