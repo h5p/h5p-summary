@@ -17,24 +17,32 @@
 }
 
 .h5p-summary .summary-container {
-  box-shadow: 0 0 0.5em #999;
-  border-radius: 0.4em;
-  margin: 1.5em 0;
+  margin: 1em 0;
+  background-color: #fff;
+}
+
+.h5p-summary .summary-container.has-results {
+  border: 1px solid #ddd;
+  border-radius: 0.25em;
 }
 
 .h5p-summary .summary-options {
   height: auto;
   padding: 0;
-  margin: 1.5em 0;
+  margin: 1em 0;
 }
 .h5p-summary .summary-options ul.h5p-panel {
   display: none;
   padding: 0;
 }
 
+.h5p-summary .summary-options ul.h5p-panel.panel-disabled {
+  pointer-events: none;
+}
+
 .h5p-summary .summary-evaluation {
   overflow: hidden; /* Contain floated counters within the evaluation div */
-  margin: 1.5em 0;
+  margin: 1em 0;
 }
 
 .h5p-summary .summary-evaluation-content {
@@ -74,7 +82,7 @@
   margin: 0;
 }
 .h5p-summary .summary-container li:not(:last-child) {
-  border-bottom: 1px solid #E9E9E9;
+  border-bottom: 1px solid #ddd;
   border-radius: 0;
 }
 .h5p-summary .summary-container li {
@@ -88,11 +96,11 @@
   -moz-box-shadow: none;
   box-shadow: none;
 
-  -webkit-transition: background-color 1000ms linear, border-color 1000ms linear;
-  -moz-transition: background-color 1000ms linear, border-color 1000ms linear;
-  -o-transition: background-color 1000ms linear, border-color 1000ms linear;
-  -ms-transition: background-color 1000ms linear, border-color 1000ms linear;
-  transition: background-color 1000ms linear, border-color 1000ms linear;
+  -webkit-transition: background-color 1000ms linear;
+  -moz-transition: background-color 1000ms linear;
+  -o-transition: background-color 1000ms linear;
+  -ms-transition: background-color 1000ms linear;
+  transition: background-color 1000ms linear;
 }
 .h5p-summary .summary-container li:before {
   text-decoration: none;
@@ -101,7 +109,7 @@
   color: #255c41;
   float: right;
 }
-.h5p-summary .summary-claim-unclicked:hover {
+.h5p-summary .h5p-panel:not(.panel-disabled) .summary-claim-unclicked:hover {
   cursor: pointer;
   filter: none;
   border: 0.1em solid #edd6e9;
