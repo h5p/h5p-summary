@@ -104,7 +104,7 @@
     },
     {
       "label": "Angivelse av resultat",
-      "default": "Du fikk @score av @total påstander (@percent %) rett.",
+      "default": "Du fikk @score av @total påstander (@percent %) rett på første forsøk.",
       "description": "Tilgjengelige variabler: @score, @total, @percent. Eksempel: Du fikk @score av @total påstander (@percent %) rett."
     }
   ]
