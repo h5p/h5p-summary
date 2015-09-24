@@ -115,10 +115,15 @@ H5P.Summary = (function ($, Question) {
 
     // Create array objects
     for (var i = 0; i < that.summaries.length; i++) {
+      if (that.summaries[i].summary && that.summaries[i].summary.length) {
+        continue;
+      }
+
       elements[i] = {
         tip: that.summaries[i].tip,
         summaries: []
       };
+
       for (var j = 0; j < that.summaries[i].summary.length; j++) {
         that.answer[c] = (j === 0); // First claim is correct
         elements[i].summaries[j] = {
