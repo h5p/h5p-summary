@@ -115,7 +115,7 @@ H5P.Summary = (function ($, Question) {
 
     // Create array objects
     for (var i = 0; i < that.summaries.length; i++) {
-      if (that.summaries[i].summary && that.summaries[i].summary.length) {
+      if (!(that.summaries[i].summary && that.summaries[i].summary.length)) {
         continue;
       }
 
