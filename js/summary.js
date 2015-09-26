@@ -398,19 +398,7 @@ H5P.Summary = (function ($, Question) {
    * Used for contracts.
    */
   Summary.prototype.resetTask = function () {
-    // Reset task parameters
-    this.offset = 0;
-    this.score = 0;
-    this.progress = 0;
-    this.answers = [];
-    this.answer = Array();
-    this.error_counts = [];
-
-    // Remove existing feedback
-    this.setFeedback();
-
-    // Recreate content
-    this.registerDomElements();
+    // Summary is not yet able to Reset itself
   };
 
   /**
