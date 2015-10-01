@@ -115,10 +115,15 @@ H5P.Summary = (function ($, Question) {
 
     // Create array objects
     for (var i = 0; i < that.summaries.length; i++) {
+      if (!(that.summaries[i].summary && that.summaries[i].summary.length)) {
+        continue;
+      }
+
       elements[i] = {
         tip: that.summaries[i].tip,
         summaries: []
       };
+
       for (var j = 0; j < that.summaries[i].summary.length; j++) {
         that.answer[c] = (j === 0); // First claim is correct
         elements[i].summaries[j] = {
@@ -393,19 +398,7 @@ H5P.Summary = (function ($, Question) {
    * Used for contracts.
    */
   Summary.prototype.resetTask = function () {
-    // Reset task parameters
-    this.offset = 0;
-    this.score = 0;
-    this.progress = 0;
-    this.answers = [];
-    this.answer = Array();
-    this.error_counts = [];
-
-    // Remove existing feedback
-    this.setFeedback();
-
-    // Recreate content
-    this.registerDomElements();
+    // Summary is not yet able to Reset itself
   };
 
   /**

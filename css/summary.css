@@ -47,6 +47,7 @@
 
 .h5p-summary .summary-evaluation-content {
   display: block;
+  position: relative;
   padding-right: 2em;
   font-size: 1.125em;
   float: left;
