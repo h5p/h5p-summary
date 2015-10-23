@@ -48,9 +48,9 @@
 .h5p-summary .summary-evaluation-content {
   display: block;
   position: relative;
-  padding-right: 2em;
   font-size: 1.125em;
   float: left;
+  padding: 0.1em 2em 0.1em 0;
 }
 
 .h5p-summary .summary-evaluation-content > p {
@@ -155,7 +155,6 @@
   border-radius: 0.3em;
   padding: 0.1em 0.3em;
   font-weight: normal;
-  margin-right: 0.3em;
 }
 
 .h5p-summary .summary-score:before {
@@ -176,6 +175,7 @@
   border-radius: 0.3em;
   padding: 0.1em 0.3em;
   font-weight: normal;
+  margin-left: 0.3em;
 }
 
 .h5p-summary .summary-progress:before {
