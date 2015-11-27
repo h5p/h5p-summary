@@ -100,7 +100,6 @@ H5P.Summary = (function ($, Question) {
 
   // Function for attaching the multichoice to a DOM element.
   Summary.prototype.createQuestion = function() {
-    this.setActivityStarted();
     var that = this;
     var c = 0; // element counter
     var elements = [];
