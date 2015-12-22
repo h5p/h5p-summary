@@ -16,7 +16,14 @@ H5P.Summary = (function ($, Question) {
       this.progress = contentData.previousState.progress;
       this.answers = contentData.previousState.answers;
 
-      for (var i = 0; i <= this.progress; i++) {
+      var currentProgress = this.progress;
+
+      // Do not count score screen as an error
+      if (this.progress >= options.summaries.length) {
+        currentProgress = options.summaries.length - 1;
+      }
+
+      for (var i = 0; i <= currentProgress; i++) {
         if (this.error_counts[i] === undefined) {
           this.error_counts[i] = 0;
         }
