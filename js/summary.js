@@ -16,7 +16,14 @@ H5P.Summary = (function ($, Question) {
       this.progress = contentData.previousState.progress;
       this.answers = contentData.previousState.answers;
 
-      for (var i = 0; i < this.progress; i++) {
+      var currentProgress = this.progress;
+
+      // Do not count score screen as an error
+      if (this.progress >= options.summaries.length) {
+        currentProgress = options.summaries.length - 1;
+      }
+
+      for (var i = 0; i <= currentProgress; i++) {
         if (this.error_counts[i] === undefined) {
           this.error_counts[i] = 0;
         }
@@ -205,6 +212,12 @@ H5P.Summary = (function ($, Question) {
         }
 
         var $node = $('<li data-bit="' + element.summaries[j].id + '" class="' + summaryLineClass + '">' + element.summaries[j].text + '</li>');
+
+        // Do not add click event for failed nodes
+        if (summaryLineClass === 'summary-failed') {
+          $page.append($node);
+          continue;
+        }
 
         // When correct claim is clicked:
         // - Add claim to summary list
