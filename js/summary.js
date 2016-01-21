@@ -16,7 +16,14 @@ H5P.Summary = (function ($, Question) {
       this.progress = contentData.previousState.progress;
       this.answers = contentData.previousState.answers;
 
-      for (var i = 0; i < this.progress; i++) {
+      var currentProgress = this.progress;
+
+      // Do not count score screen as an error
+      if (this.progress >= options.summaries.length) {
+        currentProgress = options.summaries.length - 1;
+      }
+
+      for (var i = 0; i <= currentProgress; i++) {
         if (this.error_counts[i] === undefined) {
           this.error_counts[i] = 0;
         }
@@ -100,7 +107,6 @@ H5P.Summary = (function ($, Question) {
 
   // Function for attaching the multichoice to a DOM element.
   Summary.prototype.createQuestion = function() {
-    this.setActivityStarted();
     var that = this;
     var c = 0; // element counter
     var elements = [];
@@ -147,7 +153,6 @@ H5P.Summary = (function ($, Question) {
     var $evaluation = $('<div class="summary-evaluation"></div>');
     var $evaluation_content = $('<div class="summary-evaluation-content">' + that.options.intro + '</div>');
     var $score = $('<div class="summary-score"></div>');
-    var $summaryFeedback = $('<div class="summary-feedback"></div>');
     var $options = $('<div class="summary-options"></div>');
     var $progress = $('<div class="summary-progress"></div>');
     var options_padding = parseInt($options.css('paddingLeft'));
@@ -162,9 +167,9 @@ H5P.Summary = (function ($, Question) {
     this.$myDom.append($evaluation);
     this.$myDom.append($options);
     $evaluation.append($evaluation_content);
-    $evaluation.append($summaryFeedback);
-    $summaryFeedback.append($progress);
-    $summaryFeedback.append($score);
+    $evaluation.append($evaluation);
+    $evaluation.append($progress);
+    $evaluation.append($score);
 
     $progress.html(that.options.solvedLabel + ' ' + this.progress + '/' + that.summaries.length);
 
@@ -207,6 +212,12 @@ H5P.Summary = (function ($, Question) {
         }
 
         var $node = $('<li data-bit="' + element.summaries[j].id + '" class="' + summaryLineClass + '">' + element.summaries[j].text + '</li>');
+
+        // Do not add click event for failed nodes
+        if (summaryLineClass === 'summary-failed') {
+          $page.append($node);
+          continue;
+        }
 
         // When correct claim is clicked:
         // - Add claim to summary list
@@ -312,7 +323,7 @@ H5P.Summary = (function ($, Question) {
             $el.addClass('summary-failed');
             $el.removeClass('summary-claim-unclicked');
 
-            $summaryFeedback.children('.summary-score').css('display', 'block');
+            $evaluation.children('.summary-score').css('display', 'block');
             $score.html(that.options.scoreLabel + ' ' + (++that.score));
             that.error_counts[panel_id]++;
             if (that.answers[panel_id] === undefined) {
