@@ -12,7 +12,9 @@ H5P.Summary = (function ($, Question) {
     this.answers = [];
     this.answer = Array();
     this.error_counts = [];
-    if (contentData && contentData.previousState !== undefined) {
+    if (contentData && contentData.previousState !== undefined &&
+        contentData.previousState.progress !== undefined &&
+        contentData.previousState.answers) {
       this.progress = contentData.previousState.progress;
       this.answers = contentData.previousState.answers;
 
