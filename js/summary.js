@@ -10,11 +10,13 @@ H5P.Summary = (function ($, Question) {
     this.score = 0;
     this.progress = 0;
     this.answers = [];
-    this.answer = Array();
+    this.answer = [];
     this.error_counts = [];
-    if (contentData && contentData.previousState !== undefined) {
-      this.progress = contentData.previousState.progress;
-      this.answers = contentData.previousState.answers;
+    if (contentData && contentData.previousState !== undefined &&
+        contentData.previousState.progress !== undefined &&
+        contentData.previousState.answers) {
+      this.progress = contentData.previousState.progress || this.progress;
+      this.answers = contentData.previousState.answers || this.answers;
 
       var currentProgress = this.progress;
 
