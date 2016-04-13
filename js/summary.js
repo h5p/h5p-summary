@@ -181,9 +181,12 @@ H5P.Summary = (function ($, Question) {
      *  Used when alt was selected with keyboard.
      */
     var selectedAlt = function ($el, setFocus) {
+	    console.log($el);
       that.triggerXAPI('interacted');
       var node_id = Number($el.attr('data-bit'));
+      console.log('node_id: ' + node_id);
       var panel_id = Number($el.parent().data('panel'));
+      console.log('panel_id: ' + panel_id);
       if (that.error_counts[panel_id] === undefined) {
         that.error_counts[panel_id] = 0;
       }
@@ -332,7 +335,7 @@ H5P.Summary = (function ($, Question) {
           }
         }
 
-        var $node = $('<div class="' + summaryLineClass + '">' +
+        var $node = $('<div data-bit="' + element.summaries[j].id + '" class="' + summaryLineClass + '">' +
 	  '<input type="radio" data-bit="' + element.summaries[j].id + '" class="sr-only" value="' + element.summaries[j].id + '"><label>' +
             element.summaries[j].text +
           '</label>' +

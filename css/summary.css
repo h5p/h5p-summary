@@ -123,6 +123,12 @@
 fieldset.h5p-panel legend {
 	/* margin-bottom: 20px; */
 	position: relative;
+	border: 1px;
+	border-radius: 4px;
+}
+
+fieldset.h5p-panel {
+	border: 0px;
 }
 
 .h5p-summary li.summary-failed > p,
