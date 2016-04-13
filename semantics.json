@@ -94,6 +94,14 @@
     "common": true
   },
   {
+    "name": "incorrectLabel",
+    "type": "text",
+    "label": "Text displayed to screen-reader users after an incorrect option that has already been picked",
+    "default": "Incorrect answer",
+    "description": "This indicates to screen-reader users that an answer was incorrect.  For visual users, this is indicated by a change in visual styling of the choice",
+    "common": true
+  },
+  {
     "name": "resultLabel",
     "type": "text",
     "label": "Summary feedback header",
