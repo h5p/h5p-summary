@@ -223,3 +223,7 @@ fieldset.h5p-panel {
 	clip: rect(0, 0, 0, 0);
 	border: 0;
 }
+
+.summary-evaluation-content h3 {
+	font-size 1em !important;
+}

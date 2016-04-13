@@ -64,6 +64,8 @@ H5P.Summary = (function ($, Question) {
       intro: "Choose the correct statement.",
       solvedLabel: "Solved:",
       scoreLabel: "Wrong answers:",
+      incorrectLabel: "incorrect answer",
+      outOfLabel: "out of",
       postUserStatistics: (H5P.postUserStatistics === true)
     }, options);
 
@@ -198,7 +200,7 @@ H5P.Summary = (function ($, Question) {
         var summary = $summary_list.position();
         var $answer = $('<li>' + $el.html() + '</li>');
 
-        $progress.html(that.options.solvedLabel + ' '  + (panel_id + 1) + '/' + that.summaries.length);
+        $progress.html(that.options.solvedLabel + ' '  + (panel_id + 1) + ' ' + that.options.outOfLabel + ' ' + that.summaries.length);
 
         // Insert correct claim into summary list
         $summary_list.append($answer);
@@ -266,7 +268,7 @@ H5P.Summary = (function ($, Question) {
                   }
                 } else {
                   // Hide intermediate evaluation
-                  $evaluation_content.html(that.options.resultLabel);
+                  $evaluation_content.html('<h3>' + that.options.resultLabel + '</h3>');
 
                   that.do_final_evaluation($summary_container, $options, $summary_list, that.score);
                 }
@@ -280,7 +282,7 @@ H5P.Summary = (function ($, Question) {
         // Remove event handler (prevent repeated clicks) and mouseover effect
         $el.off('click');
         $el.addClass('summary-failed');
-	$el.find('label').append('<span class="sr-only">(incorrect answer)</span>'); // FIXME i18n
+	$el.find('label').append('<span class="sr-only">(' + that.options.incorrectLabel + ')</span>'); // FIXME i18n
         $el.removeClass('summary-claim-unclicked');
 
         $evaluation.children('.summary-score').css('display', 'block');
@@ -296,7 +298,7 @@ H5P.Summary = (function ($, Question) {
       $el.attr('tabindex', '-1');
     };
 
-    $progress.html(that.options.solvedLabel + ' ' + this.progress + ' out of ' + that.summaries.length); // TODO i18n!
+    $progress.html(that.options.solvedLabel + ' ' + this.progress + ' ' + that.options.outOfLabel + ' ' + that.summaries.length); // TODO i18n!
 
     // Add elements to content
     for (var i = 0; i < elements.length; i++) {
