@@ -280,6 +280,7 @@ H5P.Summary = (function ($, Question) {
         // Remove event handler (prevent repeated clicks) and mouseover effect
         $el.off('click');
         $el.addClass('summary-failed');
+	$el.find('label').append('<span class="sr-only">(incorrect answer)</span>'); // FIXME i18n
         $el.removeClass('summary-claim-unclicked');
 
         $evaluation.children('.summary-score').css('display', 'block');
@@ -336,7 +337,8 @@ H5P.Summary = (function ($, Question) {
         }
 
         var $node = $('<div data-bit="' + element.summaries[j].id + '" class="' + summaryLineClass + '">' +
-	  '<input type="radio" data-bit="' + element.summaries[j].id + '" class="sr-only" value="' + element.summaries[j].id + '"><label>' +
+	  '<input type="radio" data-bit="' + element.summaries[j].id + '" class="sr-only" value="' + element.summaries[j].id + '">' +
+	  '<label>' +
             element.summaries[j].text +
           '</label>' +
 	  '</div>');

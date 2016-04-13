@@ -142,10 +142,6 @@ fieldset.h5p-panel {
 	border: 0px;
 }
 
-.h5p-summary div.summary-failed > p,
-.h5p-summary div.summary-failed {
-}
-
 .h5p-summary .summary-options div {
   font-size: 1em;
   padding:0;
