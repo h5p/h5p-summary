@@ -198,7 +198,7 @@ H5P.Summary = (function ($, Question) {
         var summary = $summary_list.position();
         var $answer = $('<li>' + $el.html() + '</li>');
 
-        $progress.html(that.options.solvedLabel + ' '  + (panel_id + 1) + '/' + that.summaries.length);
+        $progress.html(that.options.solvedLabel + ' '  + (panel_id + 1) + ' out of ' + that.summaries.length);
 
         // Insert correct claim into summary list
         $summary_list.append($answer);
@@ -266,7 +266,7 @@ H5P.Summary = (function ($, Question) {
                   }
                 } else {
                   // Hide intermediate evaluation
-                  $evaluation_content.html(that.options.resultLabel);
+                  $evaluation_content.html('<h3>' + that.options.resultLabel + '</h3>');
 
                   that.do_final_evaluation($summary_container, $options, $summary_list, that.score);
                 }
