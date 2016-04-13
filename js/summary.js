@@ -295,7 +295,7 @@ H5P.Summary = (function ($, Question) {
       $el.attr('tabindex', '-1');
     };
 
-    $progress.html(that.options.solvedLabel + ' ' + this.progress + '/' + that.summaries.length);
+    $progress.html(that.options.solvedLabel + ' ' + this.progress + ' out of ' + that.summaries.length); // TODO i18n!
 
     // Add elements to content
     for (var i = 0; i < elements.length; i++) {
