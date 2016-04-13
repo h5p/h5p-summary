@@ -77,6 +77,17 @@
   box-shadow: 0 0.1em 0 rgba(0, 0, 0, 0.2);
 }
 
+.h5p-summary .summary-options div.summary-failed label {
+  color: #b71c1c;
+  border: 0.1em solid #f7d0d0;
+  background: #f7d0d0;
+  text-decoration: line-through;
+  font-weight: bold;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
 .h5p-summary .summary-content label > p {
   margin: 0.4em 0 0 0;
   padding: 0;
@@ -112,11 +123,11 @@
   color: #255c41;
   float: right;
 }
-.h5p-summary .h5p-panel:not(.panel-disabled) .summary-claim-unclicked:hover {
+
+.h5p-summary .h5p-panel:not(.panel-disabled) .summary-claim-unclicked label:hover {
   cursor: pointer;
   filter: none;
   border: 0.1em solid #edd6e9;
-
   background: #edd6e9;
 }
 
@@ -131,25 +142,8 @@ fieldset.h5p-panel {
 	border: 0px;
 }
 
-.h5p-summary li.summary-failed > p,
-.h5p-summary li.summary-failed {
-  color: #b71c1c;
-  border: 0.1em solid #f7d0d0;
-  background: #f7d0d0;
-  text-decoration: line-through;
-  font-weight: bold;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-
-.h5p-summary li.summary-failed:before {
-  text-decoration: none;
-  content: "\f00d";
-  font-family: 'H5PFontAwesome4';
-  color: #b71c1c;
-  float: right;
-  line-height: 1.25;
+.h5p-summary div.summary-failed > p,
+.h5p-summary div.summary-failed {
 }
 
 .h5p-summary .summary-options div {
