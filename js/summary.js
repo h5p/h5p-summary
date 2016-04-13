@@ -358,7 +358,7 @@ H5P.Summary = (function ($, Question) {
         }).keypress(function (e) {
           var keyPressed = e.which;
           // 32 - space
-          if (keyPressed === 32) {
+          if (keyPressed === 32 || keyPressed === 13) { // space and enter
             selectedAlt($(this), true);
             e.preventDefault();
           }
