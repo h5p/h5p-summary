@@ -340,7 +340,7 @@ H5P.Summary = (function ($, Question) {
 
 	var item_id = "summary_" + j + "_" + element.summaries[j].id;
         var $node = $('<div data-bit="' + element.summaries[j].id + '" class="' + summaryLineClass + '">' +
-	  '<input type="radio" id="' + item_id + '" class="sr-only" value="' + element.summaries[j].id + '">' +
+	  '<input type="radio" id="' + item_id + '" class="sr-only" value="' + element.summaries[j].id + '" tabindex="-1">' +
 	  '<label for="' + item_id + '" tabindex="0">' +
             element.summaries[j].text +
           '</label>' +
