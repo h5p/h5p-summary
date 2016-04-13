@@ -102,6 +102,14 @@
     "common": true
   },
   {
+    "name": "progressLabel",
+    "type": "text",
+    "label": "Indication of how many of the steps the user has correctly completed",
+    "default": "Solved: @count out of @total",
+    "description": "Indicates progress; updated with each step",
+    "common": true
+  },
+  {
     "name": "resultLabel",
     "type": "text",
     "label": "Summary feedback header",

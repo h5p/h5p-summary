@@ -62,10 +62,9 @@ H5P.Summary = (function ($, Question) {
       summary: "You got @score of @total statements (@percent %) correct on your first try.",
       resultLabel: "Your result:",
       intro: "Choose the correct statement.",
-      solvedLabel: "Solved:",
+      progressLabel: "Solved: @count out of @total",
       scoreLabel: "Wrong answers:",
       incorrectLabel: "incorrect answer",
-      outOfLabel: "out of",
       postUserStatistics: (H5P.postUserStatistics === true)
     }, options);
 
@@ -200,7 +199,8 @@ H5P.Summary = (function ($, Question) {
         var summary = $summary_list.position();
         var $answer = $('<li>' + $el.html() + '</li>');
 
-        $progress.html(that.options.solvedLabel + ' '  + (panel_id + 1) + ' ' + that.options.outOfLabel + ' ' + that.summaries.length);
+	var progressLabel = that.options.progressLabel.replace('@count', panel_id + 1).replace('@total', that.summaries.length);
+        $progress.html(progressLabel);
 
         // Insert correct claim into summary list
         $summary_list.append($answer);
@@ -282,7 +282,7 @@ H5P.Summary = (function ($, Question) {
         // Remove event handler (prevent repeated clicks) and mouseover effect
         $el.off('click');
         $el.addClass('summary-failed');
-	$el.find('label').append('<span class="sr-only">(' + that.options.incorrectLabel + ')</span>'); // FIXME i18n
+	$el.find('label').append('<span class="sr-only">(' + that.options.incorrectLabel + ')</span>');
         $el.removeClass('summary-claim-unclicked');
 
         $evaluation.children('.summary-score').css('display', 'block');
@@ -298,7 +298,8 @@ H5P.Summary = (function ($, Question) {
       $el.attr('tabindex', '-1');
     };
 
-    $progress.html(that.options.solvedLabel + ' ' + this.progress + ' ' + that.options.outOfLabel + ' ' + that.summaries.length); // TODO i18n!
+    var progressLabel = that.options.progressLabel.replace('@count', this.progress).replace('@total', that.summaries.length);
+    $progress.html(progressLabel);
 
     // Add elements to content
     for (var i = 0; i < elements.length; i++) {
