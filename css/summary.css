@@ -131,6 +131,11 @@
   background: #edd6e9;
 }
 
+.h5p-summary .summary-options label:focus {
+  border: 0.1em solid #edd6e9;
+  background: #edd6e9;
+}
+
 fieldset.h5p-panel legend {
 	/* margin-bottom: 20px; */
 	position: relative;
