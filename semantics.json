@@ -54,7 +54,7 @@
             "type": "text",
             "label": "Statement",
             "widget": "html",
-            "enterMode": "p",
+            "enterMode": "br",
             "tags": []
           }
         },

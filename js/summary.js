@@ -310,7 +310,7 @@ H5P.Summary = (function ($, Question) {
         // Cannot use continue; due to id/animation system
       }
 
-      var $page = $('<ul class="h5p-panel" data-panel="' + i + '"></ul>');
+      var $page = $('<fieldset class="h5p-panel" data-panel="' + i + '"><legend>Choose any option below</legend></fieldset>'); 
 
 
       // Create initial tip for first summary-list if tip is available
@@ -332,10 +332,11 @@ H5P.Summary = (function ($, Question) {
           }
         }
 
-        var $node = $('' +
-          '<li role="button" tabindex="0" data-bit="' + element.summaries[j].id + '" class="' + summaryLineClass + '">' +
+        var $node = $('<div class="' + summaryLineClass + '">' +
+	  '<input type="radio" data-bit="' + element.summaries[j].id + '" class="sr-only" value="' + element.summaries[j].id + '"><label>' +
             element.summaries[j].text +
-          '</li>');
+          '</label>' +
+	  '</div>');
 
         // Do not add click event for failed nodes
         if (summaryLineClass === 'summary-failed') {
