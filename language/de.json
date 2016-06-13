@@ -1,0 +1,160 @@
+{
+  "semantics": [
+    {
+
+      "label": "Einführungstxt",
+      "default": "Die korrekte Aussage auswählen.",
+      "description": "Wird über der zusammenfassenden Aufgabe angezeigt.",
+
+      "tags": [
+
+      ],
+
+    },
+    {
+
+      "widgets": [
+        {
+
+          "label": "Standard"
+        },
+        {
+
+          "label": "Inhaltlich"
+        }
+      ],
+      "label": "Zusammenfassung",
+      "description": "Liste der Zusammenfassungen",
+
+      "field": {
+
+        "label": "Aussagen",
+        "fields": [
+          {
+
+            "label": "Liste an Aussagen für die Zusammenfassung. Die erste Aussage ist korrekt.",
+
+            "field": {
+
+              "label": "Aussage",
+
+              "tags": []
+            }
+          },
+          {
+
+            "label": "Tipp",
+
+            "fields": [
+              {
+
+                "label": "Tipptext",
+
+                "tags": [],
+
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+
+      "label": "Text wird vor Anzahl der Aussagen angezeigt, die in der zusmmenfassenden Aufgabe gelöst wurden.",
+      "default": "Fortschritt:",
+      "description": "Wird über den Aussagen angezeigt. Beispiel: 'Fortschritt: 2/5'",
+
+    },
+    {
+
+      "label": "Text, der vor der Anzahl der falschen Aussagen angezeigt wird, die in der zusammenfassenden Aufgabe ausgewählt wurden.",
+      "default": "Falsche Antworten:",
+      "description": "Wird über den Aussagen angezeigt. Beispiel: 'Falsche Antwort: 4'",
+
+    },
+    {
+
+      "label": "Zusammenfassender Feedbackheader",
+      "default": "Ergebnis",
+      "description": "Wird über dem zusammenfassenden Feedback angezeigt.",
+
+    },
+    {
+
+      "label": "Zusammenfassendes Feedback",
+
+      "fields": [
+        {
+          "label": "Alles korrekt",
+
+          "fields": [
+             {
+
+               "label": "Feedbacktitel",
+               "default": "PERFEKT!"
+             },
+             {
+
+               "label": "Feedbacknachricht",
+               "default": "Gleich beim ersten Versuch alles richtig!"
+             }
+          ]
+        },
+        {
+          "label": "70 % - 99 % korrekt",
+
+          "fields": [
+             {
+
+               "label": "Feedbacktitel",
+               "default": "Großartig!"
+             },
+             {
+
+               "label": "Feedbacknachricht",
+               "default": "Die meisten Aussagen beim ersten Versuch richtig"
+             }
+          ]
+        },
+        {
+          "label": "40 % - 69 % korrekt",
+
+          "fields": [
+             {
+
+               "label": "Feedbacktitel",
+               "default": "Ok"
+             },
+             {
+
+               "label": "Feedbacknachricht",
+               "default": "Einige der Aussagen beim ersten Versuch richtig."
+             }
+          ]
+        },
+        {
+          "label": "0 % - 39 % korrekt",
+
+          "fields": [
+             {
+
+               "label": "Feedbacktitel",
+               "default": "Ein paar Fehler."
+             },
+             {
+
+               "label": "Feedbacknachricht",
+               "default": "Nochmal versuchen!"
+             }
+          ]
+        }
+      ]
+    },
+    {
+
+      "label": "Feedback Zusammenfassung",
+      "default": "@score von @total Aussagen (@percent %) bei erstem Versuch richtig.",
+      "description": "Verfügbare Variablen: @score, @total, @percent. Beispiel: @score von @total Aussagen (@percent %) korrekt.",
+
+    }
+  ]
