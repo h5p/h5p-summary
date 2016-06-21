@@ -12,6 +12,14 @@ H5P.Summary = (function ($, Question) {
     this.answers = [];
     this.answer = [];
     this.error_counts = [];
+
+    // Remove empty summary to avoid JS-errors
+    if (options.summaries) {
+      options.summaries = options.summaries.filter(function (element) {
+        return element.summary !== undefined;
+      });
+    }
+    
     if (contentData && contentData.previousState !== undefined &&
         contentData.previousState.progress !== undefined &&
         contentData.previousState.answers) {
@@ -173,6 +181,125 @@ H5P.Summary = (function ($, Question) {
     $evaluation.append($progress);
     $evaluation.append($score);
 
+    /**
+     * Handle selected alternative
+     *
+     * @param {jQuery} $el Selected element
+     * @param {boolean} [setFocus] Set focus on first element of next panel.
+     *  Used when alt was selected with keyboard.
+     */
+    var selectedAlt = function ($el, setFocus) {
+      that.triggerXAPI('interacted');
+      var node_id = Number($el.attr('data-bit'));
+      var panel_id = Number($el.parent().data('panel'));
+      if (that.error_counts[panel_id] === undefined) {
+        that.error_counts[panel_id] = 0;
+      }
+
+      // Correct answer?
+      if (that.answer[node_id]) {
+        that.progress++;
+        var position = $el.position();
+        var summary = $summary_list.position();
+        var $answer = $('<li>' + $el.html() + '</li>');
+
+        $progress.html(that.options.solvedLabel + ' '  + (panel_id + 1) + '/' + that.summaries.length);
+
+        // Insert correct claim into summary list
+        $summary_list.append($answer);
+        $summary_container.addClass('has-results');
+        that.adjustTargetHeight($summary_container, $summary_list, $answer);
+
+        // Move into position over clicked element
+        $answer.css({display: 'block', width: $el.css('width'), height: $el.css('height')});
+        $answer.css({position: 'absolute', top: position.top, left: position.left});
+        $answer.css({backgroundColor: '#9dd8bb', border: ''});
+        setTimeout(function () {
+          $answer.css({backgroundColor: ''});
+        }, 1);
+        //$answer.animate({backgroundColor: '#eee'}, 'slow');
+
+        var panel = parseInt($el.parent().attr('data-panel'));
+        var $curr_panel = $('.h5p-panel:eq(' + panel + ')', that.$myDom);
+        var $next_panel = $('.h5p-panel:eq(' + (panel + 1) + ')', that.$myDom);
+        var height = $curr_panel.parent().css('height');
+
+        // Disable panel while waiting for animation
+        $curr_panel.addClass('panel-disabled');
+
+        // Update tip:
+        $evaluation_content.find('.joubel-tip-container').remove();
+        if (elements[that.progress] !== undefined &&
+          elements[that.progress].tip !== undefined &&
+          elements[that.progress].tip.trim().length > 0) {
+          $evaluation_content.append(H5P.JoubelUI.createTip(elements[that.progress].tip));
+        }
+
+        $answer.animate(
+          {
+            top: summary.top + that.offset,
+            left: '-=' + options_padding + 'px',
+            width: '+=' + (options_padding * 2) + 'px'
+          },
+          {
+            complete: function() {
+              // Remove position (becomes inline);
+              $(this).css('position', '').css({
+                width: '',
+                height: '',
+                top: '',
+                left: ''
+              });
+              $summary_container.css('height', '');
+
+              // Calculate offset for next summary item
+              var tpadding = parseInt($answer.css('paddingTop')) * 2;
+              var tmargin = parseInt($answer.css('marginBottom'));
+              var theight = parseInt($answer.css('height'));
+              that.offset += theight + tpadding + tmargin + 1;
+
+              // Fade out current panel
+              $curr_panel.fadeOut('fast', function () {
+                $curr_panel.parent().css('height', 'auto');
+                // Show next panel if present
+                if ($next_panel.length) {
+                  $next_panel.fadeIn('fast');
+
+                  // Focus first element of next panel
+                  if (setFocus) {
+                    $next_panel.children().get(0).focus();
+                  }
+                } else {
+                  // Hide intermediate evaluation
+                  $evaluation_content.html(that.options.resultLabel);
+
+                  that.do_final_evaluation($summary_container, $options, $summary_list, that.score);
+                }
+                that.trigger('resize');
+              });
+            }
+          }
+        );
+      }
+      else {
+        // Remove event handler (prevent repeated clicks) and mouseover effect
+        $el.off('click');
+        $el.addClass('summary-failed');
+        $el.removeClass('summary-claim-unclicked');
+
+        $evaluation.children('.summary-score').css('display', 'block');
+        $score.html(that.options.scoreLabel + ' ' + (++that.score));
+        that.error_counts[panel_id]++;
+        if (that.answers[panel_id] === undefined) {
+          that.answers[panel_id] = [];
+        }
+        that.answers[panel_id].push(node_id);
+      }
+
+      that.trigger('resize');
+      $el.attr('tabindex', '-1');
+    };
+
     $progress.html(that.options.solvedLabel + ' ' + this.progress + '/' + that.summaries.length);
 
     // Add elements to content
@@ -213,7 +340,10 @@ H5P.Summary = (function ($, Question) {
           }
         }
 
-        var $node = $('<li data-bit="' + element.summaries[j].id + '" class="' + summaryLineClass + '">' + element.summaries[j].text + '</li>');
+        var $node = $('' +
+          '<li role="button" tabindex="0" data-bit="' + element.summaries[j].id + '" class="' + summaryLineClass + '">' +
+            element.summaries[j].text +
+          '</li>');
 
         // Do not add click event for failed nodes
         if (summaryLineClass === 'summary-failed') {
@@ -221,120 +351,15 @@ H5P.Summary = (function ($, Question) {
           continue;
         }
 
-        // When correct claim is clicked:
-        // - Add claim to summary list
-        // - Move claim over clicked element
-        // - Animate correct claim into correct position
-        // - Show next panel
-        // When wrong claim is clicked:
-        // - Remove clickable
-        // - Add error background image (css)
         $node.click(function() {
-          that.triggerXAPI('interacted');
-          var $el = $(this);
-          var node_id = Number($el.attr('data-bit'));
-          var classname = that.answer[node_id] ? 'success' : 'failed';
-          var panel_id = Number($el.parent().data('panel'));
-          if (that.error_counts[panel_id] === undefined) {
-            that.error_counts[panel_id] = 0;
+          selectedAlt($(this));
+        }).keypress(function (e) {
+          var keyPressed = e.which;
+          // 32 - space
+          if (keyPressed === 32) {
+            selectedAlt($(this), true);
+            e.preventDefault();
           }
-
-          // Correct answer?
-          if (that.answer[node_id]) {
-            that.progress++;
-            var position = $el.position();
-            var summary = $summary_list.position();
-            var $answer = $('<li>' + $el.html() + '</li>');
-
-            $progress.html(that.options.solvedLabel + ' '  + (panel_id + 1) + '/' + that.summaries.length);
-
-            // Insert correct claim into summary list
-            $summary_list.append($answer);
-            $summary_container.addClass('has-results');
-            that.adjustTargetHeight($summary_container, $summary_list, $answer);
-
-            // Move into position over clicked element
-            $answer.css({display: 'block', width: $el.css('width'), height: $el.css('height')});
-            $answer.css({position: 'absolute', top: position.top, left: position.left});
-            $answer.css({backgroundColor: '#9dd8bb', border: ''});
-            setTimeout(function () {
-              $answer.css({backgroundColor: ''});
-            }, 1);
-            //$answer.animate({backgroundColor: '#eee'}, 'slow');
-
-            var panel = parseInt($el.parent().attr('data-panel'));
-            var $curr_panel = $('.h5p-panel:eq(' + panel + ')', that.$myDom);
-            var $next_panel = $('.h5p-panel:eq(' + (panel + 1) + ')', that.$myDom);
-            var height = $curr_panel.parent().css('height');
-
-            // Disable panel while waiting for animation
-            $curr_panel.addClass('panel-disabled');
-
-            // Update tip:
-            $evaluation_content.find('.joubel-tip-container').remove();
-            if (elements[that.progress] !== undefined &&
-              elements[that.progress].tip !== undefined &&
-              elements[that.progress].tip.trim().length > 0) {
-              $evaluation_content.append(H5P.JoubelUI.createTip(elements[that.progress].tip));
-            }
-
-            $answer.animate(
-              {
-                top: summary.top + that.offset,
-                left: '-=' + options_padding + 'px',
-                width: '+=' + (options_padding * 2) + 'px'
-              },
-              {
-                complete: function() {
-                  // Remove position (becomes inline);
-                  $(this).css('position', '').css({
-                    width: '',
-                    height: '',
-                    top: '',
-                    left: ''
-                  });
-                  $summary_container.css('height', '');
-
-                  // Calculate offset for next summary item
-                  var tpadding = parseInt($answer.css('paddingTop')) * 2;
-                  var tmargin = parseInt($answer.css('marginBottom'));
-                  var theight = parseInt($answer.css('height'));
-                  that.offset += theight + tpadding + tmargin + 1;
-
-                  // Fade out current panel
-                  $curr_panel.fadeOut('fast', function () {
-                    $curr_panel.parent().css('height', 'auto');
-                    // Show next panel if present
-                    if ($next_panel.length) {
-                      $next_panel.fadeIn('fast');
-                    } else {
-                      // Hide intermediate evaluation
-                      $evaluation_content.html(that.options.resultLabel);
-
-                      that.do_final_evaluation($summary_container, $options, $summary_list, that.score);
-                    }
-                    that.trigger('resize');
-                  });
-                }
-              }
-            );
-          }
-          else {
-            // Remove event handler (prevent repeated clicks) and mouseover effect
-            $el.off('click');
-            $el.addClass('summary-failed');
-            $el.removeClass('summary-claim-unclicked');
-
-            $evaluation.children('.summary-score').css('display', 'block');
-            $score.html(that.options.scoreLabel + ' ' + (++that.score));
-            that.error_counts[panel_id]++;
-            if (that.answers[panel_id] === undefined) {
-              that.answers[panel_id] = [];
-            }
-            that.answers[panel_id].push(node_id);
-          }
-
-          that.trigger('resize');
         });
 
         $page.append($node);
