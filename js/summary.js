@@ -1,4 +1,4 @@
-H5P.Summary = (function ($, Question) {
+H5P.Summary = (function ($, Question, JoubelUI) {
 
   function Summary(options, contentId, contentData) {
     if (!(this instanceof H5P.Summary)) {
@@ -19,7 +19,7 @@ H5P.Summary = (function ($, Question) {
         return element.summary !== undefined;
       });
     }
-    
+
     if (contentData && contentData.previousState !== undefined &&
         contentData.previousState.progress !== undefined &&
         contentData.previousState.answers) {
@@ -113,6 +113,15 @@ H5P.Summary = (function ($, Question) {
   Summary.prototype.registerDomElements = function () {
     // Register task content area
     this.setContent(this.createQuestion());
+
+    // Register retry button to h5p question
+    var self = this;
+    this.addButton('try-again', 'retry', function () {
+
+      // Remove button after is has been clicked
+      self.hideButton('try-again');
+      self.resetTask();
+    }, false);
   };
 
   // Function for attaching the multichoice to a DOM element.
@@ -189,6 +198,12 @@ H5P.Summary = (function ($, Question) {
      *  Used when alt was selected with keyboard.
      */
     var selectedAlt = function ($el, setFocus) {
+
+      // Don't do anything if the option has already been clicked
+      if ($el.hasClass("summary-failed")){
+        return;
+      }
+
       that.triggerXAPI('interacted');
       var node_id = Number($el.attr('data-bit'));
       var panel_id = Number($el.parent().data('panel'));
@@ -217,7 +232,6 @@ H5P.Summary = (function ($, Question) {
         setTimeout(function () {
           $answer.css({backgroundColor: ''});
         }, 1);
-        //$answer.animate({backgroundColor: '#eee'}, 'slow');
 
         var panel = parseInt($el.parent().attr('data-panel'));
         var $curr_panel = $('.h5p-panel:eq(' + panel + ')', that.$myDom);
@@ -273,7 +287,9 @@ H5P.Summary = (function ($, Question) {
                   // Hide intermediate evaluation
                   $evaluation_content.html(that.options.resultLabel);
 
+                  // Show results and retry button
                   that.do_final_evaluation($summary_container, $options, $summary_list, that.score);
+                  that.showButton('try-again');
                 }
                 that.trigger('resize');
               });
@@ -283,7 +299,6 @@ H5P.Summary = (function ($, Question) {
       }
       else {
         // Remove event handler (prevent repeated clicks) and mouseover effect
-        $el.off('click');
         $el.addClass('summary-failed');
         $el.removeClass('summary-claim-unclicked');
 
@@ -436,7 +451,46 @@ H5P.Summary = (function ($, Question) {
    * Used for contracts.
    */
   Summary.prototype.resetTask = function () {
-    // Summary is not yet able to Reset itself
+
+    // Reset starting attributes
+    this.offset = 0;
+    this.score = 0;
+    this.progress = 0;
+    this.error_counts = [];
+
+    // Reset the progress bar
+    this.$myDom.find(".summary-evaluation").find(".summary-progress").html(this.options.solvedLabel + ' 0/' + this.summaries.length);
+
+    // Reset the summary container that holds the answers
+    this.$myDom.find(".summary-container").removeClass("has-results");
+    this.$myDom.find(".summary-container ul").empty();
+    this.$myDom.find(".summary-score").css("display", "none");
+
+    // Reset the data for each of the divs
+    this.$myDom.find('li[role="button"]').each(function() {
+      $(this).removeClass("summary-failed").addClass("summary-claim-unclicked");
+      $(this).attr("tabindex", 0);
+      $(this).on('click');
+    });
+
+    for (i = 0; i < this.options.summaries.length; i++) {
+      $('.h5p-panel:eq(' + (i) + ')', this.$myDom).removeClass("panel-disabled");
+    }
+
+    // Reset the html statement
+    this.$myDom.find(".summary-evaluation-content").html("Choose the correct statement.");
+
+    //Set the tip for the first question
+    var first_tip = this.summaries[0].tip;
+    if (first_tip){
+      this.$myDom.find(".summary-evaluation-content").append(H5P.JoubelUI.createTip(first_tip));
+    }
+
+    // Remove the feedback bar
+    this.setFeedback();
+
+    // Show the first question and its answers
+    $('.h5p-panel:eq(' + (0) + ')', this.$myDom).fadeIn(1000);
   };
 
   /**
