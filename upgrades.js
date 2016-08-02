@@ -6,12 +6,14 @@ H5PUpgrades['H5P.Summary'] = (function ($) {
       1: {
         contentUpgrade: function (parameters, finished) {
           // Wrap summaries to allow tip.
-          for (var i = 0; i < parameters.summaries.length; i++) {
-            parameters.summaries[i] = {
-              summary: parameters.summaries[i]
-            };
+          if (parameters.summaries !== undefined) {
+            for (var i = 0; i < parameters.summaries.length; i++) {
+              parameters.summaries[i] = {
+                summary: parameters.summaries[i]
+              };
+            }
           }
-          
+
           finished(null, parameters);
         }
       }
