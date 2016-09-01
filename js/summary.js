@@ -72,14 +72,25 @@ H5P.Summary = (function ($, Question, JoubelUI) {
       intro: "Choose the correct statement.",
       solvedLabel: "Solved:",
       scoreLabel: "Wrong answers:",
+      behaviour: {
+        enableRetry: true,
+      },
       postUserStatistics: (H5P.postUserStatistics === true)
     }, options);
 
     this.summaries = that.options.summaries;
 
     // Required questiontype contract function
-    this.showSolutions = function() {
-      // intentionally left blank, no solution view exists
+    this.getAnswerGiven = function () {
+      if (this.progress > 0){
+        return true;
+      }
+      return false;
+    };
+
+    // Required questiontype contract function
+    this.getScore = function() {
+      return this.getMaxScore() - this.countErrors();
     };
 
     // Required questiontype contract function
@@ -87,8 +98,9 @@ H5P.Summary = (function ($, Question, JoubelUI) {
       return this.summaries.length;
     };
 
-    this.getScore = function() {
-      return this.getMaxScore() - this.countErrors();
+    // Required questiontype contract function
+    this.showSolutions = function() {
+      // intentionally left blank, no solution view exists
     };
 
     this.getTitle = function() {
@@ -116,12 +128,18 @@ H5P.Summary = (function ($, Question, JoubelUI) {
 
     // Register retry button to h5p question
     var self = this;
-    this.addButton('try-again', 'retry', function () {
 
-      // Remove button after is has been clicked
-      self.hideButton('try-again');
-      self.resetTask();
-    }, false);
+    // Attach the retry buton if it is enabled in the semantics
+    if (this.options.behaviour.enableRetry) {
+
+      // Add JoubelUI retry button using the h5p-question module
+      this.addButton('try-again', 'retry', function () {
+
+        // Remove button after is has been clicked
+        self.hideButton('try-again');
+        self.resetTask();
+      }, self.progress == self.summaries.length);
+    }
   };
 
   // Function for attaching the multichoice to a DOM element.
@@ -457,6 +475,7 @@ H5P.Summary = (function ($, Question, JoubelUI) {
     this.score = 0;
     this.progress = 0;
     this.error_counts = [];
+    this.answers = [];
 
     // Reset the progress bar
     this.$myDom.find(".summary-evaluation").find(".summary-progress").html(this.options.solvedLabel + ' 0/' + this.summaries.length);
@@ -473,7 +492,7 @@ H5P.Summary = (function ($, Question, JoubelUI) {
       $(this).on('click');
     });
 
-    for (i = 0; i < this.options.summaries.length; i++) {
+    for (var i = 0; i < this.options.summaries.length; i++) {
       $('.h5p-panel:eq(' + (i) + ')', this.$myDom).removeClass("panel-disabled");
     }
 
