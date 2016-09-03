@@ -192,5 +192,12 @@
     "default": "You got @score of @total statements (@percent %) correct on your first try.",
     "description": "Available variables: @score, @total, @percent. Example: You got @score of @total statements (@percent %) correct.",
     "common": true
+  },
+  {
+    "label": "Enable \"Retry\"",
+    "name": "enableRetry",
+    "type": "boolean",
+    "default": false,
+    "optional": true
   }
 ]

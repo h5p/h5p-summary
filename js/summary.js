@@ -44,7 +44,7 @@ H5P.Summary = (function ($, Question, JoubelUI) {
       }
     }
     var that = this;
-    this.options = H5P.jQuery.extend({}, {
+    this.options = H5P.jQuery.extend(true, {}, {
       response: {
         scorePerfect:
         {
@@ -72,9 +72,7 @@ H5P.Summary = (function ($, Question, JoubelUI) {
       intro: "Choose the correct statement.",
       solvedLabel: "Solved:",
       scoreLabel: "Wrong answers:",
-      behaviour: {
-        enableRetry: true,
-      },
+      enableRetry: true,
       postUserStatistics: (H5P.postUserStatistics === true)
     }, options);
 
@@ -82,10 +80,7 @@ H5P.Summary = (function ($, Question, JoubelUI) {
 
     // Required questiontype contract function
     this.getAnswerGiven = function () {
-      if (this.progress > 0){
-        return true;
-      }
-      return false;
+      return this.progress > 0;
     };
 
     // Required questiontype contract function
@@ -129,8 +124,13 @@ H5P.Summary = (function ($, Question, JoubelUI) {
     // Register retry button to h5p question
     var self = this;
 
+    // Parameters are undefined when used wihtin another H5P content type
+    if (self.summaries === undefined){
+      return;
+    }
+
     // Attach the retry buton if it is enabled in the semantics
-    if (this.options.behaviour.enableRetry) {
+    if (this.options.enableRetry) {
 
       // Add JoubelUI retry button using the h5p-question module
       this.addButton('try-again', 'retry', function () {
@@ -138,7 +138,7 @@ H5P.Summary = (function ($, Question, JoubelUI) {
         // Remove button after is has been clicked
         self.hideButton('try-again');
         self.resetTask();
-      }, self.progress == self.summaries.length);
+      }, self.progress === self.summaries.length);
     }
   };
 
