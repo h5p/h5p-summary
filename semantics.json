@@ -194,10 +194,19 @@
     "common": true
   },
   {
-    "label": "Enable \"Retry\"",
-    "name": "enableRetry",
-    "type": "boolean",
-    "default": false,
-    "optional": true
+    "name": "behaviour",
+    "type": "group",
+    "label": "Behavioural settings.",
+    "description": "These options will let you control how the task behaves.",
+    "optional": true,
+    "fields": [
+      {
+        "label": "Enable \"Retry\"",
+        "name": "enableRetry",
+        "type": "boolean",
+        "default": false,
+        "optional": true
+      }
+    ]
   }
 ]
