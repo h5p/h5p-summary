@@ -72,7 +72,9 @@ H5P.Summary = (function ($, Question, JoubelUI) {
       intro: "Choose the correct statement.",
       solvedLabel: "Solved:",
       scoreLabel: "Wrong answers:",
-      enableRetry: true,
+      behavior: {
+        enableRetry: false
+      },
       postUserStatistics: (H5P.postUserStatistics === true)
     }, options);
 
@@ -130,7 +132,7 @@ H5P.Summary = (function ($, Question, JoubelUI) {
     }
 
     // Attach the retry buton if it is enabled in the semantics
-    if (this.options.enableRetry) {
+    if (this.options.behavior.enableRetry) {
 
       // Add JoubelUI retry button using the h5p-question module
       this.addButton('try-again', 'retry', function () {
