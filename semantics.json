@@ -41,7 +41,7 @@
     "field": {
       "name": "statements",
       "type": "group",
-      "label": "Statements",
+      "label": "Set of statements",
       "fields": [
         {
           "name": "summary",
