@@ -12,6 +12,14 @@ H5P.Summary = (function ($, Question) {
     this.answers = [];
     this.answer = [];
     this.error_counts = [];
+
+    // Remove empty summary to avoid JS-errors
+    if (options.summaries) {
+      options.summaries = options.summaries.filter(function (element) {
+        return element.summary !== undefined;
+      });
+    }
+    
     if (contentData && contentData.previousState !== undefined &&
         contentData.previousState.progress !== undefined &&
         contentData.previousState.answers) {
