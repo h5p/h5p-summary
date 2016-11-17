@@ -34,6 +34,7 @@
 .h5p-summary .summary-options ul.h5p-panel {
   display: none;
   padding: 0;
+  margin: 0;
 }
 
 .h5p-summary .summary-options ul.h5p-panel.panel-disabled {
