@@ -559,7 +559,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
     return XApiEventBuilder.create()
       .verb(XApiEventBuilder.verbs.ANSWERED)
       .objectDefinition(definition)
-      .contentId(self.contentId)
+      .contentId(self.contentId, panelIndex)
       .result(result)
       .build();
   };
@@ -567,7 +567,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
   /**
    * Retrieves the xAPI data necessary for generating result reports.
    *
-   * @return {H5P.XAPIEvent}
+   * @return {object}
    */
   Summary.prototype.getXAPIData = function(){
     var self = this;
@@ -576,7 +576,10 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
     var children =  self.userResponses.map(function(userResponse, index) {
       if (userResponse != undefined) {
         var summary = self.summaries[index].summary;
-        return self.createXApiAnsweredEvent(self.options.intro, summary, userResponse, index);
+        var event = self.createXApiAnsweredEvent(self.options.intro, summary, userResponse, index);
+        return {
+          statement: event.data.statement
+        }
       }
     });
 
@@ -584,12 +587,26 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
       .score(self.getScore(), self.getMaxScore())
       .build();
 
-    return XApiEventBuilder.create()
+    // creates the definition object
+    var definition = XApiEventBuilder.createDefinition()
+      .interactionType("compound")
+      .build();
+
+    var xAPIEvent = XApiEventBuilder.create()
       .verb(XApiEventBuilder.verbs.ANSWERED)
-      .children(children)
       .contentId(self.contentId)
+      .objectDefinition(definition)
       .result(result)
       .build();
+
+    var data = {
+      statement: xAPIEvent.data.statement,
+      children: children
+    };
+
+    console.log('getXAPIData', data);
+
+    return data;
   };
 
   return Summary;
