@@ -537,14 +537,13 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
    *
    * @return {H5P.XAPIEvent}
    */
-  Summary.prototype.createXApiAnsweredEvent = function (questionText, summary, userAnswer, panelIndex) {
+  Summary.prototype.createXApiAnsweredEvent = function (summary, userAnswer, panelIndex) {
     var self = this;
     var types = XApiEventBuilder.interactionTypes;
 
     // creates the definition object
     var definition = XApiEventBuilder.createDefinition()
       .interactionType(types.CHOICE)
-      .description(questionText)
       .correctResponsesPattern(['0'])
       .optional(self.getXApiChoices(summary))
       .build();
@@ -576,7 +575,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
     var children =  self.userResponses.map(function(userResponse, index) {
       if (userResponse != undefined) {
         var summary = self.summaries[index].summary;
-        var event = self.createXApiAnsweredEvent(self.options.intro, summary, userResponse, index);
+        var event = self.createXApiAnsweredEvent(summary, userResponse, index);
         return {
           statement: event.data.statement
         }
@@ -589,7 +588,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
 
     // creates the definition object
     var definition = XApiEventBuilder.createDefinition()
-      .interactionType("compound")
+      .interactionType(XApiEventBuilder.interactionTypes.COMPOUND)
+      .name(self.options.intro)
+      .description(self.options.intro)
       .build();
 
     var xAPIEvent = XApiEventBuilder.create()
@@ -599,16 +600,13 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
       .result(result)
       .build();
 
-    var data = {
+    return {
       statement: xAPIEvent.data.statement,
       children: children
     };
-
-    console.log('getXAPIData', data);
-
-    return data;
   };
 
   return Summary;
 
 })(H5P.jQuery, H5P.Question, H5P.Summary.XApiEventBuilder);
+console.log('test');
