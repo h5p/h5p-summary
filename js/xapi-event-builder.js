@@ -273,18 +273,6 @@ H5P.Summary.XApiEventBuilder = (function ($, EventDispatcher) {
   };
 
   /**
-   * Sets children for composite events
-   *
-   * @public
-   * @param {H5P.XAPIEvent[]} children A question event
-   * @return {H5P.Summary.XApiEventBuilder}
-   */
-  XApiEventBuilder.prototype.children = function (children) {
-    this.attributes.children = children;
-    return this;
-  };
-
-  /**
    * Returns the buildt event
    * @public
    * @return {H5P.XAPIEvent}
@@ -302,7 +290,6 @@ H5P.Summary.XApiEventBuilder = (function ($, EventDispatcher) {
     };
 
     setAttribute(event.data, 'actor', this.attributes.actor);
-    setAttribute(event.data, 'children', this.attributes.children);
     setAttribute(event.data.statement, 'result', this.attributes.result);
     setAttribute(event.data.statement.object, 'definition', this.attributes.objectDefinition);
 
@@ -445,6 +432,7 @@ H5P.Summary.XApiEventBuilder = (function ($, EventDispatcher) {
    */
   XApiEventBuilder.interactionTypes = {
     CHOICE: 'choice',
+    COMPOUND: 'compound',
     FILL_IN: 'fill-in',
     MATCHING: 'matching',
     TRUE_FALSE: 'true-false'
