@@ -1,4 +1,4 @@
-H5P.Summary = (function ($, Question) {
+H5P.Summary = (function ($, Question, XApiEventBuilder) {
 
   function Summary(options, contentId, contentData) {
     if (!(this instanceof H5P.Summary)) {
@@ -12,6 +12,19 @@ H5P.Summary = (function ($, Question) {
     this.answers = [];
     this.answer = [];
     this.error_counts = [];
+    /**
+     * The key is panel index, returns an array of the answer indexes the user tried.
+     *
+     * @property {number[][]}
+     */
+    this.userResponses = [];
+
+    /**
+     * The first key is panel index, and the second key is data-bit, value is index in panel
+     *
+     * @property {number[][]}
+     */
+    this.dataBitMap = [];
 
     // Remove empty summary to avoid JS-errors
     if (options.summaries) {
@@ -141,7 +154,13 @@ H5P.Summary = (function ($, Question) {
       };
 
       for (var j = 0; j < that.summaries[i].summary.length; j++) {
-        that.answer[c] = (j === 0); // First claim is correct
+        var isAnswer = (j === 0);
+        that.answer[c] = isAnswer; // First claim is correct
+
+        // create mapping from data-bit to index in panel
+        this.dataBitMap[i] = this.dataBitMap[i] || [];
+        this.dataBitMap[i][c] = j;
+
         elements[i].summaries[j] = {
           id: c++,
           text: that.summaries[i].summary[j]
@@ -195,6 +214,8 @@ H5P.Summary = (function ($, Question) {
       if (that.error_counts[panel_id] === undefined) {
         that.error_counts[panel_id] = 0;
       }
+
+      that.storeUserResponse(panel_id, node_id);
 
       // Correct answer?
       if (that.answer[node_id]) {
@@ -474,6 +495,103 @@ H5P.Summary = (function ($, Question) {
     return error_count;
   };
 
+  /**
+   * Returns the choices array for xApi statements
+   *
+   * @param {String[]} answers
+   *
+   * @return {{ choices: []}}
+   */
+  Summary.prototype.getXApiChoices = function (answers) {
+    var choices = answers.map(function(answer, index){
+      return XApiEventBuilder.createChoice(index.toString(), answer);
+    });
+
+    return {
+      choices: choices
+    }
+  };
+
+  /**
+   * Saves the user response
+   *
+   * @param {number} questionIndex
+   * @param {number} answerIndex
+   */
+  Summary.prototype.storeUserResponse = function (questionIndex, answerIndex) {
+    var self = this;
+    if(self.userResponses[questionIndex] === undefined){
+      self.userResponses[questionIndex] = [];
+    }
+
+    self.userResponses[questionIndex].push(this.dataBitMap[questionIndex][answerIndex]);
+  };
+
+  /**
+   * Creates an xAPI answered event
+   *
+   * @param {string} questionText
+   * @param {string[]} summary
+   * @param {number} userAnswer
+   * @param {number} panelIndex
+   *
+   * @return {H5P.XAPIEvent}
+   */
+  Summary.prototype.createXApiAnsweredEvent = function (questionText, summary, userAnswer, panelIndex) {
+    var self = this;
+    var types = XApiEventBuilder.interactionTypes;
+
+    // creates the definition object
+    var definition = XApiEventBuilder.createDefinition()
+      .interactionType(types.CHOICE)
+      .description(questionText)
+      .correctResponsesPattern(['0'])
+      .optional(self.getXApiChoices(summary))
+      .build();
+
+    // create the result object
+    var correctOnFirstTry = (userAnswer.length === 1);
+    var result = XApiEventBuilder.createResult()
+      .response(userAnswer.join('[,]'))
+      .score((correctOnFirstTry ? 1 : 0), 1)
+      .build();
+
+    return XApiEventBuilder.create()
+      .verb(XApiEventBuilder.verbs.ANSWERED)
+      .objectDefinition(definition)
+      .contentId(self.contentId)
+      .result(result)
+      .build();
+  };
+
+  /**
+   * Retrieves the xAPI data necessary for generating result reports.
+   *
+   * @return {H5P.XAPIEvent}
+   */
+  Summary.prototype.getXAPIData = function(){
+    var self = this;
+
+    // create array with userAnswer
+    var children =  self.userResponses.map(function(userResponse, index) {
+      if (userResponse != undefined) {
+        var summary = self.summaries[index].summary;
+        return self.createXApiAnsweredEvent(self.options.intro, summary, userResponse, index);
+      }
+    });
+
+    var result = XApiEventBuilder.createResult()
+      .score(self.getScore(), self.getMaxScore())
+      .build();
+
+    return XApiEventBuilder.create()
+      .verb(XApiEventBuilder.verbs.ANSWERED)
+      .children(children)
+      .contentId(self.contentId)
+      .result(result)
+      .build();
+  };
+
   return Summary;
 
-})(H5P.jQuery, H5P.Question);
+})(H5P.jQuery, H5P.Question, H5P.Summary.XApiEventBuilder);

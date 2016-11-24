@@ -19,6 +19,9 @@
   ],
   "preloadedJs": [
     {
+      "path": "js/xapi-event-builder.js"
+    },
+    {
       "path": "js/summary.js"
     }
   ],
