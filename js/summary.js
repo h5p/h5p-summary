@@ -32,7 +32,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
         return element.summary !== undefined;
       });
     }
-    
+
     if (contentData && contentData.previousState !== undefined &&
         contentData.previousState.progress !== undefined &&
         contentData.previousState.answers) {
@@ -208,7 +208,6 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
      *  Used when alt was selected with keyboard.
      */
     var selectedAlt = function ($el, setFocus) {
-      that.triggerXAPI('interacted');
       var node_id = Number($el.attr('data-bit'));
       var panel_id = Number($el.parent().data('panel'));
       if (that.error_counts[panel_id] === undefined) {
@@ -319,6 +318,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
 
       that.trigger('resize');
       $el.attr('tabindex', '-1');
+      that.triggerXAPI('interacted');
     };
 
     $progress.html(that.options.solvedLabel + ' ' + this.progress + '/' + that.summaries.length);
