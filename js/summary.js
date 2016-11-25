@@ -609,4 +609,3 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
   return Summary;
 
 })(H5P.jQuery, H5P.Question, H5P.Summary.XApiEventBuilder);
-console.log('test');
