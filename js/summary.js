@@ -101,7 +101,14 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
     };
 
     this.getScore = function() {
-      return this.getMaxScore() - this.countErrors();
+      var self = this;
+
+      // count single correct answers
+      return self.summaries.reduce(function(result, panel, index){
+        var userResponse = self.userResponses[index] || [];
+
+        return result + (self.correctOnFirstTry(userResponse) ? 1 : 0);
+      }, 0);
     };
 
     this.getTitle = function() {
@@ -131,7 +138,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
   // Function for attaching the multichoice to a DOM element.
   Summary.prototype.createQuestion = function() {
     var that = this;
-    var c = 0; // element counter
+    var id = 0; // element counter
     var elements = [];
     var $ = H5P.jQuery;
     this.$myDom = $('<div>', {
@@ -143,36 +150,47 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
     }
 
     // Create array objects
-    for (var i = 0; i < that.summaries.length; i++) {
-      if (!(that.summaries[i].summary && that.summaries[i].summary.length)) {
+    for (var panelIndex = 0; panelIndex < that.summaries.length; panelIndex++) {
+      if (!(that.summaries[panelIndex].summary && that.summaries[panelIndex].summary.length)) {
         continue;
       }
 
-      elements[i] = {
-        tip: that.summaries[i].tip,
+      elements[panelIndex] = {
+        tip: that.summaries[panelIndex].tip,
         summaries: []
       };
 
-      for (var j = 0; j < that.summaries[i].summary.length; j++) {
-        var isAnswer = (j === 0);
-        that.answer[c] = isAnswer; // First claim is correct
+      for (var summaryIndex = 0; summaryIndex < that.summaries[panelIndex].summary.length; summaryIndex++) {
+        var isAnswer = (summaryIndex === 0);
+        that.answer[id] = isAnswer; // First claim is correct
 
         // create mapping from data-bit to index in panel
-        this.dataBitMap[i] = this.dataBitMap[i] || [];
-        this.dataBitMap[i][c] = j;
+        that.dataBitMap[panelIndex] = this.dataBitMap[panelIndex] || [];
+        that.dataBitMap[panelIndex][id] = summaryIndex;
 
-        elements[i].summaries[j] = {
-          id: c++,
-          text: that.summaries[i].summary[j]
+        // checks the answer and updates the user response array
+        if(that.answers[panelIndex] && (that.answers[panelIndex].indexOf(id) !== -1)){
+          this.storeUserResponse(panelIndex, summaryIndex);
+        }
+
+        // adds to elements
+        elements[panelIndex].summaries[summaryIndex] = {
+          id: id++,
+          text: that.summaries[panelIndex].summary[summaryIndex]
         };
       }
 
+      // if we have progressed passed this point, the success pattern must also be saved
+      if(panelIndex < that.progress){
+        this.storeUserResponse(panelIndex, 0);
+      }
+
       // Randomize elements
-      for (var k = elements[i].summaries.length - 1; k > 0; k--) {
+      for (var k = elements[panelIndex].summaries.length - 1; k > 0; k--) {
         var j = Math.floor(Math.random() * (k + 1));
-        var temp = elements[i].summaries[k];
-        elements[i].summaries[k] = elements[i].summaries[j];
-        elements[i].summaries[j] = temp;
+        var temp = elements[panelIndex].summaries[k];
+        elements[panelIndex].summaries[k] = elements[panelIndex].summaries[j];
+        elements[panelIndex].summaries[j] = temp;
       }
     }
 
@@ -530,9 +548,8 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
   /**
    * Creates an xAPI answered event
    *
-   * @param {string} questionText
    * @param {string[]} summary
-   * @param {number} userAnswer
+   * @param {number[]} userAnswer
    * @param {number} panelIndex
    *
    * @return {H5P.XAPIEvent}
@@ -549,10 +566,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
       .build();
 
     // create the result object
-    var correctOnFirstTry = (userAnswer.length === 1);
     var result = XApiEventBuilder.createResult()
       .response(userAnswer.join('[,]'))
-      .score((correctOnFirstTry ? 1 : 0), 1)
+      .score((self.correctOnFirstTry(panelIndex) ? 1 : 0), 1)
       .build();
 
     return XApiEventBuilder.create()
@@ -561,6 +577,10 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
       .contentId(self.contentId, panelIndex)
       .result(result)
       .build();
+  };
+
+  Summary.prototype.correctOnFirstTry = function(userAnswer){
+    return (userAnswer.length === 1) && userAnswer[0] === 0;
   };
 
   /**
@@ -572,14 +592,13 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
     var self = this;
 
     // create array with userAnswer
-    var children =  self.userResponses.map(function(userResponse, index) {
-      if (userResponse != undefined) {
-        var summary = self.summaries[index].summary;
+    var children =  self.summaries.map(function(panel, index) {
+        var userResponse = self.userResponses[index] || [];
+        var summary = panel.summary;
         var event = self.createXApiAnsweredEvent(summary, userResponse, index);
         return {
           statement: event.data.statement
         }
-      }
     });
 
     var result = XApiEventBuilder.createResult()
