@@ -548,13 +548,13 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
   /**
    * Creates an xAPI answered event
    *
-   * @param {string[]} summary
+   * @param {object} panel
    * @param {number[]} userAnswer
    * @param {number} panelIndex
    *
    * @return {H5P.XAPIEvent}
    */
-  Summary.prototype.createXApiAnsweredEvent = function (summary, userAnswer, panelIndex) {
+  Summary.prototype.createXApiAnsweredEvent = function (panel, userAnswer, panelIndex) {
     var self = this;
     var types = XApiEventBuilder.interactionTypes;
 
@@ -562,7 +562,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
     var definition = XApiEventBuilder.createDefinition()
       .interactionType(types.CHOICE)
       .correctResponsesPattern(['0'])
-      .optional(self.getXApiChoices(summary))
+      .optional(self.getXApiChoices(panel.summary))
       .build();
 
     // create the result object
@@ -574,7 +574,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
     return XApiEventBuilder.create()
       .verb(XApiEventBuilder.verbs.ANSWERED)
       .objectDefinition(definition)
-      .contentId(self.contentId, panelIndex)
+      .contentId(self.contentId, panel.subContentId)
       .result(result)
       .build();
   };
@@ -594,8 +594,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
     // create array with userAnswer
     var children =  self.summaries.map(function(panel, index) {
         var userResponse = self.userResponses[index] || [];
-        var summary = panel.summary;
-        var event = self.createXApiAnsweredEvent(summary, userResponse, index);
+        var event = self.createXApiAnsweredEvent(panel, userResponse, index);
         return {
           statement: event.data.statement
         }

@@ -42,6 +42,7 @@
       "name": "statements",
       "type": "group",
       "label": "Set of statements",
+      "isSubContent": true,
       "fields": [
         {
           "name": "summary",
