@@ -199,7 +199,7 @@
 .h5p-summary .summary-evaluation .joubel-tip-container {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 0.5em;
 }
 .h5p-summary .summary-evaluation .joubel-tip-icon {
   line-height: 1;
