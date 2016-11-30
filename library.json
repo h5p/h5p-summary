@@ -10,7 +10,7 @@
   "author": "Amendor AS",
   "coreApi": {
     "majorVersion": 1,
-    "minorVersion": 6
+    "minorVersion": 11
   },
   "preloadedCss": [
     {
