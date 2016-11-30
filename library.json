@@ -19,6 +19,9 @@
   ],
   "preloadedJs": [
     {
+      "path": "js/stop-watch.js"
+    },
+    {
       "path": "js/xapi-event-builder.js"
     },
     {

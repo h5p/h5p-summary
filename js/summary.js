@@ -1,4 +1,4 @@
-H5P.Summary = (function ($, Question, XApiEventBuilder) {
+H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
   function Summary(options, contentId, contentData) {
     if (!(this instanceof H5P.Summary)) {
@@ -57,6 +57,13 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
       }
     }
     var that = this;
+
+    /**
+     * @property {StopWatch[]} Stop watches for tracking duration of slides
+     */
+    this.stopWatches = [];
+    this.startStopWatch(this.progress);
+
     this.options = H5P.jQuery.extend({}, {
       response: {
         scorePerfect:
@@ -236,6 +243,8 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
 
       // Correct answer?
       if (that.answer[node_id]) {
+        that.stopStopWatch(panel_id);
+
         that.progress++;
         var position = $el.position();
         var summary = $summary_list.position();
@@ -301,6 +310,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
                 $curr_panel.parent().css('height', 'auto');
                 // Show next panel if present
                 if ($next_panel.length) {
+                  // start next timer
+                  that.startStopWatch(that.progress);
+
                   $next_panel.fadeIn('fast');
 
                   // Focus first element of next panel
@@ -546,15 +558,69 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
   };
 
   /**
+   * Starts a stopwatch for indexed slide
+   *
+   * @param {number} index
+   */
+  Summary.prototype.startStopWatch = function (index) {
+    this.stopWatches[index] = this.stopWatches[index] || new StopWatch();
+    this.stopWatches[index].start();
+  };
+
+  /**
+   * Stops a stopwatch for indexed slide
+   *
+   * @param {number} [index]
+   */
+  Summary.prototype.stopStopWatch = function (index) {
+    if(this.stopWatches[index]){
+      this.stopWatches[index].stop();
+    }
+  };
+
+  /**
+   * Returns the passed time in seconds of a stopwatch on an indexed slide,
+   * or 0 if not existing
+   *
+   * @param {number} index
+   * @return {number}
+   */
+  Summary.prototype.timePassedInStopWatch = function (index) {
+    if(this.stopWatches[index] !== undefined){
+      return this.stopWatches[index].passedTime();
+    }
+    else {
+      // if not created, return no passed time,
+      return 0;
+    }
+  };
+
+  /**
+   * Returns the time the user has spent on all questions so far
+   *
+   * @return {number}
+   */
+  Summary.prototype.getTotalPassedTime = function () {
+    return this.stopWatches
+      .filter(function(watch){
+        return watch != undefined;
+      })
+      .reduce(function(sum, watch){
+        return sum + watch.passedTime();
+      }, 0);
+  };
+
+  /**
    * Creates an xAPI answered event
    *
    * @param {object} panel
    * @param {number[]} userAnswer
    * @param {number} panelIndex
+   * @param {number} duration
    *
    * @return {H5P.XAPIEvent}
    */
-  Summary.prototype.createXApiAnsweredEvent = function (panel, userAnswer, panelIndex) {
+  Summary.prototype.createXApiAnsweredEvent = function (panel, userAnswer, panelIndex, duration) {
     var self = this;
     var types = XApiEventBuilder.interactionTypes;
 
@@ -568,12 +634,14 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
     // create the result object
     var result = XApiEventBuilder.createResult()
       .response(userAnswer.join('[,]'))
+      .duration(duration)
       .score((self.correctOnFirstTry(panelIndex) ? 1 : 0), 1)
       .build();
 
     return XApiEventBuilder.create()
       .verb(XApiEventBuilder.verbs.ANSWERED)
       .objectDefinition(definition)
+      .context(self.contentId, self.subContentId)
       .contentId(self.contentId, panel.subContentId)
       .result(result)
       .build();
@@ -594,7 +662,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
     // create array with userAnswer
     var children =  self.summaries.map(function(panel, index) {
         var userResponse = self.userResponses[index] || [];
-        var event = self.createXApiAnsweredEvent(panel, userResponse, index);
+        var duration = self.timePassedInStopWatch(index);
+        var event = self.createXApiAnsweredEvent(panel, userResponse, index, duration);
+
         return {
           statement: event.data.statement
         }
@@ -602,6 +672,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
 
     var result = XApiEventBuilder.createResult()
       .score(self.getScore(), self.getMaxScore())
+      .duration(self.getTotalPassedTime())
       .build();
 
     // creates the definition object
@@ -613,7 +684,8 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
 
     var xAPIEvent = XApiEventBuilder.create()
       .verb(XApiEventBuilder.verbs.ANSWERED)
-      .contentId(self.contentId)
+      .contentId(self.contentId, self.subContentId)
+      .context(self.getParentAttribute('contentId'), self.getParentAttribute('subContentId'))
       .objectDefinition(definition)
       .result(result)
       .build();
@@ -624,6 +696,20 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
     };
   };
 
+  /**
+   * Returns an attribute from this.parent if it exists
+   *
+   * @param {string} attributeName
+   * @return {*|undefined}
+   */
+  Summary.prototype.getParentAttribute = function (attributeName) {
+    var self = this;
+
+    if(self.parent !== undefined){
+      return self.parent[attributeName];
+    }
+  };
+
   return Summary;
 
-})(H5P.jQuery, H5P.Question, H5P.Summary.XApiEventBuilder);
+})(H5P.jQuery, H5P.Question, H5P.Summary.XApiEventBuilder, H5P.Summary.StopWatch);
