@@ -2,15 +2,15 @@
   "title": "Summary",
   "description": "Test your users with fill in the summary tasks.",
   "majorVersion": 1,
-  "minorVersion": 5,
-  "patchVersion": 2,
+  "minorVersion": 6,
+  "patchVersion": 0,
   "runnable": 1,
   "machineName": "H5P.Summary",
   "license": "MIT",
   "author": "Amendor AS",
   "coreApi": {
     "majorVersion": 1,
-    "minorVersion": 6
+    "minorVersion": 11
   },
   "preloadedCss": [
     {
@@ -18,6 +18,12 @@
     }
   ],
   "preloadedJs": [
+    {
+      "path": "js/stop-watch.js"
+    },
+    {
+      "path": "js/xapi-event-builder.js"
+    },
     {
       "path": "js/summary.js"
     }
