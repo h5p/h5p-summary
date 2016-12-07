@@ -142,6 +142,15 @@ H5P.Summary.XApiEventBuilder = (function ($, EventDispatcher) {
   };
 
   /**
+   * @param {number} duration The duraction in seconds
+   * @return {XApiEventResultBuilder}
+   */
+  XApiEventResultBuilder.prototype.duration = function (duration) {
+    this.attributes.duration = duration;
+    return this;
+  };
+
+  /**
    * Sets response
    * @param {string|string[]} response
    * @return {XApiEventResultBuilder}
@@ -173,6 +182,10 @@ H5P.Summary.XApiEventBuilder = (function ($, EventDispatcher) {
     setAttribute(result, 'response', this.attributes.response);
     setAttribute(result, 'completion', this.attributes.completion);
     setAttribute(result, 'success', this.attributes.success);
+
+    if(isDefined(this.attributes.duration)){
+      setAttribute(result, 'duration','PT' +  this.attributes.duration + 'S');
+    }
 
     // sets score
     if (isDefined(this.attributes.rawScore)) {
@@ -251,6 +264,18 @@ H5P.Summary.XApiEventBuilder = (function ($, EventDispatcher) {
   };
 
   /**
+   * Sets parent in context
+   * @param {string} parentContentId
+   * @param {string} [parentSubContentId]
+   * @return {H5P.Summary.XApiEventBuilder}
+   */
+  XApiEventBuilder.prototype.context = function (parentContentId, parentSubContentId) {
+    this.attributes.parentContentId = parentContentId;
+    this.attributes.parentSubContentId = parentSubContentId;
+    return this;
+  };
+
+  /**
    * @param {object} result
    *
    * @public
@@ -282,7 +307,20 @@ H5P.Summary.XApiEventBuilder = (function ($, EventDispatcher) {
 
     event.setActor();
     event.setVerb(this.attributes.verb);
-    //event.setContext(instance);
+
+    // sets context
+    if(this.attributes.parentContentId || this.attributes.parentSubContentId){
+      event.data.statement.context = {
+        'contextActivities': {
+          'parent': [
+            {
+              'id': getContentXAPIId(this.attributes.parentContentId, this.attributes.parentSubContentId),
+              'objectType': "Activity"
+            }
+          ]
+        }
+      };
+    }
 
     event.data.statement.object = {
       'id': getContentXAPIId(this.attributes.contentId, this.attributes.subContentId),
@@ -319,8 +357,8 @@ H5P.Summary.XApiEventBuilder = (function ($, EventDispatcher) {
 
   /**
    * Generates an id for the content
-   * @param contentId
-   * @param subContentId
+   * @param {string} contentId
+   * @param {string} [subContentId]
    *
    * @see {@link https://github.com/h5p/h5p-php-library/blob/master/js/h5p-x-api-event.js#L240-L249}
    * @return {string}
