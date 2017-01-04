@@ -36,7 +36,6 @@
       }
     ],
     "label": "Summary",
-    "description": "List of summaries",
     "entity": "statements",
     "max": 100,
     "min": 1,

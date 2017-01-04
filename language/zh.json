@@ -14,7 +14,6 @@
         }
       ],
       "label": "小结",
-      "description": "小结列表",
       "entity": "语句",
       "field": {
         "label": "所有选项",

@@ -15,7 +15,6 @@
         }
       ],
       "label": "Zusammenfassung",
-      "description": "Liste von Zusammenfassungen",
       "entity": "Aussagen",
       "field": {
         "label": "Menge von Aussagen",

@@ -7,7 +7,6 @@
     },
     {
       "label": "Oppsummering",
-      "description": "Liste av påstander",
       "entity": "påstander",
       "field": {
         "label": "Påstander",
