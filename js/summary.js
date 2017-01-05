@@ -625,7 +625,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
   };
 
   /**
-   * Creates an xAPI answered event
+   * Creates an xAPI answered event for a single statement list
    *
    * @param {object} panel
    * @param {number[]} userAnswer
@@ -639,6 +639,8 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
     // creates the definition object
     var definition = XApiEventBuilder.createDefinition()
+      .name('Summary statement')
+      .description(self.options.intro)
       .interactionType(XApiEventBuilder.interactionTypes.CHOICE)
       .correctResponsesPattern(['0'])
       .optional(self.getXApiChoices(panel.summary))
@@ -691,7 +693,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     // creates the definition object
     var definition = XApiEventBuilder.createDefinition()
       .interactionType(XApiEventBuilder.interactionTypes.COMPOUND)
-      .name(self.options.intro)
+      .name(self.getTitle())
       .description(self.options.intro)
       .build();
 
