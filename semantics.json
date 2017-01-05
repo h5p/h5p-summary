@@ -50,7 +50,7 @@
         {
           "name": "summary",
           "type": "list",
-          "label": "List of statements for the summary. The first statement is correct.",
+          "label": "List of statements for the summary - the first statement is correct.",
           "entity": "statement",
           "importance": "medium",
           "min": 2,

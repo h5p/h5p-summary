@@ -21,7 +21,7 @@
         "label": "Menge von Aussagen",
         "fields": [
           {
-            "label": "Liste von Aussagen für die Zusammenfassung. Die erste Aussage ist die korrekte.",
+            "label": "Liste von Aussagen für die Zusammenfassung - die erste Aussage ist die korrekte.",
             "entity": "aussage",
             "field": {
               "label": "Aussage"
