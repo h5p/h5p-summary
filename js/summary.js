@@ -1,4 +1,4 @@
-H5P.Summary = (function ($, Question, XApiEventBuilder) {
+H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
   function Summary(options, contentId, contentData) {
     if (!(this instanceof H5P.Summary)) {
@@ -11,7 +11,8 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
     this.progress = 0;
     this.answers = [];
     this.answer = [];
-    this.error_counts = [];
+    this.errorCounts = [];
+
     /**
      * The key is panel index, returns an array of the answer indexes the user tried.
      *
@@ -32,7 +33,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
         return element.summary !== undefined;
       });
     }
-    
+
     if (contentData && contentData.previousState !== undefined &&
         contentData.previousState.progress !== undefined &&
         contentData.previousState.answers) {
@@ -47,16 +48,23 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
       }
 
       for (var i = 0; i <= currentProgress; i++) {
-        if (this.error_counts[i] === undefined) {
-          this.error_counts[i] = 0;
+        if (this.errorCounts[i] === undefined) {
+          this.errorCounts[i] = 0;
         }
         if (this.answers[i]) {
           this.score += this.answers[i].length;
-          this.error_counts[i]++;
+          this.errorCounts[i]++;
         }
       }
     }
     var that = this;
+
+    /**
+     * @property {StopWatch[]} Stop watches for tracking duration of slides
+     */
+    this.stopWatches = [];
+    this.startStopWatch(this.progress);
+
     this.options = H5P.jQuery.extend({}, {
       response: {
         scorePerfect:
@@ -101,7 +109,14 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
     };
 
     this.getScore = function() {
-      return this.getMaxScore() - this.countErrors();
+      var self = this;
+
+      // count single correct answers
+      return self.summaries.reduce(function(result, panel, index){
+        var userResponse = self.userResponses[index] || [];
+
+        return result + (self.correctOnFirstTry(userResponse) ? 1 : 0);
+      }, 0);
     };
 
     this.getTitle = function() {
@@ -131,7 +146,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
   // Function for attaching the multichoice to a DOM element.
   Summary.prototype.createQuestion = function() {
     var that = this;
-    var c = 0; // element counter
+    var id = 0; // element counter
     var elements = [];
     var $ = H5P.jQuery;
     this.$myDom = $('<div>', {
@@ -143,36 +158,47 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
     }
 
     // Create array objects
-    for (var i = 0; i < that.summaries.length; i++) {
-      if (!(that.summaries[i].summary && that.summaries[i].summary.length)) {
+    for (var panelIndex = 0; panelIndex < that.summaries.length; panelIndex++) {
+      if (!(that.summaries[panelIndex].summary && that.summaries[panelIndex].summary.length)) {
         continue;
       }
 
-      elements[i] = {
-        tip: that.summaries[i].tip,
+      elements[panelIndex] = {
+        tip: that.summaries[panelIndex].tip,
         summaries: []
       };
 
-      for (var j = 0; j < that.summaries[i].summary.length; j++) {
-        var isAnswer = (j === 0);
-        that.answer[c] = isAnswer; // First claim is correct
+      for (var summaryIndex = 0; summaryIndex < that.summaries[panelIndex].summary.length; summaryIndex++) {
+        var isAnswer = (summaryIndex === 0);
+        that.answer[id] = isAnswer; // First claim is correct
 
         // create mapping from data-bit to index in panel
-        this.dataBitMap[i] = this.dataBitMap[i] || [];
-        this.dataBitMap[i][c] = j;
+        that.dataBitMap[panelIndex] = this.dataBitMap[panelIndex] || [];
+        that.dataBitMap[panelIndex][id] = summaryIndex;
 
-        elements[i].summaries[j] = {
-          id: c++,
-          text: that.summaries[i].summary[j]
+        // checks the answer and updates the user response array
+        if(that.answers[panelIndex] && (that.answers[panelIndex].indexOf(id) !== -1)){
+          this.storeUserResponse(panelIndex, summaryIndex);
+        }
+
+        // adds to elements
+        elements[panelIndex].summaries[summaryIndex] = {
+          id: id++,
+          text: that.summaries[panelIndex].summary[summaryIndex]
         };
       }
 
+      // if we have progressed passed this point, the success pattern must also be saved
+      if(panelIndex < that.progress){
+        this.storeUserResponse(panelIndex, 0);
+      }
+
       // Randomize elements
-      for (var k = elements[i].summaries.length - 1; k > 0; k--) {
+      for (var k = elements[panelIndex].summaries.length - 1; k > 0; k--) {
         var j = Math.floor(Math.random() * (k + 1));
-        var temp = elements[i].summaries[k];
-        elements[i].summaries[k] = elements[i].summaries[j];
-        elements[i].summaries[j] = temp;
+        var temp = elements[panelIndex].summaries[k];
+        elements[panelIndex].summaries[k] = elements[panelIndex].summaries[j];
+        elements[panelIndex].summaries[j] = temp;
       }
     }
 
@@ -208,23 +234,24 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
      *  Used when alt was selected with keyboard.
      */
     var selectedAlt = function ($el, setFocus) {
-      that.triggerXAPI('interacted');
-      var node_id = Number($el.attr('data-bit'));
-      var panel_id = Number($el.parent().data('panel'));
-      if (that.error_counts[panel_id] === undefined) {
-        that.error_counts[panel_id] = 0;
+      var nodeId = Number($el.attr('data-bit'));
+      var panelId = Number($el.parent().data('panel'));
+      if (that.errorCounts[panelId] === undefined) {
+        that.errorCounts[panelId] = 0;
       }
 
-      that.storeUserResponse(panel_id, node_id);
+      that.storeUserResponse(panelId, nodeId);
 
       // Correct answer?
-      if (that.answer[node_id]) {
+      if (that.answer[nodeId]) {
+        that.stopStopWatch(panelId);
+
         that.progress++;
         var position = $el.position();
         var summary = $summary_list.position();
         var $answer = $('<li>' + $el.html() + '</li>');
 
-        $progress.html(that.options.solvedLabel + ' '  + (panel_id + 1) + '/' + that.summaries.length);
+        $progress.html(that.options.solvedLabel + ' '  + (panelId + 1) + '/' + that.summaries.length);
 
         // Insert correct claim into summary list
         $summary_list.append($answer);
@@ -243,6 +270,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
         var panel = parseInt($el.parent().attr('data-panel'));
         var $curr_panel = $('.h5p-panel:eq(' + panel + ')', that.$myDom);
         var $next_panel = $('.h5p-panel:eq(' + (panel + 1) + ')', that.$myDom);
+        var finished = ($next_panel.length === 0);
         var height = $curr_panel.parent().css('height');
 
         // Disable panel while waiting for animation
@@ -283,7 +311,10 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
               $curr_panel.fadeOut('fast', function () {
                 $curr_panel.parent().css('height', 'auto');
                 // Show next panel if present
-                if ($next_panel.length) {
+                if (!finished) {
+                  // start next timer
+                  that.startStopWatch(that.progress);
+
                   $next_panel.fadeIn('fast');
 
                   // Focus first element of next panel
@@ -294,7 +325,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
                   // Hide intermediate evaluation
                   $evaluation_content.html(that.options.resultLabel);
 
-                  that.do_final_evaluation($summary_container, $options, $summary_list, that.score);
+                  that.doFinalEvaluation();
                 }
                 that.trigger('resize');
               });
@@ -310,15 +341,31 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
 
         $evaluation.children('.summary-score').css('display', 'block');
         $score.html(that.options.scoreLabel + ' ' + (++that.score));
-        that.error_counts[panel_id]++;
-        if (that.answers[panel_id] === undefined) {
-          that.answers[panel_id] = [];
+        that.errorCounts[panelId]++;
+        if (that.answers[panelId] === undefined) {
+          that.answers[panelId] = [];
         }
-        that.answers[panel_id].push(node_id);
+        that.answers[panelId].push(nodeId);
       }
 
       that.trigger('resize');
       $el.attr('tabindex', '-1');
+      that.triggerXAPI('interacted');
+
+      // Trigger answered xAPI event on first try for the current
+      // statement group
+      if (that.userResponses[panelId].length === 1) {
+        that.trigger(that.createXApiAnsweredEvent(
+          that.summaries[panelId],
+          that.userResponses[panelId] || [],
+          panelId,
+          that.timePassedInStopWatch(panelId)));
+      }
+
+      // Trigger overall answered xAPI event when finished
+      if (finished) {
+        that.triggerXAPIScored(that.getScore(), that.getMaxScore(), 'answered');
+      }
     };
 
     $progress.html(that.options.solvedLabel + ' ' + this.progress + '/' + that.summaries.length);
@@ -327,7 +374,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
     for (var i = 0; i < elements.length; i++) {
       var element = elements[i];
 
-      if (i < that.progress) { // i is panel_id
+      if (i < that.progress) { // i is panelId
         for (var j = 0; j < element.summaries.length; j++) {
           var sum = element.summaries[j];
           if (that.answer[sum.id]) {
@@ -391,13 +438,13 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
 
     if (that.progress === elements.length) {
       $evaluation_content.html(that.options.resultLabel);
-      that.do_final_evaluation($summary_container, $options, $summary_list, that.score);
+      that.doFinalEvaluation();
     }
     else {
       // Show first panel
       $('.h5p-panel:eq(' + (that.progress) + ')', that.$myDom).css({display: 'block'});
       if (that.progress) {
-        that.offset = ($('.summary-claim-unclicked:visible:first', that.$myDom).outerHeight() * that.error_counts.length);
+        that.offset = ($('.summary-claim-unclicked:visible:first', that.$myDom).outerHeight() * that.errorCounts.length);
       }
     }
 
@@ -414,12 +461,12 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
    * @param list
    * @param score
    */
-  Summary.prototype.do_final_evaluation = function (container, options_panel, list, score) {
+  Summary.prototype.doFinalEvaluation = function () {
     var that = this;
     var error_count = this.countErrors();
 
     // Calculate percentage
-    var percent = 100 - (error_count / that.error_counts.length * 100);
+    var percent = 100 - (error_count / that.errorCounts.length * 100);
 
     // Find evaluation message
     var from = 0;
@@ -446,10 +493,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
     // Show final evaluation
     var summary = that.options.summary.replace('@score', that.summaries.length - error_count).replace('@total', that.summaries.length).replace('@percent', Math.round(percent));
     this.setFeedback(summary, that.summaries.length - error_count, that.summaries.length);
-
     that.trigger('resize');
-    var myScore = Math.max(that.error_counts.length - error_count, 0);
-    that.triggerXAPIScored(myScore, that.error_counts.length, 'answered');
   };
 
   /**
@@ -484,11 +528,11 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
 
     // Count boards without errors
     for (var i = 0; i < this.summaries.length; i++) {
-      if (this.error_counts[i] === undefined) {
+      if (this.errorCounts[i] === undefined) {
         error_count++;
       }
       else {
-        error_count += this.error_counts[i] ? 1 : 0;
+        error_count += this.errorCounts[i] ? 1 : 0;
       }
     }
 
@@ -528,39 +572,98 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
   };
 
   /**
-   * Creates an xAPI answered event
+   * Starts a stopwatch for indexed slide
    *
-   * @param {string} questionText
-   * @param {string[]} summary
-   * @param {number} userAnswer
+   * @param {number} index
+   */
+  Summary.prototype.startStopWatch = function (index) {
+    this.stopWatches[index] = this.stopWatches[index] || new StopWatch();
+    this.stopWatches[index].start();
+  };
+
+  /**
+   * Stops a stopwatch for indexed slide
+   *
+   * @param {number} [index]
+   */
+  Summary.prototype.stopStopWatch = function (index) {
+    if(this.stopWatches[index]){
+      this.stopWatches[index].stop();
+    }
+  };
+
+  /**
+   * Returns the passed time in seconds of a stopwatch on an indexed slide,
+   * or 0 if not existing
+   *
+   * @param {number} index
+   * @return {number}
+   */
+  Summary.prototype.timePassedInStopWatch = function (index) {
+    if(this.stopWatches[index] !== undefined){
+      return this.stopWatches[index].passedTime();
+    }
+    else {
+      // if not created, return no passed time,
+      return 0;
+    }
+  };
+
+  /**
+   * Returns the time the user has spent on all questions so far
+   *
+   * @return {number}
+   */
+  Summary.prototype.getTotalPassedTime = function () {
+    return this.stopWatches
+      .filter(function(watch){
+        return watch != undefined;
+      })
+      .reduce(function(sum, watch){
+        return sum + watch.passedTime();
+      }, 0);
+  };
+
+  /**
+   * Creates an xAPI answered event for a single statement list
+   *
+   * @param {object} panel
+   * @param {number[]} userAnswer
    * @param {number} panelIndex
+   * @param {number} duration
    *
    * @return {H5P.XAPIEvent}
    */
-  Summary.prototype.createXApiAnsweredEvent = function (summary, userAnswer, panelIndex) {
+  Summary.prototype.createXApiAnsweredEvent = function (panel, userAnswer, panelIndex, duration) {
     var self = this;
-    var types = XApiEventBuilder.interactionTypes;
 
     // creates the definition object
     var definition = XApiEventBuilder.createDefinition()
-      .interactionType(types.CHOICE)
+      .name('Summary statement')
+      .description(self.options.intro)
+      .interactionType(XApiEventBuilder.interactionTypes.CHOICE)
       .correctResponsesPattern(['0'])
-      .optional(self.getXApiChoices(summary))
+      .optional(self.getXApiChoices(panel.summary))
       .build();
 
     // create the result object
-    var correctOnFirstTry = (userAnswer.length === 1);
     var result = XApiEventBuilder.createResult()
       .response(userAnswer.join('[,]'))
-      .score((correctOnFirstTry ? 1 : 0), 1)
+      .duration(duration)
+      .score((self.correctOnFirstTry(userAnswer) ? 1 : 0), 1)
       .build();
 
     return XApiEventBuilder.create()
       .verb(XApiEventBuilder.verbs.ANSWERED)
       .objectDefinition(definition)
-      .contentId(self.contentId, panelIndex)
+      .context(self.contentId, self.subContentId)
+      .contentId(self.contentId, panel.subContentId)
       .result(result)
       .build();
+  };
+
+  Summary.prototype.correctOnFirstTry = function(userAnswer){
+    return (userAnswer.length === 1) && userAnswer[0] === 0;
   };
 
   /**
@@ -572,30 +675,32 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
     var self = this;
 
     // create array with userAnswer
-    var children =  self.userResponses.map(function(userResponse, index) {
-      if (userResponse != undefined) {
-        var summary = self.summaries[index].summary;
-        var event = self.createXApiAnsweredEvent(summary, userResponse, index);
+    var children = self.summaries.map(function(panel, index) {
+        var userResponse = self.userResponses[index] || [];
+        var duration = self.timePassedInStopWatch(index);
+        var event = self.createXApiAnsweredEvent(panel, userResponse, index, duration);
+
         return {
           statement: event.data.statement
         }
-      }
     });
 
     var result = XApiEventBuilder.createResult()
       .score(self.getScore(), self.getMaxScore())
+      .duration(self.getTotalPassedTime())
       .build();
 
     // creates the definition object
     var definition = XApiEventBuilder.createDefinition()
       .interactionType(XApiEventBuilder.interactionTypes.COMPOUND)
-      .name(self.options.intro)
+      .name(self.getTitle())
       .description(self.options.intro)
       .build();
 
     var xAPIEvent = XApiEventBuilder.create()
       .verb(XApiEventBuilder.verbs.ANSWERED)
-      .contentId(self.contentId)
+      .contentId(self.contentId, self.subContentId)
+      .context(self.getParentAttribute('contentId'), self.getParentAttribute('subContentId'))
       .objectDefinition(definition)
       .result(result)
       .build();
@@ -606,7 +711,20 @@ H5P.Summary = (function ($, Question, XApiEventBuilder) {
     };
   };
 
+  /**
+   * Returns an attribute from this.parent if it exists
+   *
+   * @param {string} attributeName
+   * @return {*|undefined}
+   */
+  Summary.prototype.getParentAttribute = function (attributeName) {
+    var self = this;
+
+    if(self.parent !== undefined){
+      return self.parent[attributeName];
+    }
+  };
+
   return Summary;
 
-})(H5P.jQuery, H5P.Question, H5P.Summary.XApiEventBuilder);
-console.log('test');
+})(H5P.jQuery, H5P.Question, H5P.Summary.XApiEventBuilder, H5P.Summary.StopWatch);

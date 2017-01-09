@@ -198,8 +198,8 @@
 
 .h5p-summary .summary-evaluation .joubel-tip-container {
   position: absolute;
-  top: 0;
-  right: 0.5em;
+  top: -0.1em;
+  right: 0.1em;
 }
 .h5p-summary .summary-evaluation .joubel-tip-icon {
   line-height: 1;
@@ -209,9 +209,4 @@
 .h5p-summary .summary-feedback {
   display: inline-block;
   float: right;
-}
-
-.summary-evaluation-content .joubel-icon-tip-normal {
-  line-height: 1em;
-  font-size: 1.2em;
 }
