@@ -4,6 +4,7 @@
     "type": "text",
     "widget": "html",
     "label": "Introduction text",
+    "importance": "high",
     "default": "Choose the correct statement.",
     "description": "Will be displayed above the summary task.",
     "enterMode": "p",
@@ -22,6 +23,7 @@
   },
   {
     "name": "summaries",
+    "importance": "high",
     "type": "list",
     "widgets": [
       {
@@ -34,7 +36,6 @@
       }
     ],
     "label": "Summary",
-    "description": "List of summaries",
     "entity": "statements",
     "max": 100,
     "min": 1,
@@ -42,18 +43,21 @@
       "name": "statements",
       "type": "group",
       "label": "Set of statements",
+      "importance": "high",
       "isSubContent": true,
       "fields": [
         {
           "name": "summary",
           "type": "list",
-          "label": "List of statements for the summary. The first statement is correct.",
+          "label": "List of statements for the summary - the first statement is correct.",
           "entity": "statement",
+          "importance": "medium",
           "min": 2,
           "field": {
             "name": "text",
             "type": "text",
             "label": "Statement",
+            "importance": "medium",
             "widget": "html",
             "enterMode": "p",
             "tags": []
@@ -63,14 +67,21 @@
           "name": "tip",
           "type": "group",
           "label": "Tip",
+          "importance": "low",
           "optional": true,
           "fields": [
             {
               "name": "tip",
               "label": "Tip text",
+              "importance": "low",
               "type": "text",
               "widget": "html",
-              "tags": ["p", "br", "strong", "em"],
+              "tags": [
+                "p",
+                "br",
+                "strong",
+                "em"
+              ],
               "optional": true
             }
           ]
@@ -82,6 +93,7 @@
     "name": "solvedLabel",
     "type": "text",
     "label": "Text displayed before number of statements solved in the summary task.",
+    "importance": "low",
     "default": "Progress:",
     "description": "Will be displayed above the statements. Example: 'Progress: 2/5'",
     "common": true
@@ -90,6 +102,7 @@
     "name": "scoreLabel",
     "type": "text",
     "label": "Text displayed before number of wrong statements selected in the summary task.",
+    "importance": "low",
     "default": "Wrong answers:",
     "description": "Will be displayed above the statements. Example: 'Wrong answers: 4'",
     "common": true
@@ -98,6 +111,7 @@
     "name": "resultLabel",
     "type": "text",
     "label": "Summary feedback header",
+    "importance": "low",
     "default": "Your result",
     "description": "Will be displayed above the summary feedback.",
     "common": true
@@ -105,83 +119,96 @@
   {
     "name": "response",
     "label": "Summary feedback",
+    "importance": "low",
     "type": "group",
     "common": true,
     "fields": [
       {
         "label": "Everything correct",
+        "importance": "low",
         "name": "scorePerfect",
         "type": "group",
         "fields": [
-           {
-             "name": "title",
-             "type": "text",
-             "label": "Feedback title",
-             "default": "PERFECT!"
-           },
-           {
-             "name": "message",
-             "type": "text",
-             "label": "Feedback message",
-             "default": "You got everything correct on your first try!"
-           }
+          {
+            "name": "title",
+            "type": "text",
+            "label": "Feedback title",
+            "importance": "low",
+            "default": "PERFECT!"
+          },
+          {
+            "name": "message",
+            "type": "text",
+            "label": "Feedback message",
+            "importance": "low",
+            "default": "You got everything correct on your first try!"
+          }
         ]
       },
       {
         "label": "70 % - 99 % correct",
+        "importance": "low",
         "name": "scoreOver70",
         "type": "group",
         "fields": [
-           {
-             "name": "title",
-             "type": "text",
-             "label": "Feedback title",
-             "default": "Great!"
-           },
-           {
-             "name": "message",
-             "type": "text",
-             "label": "Feedback message",
-             "default": "You got most of the statements correct on your first try."
-           }
+          {
+            "name": "title",
+            "type": "text",
+            "label": "Feedback title",
+            "importance": "low",
+            "default": "Great!"
+          },
+          {
+            "name": "message",
+            "type": "text",
+            "label": "Feedback message",
+            "importance": "low",
+            "default": "You got most of the statements correct on your first try."
+          }
         ]
       },
       {
         "label": "40 % - 69 % correct",
+        "importance": "low",
         "name": "scoreOver40",
         "type": "group",
         "fields": [
-           {
-             "name": "title",
-             "type": "text",
-             "label": "Feedback title",
-             "default": "Ok"
-           },
-           {
-             "name": "message",
-             "type": "text",
-             "label": "Feedback message",
-             "default": "You got some of the statements correct on your first try."
-           }
+          {
+            "name": "title",
+            "type": "text",
+            "label": "Feedback title",
+            "importance": "low",
+            "default": "Ok"
+          },
+          {
+            "name": "message",
+            "type": "text",
+            "label": "Feedback message",
+            "importance": "low",
+            "default": "You got some of the statements correct on your first try."
+          }
         ]
       },
       {
         "label": "0 % - 39 % correct",
+        "importance": "low",
         "name": "scoreOver0",
         "type": "group",
         "fields": [
-           {
-             "name": "title",
-             "type": "text",
-             "label": "Feedback title",
-             "default": "A few mistakes."
-           },
-           {
-             "name": "message",
-             "type": "text",
-             "label": "Feedback message",
-             "default": "Have another try!"
-           }
+          {
+            "name": "title",
+            "type": "text",
+            "label": "Feedback title",
+            "importance": "low",
+            "default": "A few mistakes."
+          },
+          {
+            "name": "message",
+            "type": "text",
+            "label": "Feedback message",
+            "importance": "low",
+            "default": "Have another try!"
+          }
         ]
       }
     ]
@@ -190,6 +217,7 @@
     "name": "summary",
     "type": "text",
     "label": "Feedback summary",
+    "importance": "low",
     "default": "You got @score of @total statements (@percent %) correct on your first try.",
     "description": "Available variables: @score, @total, @percent. Example: You got @score of @total statements (@percent %) correct.",
     "common": true

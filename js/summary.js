@@ -11,7 +11,8 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     this.progress = 0;
     this.answers = [];
     this.answer = [];
-    this.error_counts = [];
+    this.errorCounts = [];
+
     /**
      * The key is panel index, returns an array of the answer indexes the user tried.
      *
@@ -47,12 +48,12 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       }
 
       for (var i = 0; i <= currentProgress; i++) {
-        if (this.error_counts[i] === undefined) {
-          this.error_counts[i] = 0;
+        if (this.errorCounts[i] === undefined) {
+          this.errorCounts[i] = 0;
         }
         if (this.answers[i]) {
           this.score += this.answers[i].length;
-          this.error_counts[i]++;
+          this.errorCounts[i]++;
         }
       }
     }
@@ -233,24 +234,24 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
      *  Used when alt was selected with keyboard.
      */
     var selectedAlt = function ($el, setFocus) {
-      var node_id = Number($el.attr('data-bit'));
-      var panel_id = Number($el.parent().data('panel'));
-      if (that.error_counts[panel_id] === undefined) {
-        that.error_counts[panel_id] = 0;
+      var nodeId = Number($el.attr('data-bit'));
+      var panelId = Number($el.parent().data('panel'));
+      if (that.errorCounts[panelId] === undefined) {
+        that.errorCounts[panelId] = 0;
       }
 
-      that.storeUserResponse(panel_id, node_id);
+      that.storeUserResponse(panelId, nodeId);
 
       // Correct answer?
-      if (that.answer[node_id]) {
-        that.stopStopWatch(panel_id);
+      if (that.answer[nodeId]) {
+        that.stopStopWatch(panelId);
 
         that.progress++;
         var position = $el.position();
         var summary = $summary_list.position();
         var $answer = $('<li>' + $el.html() + '</li>');
 
-        $progress.html(that.options.solvedLabel + ' '  + (panel_id + 1) + '/' + that.summaries.length);
+        $progress.html(that.options.solvedLabel + ' '  + (panelId + 1) + '/' + that.summaries.length);
 
         // Insert correct claim into summary list
         $summary_list.append($answer);
@@ -269,6 +270,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         var panel = parseInt($el.parent().attr('data-panel'));
         var $curr_panel = $('.h5p-panel:eq(' + panel + ')', that.$myDom);
         var $next_panel = $('.h5p-panel:eq(' + (panel + 1) + ')', that.$myDom);
+        var finished = ($next_panel.length === 0);
         var height = $curr_panel.parent().css('height');
 
         // Disable panel while waiting for animation
@@ -309,7 +311,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
               $curr_panel.fadeOut('fast', function () {
                 $curr_panel.parent().css('height', 'auto');
                 // Show next panel if present
-                if ($next_panel.length) {
+                if (!finished) {
                   // start next timer
                   that.startStopWatch(that.progress);
 
@@ -323,7 +325,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
                   // Hide intermediate evaluation
                   $evaluation_content.html(that.options.resultLabel);
 
-                  that.do_final_evaluation($summary_container, $options, $summary_list, that.score);
+                  that.doFinalEvaluation();
                 }
                 that.trigger('resize');
               });
@@ -339,16 +341,31 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
         $evaluation.children('.summary-score').css('display', 'block');
         $score.html(that.options.scoreLabel + ' ' + (++that.score));
-        that.error_counts[panel_id]++;
-        if (that.answers[panel_id] === undefined) {
-          that.answers[panel_id] = [];
+        that.errorCounts[panelId]++;
+        if (that.answers[panelId] === undefined) {
+          that.answers[panelId] = [];
         }
-        that.answers[panel_id].push(node_id);
+        that.answers[panelId].push(nodeId);
       }
 
       that.trigger('resize');
       $el.attr('tabindex', '-1');
       that.triggerXAPI('interacted');
+
+      // Trigger answered xAPI event on first try for the current
+      // statement group
+      if (that.userResponses[panelId].length === 1) {
+        that.trigger(that.createXApiAnsweredEvent(
+          that.summaries[panelId],
+          that.userResponses[panelId] || [],
+          panelId,
+          that.timePassedInStopWatch(panelId)));
+      }
+
+      // Trigger overall answered xAPI event when finished
+      if (finished) {
+        that.triggerXAPIScored(that.getScore(), that.getMaxScore(), 'answered');
+      }
     };
 
     $progress.html(that.options.solvedLabel + ' ' + this.progress + '/' + that.summaries.length);
@@ -357,7 +374,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     for (var i = 0; i < elements.length; i++) {
       var element = elements[i];
 
-      if (i < that.progress) { // i is panel_id
+      if (i < that.progress) { // i is panelId
         for (var j = 0; j < element.summaries.length; j++) {
           var sum = element.summaries[j];
           if (that.answer[sum.id]) {
@@ -421,13 +438,13 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
     if (that.progress === elements.length) {
       $evaluation_content.html(that.options.resultLabel);
-      that.do_final_evaluation($summary_container, $options, $summary_list, that.score);
+      that.doFinalEvaluation();
     }
     else {
       // Show first panel
       $('.h5p-panel:eq(' + (that.progress) + ')', that.$myDom).css({display: 'block'});
       if (that.progress) {
-        that.offset = ($('.summary-claim-unclicked:visible:first', that.$myDom).outerHeight() * that.error_counts.length);
+        that.offset = ($('.summary-claim-unclicked:visible:first', that.$myDom).outerHeight() * that.errorCounts.length);
       }
     }
 
@@ -444,12 +461,12 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
    * @param list
    * @param score
    */
-  Summary.prototype.do_final_evaluation = function (container, options_panel, list, score) {
+  Summary.prototype.doFinalEvaluation = function () {
     var that = this;
     var error_count = this.countErrors();
 
     // Calculate percentage
-    var percent = 100 - (error_count / that.error_counts.length * 100);
+    var percent = 100 - (error_count / that.errorCounts.length * 100);
 
     // Find evaluation message
     var from = 0;
@@ -476,10 +493,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     // Show final evaluation
     var summary = that.options.summary.replace('@score', that.summaries.length - error_count).replace('@total', that.summaries.length).replace('@percent', Math.round(percent));
     this.setFeedback(summary, that.summaries.length - error_count, that.summaries.length);
-
     that.trigger('resize');
-    var myScore = Math.max(that.error_counts.length - error_count, 0);
-    that.triggerXAPIScored(myScore, that.error_counts.length, 'answered');
   };
 
   /**
@@ -514,11 +528,11 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
     // Count boards without errors
     for (var i = 0; i < this.summaries.length; i++) {
-      if (this.error_counts[i] === undefined) {
+      if (this.errorCounts[i] === undefined) {
         error_count++;
       }
       else {
-        error_count += this.error_counts[i] ? 1 : 0;
+        error_count += this.errorCounts[i] ? 1 : 0;
       }
     }
 
@@ -611,7 +625,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
   };
 
   /**
-   * Creates an xAPI answered event
+   * Creates an xAPI answered event for a single statement list
    *
    * @param {object} panel
    * @param {number[]} userAnswer
@@ -622,11 +636,12 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
    */
   Summary.prototype.createXApiAnsweredEvent = function (panel, userAnswer, panelIndex, duration) {
     var self = this;
-    var types = XApiEventBuilder.interactionTypes;
 
     // creates the definition object
     var definition = XApiEventBuilder.createDefinition()
-      .interactionType(types.CHOICE)
+      .name('Summary statement')
+      .description(self.options.intro)
+      .interactionType(XApiEventBuilder.interactionTypes.CHOICE)
       .correctResponsesPattern(['0'])
       .optional(self.getXApiChoices(panel.summary))
       .build();
@@ -635,7 +650,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     var result = XApiEventBuilder.createResult()
       .response(userAnswer.join('[,]'))
       .duration(duration)
-      .score((self.correctOnFirstTry(panelIndex) ? 1 : 0), 1)
+      .score((self.correctOnFirstTry(userAnswer) ? 1 : 0), 1)
       .build();
 
     return XApiEventBuilder.create()
@@ -660,7 +675,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     var self = this;
 
     // create array with userAnswer
-    var children =  self.summaries.map(function(panel, index) {
+    var children = self.summaries.map(function(panel, index) {
         var userResponse = self.userResponses[index] || [];
         var duration = self.timePassedInStopWatch(index);
         var event = self.createXApiAnsweredEvent(panel, userResponse, index, duration);
@@ -678,7 +693,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     // creates the definition object
     var definition = XApiEventBuilder.createDefinition()
       .interactionType(XApiEventBuilder.interactionTypes.COMPOUND)
-      .name(self.options.intro)
+      .name(self.getTitle())
       .description(self.options.intro)
       .build();
 
