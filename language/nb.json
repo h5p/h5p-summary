@@ -8,6 +8,14 @@
     {
       "label": "Oppsummering",
       "entity": "påstander",
+      "widgets": [
+        {
+          "label": "Standard"
+        },
+        {
+          "label": "Tekstlig"
+        }
+      ],
       "field": {
         "label": "Påstander",
         "fields": [
