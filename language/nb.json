@@ -7,13 +7,20 @@
     },
     {
       "label": "Oppsummering",
-      "description": "Liste av påstander",
       "entity": "påstander",
+      "widgets": [
+        {
+          "label": "Standard"
+        },
+        {
+          "label": "Tekstlig"
+        }
+      ],
       "field": {
         "label": "Påstander",
         "fields": [
           {
-            "label": "Påstander til oppsummeringen. Første påstand er riktig.",
+            "label": "Påstander til oppsummeringen - første påstand er riktig.",
             "entity": "påstand",
             "field": {
               "label": "Påstand"
