@@ -1,0 +1,118 @@
+{
+  "semantics": [
+    {
+      "label": "Johdantoteksti",
+      "default": "Valite oikea väittämä.",
+      "description": "Näytetään yhteentevotehtävän yläpuolella."
+    },
+    {
+      "widgets": [
+        {
+          "label": "Oletusarvo"
+        },
+        {
+          "label": "Teksti"
+        }
+      ],
+      "label": "Yhteenveto",
+      "entity": "väittämät",
+      "field": {
+        "label": "Väittämät",
+        "fields": [
+          {
+            "label": "Lista väittämistä yhteenvetoon - ensimmäinen väittämä on oikea.",
+            "entity": "väittämä",
+            "field": {
+              "label": "väittämä"
+            }
+          },
+          {
+            "label": "Vihje",
+            "fields": [
+              {
+                "label": "Vihjeteksti"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "Teksti näytetään ratkaistuja väittämiä ennen yhteenvetotehtävässä.",
+      "default": "Edistyminen :",
+      "description": "Näytetään väittämien yläpuolella. Esimerkki: 'Edistyminen : 2/5'"
+    },
+    {
+      "label": "Teksti näytetään väärin vastattuja väittämiä ennen yhteenvetotehtävässä.",
+      "default": "Virheitä :",
+      "description": "Näytetään väittämien yläpuolella. Esimerkki: 'Virheitä : 4'"
+    },
+    {
+      "label": "Yhteenvedon palautteen otsikko",
+      "default": "Tuloksesi :",
+      "description": "Näytetään yhteenvedon palautteen yläpuolella."
+    },
+    {
+      "label": "Yhteenvedon palaute",
+      "fields": [
+        {
+          "label": "Kaikki oikein",
+          "fields": [
+            {
+              "label": "Palautteen otsikko",
+              "default": "TÄYDELLISTÄ !"
+            },
+            {
+              "label": "Palauteviesti",
+              "default": "Onnistuit ensimmäiselle yrityksellä !"
+            }
+          ]
+        },
+        {
+          "label": "70%\/99% vastauksista oikein",
+          "fields": [
+            {
+              "label": "Palautteen otsikko",
+              "default": "Hienoa !"
+            },
+            {
+              "label": "Palauteteksti",
+              "default": "Sait suurimman osan väittämistä oikein ensimmäisellä kerralla."
+            }
+          ]
+        },
+        {
+          "label": "40% - 69% oikein",
+          "fields": [
+            {
+              "label": "Palautteen otsikko",
+              "default": "Hyvä"
+            },
+            {
+              "label": "Palautteen otsikko",
+              "default": "Sait joitain väittämiä oikein ensimmäisellä kerralla."
+            }
+          ]
+        },
+        {
+          "label": "0% - 39% oikein",
+          "fields": [
+            {
+              "label": "Palautteen otsikko",
+              "default": "Lukuisia virheitä."
+            },
+            {
+              "label": "Palauteteksti",
+              "default": "Yritä uudelleen !"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Yleinen palaute",
+      "default": "Sait @score\/@total oikein ensimmäisellä kerralla; @percent %",
+      "description": "Käytettävissä olevat muuttujat: @score, @total, @percent. (Esimerkki: sait @score\/@total väittämää (@percent %) oikein)."
+    }
+  ]
+}
