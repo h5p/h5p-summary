@@ -1,36 +1,36 @@
 {
   "semantics":[
     {
-      "label":"介绍",
+      "label":"Introduction text",
       "default":"Choose the correct statement.",
-      "description":"会显示在最终课后小结上面。"
+      "description":"Will be displayed above the summary task."
     },
     {
       "widgets":[
         {
-          "label":"缺省"
+          "label":"Default"
         },
         {
-          "label":"文本"
+          "label":"Textual"
         }
       ],
-      "label":"小结",
-      "entity":"语句",
+      "label":"Summary",
+      "entity":"statements",
       "field":{
-        "label":"所有选项",
+        "label":"Set of statements",
         "fields":[
           {
-            "label":"列出所有小结的选项。系统默认第一个选项是正确选项。",
-            "entity":"选项",
+            "label":"List of statements for the summary - the first statement is correct.",
+            "entity":"statement",
             "field":{
-              "label":"选项"
+              "label":"Statement"
             }
           },
           {
-            "label":"提示",
+            "label":"Tip",
             "fields":[
               {
-                "label":"提示文本"
+                "label":"Tip text"
               }
             ]
           }
@@ -38,71 +38,71 @@
       }
     },
     {
-      "label":"现在已答题数前面的文字。",
+      "label":"Text displayed before number of statements solved in the summary task.",
       "default":"Progress:",
-      "description":"显示在题目上面。比如：'进度：2/5'"
+      "description":"Will be displayed above the statements. Example: 'Progress: 2/5'"
     },
     {
-      "label":"回答错误后显示的文字。",
+      "label":"Text displayed before number of wrong statements selected in the summary task.",
       "default":"Wrong answers:",
-      "description":"显示在题目上面。比如：'答错数：4'"
+      "description":"Will be displayed above the statements. Example: 'Wrong answers: 4'"
     },
     {
-      "label":"小结反馈顶部",
+      "label":"Summary feedback header",
       "default":"Your result",
-      "description":"显示在小结反馈顶部。"
+      "description":"Will be displayed above the summary feedback."
     },
     {
-      "label":"小结反馈",
+      "label":"Summary feedback",
       "fields":[
         {
-          "label":"全队",
+          "label":"Everything correct",
           "fields":[
             {
-              "label":"标题",
+              "label":"Feedback title",
               "default":"PERFECT!"
             },
             {
-              "label":"详细信息",
+              "label":"Feedback message",
               "default":"You got everything correct on your first try!"
             }
           ]
         },
         {
-          "label":"70 % - 99 % 回答正确",
+          "label":"70 % - 99 % correct",
           "fields":[
             {
-              "label":"标题",
+              "label":"Feedback title",
               "default":"Great!"
             },
             {
-              "label":"详细信息",
+              "label":"Feedback message",
               "default":"You got most of the statements correct on your first try."
             }
           ]
         },
         {
-          "label":"40 % - 69 % 回答正确",
+          "label":"40 % - 69 % correct",
           "fields":[
             {
-              "label":"标题",
+              "label":"Feedback title",
               "default":"Ok"
             },
             {
-              "label":"详细信息",
+              "label":"Feedback message",
               "default":"You got some of the statements correct on your first try."
             }
           ]
         },
         {
-          "label":"0 % - 39 % 回答正确",
+          "label":"0 % - 39 % correct",
           "fields":[
             {
-              "label":"标题",
+              "label":"Feedback title",
               "default":"A few mistakes."
             },
             {
-              "label":"详细信息",
+              "label":"Feedback message",
               "default":"Have another try!"
             }
           ]
@@ -110,9 +110,9 @@
       ]
     },
     {
-      "label":"成绩",
+      "label":"Feedback summary",
       "default":"You got @score of @total statements (@percent %) correct on your first try.",
-      "description":"可以选择的条目: @score, @total, @percent 。例如：  @total 道题目中，正确率为（ @percent % ），总得分为 @score 。"
+      "description":"Available variables: @score, @total, @percent. Example: You got @score of @total statements (@percent %) correct."
     }
   ]
 }
