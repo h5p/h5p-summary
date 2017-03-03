@@ -90,29 +90,29 @@
             },
             {
               "label":"Mensagem de feedback",
-              "default":"You got some of the statements correct on your first try."
+              "default":"Você acertou alguns na sua primeira tentativa."
             }
           ]
         },
         {
-          "label":"0 % - 39 % correct",
+          "label":"0 % - 39 % correto",
           "fields":[
             {
-              "label":"Feedback title",
-              "default":"A few mistakes."
+              "label":"Título do feedback",
+              "default":"Alguns erros."
             },
             {
-              "label":"Feedback message",
-              "default":"Have another try!"
+              "label":"Mensagem de feedback",
+              "default":"Tente novamente!"
             }
           ]
         }
       ]
     },
     {
-      "label":"Feedback summary",
-      "default":"You got @score of @total statements (@percent %) correct on your first try.",
-      "description":"Available variables: @score, @total, @percent. Example: You got @score of @total statements (@percent %) correct."
+      "label":"Resumo do feedback",
+      "default":"Você conseguiu @score de @total questões (@percent %) corretas na sua primeira tentativa.",
+      "description":"Variáveis disponíveis: @score, @total, @percent. Exemplo: Você conseguiu @score de @total questões (@percent %) corretas."
     }
   ]
 }
