@@ -3,11 +3,11 @@
   "description": "Test your users with fill in the summary tasks.",
   "majorVersion": 1,
   "minorVersion": 7,
-  "patchVersion": 0,
+  "patchVersion": 1,
   "runnable": 1,
   "machineName": "H5P.Summary",
   "license": "MIT",
-  "author": "Amendor AS",
+  "author": "Joubel",
   "coreApi": {
     "majorVersion": 1,
     "minorVersion": 11
