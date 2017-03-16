@@ -44,7 +44,7 @@
     },
     {
       "label":"Weer te geven tekst voor aantal onjuist gekozen stellingen in de samenvattende taak.",
-      "default":"Wrong answers:",
+      "default":"Onjuiste antwoorden:",
       "description":"Will be displayed above the statements. Example: 'Wrong answers: 4'"
     },
     {
@@ -73,7 +73,7 @@
           "fields":[
             {
               "label":"Feedback title",
-              "default":"Great!"
+              "default":"Fantastisch!"
             },
             {
               "label":"Feedback message",
@@ -86,7 +86,7 @@
           "fields":[
             {
               "label":"Feedback title",
-              "default":"Ok"
+              "default":"OK"
             },
             {
               "label":"Feedback message",
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "label":"Feedback summary",
+      "label":"Feedback samenvatting",
       "default":"You got @score of @total statements (@percent %) correct on your first try.",
       "description":"Available variables: @score, @total, @percent. Example: You got @score of @total statements (@percent %) correct."
     }
