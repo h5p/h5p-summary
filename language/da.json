@@ -56,27 +56,27 @@
       "label":"まとめフィードバック",
       "fields":[
         {
-          "label":"Everything correct",
+          "label":"すべて正解",
           "fields":[
             {
-              "label":"Feedback title",
-              "default":"PERFECT!"
+              "label":"フィードバックタイトル",
+              "default":"パーフェクト！"
             },
             {
-              "label":"Feedback message",
-              "default":"You got everything correct on your first try!"
+              "label":"フィードバックメッセージ",
+              "default":"最初の挑戦で全問正解を獲得！"
             }
           ]
         },
         {
-          "label":"70 % - 99 % correct",
+          "label":"70 % - 99 %正解",
           "fields":[
             {
-              "label":"Feedback title",
-              "default":"Great!"
+              "label":"フィードバックタイトル",
+              "default":"グレート！"
             },
             {
-              "label":"Feedback message",
+              "label":"フィードバックメッセージ",
               "default":"You got most of the statements correct on your first try."
             }
           ]
@@ -98,21 +98,21 @@
           "label":"0 % - 39 % 正解",
           "fields":[
             {
-              "label":"Feedback title",
-              "default":"A few mistakes."
+              "label":"フィードバックタイトル",
+              "default":"少しまちがい。"
             },
             {
-              "label":"Feedback message",
-              "default":"Have another try!"
+              "label":"フィードバックメッセージ",
+              "default":"もう一度トライ！"
             }
           ]
         }
       ]
     },
     {
-      "label":"Feedback summary",
-      "default":"You got @score of @total statements (@percent %) correct on your first try.",
-      "description":"Available variables: @score, @total, @percent. Example: You got @score of @total statements (@percent %) correct."
+      "label":"フィードバックサマリ",
+      "default":"最初の挑戦で @total 文中 @score (@percent %) の正解を獲得。",
+      "description":"利用可能な変数: @score, @total, @percent. 例: @total 文中 @score (@percent %) の正解を獲得。"
     }
   ]
 }
