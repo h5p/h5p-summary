@@ -1,17 +1,17 @@
 {
   "semantics":[
     {
-      "label":"イントロダクションテキスト",
-      "default":"正しい文を選択してください。",
-      "description":"サマリタスクの上に表示されます。"
+      "label":"Introduction text",
+      "default":"Choose the correct statement.",
+      "description":"Will be displayed above the summary task."
     },
     {
       "widgets":[
         {
-          "label":"デフォルト"
+          "label":"Default"
         },
         {
-          "label":"本文"
+          "label":"Textual"
         }
       ],
       "label":"サマリ",
@@ -40,17 +40,17 @@
     {
       "label":"サマリタスクで解かれた文数の前に表示されるテキスト。",
       "default":"進度:",
-      "description":"Will be displayed above the statements. Example: 'Progress: 2/5'"
+      "description":"文の上に表示されます。例: '進度: 2/5'"
     },
     {
-      "label":"Text displayed before number of wrong statements selected in the summary task.",
+      "label":"サマリタスクで選ばれた、まちがい文数の前に表示されるテキスト。",
       "default":"まちがった答え:",
-      "description":"Will be displayed above the statements. Example: 'Wrong answers: 4'"
+      "description":"文の上に表示されます。例: 'まちがえた解答: 4'"
     },
     {
-      "label":"Summary feedback header",
+      "label":"サマリーフィードバックの見出し",
       "default":"あなたの結果",
-      "description":"Will be displayed above the summary feedback."
+      "description":"サマリフィードバックの上に表示されます。"
     },
     {
       "label":"まとめフィードバック",
