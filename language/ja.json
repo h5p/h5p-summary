@@ -1,8 +1,8 @@
 {
   "semantics":[
     {
-      "label":"Introduction text",
-      "default":"Choose the correct statement.",
+      "label":"イントロダクションテキスト",
+      "default":"正しい文を選んで下さい。",
       "description":"サマリタスクの上に表示されます。"
     },
     {
@@ -14,23 +14,23 @@
           "label":"本文"
         }
       ],
-      "label":"Summary",
-      "entity":"statements",
+      "label":"サマリ",
+      "entity":"文",
       "field":{
-        "label":"Set of statements",
+        "label":"文の集まり",
         "fields":[
           {
-            "label":"List of statements for the summary - the first statement is correct.",
-            "entity":"statement",
+            "label":"サマリ用の文のリスト - 最初の文は正解。",
+            "entity":"文",
             "field":{
-              "label":"Statement"
+              "label":"文"
             }
           },
           {
-            "label":"Tip",
+            "label":"ヒント",
             "fields":[
               {
-                "label":"Tip text"
+                "label":"ヒントのテキスト"
               }
             ]
           }
@@ -38,81 +38,81 @@
       }
     },
     {
-      "label":"Text displayed before number of statements solved in the summary task.",
-      "default":"Progress:",
-      "description":"Will be displayed above the statements. Example: 'Progress: 2/5'"
+      "label":"サマリタスクで解かれた文数の前に表示されるテキスト。",
+      "default":"進度:",
+      "description":"文の上に表示されます。例: '進度: 2/5'"
     },
     {
-      "label":"Text displayed before number of wrong statements selected in the summary task.",
-      "default":"Wrong answers:",
-      "description":"Will be displayed above the statements. Example: 'Wrong answers: 4'"
+      "label":"サマリタスクで選ばれた、まちがい文数の前に表示されるテキスト。",
+      "default":"まちがった答え:",
+      "description":"文の上に表示されます。例: 'まちがえた解答: 4'"
     },
     {
-      "label":"Summary feedback header",
-      "default":"Your result",
-      "description":"Will be displayed above the summary feedback."
+      "label":"サマリーフィードバックの見出し",
+      "default":"あなたの結果",
+      "description":"サマリフィードバックの上に表示されます。"
     },
     {
-      "label":"Summary feedback",
+      "label":"まとめフィードバック",
       "fields":[
         {
-          "label":"Everything correct",
+          "label":"すべて正解",
           "fields":[
             {
-              "label":"Feedback title",
-              "default":"PERFECT!"
+              "label":"フィードバックタイトル",
+              "default":"パーフェクト！"
             },
             {
-              "label":"Feedback message",
-              "default":"You got everything correct on your first try!"
+              "label":"フィードバックメッセージ",
+              "default":"最初のトライで全問正解を獲得！"
             }
           ]
         },
         {
-          "label":"70 % - 99 % correct",
+          "label":"70 % - 99 %正解",
           "fields":[
             {
-              "label":"Feedback title",
-              "default":"Great!"
+              "label":"フィードバックタイトル",
+              "default":"グレート！"
             },
             {
-              "label":"Feedback message",
-              "default":"You got most of the statements correct on your first try."
+              "label":"フィードバックメッセージ",
+              "default":"最初のトライで、 ほとんどの文の正解を獲得。"
             }
           ]
         },
         {
-          "label":"40 % - 69 % correct",
+          "label":"40 % - 69 %正解",
           "fields":[
             {
-              "label":"Feedback title",
+              "label":"フィードバックタイトル",
               "default":"Ok"
             },
             {
-              "label":"Feedback message",
-              "default":"You got some of the statements correct on your first try."
+              "label":"フィードバックメッセージ",
+              "default":"最初のトライで、 いくつかの文の正解を獲得。"
             }
           ]
         },
         {
-          "label":"0 % - 39 % correct",
+          "label":"0 % - 39 % 正解",
           "fields":[
             {
-              "label":"Feedback title",
-              "default":"A few mistakes."
+              "label":"フィードバックタイトル",
+              "default":"少しまちがい。"
             },
             {
-              "label":"Feedback message",
-              "default":"Have another try!"
+              "label":"フィードバックメッセージ",
+              "default":"もう一度トライ！"
             }
           ]
         }
       ]
     },
     {
-      "label":"Feedback summary",
-      "default":"You got @score of @total statements (@percent %) correct on your first try.",
-      "description":"Available variables: @score, @total, @percent. Example: You got @score of @total statements (@percent %) correct."
+      "label":"フィードバックサマリ",
+      "default":"最初のトライで @total 文中 @score (@percent %) の正解を獲得。",
+      "description":"利用可能な変数: @score, @total, @percent. 例: @total 文中 @score (@percent %) の正解を獲得。"
     }
   ]
 }
