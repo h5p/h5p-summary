@@ -1,23 +1,23 @@
 {
   "semantics":[
     {
-      "label":"Introduction text",
-      "default":"Choose the correct statement.",
+      "label":"イントロダクションテキスト",
+      "default":"正しい文を選択してください。",
       "description":"Will be displayed above the summary task."
     },
     {
       "widgets":[
         {
-          "label":"Default"
+          "label":"デフォルト"
         },
         {
           "label":"Textual"
         }
       ],
-      "label":"Summary",
-      "entity":"statements",
+      "label":"まとめ",
+      "entity":"文",
       "field":{
-        "label":"Set of statements",
+        "label":"文の集まり",
         "fields":[
           {
             "label":"List of statements for the summary - the first statement is correct.",
