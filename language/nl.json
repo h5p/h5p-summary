@@ -49,14 +49,14 @@
     },
     {
       "label":"Summary feedback header",
-      "default":"Your result",
+      "default":"Jouw resultaat",
       "description":"Will be displayed above the summary feedback."
     },
     {
       "label":"Summary feedback",
       "fields":[
         {
-          "label":"Everything correct",
+          "label":"Alles correct",
           "fields":[
             {
               "label":"Feedback title",
@@ -89,7 +89,7 @@
               "default":"OK"
             },
             {
-              "label":"Feedback message",
+              "label":"Feedbackboodschap",
               "default":"You got some of the statements correct on your first try."
             }
           ]
