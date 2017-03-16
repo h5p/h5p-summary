@@ -3,15 +3,15 @@
     {
       "label":"Introduction text",
       "default":"Choose the correct statement.",
-      "description":"Will be displayed above the summary task."
+      "description":"サマリタスクの上に表示されます。"
     },
     {
       "widgets":[
         {
-          "label":"Default"
+          "label":"デフォルト"
         },
         {
-          "label":"Textual"
+          "label":"本文"
         }
       ],
       "label":"Summary",
