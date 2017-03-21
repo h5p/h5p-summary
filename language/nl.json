@@ -3,7 +3,7 @@
     {
       "label":"Inleidende tekst",
       "default":"Kies de correcte stelling.",
-      "description":"Dit zal worden getoond boven de samenvattende taak."
+      "description":"Zal worden weergegeven boven de samenvattende taak."
     },
     {
       "widgets":[
@@ -17,7 +17,7 @@
       "label":"Samenvatting",
       "entity":"stellingen",
       "field":{
-        "label":"Set stellingen",
+        "label":"Lijst met stellingen",
         "fields":[
           {
             "label":"Lijst van stellingen voor de samenvatting - de eerste stelling is correct.",
@@ -40,7 +40,7 @@
     {
       "label":"Weer te geven tekst voor aantal opgeloste stellingen in de samenvattende taak.",
       "default":"Voortgang:",
-      "description":"Zal boven de stellingen worden getoond. Voorbeeld: 'Voortgang: 2/5'"
+      "description":"Zal boven de stellingen worden weergegeven. Bijvoorbeeld: 'Voortgang: 2/5'"
     },
     {
       "label":"Weer te geven tekst voor aantal onjuist gekozen stellingen in de samenvattende taak.",
@@ -56,7 +56,7 @@
       "label":"Summary feedback",
       "fields":[
         {
-          "label":"Alles correct",
+          "label":"Alles juist",
           "fields":[
             {
               "label":"Feedback titel",
@@ -77,7 +77,7 @@
             },
             {
               "label":"Feedback bericht",
-              "default":"Je hebt de meeste beweringen juist bij de eerste poging."
+              "default":"Je hebt de meeste stellingen juist bij de eerste poging."
             }
           ]
         },
@@ -89,7 +89,7 @@
               "default":"OK"
             },
             {
-              "label":"Feedbackboodschap",
+              "label":"Feedback bericht",
               "default":"Je hebt enkele stellingen juist bij de eerste poging."
             }
           ]
