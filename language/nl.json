@@ -45,7 +45,7 @@
     {
       "label":"Weer te geven tekst voor aantal onjuist gekozen stellingen in de samenvattende taak.",
       "default":"Onjuiste antwoorden:",
-      "description":"Will be displayed above the statements. Example: 'Wrong answers: 4'"
+      "description":"Zal worden weergegeven boven de beweringen. Bijvoorbeeld:  'Onjuiste antwoorden: 4'"
     },
     {
       "label":"Summary feedback header",
@@ -59,51 +59,51 @@
           "label":"Alles correct",
           "fields":[
             {
-              "label":"Feedback title",
+              "label":"Feedback titel",
               "default":"PERFECT!"
             },
             {
-              "label":"Feedback message",
-              "default":"You got everything correct on your first try!"
+              "label":"Feedback bericht",
+              "default":"Je hebt alles juist bij de eerste poging!"
             }
           ]
         },
         {
-          "label":"70 % - 99 % correct",
+          "label":"70% - 99% juist",
           "fields":[
             {
-              "label":"Feedback title",
+              "label":"Feedback titel",
               "default":"Fantastisch!"
             },
             {
-              "label":"Feedback message",
-              "default":"You got most of the statements correct on your first try."
+              "label":"Feedback bericht",
+              "default":"Je hebt de meeste beweringen juist bij de eerste poging."
             }
           ]
         },
         {
-          "label":"40 % - 69 % correct",
+          "label":"40% - 69% juist",
           "fields":[
             {
-              "label":"Feedback title",
+              "label":"Feedback titel",
               "default":"OK"
             },
             {
               "label":"Feedbackboodschap",
-              "default":"You got some of the statements correct on your first try."
+              "default":"Je hebt enkele stellingen juist bij de eerste poging."
             }
           ]
         },
         {
-          "label":"0 % - 39 % correct",
+          "label":"0% - 39% juist",
           "fields":[
             {
-              "label":"Feedback title",
-              "default":"A few mistakes."
+              "label":"Feedback titel",
+              "default":"Een paar fouten."
             },
             {
-              "label":"Feedback message",
-              "default":"Have another try!"
+              "label":"Feedback bericht",
+              "default":"Probeer het nog een keer!"
             }
           ]
         }
@@ -111,8 +111,8 @@
     },
     {
       "label":"Feedback samenvatting",
-      "default":"You got @score of @total statements (@percent %) correct on your first try.",
-      "description":"Available variables: @score, @total, @percent. Example: You got @score of @total statements (@percent %) correct."
+      "default":"Je hebt @score van @total stellingen (@percent %) juist bij je eerste poging.",
+      "description":"Beschikbaar variabelen: @score, @total, @percent. Bijvoorbeeld: Je hebt @score van @total stellingen (@percent %) juist."
     }
   ]
 }
