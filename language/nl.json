@@ -2,7 +2,7 @@
   "semantics":[
     {
       "label":"Inleidende tekst",
-      "default":"Kies de correcte stelling.",
+      "default":"Kies de juiste stelling.",
       "description":"Zal worden weergegeven boven de samenvattende taak."
     },
     {
