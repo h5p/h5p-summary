@@ -48,12 +48,12 @@
       "description":"Zal worden weergegeven boven de beweringen. Bijvoorbeeld:  'Onjuiste antwoorden: 4'"
     },
     {
-      "label":"Summary feedback header",
+      "label":"Kop samenvatting feedback",
       "default":"Jouw resultaat",
-      "description":"Will be displayed above the summary feedback."
+      "description":"Wordt boven de samenvatting feedback getoond."
     },
     {
-      "label":"Summary feedback",
+      "label":"Samenvatting feedback",
       "fields":[
         {
           "label":"Alles juist",
