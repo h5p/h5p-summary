@@ -30,7 +30,7 @@
             "label":"Tip",
             "fields":[
               {
-                "label":"Texto da dica"
+                "label":"Tekst voor tip"
               }
             ]
           }
