@@ -30,7 +30,7 @@
             "label":"Tip",
             "fields":[
               {
-                "label":"Tip text"
+                "label":"Tekst voor tip"
               }
             ]
           }
