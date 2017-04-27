@@ -1,0 +1,118 @@
+{
+  "semantics":[
+    {
+      "label":"Inleidende tekst",
+      "default":"Kies de juiste stelling.",
+      "description":"Zal worden weergegeven boven de samenvattende taak."
+    },
+    {
+      "widgets":[
+        {
+          "label":"Standaard"
+        },
+        {
+          "label":"Tekstueel"
+        }
+      ],
+      "label":"Samenvatting",
+      "entity":"stellingen",
+      "field":{
+        "label":"Lijst met stellingen",
+        "fields":[
+          {
+            "label":"Lijst van stellingen voor de samenvatting - de eerste stelling is correct.",
+            "entity":"stelling",
+            "field":{
+              "label":"Stelling"
+            }
+          },
+          {
+            "label":"Tip",
+            "fields":[
+              {
+                "label":"Tekst bij tip"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label":"Weer te geven tekst voor aantal opgeloste stellingen in de samenvattende taak.",
+      "default":"Voortgang:",
+      "description":"Zal boven de stellingen worden weergegeven. Bijvoorbeeld: 'Voortgang: 2/5'"
+    },
+    {
+      "label":"Weer te geven tekst voor aantal onjuist gekozen stellingen in de samenvattende taak.",
+      "default":"Onjuiste antwoorden:",
+      "description":"Zal worden weergegeven boven de beweringen. Bijvoorbeeld:  'Onjuiste antwoorden: 4'"
+    },
+    {
+      "label":"Kop samenvatting feedback",
+      "default":"Jouw resultaat",
+      "description":"Wordt boven de samenvatting feedback getoond."
+    },
+    {
+      "label":"Samenvatting feedback",
+      "fields":[
+        {
+          "label":"Alles juist",
+          "fields":[
+            {
+              "label":"Feedback titel",
+              "default":"PERFECT!"
+            },
+            {
+              "label":"Feedback bericht",
+              "default":"Je hebt alles juist bij de eerste poging!"
+            }
+          ]
+        },
+        {
+          "label":"70% - 99% juist",
+          "fields":[
+            {
+              "label":"Feedback titel",
+              "default":"Fantastisch!"
+            },
+            {
+              "label":"Feedback bericht",
+              "default":"Je hebt de meeste stellingen juist bij de eerste poging."
+            }
+          ]
+        },
+        {
+          "label":"40% - 69% juist",
+          "fields":[
+            {
+              "label":"Feedback titel",
+              "default":"OK"
+            },
+            {
+              "label":"Feedback bericht",
+              "default":"Je hebt enkele stellingen juist bij de eerste poging."
+            }
+          ]
+        },
+        {
+          "label":"0% - 39% juist",
+          "fields":[
+            {
+              "label":"Feedback titel",
+              "default":"Een paar fouten."
+            },
+            {
+              "label":"Feedback bericht",
+              "default":"Probeer het nog een keer!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label":"Feedback samenvatting",
+      "default":"Je hebt @score van @total stellingen (@percent %) juist bij je eerste poging.",
+      "description":"Beschikbaar variabelen: @score, @total, @percent. Bijvoorbeeld: Je hebt @score van @total stellingen (@percent %) juist."
+    }
+  ]
+}
