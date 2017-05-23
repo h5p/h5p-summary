@@ -1,6 +1,7 @@
 H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
   function Summary(options, contentId, contentData) {
+    console.log("reading this file.....");
     if (!(this instanceof H5P.Summary)) {
       return new H5P.Summary(options, contentId);
     }
@@ -206,10 +207,12 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     var $summary_container = $('<div class="summary-container"></div>');
     var $summary_list = $('<ul></ul>');
     var $evaluation = $('<div class="summary-evaluation"></div>');
-    var $evaluation_content = $('<div class="summary-evaluation-content">' + that.options.intro + '</div>');
-    var $score = $('<div class="summary-score"></div>');
+    var questStr = String(that.options.intro);
+    var newQuestStr = questStr.replace("<p>", "<p id='questionDesc'>");
+    var $evaluation_content = $('<div class="summary-evaluation-content">' + newQuestStr + '</div>');
+    var $score = $('<div aria-live="polite" aria-atomic="true" class="summary-score"></div>');
     var $options = $('<div class="summary-options"></div>');
-    var $progress = $('<div class="summary-progress"></div>');
+    var $progress = $('<div aria-live="polite" aria-atomic="true" class="summary-progress"></div>');
     var options_padding = parseInt($options.css('paddingLeft'));
 
     if (this.score) {
@@ -223,6 +226,8 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     this.$myDom.append($options);
     $evaluation.append($evaluation_content);
     $evaluation.append($evaluation);
+
+
     $evaluation.append($progress);
     $evaluation.append($score);
 
@@ -251,7 +256,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         var summary = $summary_list.position();
         var $answer = $('<li>' + $el.html() + '</li>');
 
+        var textForScreenReader = "<span class='h5p-hidden-read'>That's correct and </span>";
         $progress.html(that.options.solvedLabel + ' '  + (panelId + 1) + '/' + that.summaries.length);
+        $progress.prepend(textForScreenReader);
 
         // Insert correct claim into summary list
         $summary_list.append($answer);
@@ -340,7 +347,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         $el.removeClass('summary-claim-unclicked');
 
         $evaluation.children('.summary-score').css('display', 'block');
+        var textForScreenReader = "<span class='h5p-hidden-read'>That's incorrect and </span>";
         $score.html(that.options.scoreLabel + ' ' + (++that.score));
+        $score.prepend(textForScreenReader);
         that.errorCounts[panelId]++;
         if (that.answers[panelId] === undefined) {
           that.answers[panelId] = [];
@@ -386,7 +395,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         // Cannot use continue; due to id/animation system
       }
 
-      var $page = $('<ul class="h5p-panel" data-panel="' + i + '"></ul>');
+      var $page = $('<ul aria-labelledby="questionDesc" role="radiogroup" class="h5p-panel" data-panel="' + i + '"></ul>');
 
 
       // Create initial tip for first summary-list if tip is available
@@ -409,7 +418,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         }
 
         var $node = $('' +
-          '<li role="button" tabindex="0" data-bit="' + element.summaries[j].id + '" class="' + summaryLineClass + '">' +
+          '<li role="radio" tabindex="0" data-bit="' + element.summaries[j].id + '" class="' + summaryLineClass + '">' +
             element.summaries[j].text +
           '</li>');
 
@@ -424,7 +433,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         }).keypress(function (e) {
           var keyPressed = e.which;
           // 32 - space
-          if (keyPressed === 32) {
+          if (keyPressed === 32 || keyPressed === 13) {
             selectedAlt($(this), true);
             e.preventDefault();
           }

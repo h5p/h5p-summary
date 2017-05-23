@@ -202,3 +202,12 @@
 .summary-evaluation-content .joubel-icon-tip-normal {
   line-height: 0.75em;
 }
+
+.h5p-summary .h5p-hidden-read {
+  width: 1px;
+  height: 1px;
+  top: -1px;
+  position: absolute;
+  text-indent: 1px;
+  overflow: hidden;
+}
