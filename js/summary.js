@@ -1,7 +1,7 @@
 H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
   function Summary(options, contentId, contentData) {
-    console.log("reading this file.....");
+    console.log("reading this file.....@");
     if (!(this instanceof H5P.Summary)) {
       return new H5P.Summary(options, contentId);
     }
@@ -13,6 +13,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     this.answers = [];
     this.answer = [];
     this.errorCounts = [];
+
+    // variable to capture currently focused option.
+    var currentFocusedOption;
 
     /**
      * The key is panel index, returns an array of the answer indexes the user tried.
@@ -204,15 +207,20 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     }
 
     // Create content panels
+    var questNum = that.progress;
     var $summary_container = $('<div class="summary-container"></div>');
     var $summary_list = $('<ul></ul>');
     var $evaluation = $('<div class="summary-evaluation"></div>');
     var questStr = String(that.options.intro);
-    var newQuestStr = questStr.replace("<p>", "<p id='questionDesc'>");
+    var newQuestStr = questStr.replace("<p>", "<p id='questionDesc_"+questNum+"'>");
     var $evaluation_content = $('<div class="summary-evaluation-content">' + newQuestStr + '</div>');
+    // aria-live added for reader to read if any changes happens to div.
     var $score = $('<div aria-live="polite" aria-atomic="true" class="summary-score"></div>');
     var $options = $('<div class="summary-options"></div>');
+    // aria-live added for reader to read if any changes happens to div.
     var $progress = $('<div aria-live="polite" aria-atomic="true" class="summary-progress"></div>');
+    // aria-live added for reader to read if any changes happens to div.
+    var $finalSummary = $('<div aria-live="polite" aria-atomic="true" class="final-summary"></div>');
     var options_padding = parseInt($options.css('paddingLeft'));
 
     if (this.score) {
@@ -230,6 +238,8 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
     $evaluation.append($progress);
     $evaluation.append($score);
+
+    $evaluation.append($finalSummary);
 
     /**
      * Handle selected alternative
@@ -256,14 +266,25 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         var summary = $summary_list.position();
         var $answer = $('<li>' + $el.html() + '</li>');
 
+        // hidden text added for reader when user selects right answer.
         var textForScreenReader = "<span class='h5p-hidden-read'>That's correct and </span>";
         $progress.html(that.options.solvedLabel + ' '  + (panelId + 1) + '/' + that.summaries.length);
         $progress.prepend(textForScreenReader);
+
+        // remove hidden element after reader reads out Progress status.
+        setTimeout(function () {
+          
+            if($('.summary-progress span.h5p-hidden-read')) {
+              $('.summary-progress span.h5p-hidden-read').remove();
+            }
+
+            }, 2000);
 
         // Insert correct claim into summary list
         $summary_list.append($answer);
         $summary_container.addClass('has-results');
         that.adjustTargetHeight($summary_container, $summary_list, $answer);
+
 
         // Move into position over clicked element
         $answer.css({display: 'block', width: $el.css('width'), height: $el.css('height')});
@@ -345,9 +366,11 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         $el.off('click');
         $el.addClass('summary-failed');
         $el.removeClass('summary-claim-unclicked');
-
+        $el.attr("tabindex","0");
+        $el.attr("aria-checked","true");
         $evaluation.children('.summary-score').css('display', 'block');
-        var textForScreenReader = "<span class='h5p-hidden-read'>That's incorrect and </span>";
+        // hidden text added for reader when user selects wrong answer.
+        var textForScreenReader = "<span class='h5p-hidden-read'>That's incorrect. Please try again and </span>";
         $score.html(that.options.scoreLabel + ' ' + (++that.score));
         $score.prepend(textForScreenReader);
         that.errorCounts[panelId]++;
@@ -355,10 +378,18 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
           that.answers[panelId] = [];
         }
         that.answers[panelId].push(nodeId);
+
+        // remove hidden element after reader reads out.
+        setTimeout(function () {
+            if($('.summary-score span.h5p-hidden-read')) {
+              $('.summary-score span.h5p-hidden-read').remove();
+            }
+            }, 2000);
+
       }
 
       that.trigger('resize');
-      $el.attr('tabindex', '-1');
+      //$el.attr('tabindex', '-1');
       that.triggerXAPI('interacted');
 
       // Trigger answered xAPI event on first try for the current
@@ -395,7 +426,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         // Cannot use continue; due to id/animation system
       }
 
-      var $page = $('<ul aria-labelledby="questionDesc" role="radiogroup" class="h5p-panel" data-panel="' + i + '"></ul>');
+      var $page = $('<ul aria-labelledby="questionDesc_'+that.progress+'" role="radiogroup" class="h5p-panel" data-panel="' + i + '"></ul>');
 
 
       // Create initial tip for first summary-list if tip is available
@@ -417,10 +448,22 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
           }
         }
 
-        var $node = $('' +
-          '<li role="radio" tabindex="0" data-bit="' + element.summaries[j].id + '" class="' + summaryLineClass + '">' +
-            element.summaries[j].text +
-          '</li>');
+        // added tabindex=0 to the first option and -1 for rest of the options to avoid tab key.
+        if(j==0)
+        {
+           var $node = $('' +
+       '<li role="radio" aria-checked="false" onfocus="setFocusIndex('+j+')" tabindex="0" data-bit="' + element.summaries[j].id + '" class="' + summaryLineClass + '">' +
+        element.summaries[j].text +
+        '</li>');
+        }
+        else
+        {
+          var $node = $('' +
+       '<li role="radio" aria-checked="false" onfocus="setFocusIndex('+j+')" tabindex="-1" data-bit="' + element.summaries[j].id + '" class="' + summaryLineClass + '">' +
+        element.summaries[j].text +
+        '</li>');
+        }
+      
 
         // Do not add click event for failed nodes
         if (summaryLineClass === 'summary-failed') {
@@ -430,13 +473,30 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
         $node.click(function() {
           selectedAlt($(this));
-        }).keypress(function (e) {
-          var keyPressed = e.which;
-          // 32 - space
-          if (keyPressed === 32 || keyPressed === 13) {
-            selectedAlt($(this), true);
-            e.preventDefault();
+        }).keydown(function (e) {
+          //console.log("keydown event fired");
+          switch (e.which) {
+            case 13: // Enter
+            case 32: // Space
+              selectedAlt($(this), true);
+              e.preventDefault();
+              break;
+
+            case 37: // Left Arrow
+            case 38: // Up Arrow
+              // Go to previous Option
+              that.gotoPreviousOption(event,that);
+              event.preventDefault();
+              break;
+
+            case 39: // Right Arrow
+            case 40: // Down Arrow
+              // Go to next Option
+              that.gotoNextOption(event,that);
+              event.preventDefault();
+              break;
           }
+
         });
 
         $page.append($node);
@@ -461,6 +521,52 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
     return this.$myDom;
   };
+
+
+  setFocusIndex = function (_index,that) {
+    currentFocusedOption = _index;
+   //console.log(currentFocusedOption);
+  }
+
+  Summary.prototype.gotoPreviousOption = function (eve,that) {
+
+    var totOptions = that.summaries[that.progress].summary.length;
+    var prevRadioEle = $("ul[data-panel="+that.progress+"] li[role='radio']");
+
+    prevRadioEle.attr("tabindex","-1");
+    currentFocusedOption--;
+    console.log('currentFocusedOption '+currentFocusedOption+'  totOptions '+totOptions);
+
+    if(currentFocusedOption<0) {
+        var num = totOptions-1;
+        prevRadioEle.eq(num).focus();
+        prevRadioEle.eq(num).attr("tabindex","0");
+      }
+      else {
+        prevRadioEle.eq(currentFocusedOption).attr("tabindex","0");
+        prevRadioEle.eq(currentFocusedOption).focus();
+      }
+
+    };
+
+    Summary.prototype.gotoNextOption = function (eve,that) {
+      var totOptions = that.summaries[that.progress].summary.length;
+      var nextRadioEle = $("ul[data-panel="+that.progress+"] li[role='radio']");
+
+       nextRadioEle.attr("tabindex","-1");
+
+        currentFocusedOption++;
+        console.log('currentFocusedOption '+currentFocusedOption+'  totOptions '+totOptions);
+
+      if(currentFocusedOption==totOptions) {
+        nextRadioEle.eq(0).focus();
+        nextRadioEle.eq(0).attr("tabindex","0");
+      }
+      else {
+        nextRadioEle.eq(currentFocusedOption).attr("tabindex","0");
+        nextRadioEle.eq(currentFocusedOption).focus();
+      }
+    };
 
   /**
    * Calculate final score and display feedback.
@@ -501,8 +607,24 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
     // Show final evaluation
     var summary = that.options.summary.replace('@score', that.summaries.length - error_count).replace('@total', that.summaries.length).replace('@percent', Math.round(percent));
-    this.setFeedback(summary, that.summaries.length - error_count, that.summaries.length);
-    that.trigger('resize');
+    
+    // remove hidden div on summary page that generates from question.js. 
+    // Below code is added to remove reader's conflict between Progress status and final summary.
+    $(".h5p-question-read .h5p-hidden-read").remove();
+    var textForScreenReader = "<span class='h5p-hidden-read'>"+summary+"</span>";
+    setTimeout(function () {
+      $(".final-summary").append(textForScreenReader);
+    }, 4700);
+
+    setTimeout(function () {
+      $(".final-summary").remove();
+    }, 5000);
+    
+    // added till here
+
+    //summary-progress
+   this.setFeedback(summary, that.summaries.length - error_count, that.summaries.length);
+      that.trigger('resize');
   };
 
   /**

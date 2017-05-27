@@ -100,7 +100,8 @@
   color: #255c41;
   float: right;
 }
-.h5p-summary .h5p-panel:not(.panel-disabled) .summary-claim-unclicked:hover {
+.h5p-summary .h5p-panel:not(.panel-disabled) .summary-claim-unclicked:hover,
+.h5p-summary .h5p-panel:not(.panel-disabled) .summary-claim-unclicked:focus {
   cursor: pointer;
   filter: none;
   border: 0.1em solid #edd6e9;
