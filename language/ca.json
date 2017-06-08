@@ -3,21 +3,21 @@
     {
       "label":"Text d'introducció",
       "default":"Selecciona la frase correcta.",
-      "description":"Will be displayed above the summary task."
+      "description":"Es mostrarà sobre el resum de la tasca."
     },
     {
       "widgets":[
         {
-          "label":"Default"
+          "label":"Per defecte"
         },
         {
           "label":"Textual"
         }
       ],
-      "label":"Summary",
-      "entity":"statements",
+      "label":"Resum",
+      "entity":"enunciats",
       "field":{
-        "label":"Set of statements",
+        "label":"Conjunt d'enunciats",
         "fields":[
           {
             "label":"List of statements for the summary - the first statement is correct.",
