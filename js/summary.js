@@ -603,7 +603,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     $(".h5p-question-read .h5p-hidden-read").remove();
     $(".summary-evaluation-content").removeAttr("tabindex");
     var readerEle = $("#readerLiveContainer-" + that.contentId);
-    readerEle.text(". Your result: " + summary);
+    readerEle.append(". Your result: " + summary);
     setTimeout(function () {
       readerEle.text('');
     }, 1);
