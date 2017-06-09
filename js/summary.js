@@ -247,6 +247,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       var nodeId = Number($el.attr('data-bit'));
       var panelId = Number($el.parent().data('panel'));
       var readerEle = $("#readerLiveContainer-" + that.contentId);
+      var isRadioClicked = $el.attr('aria-checked');
+      if(isRadioClicked == 'true') return;
+
       if (that.errorCounts[panelId] === undefined) {
         that.errorCounts[panelId] = 0;
       }
@@ -263,6 +266,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         var $answer = $('<li>' + $el.html() + '</li>');
 
         $progress.html(that.options.solvedLabel + ' '  + (panelId + 1) + '/' + that.summaries.length);
+        $el.attr("aria-checked", "true");
 
         // replacing "/" with "of" for readspeaker and adding it inside aria-live container
         var progressString = $progress.html().replace("/", " of ");
@@ -377,7 +381,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       }
 
       that.trigger('resize');
-      $el.attr('tabindex', '-1');
+      //$el.attr('tabindex', '-1');
       that.triggerXAPI('interacted');
 
       // Trigger answered xAPI event on first try for the current
