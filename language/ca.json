@@ -21,16 +21,16 @@
         "fields":[
           {
             "label":"Llistat de frases pel resum - la primera frase és correcta.",
-            "entity":"statement",
+            "entity":"frase",
             "field":{
-              "label":"Statement"
+              "label":"Frase"
             }
           },
           {
-            "label":"Tip",
+            "label":"Pista",
             "fields":[
               {
-                "label":"Tip text"
+                "label":"Text de la pista"
               }
             ]
           }
