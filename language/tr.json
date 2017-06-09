@@ -15,15 +15,15 @@
         }
       ],
       "label":"Özet",
-      "entity":"cümleler",
+      "entity":"ifadeler",
       "field":{
-        "label":"Cümleler grubu",
+        "label":"İfadeler grubu",
         "fields":[
           {
-            "label":"Özet için cümleler listesi - birinci cümle doğru.",
+            "label":"Özet için ifadeler listesi - birinci ifade doğru.",
             "entity":"cümle",
             "field":{
-              "label":"Cümle"
+              "label":"İfade"
             }
           },
           {
@@ -38,46 +38,46 @@
       }
     },
     {
-      "label":"Text displayed before number of statements solved in the summary task.",
-      "default":"Progress:",
-      "description":"Will be displayed above the statements. Example: 'Progress: 2/5'"
+      "label":"Özet aktivitesinde çözülen cümle sayısından önce görüntülenen metin.",
+      "default":"İlerleme:",
+      "description":"İfadeler üzerinde gösterilecek. Örneğin: 'İlerleme: 2/5'"
     },
     {
-      "label":"Text displayed before number of wrong statements selected in the summary task.",
-      "default":"Wrong answers:",
-      "description":"Will be displayed above the statements. Example: 'Wrong answers: 4'"
+      "label":"Özet aktivitesinde seçilen yanlış cümle sayısından önce görüntülenen metin.",
+      "default":"Yanlış cevaplar:",
+      "description":"İfadeler üzerinde gösterilecek. Örneğin: 'Yanlış cevaplar: 4'"
     },
     {
-      "label":"Summary feedback header",
-      "default":"Your result",
-      "description":"Will be displayed above the summary feedback."
+      "label":"Özet geribildirim başlığı",
+      "default":"Sonuçlarınız",
+      "description":"Özet geribildiriminin üzerinde görüntülenecek metin."
     },
     {
-      "label":"Summary feedback",
+      "label":"Özet geribildirim",
       "fields":[
         {
-          "label":"Everything correct",
+          "label":"Her şey doğru",
           "fields":[
             {
-              "label":"Feedback title",
-              "default":"PERFECT!"
+              "label":"Geribildirim başlığı",
+              "default":"MÜKEMMEL!"
             },
             {
-              "label":"Feedback message",
-              "default":"You got everything correct on your first try!"
+              "label":"Geribildirim iletisi",
+              "default":"İlk denemenizde her şeyi doğru yaptınız!"
             }
           ]
         },
         {
-          "label":"70 % - 99 % correct",
+          "label":"70 % - 99 % doğru",
           "fields":[
             {
-              "label":"Feedback title",
-              "default":"Great!"
+              "label":"Geribildirim başlığı",
+              "default":"Harika!"
             },
             {
-              "label":"Feedback message",
-              "default":"You got most of the statements correct on your first try."
+              "label":"Geribildirim iletisi",
+              "default":"İlk denemenizde bir çok ifadeyi doğru yaptınız."
             }
           ]
         },
