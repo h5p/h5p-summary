@@ -20,7 +20,7 @@
         "label":"Conjunt d'enunciats",
         "fields":[
           {
-            "label":"List of statements for the summary - the first statement is correct.",
+            "label":"Llistat de frases pel resum - la primera frase és correcta.",
             "entity":"statement",
             "field":{
               "label":"Statement"
