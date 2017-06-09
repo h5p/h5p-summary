@@ -3,7 +3,7 @@
     {
       "label":"Giriş metni",
       "default":"Doğru ifadeyi seçin.",
-      "description":"Özet aktivitesi üzerinde gösterilecek."
+      "description":"Özet aktivitesi üzerinde görüntülenecek."
     },
     {
       "widgets":[
@@ -38,19 +38,19 @@
       }
     },
     {
-      "label":"Özet aktivitesinde çözülen ifadeler sayısından önce gösterilecek metin.",
+      "label":"Özet aktivitesinde çözülen ifadeler sayısından önce görüntülenecek metin.",
       "default":"İlerleme:",
-      "description":"İfadeler üzerinde gösterilecek. Örneğin: 'İlerleme: 2/5'"
+      "description":"İfadeler üzerinde görüntülenecek. Örneğin: 'İlerleme: 2/5'"
     },
     {
-      "label":"Özet aktivitesinde seçilen yanlış cümle sayısından önce gösterilen metin.",
+      "label":"Özet aktivitesinde seçilen yanlış cümle sayısından önce görüntülenen metin.",
       "default":"Yanlış cevaplar:",
-      "description":"İfadeler üzerinde gösterilecek. Örneğin: 'Yanlış cevaplar: 4'"
+      "description":"İfadeler üzerinde görüntülenecek. Örneğin: 'Yanlış cevaplar: 4'"
     },
     {
       "label":"Özet geribildirim başlığı",
       "default":"Sonuçlarınız",
-      "description":"Özet geribildiriminin üzerinde gösterilecek metin."
+      "description":"Özet geribildiriminin üzerinde görüntülenecek metin."
     },
     {
       "label":"Özet geribildirim",
