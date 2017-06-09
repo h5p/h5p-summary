@@ -1,7 +1,7 @@
 {
   "semantics":[
     {
-      "label":"Tanıtım Yazısı",
+      "label":"Giriş metni",
       "default":"Doğru ifadeyi seçin.",
       "description":"Özet aktivitesi üzerinde gösterilecek."
     },
@@ -38,19 +38,19 @@
       }
     },
     {
-      "label":"Özet aktivitesinde çözülen cümle sayısından önce görüntülenen metin.",
+      "label":"Özet aktivitesinde çözülen ifadeler sayısından önce gösterilecek metin.",
       "default":"İlerleme:",
       "description":"İfadeler üzerinde gösterilecek. Örneğin: 'İlerleme: 2/5'"
     },
     {
-      "label":"Özet aktivitesinde seçilen yanlış cümle sayısından önce görüntülenen metin.",
+      "label":"Özet aktivitesinde seçilen yanlış cümle sayısından önce gösterilen metin.",
       "default":"Yanlış cevaplar:",
       "description":"İfadeler üzerinde gösterilecek. Örneğin: 'Yanlış cevaplar: 4'"
     },
     {
       "label":"Özet geribildirim başlığı",
       "default":"Sonuçlarınız",
-      "description":"Özet geribildiriminin üzerinde görüntülenecek metin."
+      "description":"Özet geribildiriminin üzerinde gösterilecek metin."
     },
     {
       "label":"Özet geribildirim",
@@ -82,37 +82,37 @@
           ]
         },
         {
-          "label":"40 % - 69 % correct",
+          "label":"% 40 - % 69 doğru",
           "fields":[
             {
-              "label":"Feedback title",
-              "default":"Ok"
+              "label":"Geribildirim başlığı",
+              "default":"Tamam"
             },
             {
-              "label":"Feedback message",
-              "default":"You got some of the statements correct on your first try."
+              "label":"Geribildirim iletisi",
+              "default":"İlk denemenizde bir çok ifadeyi doğru yaptınız."
             }
           ]
         },
         {
-          "label":"0 % - 39 % correct",
+          "label":"% 0 - % 39 doğru",
           "fields":[
             {
-              "label":"Feedback title",
-              "default":"A few mistakes."
+              "label":"Geribildirim başlığı",
+              "default":"Birkaç hata."
             },
             {
-              "label":"Feedback message",
-              "default":"Have another try!"
+              "label":"Geribildirim iletisi",
+              "default":"Bir daha deneyin!"
             }
           ]
         }
       ]
     },
     {
-      "label":"Feedback summary",
-      "default":"You got @score of @total statements (@percent %) correct on your first try.",
-      "description":"Available variables: @score, @total, @percent. Example: You got @score of @total statements (@percent %) correct."
+      "label":"Geribildirim özeti",
+      "default":"İlk denemenizde @toplam ifadelerden (@yüzde %) @puan aldınız.",
+      "description":"Kullanılabilir değişkenler: @puan, @topam, @yüzde. Örnek: @toplam ifadelerden (@yüzde %) @puan doğru yaptınız."
     }
   ]
 }
