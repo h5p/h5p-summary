@@ -93,6 +93,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       intro: "Choose the correct statement.",
       solvedLabel: "Solved:",
       scoreLabel: "Wrong answers:",
+      labelCorrect: "Correct.",
+      incorrectText: "Incorrect! Please try again.",
+      labelListOfCorrectAnswers: "List of correct answers.",
       postUserStatistics: (H5P.postUserStatistics === true)
     }, options);
 
@@ -214,7 +217,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     var $progress = $('<div class="summary-progress"></div>');
     var options_padding = parseInt($options.css('paddingLeft'));
     // content div added for readspeaker that indicates list of correct answers.
-    var $answersListHeading = $('<div class="h5p-hidden-read">List of correct answer.</div>');
+    var $answersListHeading = $('<div class="h5p-hidden-read">' + that.options.labelListOfCorrectAnswers + '</div>');
     // Aria-live div added for readspeaker to read out dynamic content.
     var $ariaLiveContainer = $('<div class="h5p-hidden-read" aria-live="polite" aria-atomic="true" id="readerLiveContainer-'+this.contentId+'"></div>');
 
@@ -270,7 +273,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
         // replacing "/" with "of" for readspeaker and adding it inside aria-live container
         var progressString = $progress.html().replace("/", " of ");
-        var textForScreenReader = "Correct. " + progressString;
+        var textForScreenReader = that.options.labelCorrect + progressString;
         readerEle.text(textForScreenReader);
         setTimeout(function () {
           ((panelId + 1) == that.summaries.length) ? '' : readerEle.text('');
@@ -368,7 +371,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         $evaluation.children('.summary-score').css('display', 'block');
         $score.html(that.options.scoreLabel + ' ' + (++that.score));
         //hidden text added for readspeaker when user selects wrong answer
-        var textForScreenReader = "Incorrect. Please try again. " + $score.html();
+        var textForScreenReader = that.options.labelIncorrect + $score.html();
         readerEle.text(textForScreenReader);
         setTimeout(function () {
            readerEle.text('');
@@ -381,7 +384,6 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       }
 
       that.trigger('resize');
-      //$el.attr('tabindex', '-1');
       that.triggerXAPI('interacted');
 
       // Trigger answered xAPI event on first try for the current
@@ -601,13 +603,17 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     }
 
     // Show final evaluation
-    var summary = that.options.summary.replace('@score', that.summaries.length - error_count).replace('@total', that.summaries.length).replace('@percent', Math.round(percent));
+    var summary = that.options.summary
+      .replace('@score', that.summaries.length - error_count)
+      .replace('@total', that.summaries.length)
+      .replace('@percent', Math.round(percent));
+
     // remove hidden div on summary page that generates from question.js. 
 -   // Below code is added to remove reader's conflict between Progress status and final summary.
     $(".h5p-question-read .h5p-hidden-read").remove();
     $(".summary-evaluation-content").removeAttr("tabindex");
     var readerEle = $("#readerLiveContainer-" + that.contentId);
-    readerEle.append(". Your result: " + summary);
+    readerEle.append(". " + that.options.resultLabel + ': ' + summary);
     setTimeout(function () {
       readerEle.text('');
     }, 1);

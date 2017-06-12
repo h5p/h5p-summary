@@ -221,5 +221,29 @@
     "default": "You got @score of @total statements (@percent %) correct on your first try.",
     "description": "Available variables: @score, @total, @percent. Example: You got @score of @total statements (@percent %) correct.",
     "common": true
+  },
+  {
+    "name": "labelCorrect",
+    "type": "text",
+    "label": "Readspeaker text for correct answer",
+    "importance": "low",
+    "default": "Correct.",
+    "common": true
+  },
+  {
+    "name": "labelIncorrect",
+    "type": "text",
+    "label": "Readspeaker text for incorrect answer",
+    "importance": "low",
+    "default": "Incorrect! Please try again.",
+    "common": true
+  },
+  {
+    "name": "labelListOfCorrectAnswers",
+    "type": "text",
+    "label": "Label for list of correct answers",
+    "importance": "low",
+    "default": "List of correct answers.",
+    "common": true
   }
 ]
