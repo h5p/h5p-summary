@@ -206,7 +206,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
     // Create content panels
     var $summary_container = $('<div class="summary-container"></div>');
-    var $summary_list = $('<ul></ul>');
+    var $summary_list = $('<ul role="list" aria-labelledby="answerListHeading-'+that.contentId+'"></ul>');
     var $evaluation = $('<div class="summary-evaluation"></div>');
     var $evaluation_content = $('<div id="questionDesc-'+that.contentId+'" class="summary-evaluation-content">' + that.options.intro + '</div>');
     var $score = $('<div class="summary-score"></div>');
@@ -214,7 +214,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     var $progress = $('<div class="summary-progress"></div>');
     var options_padding = parseInt($options.css('paddingLeft'));
     // content div added for readspeaker that indicates list of correct answers.
-    var $answersListHeading = $('<div class="h5p-hidden-read">List of correct answer.</div>');
+    var $answersListHeading = $('<div id="answerListHeading-'+that.contentId+'" class="h5p-hidden-read">List of correct answer.</div>');
     // Aria-live div added for readspeaker to read out dynamic content.
     var $ariaLiveContainer = $('<div class="h5p-hidden-read" aria-live="polite" aria-atomic="true" id="readerLiveContainer-'+this.contentId+'"></div>');
 
@@ -263,7 +263,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         that.progress++;
         var position = $el.position();
         var summary = $summary_list.position();
-        var $answer = $('<li>' + $el.html() + '</li>');
+        var $answer = $('<li role="listitem">' + $el.html() + '</li>');
 
         $progress.html(that.options.solvedLabel + ' '  + (panelId + 1) + '/' + that.summaries.length);
         $el.attr("aria-checked", "true");
