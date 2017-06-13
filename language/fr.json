@@ -113,6 +113,18 @@
       "label":"Appréciation globale",
       "default":"Vous avez sélectionné @score affirmation(s) juste(s) sur @total du premier coup ; cela fait @percent % de réussite.",
       "description":"Variables disponibles: @score, @total, @percent. (Exemple: vous avez @score sur @total affirmations (@percent %) correctes)."
+    },
+    {
+      "label":"Readspeaker text for correct answer",
+      "default":"Correct."
+    },
+    {
+      "label":"Readspeaker text for incorrect answer",
+      "default":"Incorrect! Please try again."
+    },
+    {
+      "label":"Label for list of correct answers",
+      "default":"Correct answers."
     }
   ]
 }
