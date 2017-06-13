@@ -113,6 +113,18 @@
       "label":"Visning av resultat",
       "default":"Du fikk @score av @total påstandar (@percent %) rett på første forsøk.",
       "description":"Tilgjengelige variablar: @score, @total, @percent. Eksempel: Du fikk @score av @total påstandar (@percent %) rett."
+    },
+    {
+      "label":"Readspeaker text for correct answer",
+      "default":"Correct."
+    },
+    {
+      "label":"Readspeaker text for incorrect answer",
+      "default":"Incorrect! Please try again."
+    },
+    {
+      "label":"Label for list of correct answers",
+      "default":"Correct answers."
     }
   ]
 }
