@@ -113,6 +113,18 @@
       "label":"Feedback summary",
       "default":"You got @score of @total statements (@percent %) correct on your first try.",
       "description":"Available variables: @score, @total, @percent. Example: You got @score of @total statements (@percent %) correct."
+    },
+    {
+      "label":"Readspeaker text for correct answer",
+      "default":"Correct."
+    },
+    {
+      "label":"Readspeaker text for incorrect answer",
+      "default":"Incorrect! Please try again."
+    },
+    {
+      "label":"Label for list of correct answers",
+      "default":"Correct answers."
     }
   ]
 }
