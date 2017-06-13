@@ -124,7 +124,7 @@
     },
     {
       "label": "Label for list of correct answers",
-      "default": "List of correct answers."
+      "default": "Correct answers."
     }
   ]
 }

@@ -95,7 +95,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       scoreLabel: "Wrong answers:",
       labelCorrect: "Correct.",
       incorrectText: "Incorrect! Please try again.",
-      labelListOfCorrectAnswers: "List of correct answers.",
+      labelCorrectAnswers: "List of correct answers.",
       postUserStatistics: (H5P.postUserStatistics === true)
     }, options);
 
@@ -217,7 +217,8 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     var $progress = $('<div class="summary-progress"></div>');
     var options_padding = parseInt($options.css('paddingLeft'));
     // content div added for readspeaker that indicates list of correct answers.
-    var $answersListHeading = $('<div id="answerListHeading-'+that.contentId+'" class="h5p-hidden-read">' + that.options.labelListOfCorrectAnswers + '</div>');
+    var $answersListHeading = $('<div id="answerListHeading-'+that.contentId+'" class="h5p-hidden-read">' + that.options.labelCorrectAnswers + '</div>');
+
     // Aria-live div added for readspeaker to read out dynamic content.
     var $ariaLiveContainer = $('<div class="h5p-hidden-read" aria-live="polite" aria-atomic="true" id="readerLiveContainer-'+this.contentId+'"></div>');
 

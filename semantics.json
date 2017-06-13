@@ -239,11 +239,11 @@
     "common": true
   },
   {
-    "name": "labelListOfCorrectAnswers",
+    "name": "labelCorrectAnswers",
     "type": "text",
-    "label": "Label for list of correct answers",
+    "label": "Label list of correct answers",
     "importance": "low",
-    "default": "List of correct answers.",
+    "default": "Correct answers.",
     "common": true
   }
 ]
