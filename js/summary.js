@@ -538,7 +538,6 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         prevRadioEle.eq(this.currentFocusedOption).attr("tabindex", "0");
         prevRadioEle.eq(this.currentFocusedOption).focus();
       }
-
     };
 
   /**
@@ -563,8 +562,6 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       nextRadioEle.eq(this.currentFocusedOption).focus();
     }
   };
-
-
 
   /**
    * Calculate final score and display feedback.
