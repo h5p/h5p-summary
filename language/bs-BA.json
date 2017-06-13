@@ -1,0 +1,130 @@
+{
+  "semantics": [
+    {
+      "label": "Tekst uvoda",
+      "default": "Odaberi tačnu tvdnju.",
+      "description": "Biće prikazano iznad zadatka."
+    },
+    {
+      "widgets": [
+        {
+          "label": "Standardno"
+        },
+        {
+          "label": "Tekstualno"
+        }
+      ],
+      "label": "Sažetak",
+      "entity": "tvrdnje",
+      "field": {
+        "label": "Grupa tvrdnji",
+        "fields": [
+          {
+            "label": "Lista tvrdnji za sažetak - prva tvrdnja je tačna.",
+            "entity": "tvrdnja",
+            "field": {
+              "label": "Tvrdnja"
+            }
+          },
+          {
+            "label": "Savjet",
+            "fields": [
+              {
+                "label": "Tekst savjeta"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "Tekst koji se prikazuje prije broja tvrdnji riješenih u zadatku Sažetak.",
+      "default": "Odgovoreno:",
+      "description": "Biće napisano iznad tvrdnji. Naprimjer: 'Odgovoreno: 2/5'"
+    },
+    {
+      "label": "Tekst koji se prikazuje prije broja netačnih tvrdnji označenih u zadatku Sažetak.",
+      "default": "Netačni odgovori:",
+      "description": "Biće napisano iznad tvrdnji. Naprimjer: 'Pogrešnih odgovora: 4'"
+    },
+    {
+      "label": "Zaglavlje feedbacka za Sažetak",
+      "default": "Tvoj rezultat",
+      "description": "Biće napisano iznad tvrdnji."
+    },
+    {
+      "label": "Feedback za Sažetak",
+      "fields": [
+        {
+          "label": "Sve je tačno",
+          "fields": [
+            {
+              "label": "Feedback naslov",
+              "default": "PERFEKTNO!"
+            },
+            {
+              "label": "Feedback poruka",
+              "default": "Sve je tačno u prvom pokušaju!"
+            }
+          ]
+        },
+        {
+          "label": "70 % - 99 % tačno",
+          "fields": [
+            {
+              "label": "Feedback naslov",
+              "default": "Nije loše!"
+            },
+            {
+              "label": "Feedback poruka",
+              "default": "Većina odgovora je tačna u prvom pokušaju."
+            }
+          ]
+        },
+        {
+          "label": "40 % - 69 % tačno",
+          "fields": [
+            {
+              "label": "Feedback naslov",
+              "default": "Solidno"
+            },
+            {
+              "label": "Feedback poruka",
+              "default": "Neki odgovori su tačni u prvom pokušaju."
+            }
+          ]
+        },
+        {
+          "label": "0 % - 39 % tačno",
+          "fields": [
+            {
+              "label": "Feedback naslov",
+              "default": "Hm, više je netačnih odgovora."
+            },
+            {
+              "label": "Feedback poruka",
+              "default": "Pokušaj ponovo!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Feedback sažetak",
+      "default": "Odabrano @score od @total tačnih tvrdnji (@percent %) u prvom pokušaju.",
+      "description": "Moguće varijable: @score, @total, @percent. Primjer: Odabrano @score od @total tačnih tvrdnji (@percent %) correct."
+    },
+    {
+      "label": "Tekst za tačan odgovor",
+      "default": "Tačno."
+    },
+    {
+      "label": "Tekst za netačan odgovor",
+      "default": "Netačno! Pokušaj ponovo."
+    },
+    {
+      "label": "Oznaka liste tačnih odgovora",
+      "default": "Tačni odgovori."
+    }
+  ]
+}
