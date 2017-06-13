@@ -113,6 +113,18 @@
       "label":"Zusammenfassende Rückmeldung",
       "default":"Du hast @score von @total Aussagen (@percent %) beim ersten Versuch richtig beantwortet.",
       "description":"Verfügbare Variablen: @score, @total, @percent. Beispiel: Du hast @score von @total Aussagen (@percent %) richtig gewählt."
+    },
+    {
+      "label":"Readspeaker text for correct answer",
+      "default":"Correct."
+    },
+    {
+      "label":"Readspeaker text for incorrect answer",
+      "default":"Incorrect! Please try again."
+    },
+    {
+      "label":"Label for list of correct answers",
+      "default":"Correct answers."
     }
   ]
 }
