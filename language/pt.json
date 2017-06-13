@@ -113,6 +113,18 @@
       "label":"Resumo do feedback",
       "default":"Você conseguiu @score de @total questões (@percent %) corretas na sua primeira tentativa.",
       "description":"Variáveis disponíveis: @score, @total, @percent. Exemplo: Você conseguiu @score de @total questões (@percent %) corretas."
+    },
+    {
+      "label":"Readspeaker text for correct answer",
+      "default":"Correct."
+    },
+    {
+      "label":"Readspeaker text for incorrect answer",
+      "default":"Incorrect! Please try again."
+    },
+    {
+      "label":"Label for list of correct answers",
+      "default":"Correct answers."
     }
   ]
 }
