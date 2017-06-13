@@ -113,6 +113,18 @@
       "label":"Geri bildirim özeti",
       "default":"İlk denemenizde @toplam ifadelerden (@yüzde %) @puan aldınız.",
       "description":"Kullanılabilir değişkenler: @puan, @topam, @yüzde. Örnek: @toplam ifadelerden (@yüzde %) @puan doğru yaptınız."
+    },
+    {
+      "label":"Readspeaker text for correct answer",
+      "default":"Correct."
+    },
+    {
+      "label":"Readspeaker text for incorrect answer",
+      "default":"Incorrect! Please try again."
+    },
+    {
+      "label":"Label for list of correct answers",
+      "default":"Correct answers."
     }
   ]
 }
