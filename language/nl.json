@@ -1,20 +1,20 @@
 {
   "semantics":[
     {
-      "label":"Introduction text",
-      "default":"Choose the correct statement.",
-      "description":"Will be displayed above the summary task."
+      "label":"Inleidende tekst",
+      "default":"Kies de juiste stelling.",
+      "description":"Zal worden weergegeven boven de samenvattende taak."
     },
     {
       "widgets":[
         {
-          "label":"Default"
+          "label":"Standaard"
         },
         {
-          "label":"Textual"
+          "label":"Tekstueel"
         }
       ],
-      "label":"Summary",
+      "label":"Samenvatting",
       "entity":"statements",
       "field":{
         "label":"Set of statements",
