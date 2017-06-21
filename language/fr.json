@@ -1,36 +1,36 @@
 {
-  "semantics": [
+  "semantics":[
     {
-      "label": "Texte d'introduction",
-      "default": "Choisissez l'affirmation exacte.",
-      "description": "Il sera affiché au-dessus de la consigne."
+      "label":"Texte d'introduction",
+      "default":"Choisissez l'affirmation exacte.",
+      "description":"Il sera affiché au-dessus de la consigne."
     },
     {
-      "widgets": [
+      "widgets":[
         {
-          "label": "Par défaut"
+          "label":"Par défaut"
         },
         {
-          "label": "Texte"
+          "label":"Texte"
         }
       ],
-      "label": "Résumé",
-      "entity": "Affirmations",
-      "field": {
-        "label": "Affirmations",
-        "fields": [
+      "label":"Résumé",
+      "entity":"Affirmations",
+      "field":{
+        "label":"Affirmations",
+        "fields":[
           {
-            "label": "Liste des affirmations pour le résumé - la première affirmation de la liste est correcte.",
-            "entity": "affirmation",
-            "field": {
-              "label": "affirmation"
+            "label":"Liste des affirmations pour le résumé - la première affirmation de la liste est correcte.",
+            "entity":"affirmation",
+            "field":{
+              "label":"affirmation"
             }
           },
           {
-            "label": "Indice",
-            "fields": [
+            "label":"Indice",
+            "fields":[
               {
-                "label": "Indice"
+                "label":"Indice"
               }
             ]
           }
@@ -38,81 +38,93 @@
       }
     },
     {
-      "label": "Texte affiché avant le nombre d'affirmations correctement sélectionnées dans le résumé.",
-      "default": "Progression :",
-      "description": "Ce sera affiché au-dessus des affirmations. Exemple: 'Progression : 2/5'"
+      "label":"Texte affiché avant le nombre d'affirmations correctement sélectionnées dans le résumé.",
+      "default":"Progression :",
+      "description":"Ce sera affiché au-dessus des affirmations. Exemple: 'Progression : 2/5'"
     },
     {
-      "label": "Texte affiché au-dessus du nombre d'affirmations sélectionnées par erreur dans le résumé.",
-      "default": "Erreurs :",
-      "description": "Ce sera affiché au-dessus des affirmations. Exemple: 'Erreurs : 4'"
+      "label":"Texte affiché au-dessus du nombre d'affirmations sélectionnées par erreur dans le résumé.",
+      "default":"Erreurs :",
+      "description":"Ce sera affiché au-dessus des affirmations. Exemple: 'Erreurs : 4'"
     },
     {
-      "label": "Titre de l'appréciation à la fin du résumé",
-      "default": "Votre résultat :",
-      "description": "Ce sera affiché au-dessus de l'appréciation."
+      "label":"Titre de l'appréciation à la fin du résumé",
+      "default":"Votre résultat :",
+      "description":"Ce sera affiché au-dessus de l'appréciation."
     },
     {
-      "label": "Appréciation à la fin du résumé",
-      "fields": [
+      "label":"Appréciation à la fin du résumé",
+      "fields":[
         {
-          "label": "Tout est correct",
-          "fields": [
+          "label":"Tout est correct",
+          "fields":[
             {
-              "label": "Titre de l'appréciation",
-              "default": "Parfait !"
+              "label":"Titre de l'appréciation",
+              "default":"Parfait !"
             },
             {
-              "label": "Texte de l'appréciation",
-              "default": "Vous avez tout trouvé du premier coup !"
+              "label":"Texte de l'appréciation",
+              "default":"Vous avez tout trouvé du premier coup !"
             }
           ]
         },
         {
-          "label": "70 % à 99 % de réponses justes",
-          "fields": [
+          "label":"70 % à 99 % de réponses justes",
+          "fields":[
             {
-              "label": "Titre de l'appréciation",
-              "default": "C'est très bien !"
+              "label":"Titre de l'appréciation",
+              "default":"C'est très bien !"
             },
             {
-              "label": "Texte de l'appréciation",
-              "default": "La majorité des affirmations que vous avez sélectionnées étaient justes du premier coup."
+              "label":"Texte de l'appréciation",
+              "default":"La majorité des affirmations que vous avez sélectionnées étaient justes du premier coup."
             }
           ]
         },
         {
-          "label": "40 % - 69 % de bonnes réponses",
-          "fields": [
+          "label":"40 % - 69 % de bonnes réponses",
+          "fields":[
             {
-              "label": "Titre de l'appréciation",
-              "default": "Ensemble correct"
+              "label":"Titre de l'appréciation",
+              "default":"Ensemble correct"
             },
             {
-              "label": "Texte de l'appréciation",
-              "default": "La plupart des affirmations que vous avez sélectionnées étaient justes du premier coup."
+              "label":"Texte de l'appréciation",
+              "default":"La plupart des affirmations que vous avez sélectionnées étaient justes du premier coup."
             }
           ]
         },
         {
-          "label": "0 % - 39 % de bonnes réponses",
-          "fields": [
+          "label":"0 % - 39 % de bonnes réponses",
+          "fields":[
             {
-              "label": "Titre de l'appréciation",
-              "default": "Il y a beaucoup d'erreurs."
+              "label":"Titre de l'appréciation",
+              "default":"Il y a beaucoup d'erreurs."
             },
             {
-              "label": "Texte de l'appréciation",
-              "default": "Refaites un essai !"
+              "label":"Texte de l'appréciation",
+              "default":"Refaites un essai !"
             }
           ]
         }
       ]
     },
     {
-      "label": "Appréciation globale",
-      "default": "Vous avez sélectionné @score affirmation(s) juste(s) sur @total du premier coup ; cela fait @percent % de réussite.",
-      "description": "Variables disponibles: @score, @total, @percent. (Exemple: vous avez @score sur @total affirmations (@percent %) correctes)."
+      "label":"Appréciation globale",
+      "default":"Vous avez sélectionné @score affirmation(s) juste(s) sur @total du premier coup ; cela fait @percent % de réussite.",
+      "description":"Variables disponibles: @score, @total, @percent. (Exemple: vous avez @score sur @total affirmations (@percent %) correctes)."
+    },
+    {
+      "label":"Readspeaker text for correct answer",
+      "default":"Correct."
+    },
+    {
+      "label":"Readspeaker text for incorrect answer",
+      "default":"Incorrect! Please try again."
+    },
+    {
+      "label":"Label for list of correct answers",
+      "default":"Correct answers."
     }
   ]
 }

@@ -1,0 +1,130 @@
+{
+  "semantics":[
+    {
+      "label":"イントロダクションテキスト",
+      "default":"正しい文を選んで下さい。",
+      "description":"サマリタスクの上に表示されます。"
+    },
+    {
+      "widgets":[
+        {
+          "label":"デフォルト"
+        },
+        {
+          "label":"本文"
+        }
+      ],
+      "label":"サマリ",
+      "entity":"文",
+      "field":{
+        "label":"文の集まり",
+        "fields":[
+          {
+            "label":"サマリ用の文のリスト - 最初の文は正解。",
+            "entity":"文",
+            "field":{
+              "label":"文"
+            }
+          },
+          {
+            "label":"ヒント",
+            "fields":[
+              {
+                "label":"ヒントのテキスト"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label":"サマリタスクで解かれた文数の前に表示されるテキスト。",
+      "default":"進度:",
+      "description":"文の上に表示されます。例: '進度: 2/5'"
+    },
+    {
+      "label":"サマリタスクで選ばれた、まちがえた文数の前に表示されるテキスト。",
+      "default":"まちがえた答え:",
+      "description":"文の上に表示されます。例: 'まちがえた解答: 4'"
+    },
+    {
+      "label":"サマリーフィードバックの見出し",
+      "default":"あなたの結果",
+      "description":"サマリフィードバックの上に表示されます。"
+    },
+    {
+      "label":"サマリフィードバック",
+      "fields":[
+        {
+          "label":"すべて正解",
+          "fields":[
+            {
+              "label":"フィードバックタイトル",
+              "default":"パーフェクト！"
+            },
+            {
+              "label":"フィードバックメッセージ",
+              "default":"最初のトライで全問正解を獲得！"
+            }
+          ]
+        },
+        {
+          "label":"70 % - 99 %正解",
+          "fields":[
+            {
+              "label":"フィードバックタイトル",
+              "default":"グレート！"
+            },
+            {
+              "label":"フィードバックメッセージ",
+              "default":"最初のトライで、 ほとんどの文の正解を獲得。"
+            }
+          ]
+        },
+        {
+          "label":"40 % - 69 %正解",
+          "fields":[
+            {
+              "label":"フィードバックタイトル",
+              "default":"OK"
+            },
+            {
+              "label":"フィードバックメッセージ",
+              "default":"最初のトライで、 いくつかの文の正解を獲得。"
+            }
+          ]
+        },
+        {
+          "label":"0 % - 39 % 正解",
+          "fields":[
+            {
+              "label":"フィードバックタイトル",
+              "default":"少しまちがい。"
+            },
+            {
+              "label":"フィードバックメッセージ",
+              "default":"もう一度トライ！"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label":"フィードバックサマリ",
+      "default":"最初のトライで @total 文中 @score (@percent %) の正解を獲得。",
+      "description":"利用可能な変数: @score, @total, @percent. 例: @total 文中 @score (@percent %) の正解を獲得。"
+    },
+    {
+      "label":"Readspeaker text for correct answer",
+      "default":"Correct."
+    },
+    {
+      "label":"Readspeaker text for incorrect answer",
+      "default":"Incorrect! Please try again."
+    },
+    {
+      "label":"Label for list of correct answers",
+      "default":"Correct answers."
+    }
+  ]
+}

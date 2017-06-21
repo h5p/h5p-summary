@@ -1,35 +1,36 @@
 {
-  "semantics": [
+  "semantics":[
     {
-      "label": "مقدمة النص",
-      "description": "سيتم عرضها فوق المهمة الموجزة"
+      "label":"مقدمة النص",
+      "default":"Choose the correct statement.",
+      "description":"سيتم عرضها فوق المهمة الموجزة"
     },
     {
-      "widgets": [
+      "widgets":[
         {
-          "label": "الافتراضي"
+          "label":"الافتراضي"
         },
         {
-          "label": "النصية"
+          "label":"النصية"
         }
       ],
-      "label": "الملخص",
-      "entity": "البيانات",
-      "field": {
-        "label": "البيانات",
-        "fields": [
+      "label":"الملخص",
+      "entity":"البيانات",
+      "field":{
+        "label":"البيانات",
+        "fields":[
           {
-            "label": "قائمة بيانات للملخص. البيان الأول هو الصحيح",
-            "entity": "بيان",
-            "field": {
-              "label": "بيان"
+            "label":"قائمة بيانات للملخص. البيان الأول هو الصحيح",
+            "entity":"بيان",
+            "field":{
+              "label":"بيان"
             }
           },
           {
-            "label": "تلميح",
-            "fields": [
+            "label":"تلميح",
+            "fields":[
               {
-                "label": "نص التلميح"
+                "label":"نص التلميح"
               }
             ]
           }
@@ -37,69 +38,93 @@
       }
     },
     {
-      "label": "النص المعروض قبل عدد من البيانات حلها في المهمة الموجزة",
-      "description": "سيتم عرضها فوق البيانات. على سبيل المثال: \"التقدم من: ٢/٥\""
+      "label":"النص المعروض قبل عدد من البيانات حلها في المهمة الموجزة",
+      "default":"Progress:",
+      "description":"سيتم عرضها فوق البيانات. على سبيل المثال: \"التقدم من: ٢/٥\""
     },
     {
-      "label": "النص المعروض قبل عدد من البيانات خاطئة المحدد في المهمة الموجزة",
-      "description": "سيتم عرض فوق البيانات. مثال: \"الإجابات خاطئة: ٤\""
+      "label":"النص المعروض قبل عدد من البيانات خاطئة المحدد في المهمة الموجزة",
+      "default":"Wrong answers:",
+      "description":"سيتم عرض فوق البيانات. مثال: \"الإجابات خاطئة: ٤\""
     },
     {
-      "label": "راس ملاحظات الملخص",
-      "description": "سيتم عرضه فوق ملاحظات الملخص"
+      "label":"راس ملاحظات الملخص",
+      "default":"Your result",
+      "description":"سيتم عرضه فوق ملاحظات الملخص"
     },
     {
-      "label": "ملاحظات الملخص",
-      "fields": [
+      "label":"ملاحظات الملخص",
+      "fields":[
         {
-          "label": "كل الاجابات صحيحة",
-          "fields": [
+          "label":"كل الاجابات صحيحة",
+          "fields":[
             {
-              "label": "عنوان الملاحظات"
+              "label":"عنوان الملاحظات",
+              "default":"PERFECT!"
             },
             {
-              "label": "نص الملاحظة"
+              "label":"نص الملاحظة",
+              "default":"You got everything correct on your first try!"
             }
           ]
         },
         {
-          "label": "٧٠ - ٩٩٪ اجابات صحيحة",
-          "fields": [
+          "label":"٧٠ - ٩٩٪ اجابات صحيحة",
+          "fields":[
             {
-              "label": "عنوان الملاحظات"
+              "label":"عنوان الملاحظات",
+              "default":"Great!"
             },
             {
-              "label": "نص الملاحظة"
+              "label":"نص الملاحظة",
+              "default":"You got most of the statements correct on your first try."
             }
           ]
         },
         {
-          "label": "٤٠ - ٦٩٪ اجابات صحيحة",
-          "fields": [
+          "label":"٤٠ - ٦٩٪ اجابات صحيحة",
+          "fields":[
             {
-              "label": "عنوان الملاحظات"
+              "label":"عنوان الملاحظات",
+              "default":"Ok"
             },
             {
-              "label": "نص الملاحظة"
+              "label":"نص الملاحظة",
+              "default":"You got some of the statements correct on your first try."
             }
           ]
         },
         {
-          "label": "٠ - ٣٩٪ اجابات صحيحة",
-          "fields": [
+          "label":"٠ - ٣٩٪ اجابات صحيحة",
+          "fields":[
             {
-              "label": "عنوان الملاحظات"
+              "label":"عنوان الملاحظات",
+              "default":"A few mistakes."
             },
             {
-              "label": "نص الملاحظة"
+              "label":"نص الملاحظة",
+              "default":"Have another try!"
             }
           ]
         }
       ]
     },
     {
-      "label": "ملخص الملاحظات",
-      "description": "المتغيرات المتاحة: @score, @total, @percent. مثال: You got @score of @total statements (@percent %) صحيح"
+      "label":"ملخص الملاحظات",
+      "default":"You got @score of @total statements (@percent %) correct on your first try.",
+      "description":"المتغيرات المتاحة: @score, @total, @percent. مثال: You got @score of @total statements (@percent %) صحيح"
+    },
+    {
+      "label":"Readspeaker text for correct answer",
+      "default":"Correct."
+    },
+    {
+      "label":"Readspeaker text for incorrect answer",
+      "default":"Incorrect! Please try again."
+    },
+    {
+      "label":"Label for list of correct answers",
+      "default":"Correct answers."
     }
   ]
 }

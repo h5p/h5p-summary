@@ -1,0 +1,130 @@
+{
+  "semantics":[
+    {
+      "label":"Giriş metni",
+      "default":"Doğru ifadeyi seçin.",
+      "description":"Özet aktivitesi üzerinde görüntülenecek."
+    },
+    {
+      "widgets":[
+        {
+          "label":"Varsayılan"
+        },
+        {
+          "label":"Metin"
+        }
+      ],
+      "label":"Özet",
+      "entity":"ifadeler",
+      "field":{
+        "label":"İfadeler grubu",
+        "fields":[
+          {
+            "label":"Özet için ifadeler listesi - birinci ifade doğru.",
+            "entity":"cümle",
+            "field":{
+              "label":"İfade"
+            }
+          },
+          {
+            "label":"İpucu",
+            "fields":[
+              {
+                "label":"İpucu metni"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label":"Özet aktivitesinde çözülen ifadeler sayısından önce görüntülenecek metin.",
+      "default":"İlerleme:",
+      "description":"İfadeler üzerinde görüntülenecek. Örneğin: 'İlerleme: 2/5'"
+    },
+    {
+      "label":"Özet aktivitesinde seçilen yanlış cümle sayısından önce görüntülenen metin.",
+      "default":"Yanlış cevaplar:",
+      "description":"İfadeler üzerinde görüntülenecek. Örneğin: 'Yanlış cevaplar: 4'"
+    },
+    {
+      "label":"Özet geri bildirim başlığı",
+      "default":"Sonuçlarınız",
+      "description":"Özet geri bildiriminin üzerinde görüntülenecek metin."
+    },
+    {
+      "label":"Özet geri bildirim",
+      "fields":[
+        {
+          "label":"Her şey doğru",
+          "fields":[
+            {
+              "label":"Geribildirim başlığı",
+              "default":"MÜKEMMEL!"
+            },
+            {
+              "label":"Geribildirim iletisi",
+              "default":"İlk denemenizde her şeyi doğru yaptınız!"
+            }
+          ]
+        },
+        {
+          "label":"70 % - 99 % doğru",
+          "fields":[
+            {
+              "label":"Geri bildirim başlığı",
+              "default":"Harika!"
+            },
+            {
+              "label":"Geribildirim iletisi",
+              "default":"İlk denemenizde bir çok ifadeyi doğru yaptınız."
+            }
+          ]
+        },
+        {
+          "label":"% 40 - % 69 doğru",
+          "fields":[
+            {
+              "label":"Geri bildirim başlığı",
+              "default":"Tamam"
+            },
+            {
+              "label":"Geri bildirim iletisi",
+              "default":"İlk denemenizde bir çok ifadeyi doğru yaptınız."
+            }
+          ]
+        },
+        {
+          "label":"% 0 - % 39 doğru",
+          "fields":[
+            {
+              "label":"Geri bildirim başlığı",
+              "default":"Birkaç hata."
+            },
+            {
+              "label":"Geri bildirim iletisi",
+              "default":"Bir daha deneyin!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label":"Geri bildirim özeti",
+      "default":"İlk denemenizde @toplam ifadelerden (@yüzde %) @puan aldınız.",
+      "description":"Kullanılabilir değişkenler: @puan, @topam, @yüzde. Örnek: @toplam ifadelerden (@yüzde %) @puan doğru yaptınız."
+    },
+    {
+      "label":"Readspeaker text for correct answer",
+      "default":"Correct."
+    },
+    {
+      "label":"Readspeaker text for incorrect answer",
+      "default":"Incorrect! Please try again."
+    },
+    {
+      "label":"Label for list of correct answers",
+      "default":"Correct answers."
+    }
+  ]
+}
