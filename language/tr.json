@@ -59,11 +59,11 @@
           "label":"Her şey doğru",
           "fields":[
             {
-              "label":"Geribildirim başlığı",
+              "label":"Geri bildirim başlığı",
               "default":"MÜKEMMEL!"
             },
             {
-              "label":"Geribildirim iletisi",
+              "label":"Geri bildirim iletisi",
               "default":"İlk denemenizde her şeyi doğru yaptınız!"
             }
           ]
@@ -76,7 +76,7 @@
               "default":"Harika!"
             },
             {
-              "label":"Geribildirim iletisi",
+              "label":"Geri bildirim iletisi",
               "default":"İlk denemenizde bir çok ifadeyi doğru yaptınız."
             }
           ]
@@ -123,7 +123,7 @@
       "default":"Incorrect! Please try again."
     },
     {
-      "label":"Label for list of correct answers",
+      "label":"Label list of correct answers",
       "default":"Correct answers."
     }
   ]
