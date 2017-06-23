@@ -30,7 +30,7 @@
             "label":"Tip",
             "fields":[
               {
-                "label":"Tip text"
+                "label":"Vihje tekst"
               }
             ]
           }
@@ -123,7 +123,7 @@
       "default":"Incorrect! Please try again."
     },
     {
-      "label":"Label for list of correct answers",
+      "label":"Label list of correct answers",
       "default":"Correct answers."
     }
   ]
