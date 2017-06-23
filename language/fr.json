@@ -115,15 +115,15 @@
       "description":"Variables disponibles: @score, @total, @percent. (Exemple: vous avez @score sur @total affirmations (@percent %) correctes)."
     },
     {
-      "label":"Readspeaker text for correct answer",
+      "label":"Texte exprimé par la synthèse vocale en cas de réponse correcte",
       "default":"Correct."
     },
     {
-      "label":"Readspeaker text for incorrect answer",
+      "label":"Texte exprimé par la synthèse vocale en cas de réponse incorrecte",
       "default":"Incorrect! Please try again."
     },
     {
-      "label":"Label for list of correct answers",
+      "label":"Label list of correct answers",
       "default":"Correct answers."
     }
   ]
