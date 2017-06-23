@@ -27,7 +27,7 @@
             }
           },
           {
-            "label":"Tip",
+            "label":"Suggerimento",
             "fields":[
               {
                 "label":"Testo del suggerimento"
@@ -115,15 +115,15 @@
       "description":"Available variables: @score, @total, @percent. Example: You got @score of @total statements (@percent %) correct."
     },
     {
-      "label":"Readspeaker text for correct answer",
+      "label":"Testo ReadSpeaker per la risposta corretta",
       "default":"Correct."
     },
     {
-      "label":"Readspeaker text for incorrect answer",
+      "label":"Testo ReadSpeaker per risposta errata",
       "default":"Incorrect! Please try again."
     },
     {
-      "label":"Label for list of correct answers",
+      "label":"Label list of correct answers",
       "default":"Correct answers."
     }
   ]
