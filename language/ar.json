@@ -115,15 +115,15 @@
       "description":"المتغيرات المتاحة: @score, @total, @percent. مثال: You got @score of @total statements (@percent %) صحيح"
     },
     {
-      "label":"Readspeaker text for correct answer",
+      "label":"النص Readspeaker عن الإجابة الصحيحة",
       "default":"Correct."
     },
     {
-      "label":"Readspeaker text for incorrect answer",
+      "label":"النص Readspeaker للإجابة غير صحيحة",
       "default":"Incorrect! Please try again."
     },
     {
-      "label":"Label for list of correct answers",
+      "label":"Label list of correct answers",
       "default":"Correct answers."
     }
   ]
