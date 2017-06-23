@@ -115,15 +115,15 @@
       "description":"Tilgjengelige variabler: @score, @total, @percent. Eksempel: Du fikk @score av @total påstander (@percent %) rett."
     },
     {
-      "label":"Readspeaker text for correct answer",
+      "label":"Rett svar tekst for hjelpemiddelteknologi",
       "default":"Correct."
     },
     {
-      "label":"Readspeaker text for incorrect answer",
+      "label":"Galt svar tekst for hjelpemiddelteknologi",
       "default":"Incorrect! Please try again."
     },
     {
-      "label":"Label for list of correct answers",
+      "label":"Label list of correct answers",
       "default":"Correct answers."
     }
   ]
