@@ -115,15 +115,15 @@
       "description":"Verfügbare Variablen: @score, @total, @percent. Beispiel: Du hast @score von @total Aussagen (@percent %) richtig gewählt."
     },
     {
-      "label":"Readspeaker text for correct answer",
+      "label":"\"Readspeaker\"-Text für eine richtige Antwort",
       "default":"Correct."
     },
     {
-      "label":"Readspeaker text for incorrect answer",
+      "label":"\"Readspeaker\"-Text für eine falsche Antwort",
       "default":"Incorrect! Please try again."
     },
     {
-      "label":"Label for list of correct answers",
+      "label":"Label list of correct answers",
       "default":"Correct answers."
     }
   ]
