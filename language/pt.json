@@ -1,36 +1,36 @@
 {
-  "semantics":[
+  "semantics": [
     {
-      "label":"Texto introdutório",
-      "default":"Escolha a afirmação correta.",
-      "description":"Será mostrado acima da tarefa de revisão."
+      "label": "Texto introdutório",
+      "default": "Escolha a afirmação correta.",
+      "description": "Será mostrado acima da tarefa de revisão."
     },
     {
-      "widgets":[
+      "widgets": [
         {
-          "label":"Padrão"
+          "label": "Padrão"
         },
         {
-          "label":"Textual"
+          "label": "Textual"
         }
       ],
-      "label":"Resumo",
-      "entity":"afirmações",
-      "field":{
-        "label":"Conjunto de afirmações",
-        "fields":[
+      "label": "Resumo",
+      "entity": "afirmações",
+      "field": {
+        "label": "Conjunto de afirmações",
+        "fields": [
           {
-            "label":"Lista de afirmações para o resumo - a primeira afirmação é a correta.",
-            "entity":"afirmação",
-            "field":{
-              "label":"Afirmação"
+            "label": "Lista de afirmações para o resumo - a primeira afirmação é a correta.",
+            "entity": "afirmação",
+            "field": {
+              "label": "Afirmação"
             }
           },
           {
-            "label":"Dica",
-            "fields":[
+            "label": "Dica",
+            "fields": [
               {
-                "label":"Texto de dica"
+                "label": "Texto de dica"
               }
             ]
           }
@@ -38,81 +38,45 @@
       }
     },
     {
-      "label":"Texto mostrado antes do número de afirmações resolvidas na atividade de revisão.",
-      "default":"Progresso:",
-      "description":"Será mostrado acima das afirmações. Exemplo: 'Progresso: 2/5'"
-    },
-    {
-      "label":"Texto mostrado antes do número de afirmações erradas selecionadas na atividade de revisão.",
-      "default":"Respostas errada:",
-      "description":"Será mostrado acima das afirmações. Exemplo: 'Respostas erradas: 4'"
-    },
-    {
-      "label":"Cabeçalho do feedback da revisão",
-      "default":"Seu resultado",
-      "description":"Será mestrado acima do cabeçalho do feedback da revisão."
-    },
-    {
-      "label":"Feedback da revisão",
-      "fields":[
+      "englishLabel": "Overall Feedback",
+      "fields": [
         {
-          "label":"Tudo correto",
-          "fields":[
+          "widgets": [
             {
-              "label":"Título do feedback",
-              "default":"PERFEITO!"
-            },
-            {
-              "label":"Mensagem de feedback",
-              "default":"Você acertou tudo na primeira tentativa!"
+              "englishLabel": "Default"
             }
-          ]
-        },
-        {
-          "label":"70 % - 99 % correto",
-          "fields":[
-            {
-              "label":"Título do feedback",
-              "default":"Ótimo!"
-            },
-            {
-              "label":"Mensagem de feedback",
-              "default":"Você acertou a maioria na sua primeira tentativa."
-            }
-          ]
-        },
-        {
-          "label":"40 % - 69 % correto",
-          "fields":[
-            {
-              "label":"Título do feedback",
-              "default":"Ok"
-            },
-            {
-              "label":"Mensagem de feedback",
-              "default":"Você acertou alguns na sua primeira tentativa."
-            }
-          ]
-        },
-        {
-          "label":"0 % - 39 % correto",
-          "fields":[
-            {
-              "label":"Título do feedback",
-              "default":"Alguns erros."
-            },
-            {
-              "label":"Mensagem de feedback",
-              "default":"Tente novamente!"
-            }
-          ]
+          ],
+          "englishLabel": "Define custom feedback for any score range",
+          "englishDescription": "Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!\nAvailable variables: @score, @total, @percent. Example: 'You got @score of @total points.' (@percent %) correct.",
+          "field": {
+            "fields": [
+              {
+                "englishLabel": "Score Range"
+              },
+              {},
+              {
+                "englishLabel": "Feedback for defined score range",
+                "englishPlaceholder": "Fill in the feedback"
+              }
+            ]
+          }
         }
       ]
     },
     {
-      "label":"Resumo do feedback",
-      "default":"Você conseguiu @score de @total questões (@percent %) corretas na sua primeira tentativa.",
-      "description":"Variáveis disponíveis: @score, @total, @percent. Exemplo: Você conseguiu @score de @total questões (@percent %) corretas."
+      "label": "Texto mostrado antes do número de afirmações resolvidas na atividade de revisão.",
+      "default": "Progresso:",
+      "description": "Será mostrado acima das afirmações. Exemplo: 'Progresso: 2/5'"
+    },
+    {
+      "label": "Texto mostrado antes do número de afirmações erradas selecionadas na atividade de revisão.",
+      "default": "Respostas errada:",
+      "description": "Será mostrado acima das afirmações. Exemplo: 'Respostas erradas: 4'"
+    },
+    {
+      "label": "Cabeçalho do feedback da revisão",
+      "default": "Seu resultado",
+      "description": "Será mestrado acima do cabeçalho do feedback da revisão."
     }
   ]
 }

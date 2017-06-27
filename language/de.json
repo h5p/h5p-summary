@@ -38,6 +38,32 @@
       }
     },
     {
+      "englishLabel": "Overall Feedback",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "englishLabel": "Default"
+            }
+          ],
+          "englishLabel": "Define custom feedback for any score range",
+          "englishDescription": "Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!\nAvailable variables: @score, @total, @percent. Example: 'You got @score of @total points.' (@percent %) correct.",
+          "field": {
+            "fields": [
+              {
+                "englishLabel": "Score Range"
+              },
+              {},
+              {
+                "englishLabel": "Feedback for defined score range",
+                "englishPlaceholder": "Fill in the feedback"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
       "label": "Text, der über der Anzahl der richtig gewählten Aussagen angezeigt wird",
       "default": "Fortschritt:",
       "description": "Wird über den Aussagen angezeigt. Beispiel: 'Fortschritt: 2/5'"
@@ -51,68 +77,6 @@
       "label": "Titelzeile für das zusammenfassende Ergebnis",
       "default": "Dein Ergebnis",
       "description": "Wird über der Rückmeldung angezeigt."
-    },
-    {
-      "label": "Zusammenfassende Rückmeldung",
-      "fields": [
-        {
-          "label": "Alles richtig",
-          "fields": [
-            {
-              "label": "Rückmeldungstitel",
-              "default": "PERFEKT!"
-            },
-            {
-              "label": "Rückmeldungstext",
-              "default": "Du hast alles beim ersten Versuch richtig beantwortet!"
-            }
-          ]
-        },
-        {
-          "label": "70 % - 99 % korrekt",
-          "fields": [
-            {
-              "label": "Rückmeldungstitel",
-              "default": "Großartig!"
-            },
-            {
-              "label": "Rückmeldungstext",
-              "default": "Du hast die meisten Aussagen beim ersten Versuch richtig gewählt."
-            }
-          ]
-        },
-        {
-          "label": "40 % - 69 % korrekt",
-          "fields": [
-            {
-              "label": "Rückmeldungstitel",
-              "default": "OK"
-            },
-            {
-              "label": "Rückmeldungstext",
-              "default": "Du hast einige der Aussagen beim ersten Versuch richtig gewählt."
-            }
-          ]
-        },
-        {
-          "label": "0 % - 39 % correct",
-          "fields": [
-            {
-              "label": "Rückmeldungstitel",
-              "default": "Ein paar Fehler."
-            },
-            {
-              "label": "Rückmeldungstext",
-              "default": "Versuch es noch einmal!"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "label": "Zusammenfassende Rückmeldung",
-      "default": "Du hast @score von @total Aussagen (@percent %) beim ersten Versuch richtig beantwortet.",
-      "description": "Verfügbare Variablen: @score, @total, @percent. Beispiel: Du hast @score von @total Aussagen (@percent %) richtig gewählt."
     }
   ]
 }
