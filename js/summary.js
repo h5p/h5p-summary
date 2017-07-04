@@ -66,13 +66,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     this.startStopWatch(this.progress);
 
     this.options = H5P.jQuery.extend({}, {
-      overallFeedback: [
-        {
-          'from': 0,
-          'to': 100,
-          'feedback': 'You got @score of @total statements (@percent %) correct on your first try.'
-        }
-      ],
+      overallFeedback: [],
       resultLabel: "Your result:",
       intro: "Choose the correct statement.",
       solvedLabel: "Solved:",
