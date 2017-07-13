@@ -66,29 +66,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     this.startStopWatch(this.progress);
 
     this.options = H5P.jQuery.extend({}, {
-      response: {
-        scorePerfect:
-        {
-          title: "PERFECT!",
-          message: "You got everything correct on your first try. Be proud!"
-        },
-        scoreOver70:
-        {
-          title: "Great!",
-          message: "You got most of the statements correct on your first try!"
-        },
-        scoreOver40:
-        {
-          title: "Ok",
-          message: "You got some of the statements correct on your first try. There is still room for improvement."
-        },
-        scoreOver0:
-        {
-          title: "Not good",
-          message: "You need to work more on this"
-        }
-      },
-      summary: "You got @score of @total statements (@percent %) correct on your first try.",
+      overallFeedback: [],
       resultLabel: "Your result:",
       intro: "Choose the correct statement.",
       solvedLabel: "Solved:",
@@ -451,9 +429,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         // added tabindex = 0 for the first option to avoid accessing rest of the options via TAB
         (j == 0) ? $node.attr("tabindex", "0") : $node.attr("tabindex", "-1");
 
-        $node.on('focus', function() { 
+        $node.on('focus', function() {
           var ind = $(this).attr('data-name');
-          setFocusIndex(ind); 
+          setFocusIndex(ind);
         });
 
         // function captures the index of currently focused option
@@ -578,36 +556,14 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     // Calculate percentage
     var percent = 100 - (error_count / that.errorCounts.length * 100);
 
-    // Find evaluation message
-    var from = 0;
-    for (var i in that.options.response) {
-      switch (i) {
-        case "scorePerfect":
-          from = 100;
-          break;
-        case "scoreOver70":
-          from = 70;
-          break;
-        case "scoreOver40":
-          from = 40;
-          break;
-        case "scoreOver0":
-          from = 0;
-          break;
-      }
-      if (percent >= from) {
-        break;
-      }
-    }
-
     // Show final evaluation
-    var summary = that.options.summary
+    var summary = H5P.Question.determineOverallFeedback(that.options.overallFeedback, percent / 100)
       .replace('@score', that.summaries.length - error_count)
       .replace('@total', that.summaries.length)
       .replace('@percent', Math.round(percent));
 
-    // remove hidden div on summary page that generates from question.js. 
--   // Below code is added to remove reader's conflict between Progress status and final summary.
+    // remove hidden div on summary page that generates from question.js.
+    // Below code is added to remove reader's conflict between Progress status and final summary.
     $(".h5p-question-read .h5p-hidden-read").remove();
     $(".summary-evaluation-content").removeAttr("tabindex");
     var readerEle = $("#readerLiveContainer-" + that.contentId);
@@ -677,7 +633,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
     return {
       choices: choices
-    }
+    };
   };
 
   /**
@@ -741,7 +697,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
   Summary.prototype.getTotalPassedTime = function () {
     return this.stopWatches
       .filter(function(watch){
-        return watch != undefined;
+        return watch !== undefined;
       })
       .reduce(function(sum, watch){
         return sum + watch.passedTime();
@@ -806,7 +762,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
         return {
           statement: event.data.statement
-        }
+        };
     });
 
     var result = XApiEventBuilder.createResult()

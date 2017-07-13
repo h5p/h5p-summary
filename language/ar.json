@@ -37,6 +37,32 @@
       }
     },
     {
+      "englishLabel": "Overall Feedback",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "englishLabel": "Default"
+            }
+          ],
+          "englishLabel": "Define custom feedback for any score range",
+          "englishDescription": "Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!\nAvailable variables: @score, @total, @percent. Example: 'You got @score of @total points.' (@percent %) correct.",
+          "field": {
+            "fields": [
+              {
+                "englishLabel": "Score Range"
+              },
+              {},
+              {
+                "englishLabel": "Feedback for defined score range",
+                "englishPlaceholder": "Fill in the feedback"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
       "label": "النص المعروض قبل عدد من البيانات حلها في المهمة الموجزة",
       "description": "سيتم عرضها فوق البيانات. على سبيل المثال: \"التقدم من: ٢/٥\""
     },
@@ -47,59 +73,6 @@
     {
       "label": "راس ملاحظات الملخص",
       "description": "سيتم عرضه فوق ملاحظات الملخص"
-    },
-    {
-      "label": "ملاحظات الملخص",
-      "fields": [
-        {
-          "label": "كل الاجابات صحيحة",
-          "fields": [
-            {
-              "label": "عنوان الملاحظات"
-            },
-            {
-              "label": "نص الملاحظة"
-            }
-          ]
-        },
-        {
-          "label": "٧٠ - ٩٩٪ اجابات صحيحة",
-          "fields": [
-            {
-              "label": "عنوان الملاحظات"
-            },
-            {
-              "label": "نص الملاحظة"
-            }
-          ]
-        },
-        {
-          "label": "٤٠ - ٦٩٪ اجابات صحيحة",
-          "fields": [
-            {
-              "label": "عنوان الملاحظات"
-            },
-            {
-              "label": "نص الملاحظة"
-            }
-          ]
-        },
-        {
-          "label": "٠ - ٣٩٪ اجابات صحيحة",
-          "fields": [
-            {
-              "label": "عنوان الملاحظات"
-            },
-            {
-              "label": "نص الملاحظة"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "label": "ملخص الملاحظات",
-      "description": "المتغيرات المتاحة: @score, @total, @percent. مثال: You got @score of @total statements (@percent %) صحيح"
     }
   ]
 }
