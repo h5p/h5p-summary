@@ -111,8 +111,8 @@
     },
     {
       "label":"フィードバックサマリー",
-      "default":"最初のトライで @total 文中 @score (@percent %) の正解を獲得。",
-      "description":"利用可能な変数: @score, @total, @percent. 例: @total 文中 @score (@percent %) の正解を獲得。"
+      "default":"最初のトライで @score / @total  (@percent %) の正解を獲得。",
+      "description":"利用可能な変数: @score, @total, @percent. 例: @score / @total (@percent %) の正解を獲得。"
     },
     {
       "label":"正解のためのリードスピーカー用テキスト",
