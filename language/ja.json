@@ -115,7 +115,7 @@
       "description":"利用可能な変数: @score, @total, @percent. 例: @total 文中 @score (@percent %) の正解を獲得。"
     },
     {
-      "label":"Readspeaker text for correct answer",
+      "label":"正解のためのリードスピーカー用テキスト",
       "default":"Correct."
     },
     {
