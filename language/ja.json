@@ -1,9 +1,9 @@
 {
   "semantics":[
     {
-      "label":"イントロダクションテキスト",
+      "label":"概要文",
       "default":"正しい文を選んで下さい。",
-      "description":"サマリタスクの上に表示されます。"
+      "description":"サマリータスクの上に表示されます。"
     },
     {
       "widgets":[
@@ -14,13 +14,13 @@
           "label":"原文"
         }
       ],
-      "label":"サマリ",
+      "label":"サマリー",
       "entity":"文",
       "field":{
         "label":"文の集まり",
         "fields":[
           {
-            "label":"サマリ用の文のリスト - 最初の文は正解。",
+            "label":"サマリー用の文のリスト - 最初の文は正解。",
             "entity":"文",
             "field":{
               "label":"文"
@@ -38,22 +38,22 @@
       }
     },
     {
-      "label":"サマリタスクで解かれた文数の前に表示されるテキスト。",
+      "label":"サマリータスクで解かれた文数の前に表示されるテキスト。",
       "default":"進行状況:",
       "description":"文の上に表示されます。例: '進度: 2/5'"
     },
     {
-      "label":"サマリタスクで選ばれた、まちがえた文数の前に表示されるテキスト。",
+      "label":"サマリータスクで選ばれた、まちがえた文数の前に表示されるテキスト。",
       "default":"まちがえた答え:",
       "description":"文の上に表示されます。例: 'まちがえた解答: 4'"
     },
     {
       "label":"サマリーフィードバックの見出し",
       "default":"あなたの結果",
-      "description":"サマリフィードバックの上に表示されます。"
+      "description":"サマリーフィードバックの上に表示されます。"
     },
     {
-      "label":"サマリフィードバック",
+      "label":"サマリーフィードバック",
       "fields":[
         {
           "label":"すべて正解",
@@ -110,21 +110,21 @@
       ]
     },
     {
-      "label":"フィードバックサマリ",
+      "label":"フィードバックサマリー",
       "default":"最初のトライで @total 文中 @score (@percent %) の正解を獲得。",
       "description":"利用可能な変数: @score, @total, @percent. 例: @total 文中 @score (@percent %) の正解を獲得。"
     },
     {
       "label":"正解のためのリードスピーカー用テキスト",
-      "default":"Correct."
+      "default":"正解です。"
     },
     {
-      "label":"Readspeaker text for incorrect answer",
-      "default":"Incorrect! Please try again."
+      "label":"不正解ためのリードスピーカー用テキスト",
+      "default":"不正解 ! もう一度トライしてくだい。"
     },
     {
-      "label":"Label list of correct answers",
-      "default":"Correct answers."
+      "label":"正解のラベルリスト",
+      "default":"正解です。"
     }
   ]
 }
