@@ -66,33 +66,14 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     this.startStopWatch(this.progress);
 
     this.options = H5P.jQuery.extend({}, {
-      response: {
-        scorePerfect:
-        {
-          title: "PERFECT!",
-          message: "You got everything correct on your first try. Be proud!"
-        },
-        scoreOver70:
-        {
-          title: "Great!",
-          message: "You got most of the statements correct on your first try!"
-        },
-        scoreOver40:
-        {
-          title: "Ok",
-          message: "You got some of the statements correct on your first try. There is still room for improvement."
-        },
-        scoreOver0:
-        {
-          title: "Not good",
-          message: "You need to work more on this"
-        }
-      },
-      summary: "You got @score of @total statements (@percent %) correct on your first try.",
+      overallFeedback: [],
       resultLabel: "Your result:",
       intro: "Choose the correct statement.",
       solvedLabel: "Solved:",
       scoreLabel: "Wrong answers:",
+      labelCorrect: "Correct.",
+      incorrectText: "Incorrect! Please try again.",
+      labelCorrectAnswers: "List of correct answers.",
       postUserStatistics: (H5P.postUserStatistics === true)
     }, options);
 
@@ -147,6 +128,8 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
   Summary.prototype.createQuestion = function() {
     var that = this;
     var id = 0; // element counter
+     // variable to capture currently focused option.
+    var currentFocusedOption;
     var elements = [];
     var $ = H5P.jQuery;
     this.$myDom = $('<div>', {
@@ -204,23 +187,32 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
     // Create content panels
     var $summary_container = $('<div class="summary-container"></div>');
-    var $summary_list = $('<ul></ul>');
+    var $summary_list = $('<ul role="list" aria-labelledby="answerListHeading-'+that.contentId+'"></ul>');
     var $evaluation = $('<div class="summary-evaluation"></div>');
-    var $evaluation_content = $('<div class="summary-evaluation-content">' + that.options.intro + '</div>');
+    var $evaluation_content = $('<div id="questionDesc-'+that.contentId+'" class="summary-evaluation-content">' + that.options.intro + '</div>');
     var $score = $('<div class="summary-score"></div>');
     var $options = $('<div class="summary-options"></div>');
     var $progress = $('<div class="summary-progress"></div>');
     var options_padding = parseInt($options.css('paddingLeft'));
+    // content div added for readspeaker that indicates list of correct answers.
+    var $answersListHeading = $('<div id="answerListHeading-'+that.contentId+'" class="h5p-hidden-read">' + that.options.labelCorrectAnswers + '</div>');
+
+    // Aria-live div added for readspeaker to read out dynamic content.
+    var $ariaLiveContainer = $('<div class="h5p-hidden-read" aria-live="polite" aria-atomic="true" id="readerLiveContainer-'+this.contentId+'"></div>');
 
     if (this.score) {
       $score.html(that.options.scoreLabel + ' ' + this.score).show();
     }
 
     // Insert content
+    // aria-hidden = true added for readspeaker to avoid reading empty answers list.
+    $summary_container.attr("aria-hidden", "true");
+    $summary_container.html($answersListHeading);
     $summary_container.append($summary_list);
     this.$myDom.append($summary_container);
     this.$myDom.append($evaluation);
     this.$myDom.append($options);
+    this.$myDom.append($ariaLiveContainer);
     $evaluation.append($evaluation_content);
     $evaluation.append($evaluation);
     $evaluation.append($progress);
@@ -236,6 +228,10 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     var selectedAlt = function ($el, setFocus) {
       var nodeId = Number($el.attr('data-bit'));
       var panelId = Number($el.parent().data('panel'));
+      var readerEle = $("#readerLiveContainer-" + that.contentId);
+      var isRadioClicked = $el.attr('aria-checked');
+      if(isRadioClicked == 'true') return;
+
       if (that.errorCounts[panelId] === undefined) {
         that.errorCounts[panelId] = 0;
       }
@@ -249,14 +245,27 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         that.progress++;
         var position = $el.position();
         var summary = $summary_list.position();
-        var $answer = $('<li>' + $el.html() + '</li>');
+        var $answer = $('<li role="listitem">' + $el.html() + '</li>');
 
         $progress.html(that.options.solvedLabel + ' '  + (panelId + 1) + '/' + that.summaries.length);
+        $el.attr("aria-checked", "true");
+
+        // replacing "/" with "of" for readspeaker and adding it inside aria-live container
+        var progressString = $progress.html().replace("/", " of ");
+        var textForScreenReader = that.options.labelCorrect + progressString;
+        readerEle.text(textForScreenReader);
+        setTimeout(function () {
+          ((panelId + 1) == that.summaries.length) ? '' : readerEle.text('');
+        }, 1);
+
 
         // Insert correct claim into summary list
         $summary_list.append($answer);
         $summary_container.addClass('has-results');
+        // change aria-hidden property as when correct answer is added inside list at top
+        $summary_container.attr("aria-hidden", "false");
         that.adjustTargetHeight($summary_container, $summary_list, $answer);
+
 
         // Move into position over clicked element
         $answer.css({display: 'block', width: $el.css('width'), height: $el.css('height')});
@@ -272,7 +281,6 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         var $next_panel = $('.h5p-panel:eq(' + (panel + 1) + ')', that.$myDom);
         var finished = ($next_panel.length === 0);
         var height = $curr_panel.parent().css('height');
-
         // Disable panel while waiting for animation
         $curr_panel.addClass('panel-disabled');
 
@@ -338,9 +346,15 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         $el.off('click');
         $el.addClass('summary-failed');
         $el.removeClass('summary-claim-unclicked');
-
+        $el.attr("aria-checked", "true");
         $evaluation.children('.summary-score').css('display', 'block');
         $score.html(that.options.scoreLabel + ' ' + (++that.score));
+        //hidden text added for readspeaker when user selects wrong answer
+        var textForScreenReader = that.options.labelIncorrect + $score.html();
+        readerEle.text(textForScreenReader);
+        setTimeout(function () {
+           readerEle.text('');
+        }, 1);
         that.errorCounts[panelId]++;
         if (that.answers[panelId] === undefined) {
           that.answers[panelId] = [];
@@ -349,7 +363,6 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       }
 
       that.trigger('resize');
-      $el.attr('tabindex', '-1');
       that.triggerXAPI('interacted');
 
       // Trigger answered xAPI event on first try for the current
@@ -386,7 +399,8 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         // Cannot use continue; due to id/animation system
       }
 
-      var $page = $('<ul class="h5p-panel" data-panel="' + i + '"></ul>');
+      // added aria-labelledby property for readspeaker to read, when first option receive focus
+      var $page = $('<ul aria-labelledby="questionDesc-'+that.contentId+'" role="radiogroup" class="h5p-panel" data-panel="' + i + '"></ul>');
 
 
       // Create initial tip for first summary-list if tip is available
@@ -409,9 +423,21 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         }
 
         var $node = $('' +
-          '<li role="button" tabindex="0" data-bit="' + element.summaries[j].id + '" class="' + summaryLineClass + '">' +
+          '<li role="radio" aria-checked="false" data-name="'+j+'" data-bit="' + element.summaries[j].id + '" class="' + summaryLineClass + '">' +
             element.summaries[j].text +
           '</li>');
+        // added tabindex = 0 for the first option to avoid accessing rest of the options via TAB
+        (j == 0) ? $node.attr("tabindex", "0") : $node.attr("tabindex", "-1");
+
+        $node.on('focus', function() {
+          var ind = $(this).attr('data-name');
+          setFocusIndex(ind);
+        });
+
+        // function captures the index of currently focused option
+        setFocusIndex = function(idx) {
+          currentFocusedOption = idx;
+        };
 
         // Do not add click event for failed nodes
         if (summaryLineClass === 'summary-failed') {
@@ -421,12 +447,27 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
         $node.click(function() {
           selectedAlt($(this));
-        }).keypress(function (e) {
-          var keyPressed = e.which;
-          // 32 - space
-          if (keyPressed === 32) {
-            selectedAlt($(this), true);
-            e.preventDefault();
+        }).keydown(function (e) {
+          switch (e.which) {
+            case 13: // Enter
+            case 32: // Space
+              selectedAlt($(this), true);
+              e.preventDefault();
+              break;
+
+            case 37: // Left Arrow
+            case 38: // Up Arrow
+              // Go to previous Option
+              that.gotoPreviousOption(that, currentFocusedOption);
+              e.preventDefault();
+              break;
+
+            case 39: // Right Arrow
+            case 40: // Down Arrow
+              // Go to next Option
+              that.gotoNextOption(that, currentFocusedOption);
+              e.preventDefault();
+              break;
           }
         });
 
@@ -454,6 +495,53 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
   };
 
   /**
+   * Handles moving the focus from the current option to the previous option and changes tabindex accorindgly
+   *
+   */
+  Summary.prototype.gotoPreviousOption = function (that, currentFocusedOption) {
+    this.currentFocusedOption = currentFocusedOption;
+    var totOptions = that.summaries[that.progress].summary.length;
+    var prevRadioEle = $("ul[data-panel="+that.progress+"] li[role='radio']");
+
+    //prevRadioEle.removeAttr("tabindex");
+    prevRadioEle.attr("tabindex", "-1");
+    this.currentFocusedOption--;
+
+    if(this.currentFocusedOption < 0) {
+        var num = totOptions - 1;
+        prevRadioEle.eq(num).attr("tabindex", "0");
+        prevRadioEle.eq(num).focus();
+      }
+      else {
+        prevRadioEle.eq(this.currentFocusedOption).attr("tabindex", "0");
+        prevRadioEle.eq(this.currentFocusedOption).focus();
+      }
+    };
+
+  /**
+   * Handles moving the focus from the current option to the next option and changes tabindex accorindgly
+   *
+   */
+  Summary.prototype.gotoNextOption = function (that, currentFocusedOption) {
+    this.currentFocusedOption = currentFocusedOption;
+    var totOptions = that.summaries[that.progress].summary.length;
+    var nextRadioEle = $("ul[data-panel="+that.progress+"] li[role='radio']");
+
+    //nextRadioEle.removeAttr("tabindex");
+    nextRadioEle.attr("tabindex", "-1");
+    this.currentFocusedOption++;
+
+    if(this.currentFocusedOption == totOptions) {
+      nextRadioEle.eq(0).attr("tabindex", "0");
+      nextRadioEle.eq(0).focus();
+    }
+    else {
+      nextRadioEle.eq(this.currentFocusedOption).attr("tabindex", "0");
+      nextRadioEle.eq(this.currentFocusedOption).focus();
+    }
+  };
+
+  /**
    * Calculate final score and display feedback.
    *
    * @param container
@@ -468,30 +556,22 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     // Calculate percentage
     var percent = 100 - (error_count / that.errorCounts.length * 100);
 
-    // Find evaluation message
-    var from = 0;
-    for (var i in that.options.response) {
-      switch (i) {
-        case "scorePerfect":
-          from = 100;
-          break;
-        case "scoreOver70":
-          from = 70;
-          break;
-        case "scoreOver40":
-          from = 40;
-          break;
-        case "scoreOver0":
-          from = 0;
-          break;
-      }
-      if (percent >= from) {
-        break;
-      }
-    }
-
     // Show final evaluation
-    var summary = that.options.summary.replace('@score', that.summaries.length - error_count).replace('@total', that.summaries.length).replace('@percent', Math.round(percent));
+    var summary = H5P.Question.determineOverallFeedback(that.options.overallFeedback, percent / 100)
+      .replace('@score', that.summaries.length - error_count)
+      .replace('@total', that.summaries.length)
+      .replace('@percent', Math.round(percent));
+
+    // remove hidden div on summary page that generates from question.js.
+    // Below code is added to remove reader's conflict between Progress status and final summary.
+    $(".h5p-question-read .h5p-hidden-read").remove();
+    $(".summary-evaluation-content").removeAttr("tabindex");
+    var readerEle = $("#readerLiveContainer-" + that.contentId);
+    readerEle.append(". " + that.options.resultLabel + ': ' + summary);
+    setTimeout(function () {
+      readerEle.text('');
+    }, 1);
+
     this.setFeedback(summary, that.summaries.length - error_count, that.summaries.length);
     that.trigger('resize');
   };
@@ -553,7 +633,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
     return {
       choices: choices
-    }
+    };
   };
 
   /**
@@ -617,7 +697,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
   Summary.prototype.getTotalPassedTime = function () {
     return this.stopWatches
       .filter(function(watch){
-        return watch != undefined;
+        return watch !== undefined;
       })
       .reduce(function(sum, watch){
         return sum + watch.passedTime();
@@ -682,7 +762,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
         return {
           statement: event.data.statement
-        }
+        };
     });
 
     var result = XApiEventBuilder.createResult()
