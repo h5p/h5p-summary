@@ -20,10 +20,10 @@
         "label":"Set di istruzioni",
         "fields":[
           {
-            "label":"List of statements for the summary - the first statement is correct.",
-            "entity":"statement",
+            "label":"Elenco di istruzioni per il sommario - la prima istruzione è corretta",
+            "entity":"istruzione",
             "field":{
-              "label":"Statement"
+              "label":"Istruzione"
             }
           },
           {
@@ -38,13 +38,13 @@
       }
     },
     {
-      "label":"Text displayed before number of statements solved in the summary task.",
-      "default":"Progress:",
-      "description":"Will be displayed above the statements. Example: 'Progress: 2/5'"
+      "label":"Testo visualizzato prima di un numero di istruzioni risolte nell'attività di riepilogo",
+      "default":"Avanzamento:",
+      "description":"Sarà visualizzato sopra le istruzioni. Esempio: ' Avanzamento: 2/5'"
     },
     {
-      "label":"Text displayed before number of wrong statements selected in the summary task.",
-      "default":"Wrong answers:",
+      "label":"Testo visualizzato prima di un numero di affermazioni sbagliate, selezionato nel nel riepilogo del compito",
+      "default":"Risposte sbagliate:",
       "description":"Will be displayed above the statements. Example: 'Wrong answers: 4'"
     },
     {
