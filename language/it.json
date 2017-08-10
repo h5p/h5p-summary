@@ -72,58 +72,58 @@
           "label":"70% - 99% giusto",
           "fields":[
             {
-              "label":"Feedback title",
-              "default":"Great!"
+              "label":"Titolo del feedback",
+              "default":"Fantastico!"
             },
             {
-              "label":"Feedback message",
-              "default":"You got most of the statements correct on your first try."
+              "label":"Messaggio di feedback",
+              "default":"Al tuo primo tentativo, la maggior parte degli enunciati sono giusti"
             }
           ]
         },
         {
-          "label":"40 % - 69 % correct",
+          "label":"40% - 69% giusto",
           "fields":[
             {
-              "label":"Feedback title",
+              "label":"Titolo del feedback",
               "default":"Ok"
             },
             {
-              "label":"Feedback message",
-              "default":"You got some of the statements correct on your first try."
+              "label":"Messaggio di feedback",
+              "default":"Al tuo primo tentativo, alcuni degli enunciati sono giusti"
             }
           ]
         },
         {
-          "label":"0 % - 39 % correct",
+          "label":"0% - 39% giusto",
           "fields":[
             {
-              "label":"Feedback title",
-              "default":"A few mistakes."
+              "label":"Titolo del feedback",
+              "default":"Un paio di errori"
             },
             {
-              "label":"Feedback message",
-              "default":"Have another try!"
+              "label":"Messaggio di feedback",
+              "default":"Fai un'altra prova!"
             }
           ]
         }
       ]
     },
     {
-      "label":"Feedback summary",
-      "default":"You got @score of @total statements (@percent %) correct on your first try.",
-      "description":"Available variables: @score, @total, @percent. Example: You got @score of @total statements (@percent %) correct."
+      "label":"Riepilogo dei feedback",
+      "default":"Hai @score di @total enunciati (@percent %) corretti al primo tentativo",
+      "description":"Variabili disponibili: @score, @total, @percent. Esempio: Hai @score di @total enunciati (@percent %) corretti"
     },
     {
       "label":"Testo ReadSpeaker per la risposta corretta",
-      "default":"Correct."
+      "default":"Giusto"
     },
     {
       "label":"Testo ReadSpeaker per risposta errata",
-      "default":"Incorrect! Please try again."
+      "default":"Sbagliato! Riprova ancora"
     },
     {
-      "label":"Label list of correct answers",
+      "label":"Elenco di etichette di risposte giuste",
       "default":"Correct answers."
     }
   ]
