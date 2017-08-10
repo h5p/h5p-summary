@@ -56,20 +56,20 @@
       "label":"Riepilogo dei feedback",
       "fields":[
         {
-          "label":"Tutto corretto",
+          "label":"Tutto giusto",
           "fields":[
             {
               "label":"Titolo del feedback",
-              "default":"PERFECT!"
+              "default":"PERFETTO!"
             },
             {
-              "label":"Feedback message",
-              "default":"You got everything correct on your first try!"
+              "label":"Messaggio di feedback",
+              "default":"È tutto giusto al primo tentativo!"
             }
           ]
         },
         {
-          "label":"70 % - 99 % correct",
+          "label":"70% - 99% giusto",
           "fields":[
             {
               "label":"Feedback title",
