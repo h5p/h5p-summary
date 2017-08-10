@@ -45,21 +45,21 @@
     {
       "label":"Testo visualizzato prima di un numero di affermazioni sbagliate, selezionato nel nel riepilogo del compito",
       "default":"Risposte sbagliate:",
-      "description":"Will be displayed above the statements. Example: 'Wrong answers: 4'"
+      "description":"Sarà visualizzato sopra le istruzioni. Esempio: ' Risposte sbagliate: 4'"
     },
     {
-      "label":"Summary feedback header",
-      "default":"Your result",
-      "description":"Will be displayed above the summary feedback."
+      "label":"Intestazione di riepilogo feedback",
+      "default":"Il tuo risultato",
+      "description":"Sarà visualizzato sopra il riepilogo dei feedback"
     },
     {
-      "label":"Summary feedback",
+      "label":"Riepilogo dei feedback",
       "fields":[
         {
-          "label":"Everything correct",
+          "label":"Tutto corretto",
           "fields":[
             {
-              "label":"Feedback title",
+              "label":"Titolo del feedback",
               "default":"PERFECT!"
             },
             {
