@@ -124,7 +124,7 @@
     },
     {
       "label":"Elenco di etichette di risposte giuste",
-      "default":"Correct answers."
+      "default":"Risposte giuste"
     }
   ]
 }
