@@ -38,81 +38,48 @@
       }
     },
     {
-      "label":"Texto mostrado antes do número de afirmações resolvidas na atividade de revisão.",
-      "default":"Progresso:",
-      "description":"Será mostrado acima das afirmações. Exemplo: 'Progresso: 2/5'"
-    },
-    {
-      "label":"Texto mostrado antes do número de afirmações erradas selecionadas na atividade de revisão.",
-      "default":"Respostas errada:",
-      "description":"Será mostrado acima das afirmações. Exemplo: 'Respostas erradas: 4'"
-    },
-    {
-      "label":"Cabeçalho do feedback da revisão",
-      "default":"Seu resultado",
-      "description":"Será mestrado acima do cabeçalho do feedback da revisão."
-    },
-    {
-      "label":"Feedback da revisão",
+      "label":"Overall Feedback",
       "fields":[
         {
-          "label":"Tudo correto",
-          "fields":[
+          "widgets":[
             {
-              "label":"Título do feedback",
-              "default":"PERFEITO!"
-            },
-            {
-              "label":"Mensagem de feedback",
-              "default":"Você acertou tudo na primeira tentativa!"
+              "label":"Default"
             }
-          ]
-        },
-        {
-          "label":"70 % - 99 % correto",
-          "fields":[
-            {
-              "label":"Título do feedback",
-              "default":"Ótimo!"
-            },
-            {
-              "label":"Mensagem de feedback",
-              "default":"Você acertou a maioria na sua primeira tentativa."
-            }
-          ]
-        },
-        {
-          "label":"40 % - 69 % correto",
-          "fields":[
-            {
-              "label":"Título do feedback",
-              "default":"Ok"
-            },
-            {
-              "label":"Mensagem de feedback",
-              "default":"Você acertou alguns na sua primeira tentativa."
-            }
-          ]
-        },
-        {
-          "label":"0 % - 39 % correto",
-          "fields":[
-            {
-              "label":"Título do feedback",
-              "default":"Alguns erros."
-            },
-            {
-              "label":"Mensagem de feedback",
-              "default":"Tente novamente!"
-            }
-          ]
+          ],
+          "label":"Define custom feedback for any score range",
+          "description":"Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
+          "entity":"range",
+          "field":{
+            "fields":[
+              {
+                "label":"Score Range"
+              },
+              {
+                
+              },
+              {
+                "label":"Feedback for defined score range",
+                "placeholder":"Fill in the feedback"
+              }
+            ]
+          }
         }
       ]
     },
     {
-      "label":"Resumo do feedback",
-      "default":"Você conseguiu @score de @total questões (@percent %) corretas na sua primeira tentativa.",
-      "description":"Variáveis disponíveis: @score, @total, @percent. Exemplo: Você conseguiu @score de @total questões (@percent %) corretas."
+      "label":"Text displayed before number of statements solved in the summary task.",
+      "default":"Progress:",
+      "description":"Will be displayed above the statements. Example: 'Progress: 2/5'"
+    },
+    {
+      "label":"Text displayed before number of wrong statements selected in the summary task.",
+      "default":"Wrong answers:",
+      "description":"Will be displayed above the statements. Example: 'Wrong answers: 4'"
+    },
+    {
+      "label":"Summary feedback header",
+      "default":"Your result",
+      "description":"Will be displayed above the summary feedback."
     },
     {
       "label":"Readspeaker text for correct answer",
