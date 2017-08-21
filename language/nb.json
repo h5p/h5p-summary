@@ -38,88 +38,55 @@
       }
     },
     {
-      "label":"Tekst som vises før antall påstander som er løst i oppsummeringen.",
-      "default":"Løst:",
-      "description":"Vil vises over påstandene. Eksempel: 'Løst: 2/5'"
-    },
-    {
-      "label":"Tekst som vises før antall feil påstander som er valgt i oppsummeringen.",
-      "default":"Antall feil:",
-      "description":"Vil vises over påstandene. Eksempel: 'Antall feil: 4'"
-    },
-    {
-      "label":"Overskrift over tilbakemelding",
-      "default":"Ditt resultat:",
-      "description":"Vil vises over tilbakemelding på oppsummeringen."
-    },
-    {
-      "label":"Tilbakemelding på oppsummeringen",
+      "label":"Overall Feedback",
       "fields":[
         {
-          "label":"Alt riktig",
-          "fields":[
+          "widgets":[
             {
-              "label":"Tittel for tilbakemeldingen",
-              "default":"Alt rett!"
-            },
-            {
-              "label":"Tilbakemelding",
-              "default":"Du fikk alt rett på første forsøk!"
+              "label":"Default"
             }
-          ]
-        },
-        {
-          "label":"70 % - 99 % rett",
-          "fields":[
-            {
-              "label":"Tittel for tilbakemeldingen",
-              "default":"70 - 99%: Bra!"
-            },
-            {
-              "label":"Tilbakemelding",
-              "default":"Du fikk mesteparten av påstandene rett på første forsøk."
-            }
-          ]
-        },
-        {
-          "label":"40 % - 69 % rett",
-          "fields":[
-            {
-              "label":"Tittel for tilbakemeldingen",
-              "default":"40 % - 69 % rett: Ok"
-            },
-            {
-              "label":"Tilbakemelding",
-              "default":"Du fikk noen av påstandene rett. Prøv igjen!"
-            }
-          ]
-        },
-        {
-          "label":"0 % - 39 % rett",
-          "fields":[
-            {
-              "label":"Tittel for tilbakemeldingen",
-              "default":"0 % - 39 % rett: Ikke bestått"
-            },
-            {
-              "label":"Tilbakemelding",
-              "default":"Det var litt mange feil her. Prøv igjen!"
-            }
-          ]
+          ],
+          "label":"Define custom feedback for any score range",
+          "description":"Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
+          "entity":"range",
+          "field":{
+            "fields":[
+              {
+                "label":"Score Range"
+              },
+              {
+                
+              },
+              {
+                "label":"Feedback for defined score range",
+                "placeholder":"Fill in the feedback"
+              }
+            ]
+          }
         }
       ]
     },
     {
-      "label":"Angivelse av resultat",
-      "default":"Du fikk @score av @total påstander (@percent %) rett på første forsøk.",
-      "description":"Tilgjengelige variabler: @score, @total, @percent. Eksempel: Du fikk @score av @total påstander (@percent %) rett."
+      "label":"Text displayed before number of statements solved in the summary task.",
+      "default":"Progress:",
+      "description":"Will be displayed above the statements. Example: 'Progress: 2/5'"
     },
     {
-      "label":"Rett svar tekst for hjelpemiddelteknologi",
+      "label":"Text displayed before number of wrong statements selected in the summary task.",
+      "default":"Wrong answers:",
+      "description":"Will be displayed above the statements. Example: 'Wrong answers: 4'"
+    },
+    {
+      "label":"Summary feedback header",
+      "default":"Your result",
+      "description":"Will be displayed above the summary feedback."
+    },
+    {
+      "label":"Readspeaker text for correct answer",
       "default":"Correct."
     },
     {
-      "label":"Galt svar tekst for hjelpemiddelteknologi",
+      "label":"Readspeaker text for incorrect answer",
       "default":"Incorrect! Please try again."
     },
     {
