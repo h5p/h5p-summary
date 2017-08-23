@@ -435,7 +435,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         });
 
         // function captures the index of currently focused option
-        setFocusIndex = function(idx) {
+        var setFocusIndex = function(idx) {
           currentFocusedOption = idx;
         };
 
@@ -501,7 +501,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
   Summary.prototype.gotoPreviousOption = function (that, currentFocusedOption) {
     this.currentFocusedOption = currentFocusedOption;
     var totOptions = that.summaries[that.progress].summary.length;
-    var prevRadioEle = $("ul[data-panel="+that.progress+"] li[role='radio']");
+    var prevRadioEle = $("ul[data-panel="+that.progress+"] li[role='radio']", this.$myDom);
 
     //prevRadioEle.removeAttr("tabindex");
     prevRadioEle.attr("tabindex", "-1");
@@ -525,7 +525,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
   Summary.prototype.gotoNextOption = function (that, currentFocusedOption) {
     this.currentFocusedOption = currentFocusedOption;
     var totOptions = that.summaries[that.progress].summary.length;
-    var nextRadioEle = $("ul[data-panel="+that.progress+"] li[role='radio']");
+    var nextRadioEle = $("ul[data-panel="+that.progress+"] li[role='radio']", this.$myDom);
 
     //nextRadioEle.removeAttr("tabindex");
     nextRadioEle.attr("tabindex", "-1");
@@ -564,9 +564,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
     // remove hidden div on summary page that generates from question.js.
     // Below code is added to remove reader's conflict between Progress status and final summary.
-    $(".h5p-question-read .h5p-hidden-read").remove();
-    $(".summary-evaluation-content").removeAttr("tabindex");
-    var readerEle = $("#readerLiveContainer-" + that.contentId);
+    $(".h5p-question-read .h5p-hidden-read").remove(); // TODO: This permanently destroys read for all questions
+    $(".summary-evaluation-content", this.$myDom).removeAttr("tabindex");
+    var readerEle = $("#readerLiveContainer-" + that.contentId); // TODO: This ID will be the same for all summaries in a CP or IV, i.e. not valid HTML
     readerEle.append(". " + that.options.resultLabel + ': ' + summary);
     setTimeout(function () {
       readerEle.text('');
