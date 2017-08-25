@@ -8,13 +8,13 @@
     {
       "widgets":[
         {
-          "label":"Default"
+          "label":"Predeterminado"
         },
         {
           "label":"Textual"
         }
       ],
-      "label":"Summary",
+      "label":"Resumen",
       "entity":"statements",
       "field":{
         "label":"Set of statements",
@@ -43,7 +43,7 @@
         {
           "widgets":[
             {
-              "label":"Default"
+              "label":"Predeterminado"
             }
           ],
           "label":"Define custom feedback for any score range",
