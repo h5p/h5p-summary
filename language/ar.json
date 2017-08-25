@@ -8,7 +8,7 @@
     {
       "widgets":[
         {
-          "label":"الافتراضي"
+          "label":"افتراضي"
         },
         {
           "label":"النصية"
@@ -38,12 +38,12 @@
       }
     },
     {
-      "label":"Overall Feedback",
+      "label":"شفافية خلفية العناصر",
       "fields":[
         {
           "widgets":[
             {
-              "label":"Default"
+              "label":"افتراضي"
             }
           ],
           "label":"Define custom feedback for any score range",
@@ -67,26 +67,26 @@
       ]
     },
     {
-      "label":"Text displayed before number of statements solved in the summary task.",
+      "label":"النص المعروض قبل عدد من البيانات حلها في المهمة الموجزة",
       "default":"Progress:",
-      "description":"Will be displayed above the statements. Example: 'Progress: 2/5'"
+      "description":"سيتم عرضها فوق البيانات. على سبيل المثال: \"التقدم من: ٢/٥\""
     },
     {
-      "label":"Text displayed before number of wrong statements selected in the summary task.",
+      "label":"النص المعروض قبل عدد من البيانات خاطئة المحدد في المهمة الموجزة",
       "default":"Wrong answers:",
-      "description":"Will be displayed above the statements. Example: 'Wrong answers: 4'"
+      "description":"سيتم عرض فوق البيانات. مثال: \"الإجابات خاطئة: ٤\""
     },
     {
-      "label":"Summary feedback header",
+      "label":"راس ملاحظات الملخص",
       "default":"Your result",
-      "description":"Will be displayed above the summary feedback."
+      "description":"سيتم عرضه فوق ملاحظات الملخص"
     },
     {
-      "label":"Readspeaker text for correct answer",
+      "label":"النص Readspeaker عن الإجابة الصحيحة",
       "default":"Correct."
     },
     {
-      "label":"Readspeaker text for incorrect answer",
+      "label":"النص Readspeaker للإجابة غير صحيحة",
       "default":"Incorrect! Please try again."
     },
     {
