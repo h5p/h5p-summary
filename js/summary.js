@@ -1,10 +1,14 @@
 H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
+  var summaryId = 0;
+
   function Summary(options, contentId, contentData) {
     if (!(this instanceof H5P.Summary)) {
       return new H5P.Summary(options, contentId);
     }
+
     this.id = this.contentId = contentId;
+    this.summaryId = summaryId;
     Question.call(this, 'summary');
     this.offset = 0;
     this.score = 0;
@@ -12,6 +16,8 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     this.answers = [];
     this.answer = [];
     this.errorCounts = [];
+
+    summaryId += 1;
 
     /**
      * The key is panel index, returns an array of the answer indexes the user tried.
@@ -187,18 +193,15 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
     // Create content panels
     var $summary_container = $('<div class="summary-container"></div>');
-    var $summary_list = $('<ul role="list" aria-labelledby="answerListHeading-'+that.contentId+'"></ul>');
+    var $summary_list = $('<ul role="list" aria-labelledby="answerListHeading-'+that.summaryId+'"></ul>');
     var $evaluation = $('<div class="summary-evaluation"></div>');
-    var $evaluation_content = $('<div id="questionDesc-'+that.contentId+'" class="summary-evaluation-content">' + that.options.intro + '</div>');
+    var $evaluation_content = $('<div id="questionDesc-'+that.summaryId+'" class="summary-evaluation-content">' + that.options.intro + '</div>');
     var $score = $('<div class="summary-score"></div>');
     var $options = $('<div class="summary-options"></div>');
     var $progress = $('<div class="summary-progress"></div>');
     var options_padding = parseInt($options.css('paddingLeft'));
     // content div added for readspeaker that indicates list of correct answers.
-    var $answersListHeading = $('<div id="answerListHeading-'+that.contentId+'" class="h5p-hidden-read">' + that.options.labelCorrectAnswers + '</div>');
-
-    // Aria-live div added for readspeaker to read out dynamic content.
-    var $ariaLiveContainer = $('<div class="h5p-hidden-read" aria-live="polite" aria-atomic="true" id="readerLiveContainer-'+this.contentId+'"></div>');
+    var $answersListHeading = $('<div id="answerListHeading-'+that.summaryId+'" class="h5p-hidden-read">' + that.options.labelCorrectAnswers + '</div>');
 
     if (this.score) {
       $score.html(that.options.scoreLabel + ' ' + this.score).show();
@@ -212,7 +215,6 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     this.$myDom.append($summary_container);
     this.$myDom.append($evaluation);
     this.$myDom.append($options);
-    this.$myDom.append($ariaLiveContainer);
     $evaluation.append($evaluation_content);
     $evaluation.append($evaluation);
     $evaluation.append($progress);
@@ -228,7 +230,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     var selectedAlt = function ($el, setFocus) {
       var nodeId = Number($el.attr('data-bit'));
       var panelId = Number($el.parent().data('panel'));
-      var readerEle = $("#readerLiveContainer-" + that.contentId);
+      var readerEle = $("#readerLiveContainer-" + that.summaryId);
       var isRadioClicked = $el.attr('aria-checked');
       if(isRadioClicked == 'true') return;
 
@@ -400,7 +402,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       }
 
       // added aria-labelledby property for readspeaker to read, when first option receive focus
-      var $page = $('<ul aria-labelledby="questionDesc-'+that.contentId+'" role="radiogroup" class="h5p-panel" data-panel="' + i + '"></ul>');
+      var $page = $('<ul aria-labelledby="questionDesc-'+that.summaryId+'" role="radiogroup" class="h5p-panel" data-panel="' + i + '"></ul>');
 
 
       // Create initial tip for first summary-list if tip is available
@@ -435,7 +437,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         });
 
         // function captures the index of currently focused option
-        setFocusIndex = function(idx) {
+        var setFocusIndex = function(idx) {
           currentFocusedOption = idx;
         };
 
@@ -501,7 +503,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
   Summary.prototype.gotoPreviousOption = function (that, currentFocusedOption) {
     this.currentFocusedOption = currentFocusedOption;
     var totOptions = that.summaries[that.progress].summary.length;
-    var prevRadioEle = $("ul[data-panel="+that.progress+"] li[role='radio']");
+    var prevRadioEle = $("ul[data-panel="+that.progress+"] li[role='radio']", this.$myDom);
 
     //prevRadioEle.removeAttr("tabindex");
     prevRadioEle.attr("tabindex", "-1");
@@ -525,7 +527,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
   Summary.prototype.gotoNextOption = function (that, currentFocusedOption) {
     this.currentFocusedOption = currentFocusedOption;
     var totOptions = that.summaries[that.progress].summary.length;
-    var nextRadioEle = $("ul[data-panel="+that.progress+"] li[role='radio']");
+    var nextRadioEle = $("ul[data-panel="+that.progress+"] li[role='radio']", this.$myDom);
 
     //nextRadioEle.removeAttr("tabindex");
     nextRadioEle.attr("tabindex", "-1");
@@ -562,11 +564,8 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       .replace('@total', that.summaries.length)
       .replace('@percent', Math.round(percent));
 
-    // remove hidden div on summary page that generates from question.js.
-    // Below code is added to remove reader's conflict between Progress status and final summary.
-    $(".h5p-question-read .h5p-hidden-read").remove();
-    $(".summary-evaluation-content").removeAttr("tabindex");
-    var readerEle = $("#readerLiveContainer-" + that.contentId);
+    $(".summary-evaluation-content", this.$myDom).removeAttr("tabindex");
+    var readerEle = $("#readerLiveContainer-" + that.summaryId); 
     readerEle.append(". " + that.options.resultLabel + ': ' + summary);
     setTimeout(function () {
       readerEle.text('');
