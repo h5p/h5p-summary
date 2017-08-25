@@ -14,7 +14,7 @@
           "label":"Textual"
         }
       ],
-      "label":"Summary",
+      "label":"Yhteenveto",
       "entity":"statements",
       "field":{
         "label":"Set of statements",
