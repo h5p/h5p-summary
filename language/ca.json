@@ -43,7 +43,7 @@
         {
           "widgets":[
             {
-              "label":"Default"
+              "label":"Per defecte"
             }
           ],
           "label":"Define custom feedback for any score range",
