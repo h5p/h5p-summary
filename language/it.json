@@ -38,28 +38,28 @@
       }
     },
     {
-      "label":"Overall Feedback",
+      "label":"Feedback generale",
       "fields":[
         {
           "widgets":[
             {
-              "label":"Default"
+              "label":"Predefinito"
             }
           ],
-          "label":"Define custom feedback for any score range",
+          "label":"Definisci un feedback personalizzato per ogni intervallo di punteggio",
           "description":"Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
-          "entity":"range",
+          "entity":"Intervallo",
           "field":{
             "fields":[
               {
-                "label":"Score Range"
+                "label":"Intervallo di punteggio"
               },
               {
                 
               },
               {
-                "label":"Feedback for defined score range",
-                "placeholder":"Fill in the feedback"
+                "label":"Feedback per un intervallo di punteggio definito",
+                "placeholder":"Compila il feedback"
               }
             ]
           }
@@ -67,31 +67,31 @@
       ]
     },
     {
-      "label":"Text displayed before number of statements solved in the summary task.",
-      "default":"Progress:",
-      "description":"Will be displayed above the statements. Example: 'Progress: 2/5'"
+      "label":"Testo visualizzato prima di un numero di istruzioni risolte nell'attività di riepilogo",
+      "default":"Avanzamento:",
+      "description":"Sarà visualizzato sopra le istruzioni. Esempio: ' Avanzamento: 2/5'"
     },
     {
-      "label":"Text displayed before number of wrong statements selected in the summary task.",
-      "default":"Wrong answers:",
-      "description":"Will be displayed above the statements. Example: 'Wrong answers: 4'"
+      "label":"Testo visualizzato prima di un numero di affermazioni sbagliate, selezionato nel nel riepilogo del compito",
+      "default":"Risposte sbagliate:",
+      "description":"Sarà visualizzato sopra le istruzioni. Esempio: ' Risposte sbagliate: 4'"
     },
     {
-      "label":"Summary feedback header",
-      "default":"Your result",
-      "description":"Will be displayed above the summary feedback."
+      "label":"Intestazione di riepilogo feedback",
+      "default":"Il tuo risultato",
+      "description":"Sarà visualizzato sopra il riepilogo dei feedback"
     },
     {
-      "label":"Readspeaker text for correct answer",
-      "default":"Correct."
+      "label":"Testo ReadSpeaker per la risposta corretta",
+      "default":"Giusto"
     },
     {
-      "label":"Readspeaker text for incorrect answer",
-      "default":"Incorrect! Please try again."
+      "label":"Testo ReadSpeaker per risposta errata",
+      "default":"Sbagliato! Riprova ancora"
     },
     {
-      "label":"Label list of correct answers",
-      "default":"Correct answers."
+      "label":"Elenco di etichette di risposte giuste",
+      "default":"Risposte giuste"
     }
   ]
 }
