@@ -38,12 +38,12 @@
       }
     },
     {
-      "label":"Overall Feedback",
+      "label":"Opacité des étiquettes",
       "fields":[
         {
           "widgets":[
             {
-              "label":"Default"
+              "label":"Par défaut"
             }
           ],
           "label":"Define custom feedback for any score range",
@@ -67,26 +67,26 @@
       ]
     },
     {
-      "label":"Text displayed before number of statements solved in the summary task.",
-      "default":"Progress:",
-      "description":"Will be displayed above the statements. Example: 'Progress: 2/5'"
+      "label":"Texte affiché avant le nombre d'affirmations correctement sélectionnées dans le résumé.",
+      "default":"Progression :",
+      "description":"Ce sera affiché au-dessus des affirmations. Exemple: 'Progression : 2/5'"
     },
     {
-      "label":"Text displayed before number of wrong statements selected in the summary task.",
-      "default":"Wrong answers:",
-      "description":"Will be displayed above the statements. Example: 'Wrong answers: 4'"
+      "label":"Texte affiché au-dessus du nombre d'affirmations sélectionnées par erreur dans le résumé.",
+      "default":"Erreurs :",
+      "description":"Ce sera affiché au-dessus des affirmations. Exemple: 'Erreurs : 4'"
     },
     {
-      "label":"Summary feedback header",
-      "default":"Your result",
-      "description":"Will be displayed above the summary feedback."
+      "label":"Titre de l'appréciation à la fin du résumé",
+      "default":"Votre résultat :",
+      "description":"Ce sera affiché au-dessus de l'appréciation."
     },
     {
-      "label":"Readspeaker text for correct answer",
+      "label":"Texte exprimé par la synthèse vocale en cas de réponse correcte",
       "default":"Correct."
     },
     {
-      "label":"Readspeaker text for incorrect answer",
+      "label":"Texte exprimé par la synthèse vocale en cas de réponse incorrecte",
       "default":"Incorrect! Please try again."
     },
     {
