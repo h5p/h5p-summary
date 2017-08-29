@@ -14,7 +14,7 @@
           "label":"Textual"
         }
       ],
-      "label":"Summary",
+      "label":"Resumé",
       "entity":"statements",
       "field":{
         "label":"Set of statements",
@@ -38,6 +38,35 @@
       }
     },
     {
+      "label":"Overall Feedback",
+      "fields":[
+        {
+          "widgets":[
+            {
+              "label":"Default"
+            }
+          ],
+          "label":"Define custom feedback for any score range",
+          "description":"Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
+          "entity":"range",
+          "field":{
+            "fields":[
+              {
+                "label":"Score Range"
+              },
+              {
+                
+              },
+              {
+                "label":"Feedback for defined score range",
+                "placeholder":"Fill in the feedback"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
       "label":"Text displayed before number of statements solved in the summary task.",
       "default":"Progress:",
       "description":"Will be displayed above the statements. Example: 'Progress: 2/5'"
@@ -53,66 +82,16 @@
       "description":"Will be displayed above the summary feedback."
     },
     {
-      "label":"Summary feedback",
-      "fields":[
-        {
-          "label":"Everything correct",
-          "fields":[
-            {
-              "label":"Feedback title",
-              "default":"PERFECT!"
-            },
-            {
-              "label":"Feedback message",
-              "default":"You got everything correct on your first try!"
-            }
-          ]
-        },
-        {
-          "label":"70 % - 99 % correct",
-          "fields":[
-            {
-              "label":"Feedback title",
-              "default":"Great!"
-            },
-            {
-              "label":"Feedback message",
-              "default":"You got most of the statements correct on your first try."
-            }
-          ]
-        },
-        {
-          "label":"40 % - 69 % correct",
-          "fields":[
-            {
-              "label":"Feedback title",
-              "default":"Ok"
-            },
-            {
-              "label":"Feedback message",
-              "default":"You got some of the statements correct on your first try."
-            }
-          ]
-        },
-        {
-          "label":"0 % - 39 % correct",
-          "fields":[
-            {
-              "label":"Feedback title",
-              "default":"A few mistakes."
-            },
-            {
-              "label":"Feedback message",
-              "default":"Have another try!"
-            }
-          ]
-        }
-      ]
+      "label":"Readspeaker text for correct answer",
+      "default":"Correct."
     },
     {
-      "label":"Feedback summary",
-      "default":"You got @score of @total statements (@percent %) correct on your first try.",
-      "description":"Available variables: @score, @total, @percent. Example: You got @score of @total statements (@percent %) correct."
+      "label":"Readspeaker text for incorrect answer",
+      "default":"Incorrect! Please try again."
+    },
+    {
+      "label":"Label list of correct answers",
+      "default":"Correct answers."
     }
   ]
 }

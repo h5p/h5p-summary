@@ -38,6 +38,35 @@
       }
     },
     {
+      "label":"Samlet tilbakemelding",
+      "fields":[
+        {
+          "widgets":[
+            {
+              "label":"Standard"
+            }
+          ],
+          "label":"Define custom feedback for any score range",
+          "description":"Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
+          "entity":"range",
+          "field":{
+            "fields":[
+              {
+                "label":"Score Range"
+              },
+              {
+                
+              },
+              {
+                "label":"Feedback for defined score range",
+                "placeholder":"Fill in the feedback"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
       "label":"Tekst som vises før antall påstander som er løst i oppsummeringen.",
       "default":"Løst:",
       "description":"Vil vises over påstandene. Eksempel: 'Løst: 2/5'"
@@ -53,66 +82,16 @@
       "description":"Vil vises over tilbakemelding på oppsummeringen."
     },
     {
-      "label":"Tilbakemelding på oppsummeringen",
-      "fields":[
-        {
-          "label":"Alt riktig",
-          "fields":[
-            {
-              "label":"Tittel for tilbakemeldingen",
-              "default":"Alt rett!"
-            },
-            {
-              "label":"Tilbakemelding",
-              "default":"Du fikk alt rett på første forsøk!"
-            }
-          ]
-        },
-        {
-          "label":"70 % - 99 % rett",
-          "fields":[
-            {
-              "label":"Tittel for tilbakemeldingen",
-              "default":"70 - 99%: Bra!"
-            },
-            {
-              "label":"Tilbakemelding",
-              "default":"Du fikk mesteparten av påstandene rett på første forsøk."
-            }
-          ]
-        },
-        {
-          "label":"40 % - 69 % rett",
-          "fields":[
-            {
-              "label":"Tittel for tilbakemeldingen",
-              "default":"40 % - 69 % rett: Ok"
-            },
-            {
-              "label":"Tilbakemelding",
-              "default":"Du fikk noen av påstandene rett. Prøv igjen!"
-            }
-          ]
-        },
-        {
-          "label":"0 % - 39 % rett",
-          "fields":[
-            {
-              "label":"Tittel for tilbakemeldingen",
-              "default":"0 % - 39 % rett: Ikke bestått"
-            },
-            {
-              "label":"Tilbakemelding",
-              "default":"Det var litt mange feil her. Prøv igjen!"
-            }
-          ]
-        }
-      ]
+      "label":"Merkelapp for riktig svar",
+      "default":"Correct."
     },
     {
-      "label":"Angivelse av resultat",
-      "default":"Du fikk @score av @total påstander (@percent %) rett på første forsøk.",
-      "description":"Tilgjengelige variabler: @score, @total, @percent. Eksempel: Du fikk @score av @total påstander (@percent %) rett."
+      "label":"Merkelapp for feil svar",
+      "default":"Incorrect! Please try again."
+    },
+    {
+      "label":"Label list of correct answers",
+      "default":"Correct answers."
     }
   ]
 }

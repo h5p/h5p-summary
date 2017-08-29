@@ -8,7 +8,7 @@
     {
       "widgets":[
         {
-          "label":"الافتراضي"
+          "label":"افتراضي"
         },
         {
           "label":"النصية"
@@ -38,6 +38,35 @@
       }
     },
     {
+      "label":"شفافية خلفية العناصر",
+      "fields":[
+        {
+          "widgets":[
+            {
+              "label":"افتراضي"
+            }
+          ],
+          "label":"Define custom feedback for any score range",
+          "description":"Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
+          "entity":"range",
+          "field":{
+            "fields":[
+              {
+                "label":"Score Range"
+              },
+              {
+                
+              },
+              {
+                "label":"Feedback for defined score range",
+                "placeholder":"Fill in the feedback"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
       "label":"النص المعروض قبل عدد من البيانات حلها في المهمة الموجزة",
       "default":"Progress:",
       "description":"سيتم عرضها فوق البيانات. على سبيل المثال: \"التقدم من: ٢/٥\""
@@ -53,66 +82,16 @@
       "description":"سيتم عرضه فوق ملاحظات الملخص"
     },
     {
-      "label":"ملاحظات الملخص",
-      "fields":[
-        {
-          "label":"كل الاجابات صحيحة",
-          "fields":[
-            {
-              "label":"عنوان الملاحظات",
-              "default":"PERFECT!"
-            },
-            {
-              "label":"نص الملاحظة",
-              "default":"You got everything correct on your first try!"
-            }
-          ]
-        },
-        {
-          "label":"٧٠ - ٩٩٪ اجابات صحيحة",
-          "fields":[
-            {
-              "label":"عنوان الملاحظات",
-              "default":"Great!"
-            },
-            {
-              "label":"نص الملاحظة",
-              "default":"You got most of the statements correct on your first try."
-            }
-          ]
-        },
-        {
-          "label":"٤٠ - ٦٩٪ اجابات صحيحة",
-          "fields":[
-            {
-              "label":"عنوان الملاحظات",
-              "default":"Ok"
-            },
-            {
-              "label":"نص الملاحظة",
-              "default":"You got some of the statements correct on your first try."
-            }
-          ]
-        },
-        {
-          "label":"٠ - ٣٩٪ اجابات صحيحة",
-          "fields":[
-            {
-              "label":"عنوان الملاحظات",
-              "default":"A few mistakes."
-            },
-            {
-              "label":"نص الملاحظة",
-              "default":"Have another try!"
-            }
-          ]
-        }
-      ]
+      "label":"النص Readspeaker عن الإجابة الصحيحة",
+      "default":"Correct."
     },
     {
-      "label":"ملخص الملاحظات",
-      "default":"You got @score of @total statements (@percent %) correct on your first try.",
-      "description":"المتغيرات المتاحة: @score, @total, @percent. مثال: You got @score of @total statements (@percent %) صحيح"
+      "label":"النص Readspeaker للإجابة غير صحيحة",
+      "default":"Incorrect! Please try again."
+    },
+    {
+      "label":"Label list of correct answers",
+      "default":"Correct answers."
     }
   ]
 }
