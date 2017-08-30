@@ -1,17 +1,17 @@
 {
   "semantics":[
     {
-      "label":"Introduction text",
+      "label":"Tekst uvoda",
       "default":"Choose the correct statement.",
       "description":"Will be displayed above the summary task."
     },
     {
       "widgets":[
         {
-          "label":"Default"
+          "label":"Standard"
         },
         {
-          "label":"Textual"
+          "label":"Tekst"
         }
       ],
       "label":"Summary",
@@ -27,10 +27,10 @@
             }
           },
           {
-            "label":"Tip",
+            "label":"Savjet",
             "fields":[
               {
-                "label":"Tip text"
+                "label":"Tekst savjeta"
               }
             ]
           }
@@ -38,12 +38,12 @@
       }
     },
     {
-      "label":"Overall Feedback",
+      "label":"Pozadinska zamućenost za elemente za uzimanje",
       "fields":[
         {
           "widgets":[
             {
-              "label":"Default"
+              "label":"Standard"
             }
           ],
           "label":"Define custom feedback for any score range",
@@ -82,11 +82,11 @@
       "description":"Will be displayed above the summary feedback."
     },
     {
-      "label":"Readspeaker text for correct answer",
+      "label":"\"Readspeaker\" tekst za tačan odgovor",
       "default":"Correct."
     },
     {
-      "label":"Readspeaker text for incorrect answer",
+      "label":"\"Readspeaker\" tekst za netačan odgovor",
       "default":"Incorrect! Please try again."
     },
     {
