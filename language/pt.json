@@ -1,36 +1,36 @@
 {
-  "semantics": [
+  "semantics":[
     {
-      "label": "Texto introdutório",
-      "default": "Escolha a afirmação correta.",
-      "description": "Será mostrado acima da tarefa de revisão."
+      "label":"Texto introdutório",
+      "default":"Escolha a afirmação correta.",
+      "description":"Será mostrado acima da tarefa de revisão."
     },
     {
-      "widgets": [
+      "widgets":[
         {
-          "label": "Padrão"
+          "label":"Padrão"
         },
         {
-          "label": "Textual"
+          "label":"Textual"
         }
       ],
-      "label": "Resumo",
-      "entity": "afirmações",
-      "field": {
-        "label": "Conjunto de afirmações",
-        "fields": [
+      "label":"Resumo",
+      "entity":"afirmações",
+      "field":{
+        "label":"Conjunto de afirmações",
+        "fields":[
           {
-            "label": "Lista de afirmações para o resumo - a primeira afirmação é a correta.",
-            "entity": "afirmação",
-            "field": {
-              "label": "Afirmação"
+            "label":"Lista de afirmações para o resumo - a primeira afirmação é a correta.",
+            "entity":"afirmação",
+            "field":{
+              "label":"Afirmação"
             }
           },
           {
-            "label": "Dica",
-            "fields": [
+            "label":"Dica",
+            "fields":[
               {
-                "label": "Texto de dica"
+                "label":"Texto de dica"
               }
             ]
           }
@@ -38,25 +38,28 @@
       }
     },
     {
-      "englishLabel": "Overall Feedback",
-      "fields": [
+      "label":"Overall Feedback",
+      "fields":[
         {
-          "widgets": [
+          "widgets":[
             {
-              "englishLabel": "Default"
+              "label":"Padrão"
             }
           ],
-          "englishLabel": "Define custom feedback for any score range",
-          "englishDescription": "Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!\nAvailable variables: @score, @total, @percent. Example: 'You got @score of @total points.' (@percent %) correct.",
-          "field": {
-            "fields": [
+          "label":"Define custom feedback for any score range",
+          "description":"Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
+          "entity":"range",
+          "field":{
+            "fields":[
               {
-                "englishLabel": "Score Range"
+                "label":"Score Range"
               },
-              {},
               {
-                "englishLabel": "Feedback for defined score range",
-                "englishPlaceholder": "Fill in the feedback"
+                
+              },
+              {
+                "label":"Feedback for defined score range",
+                "placeholder":"Fill in the feedback"
               }
             ]
           }
@@ -64,19 +67,31 @@
       ]
     },
     {
-      "label": "Texto mostrado antes do número de afirmações resolvidas na atividade de revisão.",
-      "default": "Progresso:",
-      "description": "Será mostrado acima das afirmações. Exemplo: 'Progresso: 2/5'"
+      "label":"Texto mostrado antes do número de afirmações resolvidas na atividade de revisão.",
+      "default":"Progresso:",
+      "description":"Será mostrado acima das afirmações. Exemplo: 'Progresso: 2/5'"
     },
     {
-      "label": "Texto mostrado antes do número de afirmações erradas selecionadas na atividade de revisão.",
-      "default": "Respostas errada:",
-      "description": "Será mostrado acima das afirmações. Exemplo: 'Respostas erradas: 4'"
+      "label":"Texto mostrado antes do número de afirmações erradas selecionadas na atividade de revisão.",
+      "default":"Respostas errada:",
+      "description":"Será mostrado acima das afirmações. Exemplo: 'Respostas erradas: 4'"
     },
     {
-      "label": "Cabeçalho do feedback da revisão",
-      "default": "Seu resultado",
-      "description": "Será mestrado acima do cabeçalho do feedback da revisão."
+      "label":"Cabeçalho do feedback da revisão",
+      "default":"Seu resultado",
+      "description":"Será mestrado acima do cabeçalho do feedback da revisão."
+    },
+    {
+      "label":"Readspeaker text for correct answer",
+      "default":"Correct."
+    },
+    {
+      "label":"Readspeaker text for incorrect answer",
+      "default":"Incorrect! Please try again."
+    },
+    {
+      "label":"Label list of correct answers",
+      "default":"Correct answers."
     }
   ]
 }
