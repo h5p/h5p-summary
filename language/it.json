@@ -1,0 +1,97 @@
+{
+  "semantics":[
+    {
+      "label":"Testo di introduzione",
+      "default":"Scegli l'affermazione corretta.",
+      "description":"Verrà visualizzato sopra l'attività di riepilogo."
+    },
+    {
+      "widgets":[
+        {
+          "label":"Predefinito"
+        },
+        {
+          "label":"Testuale"
+        }
+      ],
+      "label":"Sommario",
+      "entity":"istruzioni",
+      "field":{
+        "label":"Set di istruzioni",
+        "fields":[
+          {
+            "label":"Elenco di istruzioni per il sommario - la prima istruzione è corretta",
+            "entity":"istruzione",
+            "field":{
+              "label":"Istruzione"
+            }
+          },
+          {
+            "label":"Suggerimento",
+            "fields":[
+              {
+                "label":"Testo del suggerimento"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label":"Feedback generale",
+      "fields":[
+        {
+          "widgets":[
+            {
+              "label":"Predefinito"
+            }
+          ],
+          "label":"Definisci un feedback personalizzato per ogni intervallo di punteggio",
+          "description":"Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
+          "entity":"Intervallo",
+          "field":{
+            "fields":[
+              {
+                "label":"Intervallo di punteggio"
+              },
+              {
+                
+              },
+              {
+                "label":"Feedback per un intervallo di punteggio definito",
+                "placeholder":"Compila il feedback"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label":"Testo visualizzato prima di un numero di istruzioni risolte nell'attività di riepilogo",
+      "default":"Avanzamento:",
+      "description":"Sarà visualizzato sopra le istruzioni. Esempio: ' Avanzamento: 2/5'"
+    },
+    {
+      "label":"Testo visualizzato prima di un numero di affermazioni sbagliate, selezionato nel nel riepilogo del compito",
+      "default":"Risposte sbagliate:",
+      "description":"Sarà visualizzato sopra le istruzioni. Esempio: ' Risposte sbagliate: 4'"
+    },
+    {
+      "label":"Intestazione di riepilogo feedback",
+      "default":"Il tuo risultato",
+      "description":"Sarà visualizzato sopra il riepilogo dei feedback"
+    },
+    {
+      "label":"Testo ReadSpeaker per la risposta corretta",
+      "default":"Giusto"
+    },
+    {
+      "label":"Testo ReadSpeaker per risposta errata",
+      "default":"Sbagliato! Riprova ancora"
+    },
+    {
+      "label":"Elenco di etichette di risposte giuste",
+      "default":"Risposte giuste"
+    }
+  ]
+}
