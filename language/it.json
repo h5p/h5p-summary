@@ -47,7 +47,7 @@
             }
           ],
           "label":"Definisci un feedback personalizzato per ogni intervallo di punteggio",
-          "description":"Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
+          "description":"Clicca sul pulsante \"Aggiungi intervallo\" per aggiungere gli intervalli che ti servono. Per esempio: 0-20%, cattivo punteggio; 21-90%, punteggio medio; 91-100% ottimo punteggio!",
           "entity":"Intervallo",
           "field":{
             "fields":[
@@ -69,12 +69,12 @@
     {
       "label":"Testo visualizzato prima di un numero di istruzioni risolte nell'attività di riepilogo",
       "default":"Avanzamento:",
-      "description":"Sarà visualizzato sopra le istruzioni. Esempio: ' Avanzamento: 2/5'"
+      "description":"Sarà visualizzato sopra le istruzioni. Esempio: 'Avanzamento: 2/5'"
     },
     {
       "label":"Testo visualizzato prima di un numero di affermazioni sbagliate, selezionato nel nel riepilogo del compito",
       "default":"Risposte sbagliate:",
-      "description":"Sarà visualizzato sopra le istruzioni. Esempio: ' Risposte sbagliate: 4'"
+      "description":"Sarà visualizzato sopra le istruzioni. Esempio: 'Risposte sbagliate: 4'"
     },
     {
       "label":"Intestazione di riepilogo feedback",
@@ -82,11 +82,11 @@
       "description":"Sarà visualizzato sopra il riepilogo dei feedback"
     },
     {
-      "label":"Testo ReadSpeaker per la risposta corretta",
+      "label":"Testo del riproduttore vocale per la risposta giusta",
       "default":"Giusto"
     },
     {
-      "label":"Testo ReadSpeaker per risposta errata",
+      "label":"Testo del riproduttore vocale per la risposta sbagliata",
       "default":"Sbagliato! Riprova ancora"
     },
     {
