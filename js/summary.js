@@ -80,7 +80,8 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       labelCorrect: "Correct.",
       incorrectText: "Incorrect! Please try again.",
       labelCorrectAnswers: "List of correct answers.",
-      postUserStatistics: (H5P.postUserStatistics === true)
+      postUserStatistics: (H5P.postUserStatistics === true),
+      tipButtonLabel: 'Show tip'
     }, options);
 
     this.summaries = that.options.summaries;
@@ -291,7 +292,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         if (elements[that.progress] !== undefined &&
           elements[that.progress].tip !== undefined &&
           elements[that.progress].tip.trim().length > 0) {
-          $evaluation_content.append(H5P.JoubelUI.createTip(elements[that.progress].tip));
+          $evaluation_content.append(H5P.JoubelUI.createTip(elements[that.progress].tip, {
+            tipLabel: that.options.tipButtonLabel
+          }));
         }
 
         $answer.animate(
@@ -407,7 +410,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
       // Create initial tip for first summary-list if tip is available
       if (i==0 && element.tip !== undefined && element.tip.trim().length > 0) {
-        $evaluation_content.append(H5P.JoubelUI.createTip(element.tip));
+        $evaluation_content.append(H5P.JoubelUI.createTip(element.tip, {
+          tipLabel: that.options.tipButtonLabel
+        }));
       }
 
       for (var j = 0; j < element.summaries.length; j++) {
@@ -565,7 +570,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       .replace('@percent', Math.round(percent));
 
     $(".summary-evaluation-content", this.$myDom).removeAttr("tabindex");
-    var readerEle = $("#readerLiveContainer-" + that.summaryId); 
+    var readerEle = $("#readerLiveContainer-" + that.summaryId);
     readerEle.append(". " + that.options.resultLabel + ': ' + summary);
     setTimeout(function () {
       readerEle.text('');
