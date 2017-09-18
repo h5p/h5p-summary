@@ -32,6 +32,31 @@ H5PUpgrades['H5P.Summary'] = (function ($) {
         }
 
         finished(null, parameters);
+      },
+
+      /**
+       * Asynchronous content upgrade hook.
+       * Upgrades content parameters to support Summary 1.8
+       *
+       * Move old feedback message to the new overall feedback system.
+       *
+       * @params {object} parameters
+       * @params {function} finished
+       */
+      8: function (parameters, finished) {
+        if (parameters && parameters.summary) {
+          parameters.overallFeedback = [
+            {
+              'from': 0,
+              'to': 100,
+              'feedback': parameters.summary
+            }
+          ];
+
+          delete parameters.summary;
+        }
+
+        finished(null, parameters);
       }
     }
   };

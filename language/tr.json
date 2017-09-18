@@ -1,36 +1,36 @@
 {
   "semantics":[
     {
-      "label":"Introduction text",
-      "default":"Choose the correct statement.",
-      "description":"Will be displayed above the summary task."
+      "label":"Giriş metni",
+      "default":"Doğru ifadeyi seçin.",
+      "description":"Özet aktivitesi üzerinde görüntülenecek."
     },
     {
       "widgets":[
         {
-          "label":"Default"
+          "label":"Varsayılan"
         },
         {
-          "label":"Textual"
+          "label":"Metin"
         }
       ],
-      "label":"Yhteenveto",
-      "entity":"statements",
+      "label":"Özet",
+      "entity":"ifadeler",
       "field":{
-        "label":"Set of statements",
+        "label":"İfadeler grubu",
         "fields":[
           {
-            "label":"List of statements for the summary - the first statement is correct.",
-            "entity":"statement",
+            "label":"Özet için ifadeler listesi - birinci ifade doğru.",
+            "entity":"cümle",
             "field":{
-              "label":"Statement"
+              "label":"İfade"
             }
           },
           {
-            "label":"Tip",
+            "label":"İpucu",
             "fields":[
               {
-                "label":"Tip text"
+                "label":"İpucu metni"
               }
             ]
           }
@@ -43,7 +43,7 @@
         {
           "widgets":[
             {
-              "label":"Default"
+              "label":"Varsayılan"
             }
           ],
           "label":"Define custom feedback for any score range",
@@ -67,19 +67,19 @@
       ]
     },
     {
-      "label":"Text displayed before number of statements solved in the summary task.",
-      "default":"Progress:",
-      "description":"Will be displayed above the statements. Example: 'Progress: 2/5'"
+      "label":"Özet aktivitesinde çözülen ifadeler sayısından önce görüntülenecek metin.",
+      "default":"İlerleme:",
+      "description":"İfadeler üzerinde görüntülenecek. Örneğin: 'İlerleme: 2/5'"
     },
     {
-      "label":"Text displayed before number of wrong statements selected in the summary task.",
-      "default":"Wrong answers:",
-      "description":"Will be displayed above the statements. Example: 'Wrong answers: 4'"
+      "label":"Özet aktivitesinde seçilen yanlış cümle sayısından önce görüntülenen metin.",
+      "default":"Yanlış cevaplar:",
+      "description":"İfadeler üzerinde görüntülenecek. Örneğin: 'Yanlış cevaplar: 4'"
     },
     {
-      "label":"Summary feedback header",
-      "default":"Your result",
-      "description":"Will be displayed above the summary feedback."
+      "label":"Özet geri bildirim başlığı",
+      "default":"Sonuçlarınız",
+      "description":"Özet geri bildiriminin üzerinde görüntülenecek metin."
     },
     {
       "label":"Readspeaker text for correct answer",
