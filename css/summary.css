@@ -104,9 +104,8 @@
 .h5p-summary .h5p-panel:not(.panel-disabled) .summary-claim-unclicked:focus {
   cursor: pointer;
   filter: none;
-  border: 0.1em solid #edd6e9;
-
-  background: #edd6e9;
+  border: 0.1em solid #d2d2d2;
+  background: #d2d2d2;
 }
 
 .h5p-summary li.summary-failed > p,
