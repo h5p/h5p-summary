@@ -90,6 +90,10 @@
     {
       "label": "Label list of correct answers",
       "default": "Correct answers."
+    },
+    {
+      "label": "Label for the show tip button",
+      "default": "Show tip"
     }
   ]
 }

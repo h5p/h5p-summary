@@ -1,36 +1,36 @@
 {
-  "semantics":[
+  "semantics": [
     {
-      "label":"Introduksjonstekst",
-      "default":"Vel riktig påstand.",
-      "description":"Vil vises øvst i oppsummeringsoppgåva."
+      "label": "Introduksjonstekst",
+      "default": "Vel riktig påstand.",
+      "description": "Vil vises øvst i oppsummeringsoppgåva."
     },
     {
-      "widgets":[
+      "widgets": [
         {
-          "label":"Standard"
+          "label": "Standard"
         },
         {
-          "label":"Tekstlig"
+          "label": "Tekstlig"
         }
       ],
-      "label":"Oppsummering",
-      "entity":"påstandar",
-      "field":{
-        "label":"Påstandar",
-        "fields":[
+      "label": "Oppsummering",
+      "entity": "påstandar",
+      "field": {
+        "label": "Påstandar",
+        "fields": [
           {
-            "label":"Påstandar til oppsummeringa - første påstand er riktig.",
-            "entity":"påstand",
-            "field":{
-              "label":"Påstand"
+            "label": "Påstandar til oppsummeringa - første påstand er riktig.",
+            "entity": "påstand",
+            "field": {
+              "label": "Påstand"
             }
           },
           {
-            "label":"Tips",
-            "fields":[
+            "label": "Tips",
+            "fields": [
               {
-                "label":"Tipstekst"
+                "label": "Tipstekst"
               }
             ]
           }
@@ -38,28 +38,26 @@
       }
     },
     {
-      "label":"Bakgrunnsopasitet på flyttbare elementer",
-      "fields":[
+      "label": "Bakgrunnsopasitet på flyttbare elementer",
+      "fields": [
         {
-          "widgets":[
+          "widgets": [
             {
-              "label":"Standard"
+              "label": "Standard"
             }
           ],
-          "label":"Define custom feedback for any score range",
-          "description":"Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
-          "entity":"range",
-          "field":{
-            "fields":[
+          "label": "Define custom feedback for any score range",
+          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
+          "entity": "range",
+          "field": {
+            "fields": [
               {
-                "label":"Score Range"
+                "label": "Score Range"
               },
+              {},
               {
-                
-              },
-              {
-                "label":"Feedback for defined score range",
-                "placeholder":"Fill in the feedback"
+                "label": "Feedback for defined score range",
+                "placeholder": "Fill in the feedback"
               }
             ]
           }
@@ -67,31 +65,35 @@
       ]
     },
     {
-      "label":"Tekst som vises før antall påstandar som er løst i oppsummeringsoppgåva.",
-      "default":"Løst:",
-      "description":"Vil vises over påstandane. Eksempel: 'Løst: 2/5'"
+      "label": "Tekst som vises før antall påstandar som er løst i oppsummeringsoppgåva.",
+      "default": "Løst:",
+      "description": "Vil vises over påstandane. Eksempel: 'Løst: 2/5'"
     },
     {
-      "label":"Tekst som vises før antall feil påstander som er valgt i oppsummeringsoppgåva.",
-      "default":"Antall feil:",
-      "description":"Vil vises over påstandane. Eksempel: 'Antall feil: 4'"
+      "label": "Tekst som vises før antall feil påstander som er valgt i oppsummeringsoppgåva.",
+      "default": "Antall feil:",
+      "description": "Vil vises over påstandane. Eksempel: 'Antall feil: 4'"
     },
     {
-      "label":"Overskrift over tilbakemelding",
-      "default":"Ditt resultat:",
-      "description":"Vil vises over tilbakemelding på oppsummeringsoppgåva."
+      "label": "Overskrift over tilbakemelding",
+      "default": "Ditt resultat:",
+      "description": "Vil vises over tilbakemelding på oppsummeringsoppgåva."
     },
     {
-      "label":"Merkelapp for riktig svar",
-      "default":"Correct."
+      "label": "Merkelapp for riktig svar",
+      "default": "Correct."
     },
     {
-      "label":"Merkelapp for feil svar",
-      "default":"Incorrect! Please try again."
+      "label": "Merkelapp for feil svar",
+      "default": "Incorrect! Please try again."
     },
     {
-      "label":"Label list of correct answers",
-      "default":"Correct answers."
+      "label": "Label list of correct answers",
+      "default": "Correct answers."
+    },
+    {
+      "label": "Label for the show tip button",
+      "default": "Show tip"
     }
   ]
 }
