@@ -90,6 +90,64 @@
     }
   },
   {
+    "name": "overallFeedback",
+    "type": "group",
+    "label": "Overall Feedback",
+    "importance": "low",
+    "expanded": true,
+    "fields": [
+      {
+        "name": "overallFeedback",
+        "type": "list",
+        "widgets": [
+          {
+            "name": "RangeList",
+            "label": "Default"
+          }
+        ],
+        "importance": "high",
+        "label": "Define custom feedback for any score range",
+        "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
+        "entity": "range",
+        "min": 1,
+        "defaultNum": 1,
+        "optional": true,
+        "field": {
+          "name": "overallFeedback",
+          "type": "group",
+          "importance": "low",
+          "fields": [
+            {
+              "name": "from",
+              "type": "number",
+              "label": "Score Range",
+              "min": 0,
+              "max": 100,
+              "default": 0,
+              "unit": "%"
+            },
+            {
+              "name": "to",
+              "type": "number",
+              "min": 0,
+              "max": 100,
+              "default": 100,
+              "unit": "%"
+            },
+            {
+              "name": "feedback",
+              "type": "text",
+              "label": "Feedback for defined score range",
+              "importance": "low",
+              "placeholder": "Fill in the feedback",
+              "optional": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
     "name": "solvedLabel",
     "type": "text",
     "label": "Text displayed before number of statements solved in the summary task.",
@@ -117,109 +175,27 @@
     "common": true
   },
   {
-    "name": "response",
-    "label": "Summary feedback",
+    "name": "labelCorrect",
+    "type": "text",
+    "label": "Readspeaker text for correct answer",
     "importance": "low",
-    "type": "group",
-    "common": true,
-    "fields": [
-      {
-        "label": "Everything correct",
-        "importance": "low",
-        "name": "scorePerfect",
-        "type": "group",
-        "fields": [
-          {
-            "name": "title",
-            "type": "text",
-            "label": "Feedback title",
-            "importance": "low",
-            "default": "PERFECT!"
-          },
-          {
-            "name": "message",
-            "type": "text",
-            "label": "Feedback message",
-            "importance": "low",
-            "default": "You got everything correct on your first try!"
-          }
-        ]
-      },
-      {
-        "label": "70 % - 99 % correct",
-        "importance": "low",
-        "name": "scoreOver70",
-        "type": "group",
-        "fields": [
-          {
-            "name": "title",
-            "type": "text",
-            "label": "Feedback title",
-            "importance": "low",
-            "default": "Great!"
-          },
-          {
-            "name": "message",
-            "type": "text",
-            "label": "Feedback message",
-            "importance": "low",
-            "default": "You got most of the statements correct on your first try."
-          }
-        ]
-      },
-      {
-        "label": "40 % - 69 % correct",
-        "importance": "low",
-        "name": "scoreOver40",
-        "type": "group",
-        "fields": [
-          {
-            "name": "title",
-            "type": "text",
-            "label": "Feedback title",
-            "importance": "low",
-            "default": "Ok"
-          },
-          {
-            "name": "message",
-            "type": "text",
-            "label": "Feedback message",
-            "importance": "low",
-            "default": "You got some of the statements correct on your first try."
-          }
-        ]
-      },
-      {
-        "label": "0 % - 39 % correct",
-        "importance": "low",
-        "name": "scoreOver0",
-        "type": "group",
-        "fields": [
-          {
-            "name": "title",
-            "type": "text",
-            "label": "Feedback title",
-            "importance": "low",
-            "default": "A few mistakes."
-          },
-          {
-            "name": "message",
-            "type": "text",
-            "label": "Feedback message",
-            "importance": "low",
-            "default": "Have another try!"
-          }
-        ]
-      }
-    ]
+    "default": "Correct.",
+    "common": true
   },
   {
-    "name": "summary",
+    "name": "labelIncorrect",
     "type": "text",
-    "label": "Feedback summary",
+    "label": "Readspeaker text for incorrect answer",
     "importance": "low",
-    "default": "You got @score of @total statements (@percent %) correct on your first try.",
-    "description": "Available variables: @score, @total, @percent. Example: You got @score of @total statements (@percent %) correct.",
+    "default": "Incorrect! Please try again.",
+    "common": true
+  },
+  {
+    "name": "labelCorrectAnswers",
+    "type": "text",
+    "label": "Label list of correct answers",
+    "importance": "low",
+    "default": "Correct answers.",
     "common": true
   }
 ]
