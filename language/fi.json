@@ -1,36 +1,36 @@
 {
   "semantics":[
     {
-      "label":"Introduction text",
-      "default":"Choose the correct statement.",
-      "description":"Will be displayed above the summary task."
+      "label":"Tehtävän kuvaus",
+      "default":"Valitse oikea väittämä.",
+      "description":"Näytetään tehtävän yläpuolella."
     },
     {
       "widgets":[
         {
-          "label":"Default"
+          "label":"Oletus"
         },
         {
-          "label":"Textual"
+          "label":"Teksti"
         }
       ],
       "label":"Yhteenveto",
-      "entity":"statements",
+      "entity":"väittämät",
       "field":{
-        "label":"Set of statements",
+        "label":"Väittämät",
         "fields":[
           {
-            "label":"List of statements for the summary - the first statement is correct.",
-            "entity":"statement",
+            "label":"Väittämät - ensimmäinen vaihtoehto on oikein.",
+            "entity":"väittämä",
             "field":{
-              "label":"Statement"
+              "label":"Väittämä"
             }
           },
           {
-            "label":"Tip",
+            "label":"Vihje",
             "fields":[
               {
-                "label":"Tip text"
+                "label":"Vihjeteksti"
               }
             ]
           }
@@ -38,28 +38,28 @@
       }
     },
     {
-      "label":"Overall Feedback",
+      "label":"Yleinen palaute",
       "fields":[
         {
           "widgets":[
             {
-              "label":"Default"
+              "label":"Oletus"
             }
           ],
-          "label":"Define custom feedback for any score range",
-          "description":"Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
-          "entity":"range",
+          "label":"Määritä muokattu palaute pisterajojen mukaan.",
+          "description":"Klikkaa \"Lisää alue\" painiketta lisätäksesi niin monta pisterajaa kuin tarvit. Esimerkiksi: 0-20% Huono tulos, 21-91% Kelpo tulos, 91-100% Mahtava tulos!",
+          "entity":"alue",
           "field":{
             "fields":[
               {
-                "label":"Score Range"
+                "label":"Pisteraja"
               },
               {
                 
               },
               {
-                "label":"Feedback for defined score range",
-                "placeholder":"Fill in the feedback"
+                "label":"Palaute määritellylle pisterajalle",
+                "placeholder":"Kirjoita palaute"
               }
             ]
           }
@@ -67,31 +67,31 @@
       ]
     },
     {
-      "label":"Text displayed before number of statements solved in the summary task.",
-      "default":"Progress:",
-      "description":"Will be displayed above the statements. Example: 'Progress: 2/5'"
+      "label":"Ennen ratkaistujen väittämien lukumäärää näytettävä teksti.",
+      "default":"Edistyminen:",
+      "description":"Näytetään väittämien yläpuolella. Esimerkiksi: 'Edistyminen: 2/5'"
     },
     {
-      "label":"Text displayed before number of wrong statements selected in the summary task.",
-      "default":"Wrong answers:",
-      "description":"Will be displayed above the statements. Example: 'Wrong answers: 4'"
+      "label":"Ennen väärin valittujen väittämien lukumäärää näytettävä teksti.",
+      "default":"Vääriä vastauksia:",
+      "description":"Näytetään väittämien yläpuolella. Esimerkiksi: 'Vääriä vastauksia : 4'"
     },
     {
-      "label":"Summary feedback header",
-      "default":"Your result",
-      "description":"Will be displayed above the summary feedback."
+      "label":"Tulossivun otsikko",
+      "default":"Tuloksesi",
+      "description":"Näytetään tehtävän palautteen yläpuolella."
     },
     {
-      "label":"Readspeaker text for correct answer",
-      "default":"Correct."
+      "label":"Ruudunlukijan palaute oikeasta vastauksesta",
+      "default":"Oikein!"
     },
     {
-      "label":"Readspeaker text for incorrect answer",
-      "default":"Incorrect! Please try again."
+      "label":"Ruudunlukijan palaute väärästä vastauksesta",
+      "default":"Väärin!"
     },
     {
-      "label":"Label list of correct answers",
-      "default":"Correct answers."
+      "label":"Oikeiden vastauksien listan kuvaus",
+      "default":"Oikeat vastaukset."
     }
   ]
 }
