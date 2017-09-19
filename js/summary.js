@@ -81,7 +81,8 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       incorrectText: "Incorrect! Please try again.",
       labelCorrectAnswers: "List of correct answers.",
       postUserStatistics: (H5P.postUserStatistics === true),
-      tipButtonLabel: 'Show tip'
+      tipButtonLabel: 'Show tip',
+      scoreBarLabel: 'You got :num out of :total points'
     }, options);
 
     this.summaries = that.options.summaries;
@@ -576,7 +577,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       readerEle.text('');
     }, 1);
 
-    this.setFeedback(summary, that.summaries.length - error_count, that.summaries.length);
+    this.setFeedback(summary, that.summaries.length - error_count, that.summaries.length, that.options.scoreBarLabel);
     that.trigger('resize');
   };
 
