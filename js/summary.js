@@ -87,6 +87,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
     this.summaries = that.options.summaries;
 
+    // Prevent the score bar from interrupting the progress counter
+    this.setBehaviour({disableReadSpeaker: true});
+
     // Required questiontype contract function
     this.showSolutions = function() {
       // intentionally left blank, no solution view exists
@@ -200,7 +203,8 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     var $evaluation_content = $('<div id="questionDesc-'+that.summaryId+'" class="summary-evaluation-content">' + that.options.intro + '</div>');
     var $score = $('<div class="summary-score"></div>');
     var $options = $('<div class="summary-options"></div>');
-    var $progress = $('<div class="summary-progress"></div>');
+    var $progress = $('<div class="summary-progress" aria-live="polite"></div>');
+    var $progressNumeric = $('<div class="summary-progress-numeric" aria-hidden="true"></div>');
     var options_padding = parseInt($options.css('paddingLeft'));
     // content div added for readspeaker that indicates list of correct answers.
     var $answersListHeading = $('<div id="answerListHeading-'+that.summaryId+'" class="h5p-hidden-read">' + that.options.labelCorrectAnswers + '</div>');
@@ -220,6 +224,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     $evaluation.append($evaluation_content);
     $evaluation.append($evaluation);
     $evaluation.append($progress);
+    $evaluation.append($progressNumeric);
     $evaluation.append($score);
 
     /**
@@ -232,7 +237,6 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     var selectedAlt = function ($el, setFocus) {
       var nodeId = Number($el.attr('data-bit'));
       var panelId = Number($el.parent().data('panel'));
-      var readerEle = $("#readerLiveContainer-" + that.summaryId);
       var isRadioClicked = $el.attr('aria-checked');
       if(isRadioClicked == 'true') return;
 
@@ -251,17 +255,14 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         var summary = $summary_list.position();
         var $answer = $('<li role="listitem">' + $el.html() + '</li>');
 
-        $progress.html(that.options.solvedLabel + ' '  + (panelId + 1) + '/' + that.summaries.length);
+        $progressNumeric.html(that.options.solvedLabel + ' '  + (panelId + 1) + '/' + that.summaries.length);
+
+        var interpolatedProgressText = that.options.progressText
+          .replace(':num', panelId + 1)
+          .replace(':total', that.summaries.length);
+        $progress.html(interpolatedProgressText);
+
         $el.attr("aria-checked", "true");
-
-        // replacing "/" with "of" for readspeaker and adding it inside aria-live container
-        var progressString = $progress.html().replace("/", " of ");
-        var textForScreenReader = that.options.labelCorrect + progressString;
-        readerEle.text(textForScreenReader);
-        setTimeout(function () {
-          ((panelId + 1) == that.summaries.length) ? '' : readerEle.text('');
-        }, 1);
-
 
         // Insert correct claim into summary list
         $summary_list.append($answer);
@@ -355,12 +356,6 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         $el.attr("aria-checked", "true");
         $evaluation.children('.summary-score').css('display', 'block');
         $score.html(that.options.scoreLabel + ' ' + (++that.score));
-        //hidden text added for readspeaker when user selects wrong answer
-        var textForScreenReader = that.options.labelIncorrect + $score.html();
-        readerEle.text(textForScreenReader);
-        setTimeout(function () {
-           readerEle.text('');
-        }, 1);
         that.errorCounts[panelId]++;
         if (that.answers[panelId] === undefined) {
           that.answers[panelId] = [];
@@ -387,7 +382,12 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       }
     };
 
-    $progress.html(that.options.solvedLabel + ' ' + this.progress + '/' + that.summaries.length);
+    // Initialize the visible and invisible progress counters
+    $progressNumeric.html(that.options.solvedLabel + ' ' + this.progress + '/' + that.summaries.length);
+    var interpolatedProgressText = that.options.progressText
+      .replace(':num', that.progress)
+      .replace(':total', that.summaries.length);
+    $progress.html(interpolatedProgressText);
 
     // Add elements to content
     for (var i = 0; i < elements.length; i++) {
@@ -571,13 +571,16 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       .replace('@percent', Math.round(percent));
 
     $(".summary-evaluation-content", this.$myDom).removeAttr("tabindex");
-    var readerEle = $("#readerLiveContainer-" + that.summaryId);
-    readerEle.append(". " + that.options.resultLabel + ': ' + summary);
-    setTimeout(function () {
-      readerEle.text('');
-    }, 1);
 
     this.setFeedback(summary, that.summaries.length - error_count, that.summaries.length, that.options.scoreBarLabel);
+
+    // Only read out the score after the progress is read
+    setTimeout(function() {
+      that.setBehaviour({disableReadSpeaker: false});
+      that.readFeedback();
+      that.readScore();
+    }, 3000);
+
     that.trigger('resize');
   };
 
