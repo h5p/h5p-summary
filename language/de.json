@@ -98,6 +98,10 @@
     {
       "label": "Textual representation of the score bar for those using a readspeaker",
       "default": "You got :num out of :total points"
+    },
+    {
+      "label": "Text used for readspeakers to communicate progress",
+      "default": "Progress :num of :total"
     }
   ]
 }
