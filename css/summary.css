@@ -159,6 +159,14 @@
 }
 
 .h5p-summary .summary-progress {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  left: 0;
+  position: absolute;
+}
+
+.h5p-summary .summary-progress-numeric {
   float: right;
   background: #9dd8bb;
   -moz-border-radius: 0.3em;
@@ -169,7 +177,7 @@
   margin-left: 0.3em;
 }
 
-.h5p-summary .summary-progress:before {
+.h5p-summary .summary-progress-numeric:before {
   text-decoration: none;
   content: "\f00c";
   font-family: 'H5PFontAwesome4';

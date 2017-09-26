@@ -1,12 +1,12 @@
 {
-  "semantics":[
+  "semantics": [
     {
       "label":"Tehtävän kuvaus",
       "default":"Valitse oikea väittämä.",
       "description":"Näytetään tehtävän yläpuolella."
     },
     {
-      "widgets":[
+      "widgets": [
         {
           "label":"Oletus"
         },
@@ -41,7 +41,7 @@
       "label":"Yleinen palaute",
       "fields":[
         {
-          "widgets":[
+          "widgets": [
             {
               "label":"Oletus"
             }
@@ -54,8 +54,8 @@
               {
                 "label":"Pisteraja"
               },
+              {},
               {
-                
               },
               {
                 "label":"Palaute määritellylle pisterajalle",
@@ -92,6 +92,20 @@
     {
       "label":"Oikeiden vastauksien listan kuvaus",
       "default":"Oikeat vastaukset."
+    },
+    {
+      "label": "Näytä vinkki",
+      "default": "Näytä vinkki"
+    },
+    {
+      "label": "Ruuudunlukijan teksti ilmaisemaan pisteitä",
+      "description": "Käytössä muuttujat :num ja :total",
+      "default": "Sinulla on :num\/:total pistettä"
+    },
+    {
+      "label": "Ruudunlukijan teksti ilmaisemaan edistymistä",
+      "description": "Käytössä muuttujat :num ja :total",
+      "default": "Edistymisesi :num\/:total"
     }
   ]
 }

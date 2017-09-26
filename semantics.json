@@ -197,5 +197,31 @@
     "importance": "low",
     "default": "Correct answers.",
     "common": true
+  },
+  {
+    "name": "tipButtonLabel",
+    "type": "text",
+    "label": "Label for the show tip button",
+    "importance": "low",
+    "default": "Show tip",
+    "common": true
+  },
+  {
+    "name": "scoreBarLabel",
+    "type": "text",
+    "label": "Textual representation of the score bar for those using a readspeaker",
+    "description": ":num and :total are special keywords which are programmatically updated",
+    "default": "You got :num out of :total points",
+    "importance": "low",
+    "common": true
+  },
+  {
+    "name": "progressText",
+    "type": "text",
+    "label": "Text used for readspeakers to communicate progress",
+    "description": ":num and :total are special keywords which are programmatically updated",
+    "default": "Progress :num of :total",
+    "importance": "low",
+    "common": true
   }
 ]
