@@ -82,7 +82,8 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       labelCorrectAnswers: "List of correct answers.",
       postUserStatistics: (H5P.postUserStatistics === true),
       tipButtonLabel: 'Show tip',
-      scoreBarLabel: 'You got :num out of :total points'
+      scoreBarLabel: 'You got :num out of :total points',
+      progressText: 'Progress :num of :total'
     }, options);
 
     this.summaries = that.options.summaries;
