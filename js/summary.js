@@ -560,26 +560,30 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
    */
   Summary.prototype.doFinalEvaluation = function () {
     var that = this;
-    var error_count = this.countErrors();
+    var errorCount = this.countErrors();
+    var maxScore = that.summaries.length;
+    var score = maxScore - errorCount;
 
     // Calculate percentage
-    var percent = 100 - (error_count / that.errorCounts.length * 100);
+    var percent = 100 - (errorCount / that.errorCounts.length * 100);
 
     // Show final evaluation
     var summary = H5P.Question.determineOverallFeedback(that.options.overallFeedback, percent / 100)
-      .replace('@score', that.summaries.length - error_count)
-      .replace('@total', that.summaries.length)
+      .replace('@score', score)
+      .replace('@total', maxScore)
       .replace('@percent', Math.round(percent));
 
     $(".summary-evaluation-content", this.$myDom).removeAttr("tabindex");
 
-    this.setFeedback(summary, that.summaries.length - error_count, that.summaries.length, that.options.scoreBarLabel);
+    var scoreBarLabel = that.options.scoreBarLabel.replace(':num', score).replace(':total', maxScore);
+
+    this.setFeedback(summary, score, maxScore, scoreBarLabel);
 
     // Only read out the score after the progress is read
     setTimeout(function() {
       that.setBehaviour({disableReadSpeaker: false});
       that.readFeedback();
-      that.readScore();
+      that.read(scoreBarLabel);
     }, 3000);
 
     that.trigger('resize');
