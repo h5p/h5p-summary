@@ -504,6 +504,15 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
   };
 
   /**
+   * Returns true if answers have been given
+   *
+   * @return {boolean}
+   */
+  Summary.prototype.getAnswerGiven = function () {
+    return this.errorCounts.length > 0;
+  };
+
+  /**
    * Handles moving the focus from the current option to the previous option and changes tabindex accorindgly
    *
    */
