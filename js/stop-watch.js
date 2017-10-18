@@ -44,7 +44,7 @@ H5P.Summary.StopWatch = (function () {
    * @public
    */
   StopWatch.prototype.reset = function(){
-    this.duration = 0
+    this.duration = 0;
   };
 
   /**

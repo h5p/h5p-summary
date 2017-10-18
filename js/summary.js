@@ -286,7 +286,6 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         var $curr_panel = $('.h5p-panel:eq(' + panel + ')', that.$myDom);
         var $next_panel = $('.h5p-panel:eq(' + (panel + 1) + ')', that.$myDom);
         var finished = ($next_panel.length === 0);
-        var height = $curr_panel.parent().css('height');
         // Disable panel while waiting for animation
         $curr_panel.addClass('panel-disabled');
 
