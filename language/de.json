@@ -21,7 +21,7 @@
         "fields": [
           {
             "label": "Liste von Aussagen für die Zusammenfassung - die erste Aussage ist die korrekte.",
-            "entity": "aussage",
+            "entity": "Aussage",
             "field": {
               "label": "Aussage"
             }
@@ -81,29 +81,29 @@
     },
     {
       "label": "\"Readspeaker\"-Text für eine richtige Antwort",
-      "default": "Correct."
+      "default": "Richtig."
     },
     {
       "label": "\"Readspeaker\"-Text für eine falsche Antwort",
-      "default": "Incorrect! Please try again."
+      "default": "Falsch! Bitte versuchen Sie es noch einmal."
     },
     {
-      "label": "Label list of correct answers",
-      "default": "Correct answers."
+      "label": "Bezeichnung der Liste richtiger Antworten",
+      "default": "Richtige Antwort(en)."
     },
     {
-      "label": "Label for the show tip button",
-      "default": "Show tip"
+      "label": "Bezeichnung für den Hinweis-Button",
+      "default": "Hinweis zeigen"
     },
     {
       "label": "Textual representation of the score bar for those using a readspeaker",
-      "description": ":num and :total are special keywords which are programmatically updated",
-      "default": "You got :num out of :total points"
+      "description": ":num und :total sind spezielle Schlüsselworte, welche programmseitig aktualisiert werden",
+      "default": "Sie haben :num von :total Punkten erreicht"
     },
     {
-      "label": "Text used for readspeakers to communicate progress",
-      "description": ":num and :total are special keywords which are programmatically updated",
-      "default": "Progress :num of :total"
+      "label": "Text, mit dem readspeakers den Fortschritt angiebt",
+      "description": ":num und :total sind spezielle Schlüsselworte, welche programmseitig aktualisiert werden",
+      "default": "Fortschritt :num von :total"
     }
   ]
 }
