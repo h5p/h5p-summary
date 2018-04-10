@@ -8,6 +8,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     }
 
     this.id = this.contentId = contentId;
+    this.contentData = contentData;
     this.summaryId = summaryId;
     Question.call(this, 'summary');
     this.offset = 0;
@@ -113,7 +114,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     };
 
     this.getTitle = function() {
-      return H5P.createTitle(this.options.intro);
+      return H5P.createTitle((this.contentData && this.contentData.metadata && this.contentData.metadata.title) ? this.contentData.metadata.title: 'Summary');
     };
 
     this.getCurrentState = function () {
