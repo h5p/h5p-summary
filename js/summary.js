@@ -98,7 +98,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
     // Required questiontype contract function
     this.getMaxScore = function() {
-      return this.summaries.length;
+      return this.summaries ? this.summaries.length : 0;
     };
 
     this.getScore = function() {
