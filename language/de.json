@@ -47,7 +47,7 @@
             }
           ],
           "label": "Benutzerdefinierte Rückmeldung für jeden Punkte-Bereich definieren",
-          "description": "Klicken Sie auf \"Bereich hinzufügen\", um so viele Bereiche hinzuzufügen, wie Sie benötigen. Beispiel: 0-20% Schlechtes Ergebnis, 21-91% Durchschnittliches Ergebnis, 91-100% Gutes Ergebnis!",
+          "description": "Klicke auf \"Bereich hinzufügen\", um so viele Bereiche hinzuzufügen, wie du benötigst. Beispiel: 0-20% Schlechtes Ergebnis, 21-91% Durchschnittliches Ergebnis, 91-100% Gutes Ergebnis!",
           "entity": "Bereich",
           "field": {
             "fields": [
@@ -85,7 +85,7 @@
     },
     {
       "label": "\"Readspeaker\"-Text für eine falsche Antwort",
-      "default": "Falsch! Bitte versuchen Sie es noch einmal."
+      "default": "Falsch! Bitte versuche es noch einmal."
     },
     {
       "label": "Bezeichnung der Liste richtiger Antworten",
@@ -96,9 +96,9 @@
       "default": "Hinweis zeigen"
     },
     {
-      "label": "Textual representation of the score bar for those using a readspeaker",
+      "label": "Textdarstellung des Ergebnisbalkens für Readspeaker",
       "description": ":num und :total sind spezielle Schlüsselworte, welche programmseitig aktualisiert werden",
-      "default": "Sie haben :num von :total Punkten erreicht"
+      "default": "Du hast :num von :total Punkten erreicht"
     },
     {
       "label": "Text, mit dem Readspeaker den Fortschritt angeben",
