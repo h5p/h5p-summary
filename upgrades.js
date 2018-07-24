@@ -58,7 +58,7 @@ H5PUpgrades['H5P.Summary'] = (function () {
 
         finished(null, parameters);
       },
-      9: function (parameters, finished, extras) {
+      10: function (parameters, finished, extras) {
         var title;
 
         if (parameters && parameters.intro) {
