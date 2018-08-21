@@ -47,7 +47,7 @@
             }
           ],
           "label": "Zdefiniuj własne komunikaty dla różnych zakresów wyników",
-          "description": 'Za pomocą przycisku "Dodaj zakres" stwórz tyle zakresów, ile potrzebujesz. Np. 0-20% Niestety, słaby wynik, 21-91% Przeciętny wynik, 91-100% Wspaniały wynik!',
+          "description": "Za pomocą przycisku 'Dodaj zakres' stwórz tyle zakresów, ile potrzebujesz. Np. 0-20% Niestety, słaby wynik, 21-91% Przeciętny wynik, 91-100% Wspaniały wynik!",
           "entity": "zakres",
           "field": {
             "fields": [
