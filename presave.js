@@ -11,7 +11,7 @@ H5PPresave['H5P.Summary'] = function (content, finished) {
   var presave = H5PEditor.Presave;
   var score = 0;
 
-  if (isContentInValid()) {
+  if (isContentInvalid()) {
     throw new presave.exceptions.InvalidContentSemanticsException('Invalid Summary Error');
   }
 
@@ -27,7 +27,7 @@ H5PPresave['H5P.Summary'] = function (content, finished) {
    * Check if required parameters is present
    * @return {boolean}
    */
-  function isContentInValid() {
+  function isContentInvalid() {
     return !presave.checkNestedRequirements(content, 'content.summaries') || !Array.isArray(content.summaries);
   }
 };
