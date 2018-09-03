@@ -2,7 +2,7 @@
   "title": "Summary",
   "description": "Test your users with fill in the summary tasks.",
   "majorVersion": 1,
-  "minorVersion": 9,
+  "minorVersion": 10,
   "patchVersion": 0,
   "runnable": 1,
   "embedTypes": [
@@ -13,7 +13,7 @@
   "author": "Joubel",
   "coreApi": {
     "majorVersion": 1,
-    "minorVersion": 11
+    "minorVersion": 19
   },
   "preloadedCss": [
     {
