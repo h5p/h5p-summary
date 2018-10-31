@@ -15,7 +15,11 @@ H5PPresave['H5P.Summary'] = function (content, finished) {
     throw new presave.exceptions.InvalidContentSemanticsException('Invalid Summary Error');
   }
 
-  score = content.summaries.length;
+  score = content.summaries
+    .filter(function(summary) {
+      return summary.hasOwnProperty("summary") && summary.summary.length > 0;
+    })
+    .length;
 
   presave.validateScore(score);
 
