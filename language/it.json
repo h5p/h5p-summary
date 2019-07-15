@@ -3,7 +3,7 @@
     {
       "label": "Testo di introduzione",
       "default": "Scegli l'affermazione corretta.",
-      "description": "Verrà visualizzato sopra l'attività di riepilogo."
+      "description": "Sarà visualizzato sopra l'attività di riepilogo."
     },
     {
       "widgets": [
@@ -70,12 +70,12 @@
       "description": "Sarà visualizzato sopra le istruzioni. Esempio: 'Avanzamento: 2/5'"
     },
     {
-      "label": "Testo visualizzato prima di un numero di affermazioni sbagliate, selezionato nel nel riepilogo del compito",
+      "label": "Testo visualizzato prima di un numero di affermazioni sbagliate, selezionato nel riepilogo del compito",
       "default": "Risposte sbagliate:",
       "description": "Sarà visualizzato sopra le istruzioni. Esempio: 'Risposte sbagliate: 4'"
     },
     {
-      "label": "Intestazione di riepilogo feedback",
+      "label": "Intestazione di riepilogo del feedback",
       "default": "Il tuo risultato",
       "description": "Sarà visualizzato sopra il riepilogo dei feedback"
     },
@@ -92,18 +92,18 @@
       "default": "Risposte giuste"
     },
     {
-      "label": "Label for the show tip button",
-      "default": "Show tip"
+      "label": "Etichetta per il pulsante \"Mostra suggerimento\"",
+      "default": "Mostra suggerimento"
     },
     {
-      "label": "Textual representation of the score bar for those using a readspeaker",
-      "description": ":num and :total are special keywords which are programmatically updated",
-      "default": "You got :num out of :total points"
+      "label": "Rappresentazione testuale sulla barra del punteggio per chi usa un lettore vocale",
+      "description": ":num e :total sono parole chiavi speciali programmaticamente aggiornate",
+      "default": "Il tuo punteggio è :num su :total"
     },
     {
-      "label": "Text used for readspeakers to communicate progress",
-      "description": ":num and :total are special keywords which are programmatically updated",
-      "default": "Progress :num of :total"
+      "label": "Messaggio usato dai lettori vocali per comunicare la progressione",
+      "description": ":num e :total sono parole chiavi speciali programmaticamente aggiornate",
+      "default": "Progressione: :num su :total"
     }
   ]
 }

@@ -3,7 +3,7 @@
     {
       "label": "Introduksjonstekst",
       "default": "Vel riktig påstand.",
-      "description": "Vil vises øvst i oppsummeringsoppgåva."
+      "description": "Vil visast øvst i oppsummeringsoppgåva."
     },
     {
       "widgets": [
@@ -70,35 +70,35 @@
       "description": "Vil vises over påstandane. Eksempel: 'Løst: 2/5'"
     },
     {
-      "label": "Tekst som vises før antall feil påstander som er valgt i oppsummeringsoppgåva.",
+      "label": "Tekst som visast før antall feil påstandar som er valde i oppsummeringsoppgåva.",
       "default": "Antall feil:",
-      "description": "Vil vises over påstandane. Eksempel: 'Antall feil: 4'"
+      "description": "Vil visast over påstandane. Eksempel: 'Antall feil: 4'"
     },
     {
       "label": "Overskrift over tilbakemelding",
       "default": "Ditt resultat:",
-      "description": "Vil vises over tilbakemelding på oppsummeringsoppgåva."
+      "description": "Vil visast over tilbakemelding på oppsummeringsoppgåva."
     },
     {
       "label": "Merkelapp for riktig svar",
-      "default": "Correct."
+      "default": "Rett"
     },
     {
       "label": "Merkelapp for feil svar",
-      "default": "Incorrect! Please try again."
+      "default": "Feil. Prøv igjen!"
     },
     {
       "label": "Label list of correct answers",
-      "default": "Correct answers."
+      "default": "Rett svar"
     },
     {
       "label": "Label for the show tip button",
-      "default": "Show tip"
+      "default": "Vis tips"
     },
     {
       "label": "Textual representation of the score bar for those using a readspeaker",
       "description": ":num and :total are special keywords which are programmatically updated",
-      "default": "You got :num out of :total points"
+      "default": "Du fikk :num av :total points"
     },
     {
       "label": "Text used for readspeakers to communicate progress",
