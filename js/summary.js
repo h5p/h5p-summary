@@ -106,11 +106,11 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       var self = this;
 
       // count single correct answers
-      return self.summaries.reduce(function(result, panel, index){
+      return self.summaries ? self.summaries.reduce(function(result, panel, index){
         var userResponse = self.userResponses[index] || [];
 
         return result + (self.correctOnFirstTry(userResponse) ? 1 : 0);
-      }, 0);
+      }, 0) : 0;
     };
 
     this.getTitle = function() {
