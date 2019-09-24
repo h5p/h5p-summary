@@ -100,13 +100,11 @@
   color: #255c41;
   float: right;
 }
-.h5p-summary .h5p-panel:not(.panel-disabled) .summary-claim-unclicked:hover,
-.h5p-summary .h5p-panel:not(.panel-disabled) .summary-claim-unclicked:focus {
+.h5p-summary .h5p-panel:not(.panel-disabled) .summary-claim-unclicked:hover {
   cursor: pointer;
   filter: none;
-  border: 0.1em solid #edd6e9;
-
-  background: #edd6e9;
+  border: 0.1em solid #cccccc;
+  background: #ececec;
 }
 
 .h5p-summary li.summary-failed > p,
