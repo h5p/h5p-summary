@@ -103,7 +103,7 @@
 .h5p-summary .h5p-panel:not(.panel-disabled) .summary-claim-unclicked:hover {
   cursor: pointer;
   filter: none;
-  border: 0.1em solid #cccccc;
+  border-color: transparent;
   background: #ececec;
 }
 
