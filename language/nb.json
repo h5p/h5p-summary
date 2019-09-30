@@ -84,8 +84,12 @@
       "default": "Rett."
     },
     {
-      "label": "Merkelapp for feil svar",
-      "default": "Feil. Prøv igjen!"
+      "label": "Readspeaker text for announcing incorrect answer",
+      "default": "Incorrect! Please try again."
+    },
+    {
+      "label": "Readspeaker label for incorrect answer",
+      "default": "Incorrect"
     },
     {
       "label": "Label list of correct answers",

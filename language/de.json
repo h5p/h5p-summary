@@ -84,8 +84,12 @@
       "default": "Richtig."
     },
     {
-      "label": "Text, den ein Vorlesewerkzeug bei einer falschen Antwort vorliest (Barrierefreiheit)",
-      "default": "Falsch! Bitte versuche es noch einmal."
+      "label": "Readspeaker text for announcing incorrect answer",
+      "default": "Incorrect! Please try again."
+    },
+    {
+      "label": "Readspeaker label for incorrect answer",
+      "default": "Incorrect"
     },
     {
       "label": "Bezeichnung der Liste richtiger Antworten",

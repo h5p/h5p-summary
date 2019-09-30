@@ -185,9 +185,17 @@
   {
     "name": "labelIncorrect",
     "type": "text",
-    "label": "Readspeaker text for incorrect answer",
+    "label": "Readspeaker text for announcing incorrect answer",
     "importance": "low",
     "default": "Incorrect! Please try again.",
+    "common": true
+  },
+  {
+    "name": "alternativeIncorrectLabel",
+    "type": "text",
+    "label": "Readspeaker label for incorrect answer",
+    "importance": "low",
+    "default": "Incorrect",
     "common": true
   },
   {

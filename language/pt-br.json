@@ -84,8 +84,12 @@
       "default": "Correto."
     },
     {
-      "label": "Texto de resposta incorreta para o leitor de tela",
-      "default": "Incorreto! Por favor, tente novamente."
+      "label": "Readspeaker text for announcing incorrect answer",
+      "default": "Incorrect! Please try again."
+    },
+    {
+      "label": "Readspeaker label for incorrect answer",
+      "default": "Incorrect"
     },
     {
       "label": "Rótulo da lista de respostas corretas",
