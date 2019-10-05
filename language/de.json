@@ -38,12 +38,12 @@
       }
     },
     {
-      "label": "Allgemeine Rückmeldung",
+      "label": "Gesamtrückmeldung",
       "fields": [
         {
           "widgets": [
             {
-              "label": "Voreinstellung"
+              "label": "Eingabemaske"
             }
           ],
           "label": "Lege Rückmeldungen für einzelne Punktebereiche fest",
@@ -84,12 +84,12 @@
       "default": "Richtig."
     },
     {
-      "label": "Readspeaker text for announcing incorrect answer",
-      "default": "Incorrect! Please try again."
+      "label": "Text, den ein Vorlesewerkzeug bei einer falschen Antwort vorliest (Barrierefreiheit)",
+      "default": "Falsch! Bitte versuche es noch einmal."
     },
     {
-      "label": "Readspeaker label for incorrect answer",
-      "default": "Incorrect"
+      "label": "Bezeichnung einer falschen Antwort für Vorlesewerkzeuge (Barrierefreiheit)",
+      "default": "Falsch"
     },
     {
       "label": "Bezeichnung der Liste richtiger Antworten",
