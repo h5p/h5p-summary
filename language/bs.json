@@ -84,8 +84,12 @@
       "default": "Tačno."
     },
     {
-      "label": "Čitanje teksta za pogrešan odgovor",
-      "default": "Netačno! Pokušajte ponovo."
+      "label": "Readspeaker text for announcing incorrect answer",
+      "default": "Incorrect! Please try again."
+    },
+    {
+      "label": "Readspeaker label for incorrect answer",
+      "default": "Incorrect"
     },
     {
       "label": "Lista tačnih odgovora",

@@ -84,8 +84,12 @@
       "default": "正解です。"
     },
     {
-      "label": "不正解ためのリードスピーカー用テキスト",
-      "default": "不正解 ! もう一度トライしてくだい。"
+      "label": "Readspeaker text for announcing incorrect answer",
+      "default": "Incorrect! Please try again."
+    },
+    {
+      "label": "Readspeaker label for incorrect answer",
+      "default": "Incorrect"
     },
     {
       "label": "正解のラベルリスト",

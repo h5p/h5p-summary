@@ -84,8 +84,12 @@
       "default": "Dobrze."
     },
     {
-      "label": "Komunikat błędnej odpowiedzi dla czytników ekranu",
-      "default": "Źle! Spróbuj jeszcze raz."
+      "label": "Readspeaker text for announcing incorrect answer",
+      "default": "Incorrect! Please try again."
+    },
+    {
+      "label": "Readspeaker label for incorrect answer",
+      "default": "Incorrect"
     },
     {
       "label": "Nagłówek listy poprawnych odpowiedzi",

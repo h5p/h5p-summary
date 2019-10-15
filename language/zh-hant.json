@@ -84,8 +84,12 @@
       "default": "答對了！"
     },
     {
-      "label": "報讀器答錯文本",
-      "default": "答錯囉！"
+      "label": "Readspeaker text for announcing incorrect answer",
+      "default": "Incorrect! Please try again."
+    },
+    {
+      "label": "Readspeaker label for incorrect answer",
+      "default": "Incorrect"
     },
     {
       "label": "正確答案的文字列表",

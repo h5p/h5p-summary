@@ -84,8 +84,12 @@
       "default": "Giusto"
     },
     {
-      "label": "Testo del riproduttore vocale per la risposta sbagliata",
-      "default": "Sbagliato! Riprova ancora"
+      "label": "Readspeaker text for announcing incorrect answer",
+      "default": "Incorrect! Please try again."
+    },
+    {
+      "label": "Readspeaker label for incorrect answer",
+      "default": "Incorrect"
     },
     {
       "label": "Elenco di etichette di risposte giuste",
