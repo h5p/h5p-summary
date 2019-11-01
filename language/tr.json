@@ -84,8 +84,12 @@
       "default": "Correct."
     },
     {
-      "label": "Readspeaker text for incorrect answer",
+      "label": "Readspeaker text for announcing incorrect answer",
       "default": "Incorrect! Please try again."
+    },
+    {
+      "label": "Readspeaker label for incorrect answer",
+      "default": "Incorrect"
     },
     {
       "label": "Label list of correct answers",

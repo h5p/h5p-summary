@@ -84,8 +84,12 @@
       "default": "Juist."
     },
     {
-      "label": "Readspeaker tekst voor het onjuiste antwoord",
-      "default": "Onjuist! Probeer het opnieuw."
+      "label": "Readspeaker text for announcing incorrect answer",
+      "default": "Incorrect! Please try again."
+    },
+    {
+      "label": "Readspeaker label for incorrect answer",
+      "default": "Incorrect"
     },
     {
       "label": "Label van de lijst van juiste antwoorden",

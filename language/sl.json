@@ -84,8 +84,12 @@
       "default": "Pravilno."
     },
     {
-      "label": "Besedilo za napačen odgovor za bralnik zaslona",
-      "default": "Nepravilno! Poskusite znova."
+      "label": "Readspeaker text for announcing incorrect answer",
+      "default": "Incorrect! Please try again."
+    },
+    {
+      "label": "Readspeaker label for incorrect answer",
+      "default": "Incorrect"
     },
     {
       "label": "Oznaka seznama pravilnih odgovorov",

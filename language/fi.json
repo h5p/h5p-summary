@@ -84,8 +84,12 @@
       "default": "Oikein!"
     },
     {
-      "label": "Ruudunlukijan palaute väärästä vastauksesta",
-      "default": "Väärin!"
+      "label": "Readspeaker text for announcing incorrect answer",
+      "default": "Incorrect! Please try again."
+    },
+    {
+      "label": "Readspeaker label for incorrect answer",
+      "default": "Incorrect"
     },
     {
       "label": "Oikeiden vastauksien listan kuvaus",

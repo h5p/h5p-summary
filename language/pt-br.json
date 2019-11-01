@@ -84,8 +84,12 @@
       "default": "Correto."
     },
     {
-      "label": "Texto de resposta incorreta para o leitor de tela",
+      "label": "Texto do leitor de tela para anunciar resposta incorreta",
       "default": "Incorreto! Por favor, tente novamente."
+    },
+    {
+      "label": "Texto do leitor de tela para resposta incorreta",
+      "default": "Incorreto"
     },
     {
       "label": "Rótulo da lista de respostas corretas",

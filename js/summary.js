@@ -79,8 +79,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       solvedLabel: "Solved:",
       scoreLabel: "Wrong answers:",
       labelCorrect: "Correct.",
-      incorrectText: "Incorrect! Please try again.",
+      labelIncorrect: 'Incorrect! Please try again.',
       labelCorrectAnswers: "List of correct answers.",
+      alternativeIncorrectLabel: 'Incorrect',
       postUserStatistics: (H5P.postUserStatistics === true),
       tipButtonLabel: 'Show tip',
       scoreBarLabel: 'You got :num out of :total points',
@@ -106,11 +107,11 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       var self = this;
 
       // count single correct answers
-      return self.summaries.reduce(function(result, panel, index){
+      return self.summaries ? self.summaries.reduce(function(result, panel, index){
         var userResponse = self.userResponses[index] || [];
 
         return result + (self.correctOnFirstTry(userResponse) ? 1 : 0);
-      }, 0);
+      }, 0) : 0;
     };
 
     this.getTitle = function() {
@@ -141,12 +142,18 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
   Summary.prototype.createQuestion = function() {
     var that = this;
     var id = 0; // element counter
-     // variable to capture currently focused option.
+    // variable to capture currently focused option.
     var currentFocusedOption;
     var elements = [];
     var $ = H5P.jQuery;
     this.$myDom = $('<div>', {
       'class': 'summary-content'
+    });
+
+    this.$answerAnnouncer = $('<div>', {
+      'class': 'hidden-but-read',
+      'aria-live': 'assertive',
+      appendTo: this.$myDom,
     });
 
     if (that.summaries === undefined || that.summaries.length === 0) {
@@ -250,6 +257,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
       // Correct answer?
       if (that.answer[nodeId]) {
+        that.announceAnswer(true);
         that.stopStopWatch(panelId);
 
         that.progress++;
@@ -350,9 +358,13 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         );
       }
       else {
+        that.announceAnswer(false);
         // Remove event handler (prevent repeated clicks) and mouseover effect
         $el.off('click');
         $el.addClass('summary-failed');
+        const label = that.options.alternativeIncorrectLabel + '. '
+          + $el.text();
+        $el.attr('aria-label', label);
         $el.removeClass('summary-claim-unclicked');
         $el.attr("aria-checked", "true");
         $evaluation.children('.summary-score').css('display', 'block');
@@ -501,6 +513,22 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     that.trigger('resize');
 
     return this.$myDom;
+  };
+
+  /**
+   * Announce if answered alternative was correct or wrong
+   * @param isCorrect
+   */
+  Summary.prototype.announceAnswer = function (isCorrect) {
+    const announcement = isCorrect
+      ? this.options.labelCorrect
+      : this.options.labelIncorrect;
+    this.$answerAnnouncer.html(announcement);
+
+    // Remove text so it can't be navigated to and read at a later point
+    setTimeout(function () {
+      this.$answerAnnouncer.html('');
+    }.bind(this), 100);
   };
 
   /**

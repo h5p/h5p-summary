@@ -84,8 +84,12 @@
       "default": "Erantzun zuzena."
     },
     {
-      "label": "Erantzun okerretarako irakurgailuaren testua",
-      "default": "Erantzun okerra! Mesedez saiatu berriz ere."
+      "label": "Readspeaker text for announcing incorrect answer",
+      "default": "Incorrect! Please try again."
+    },
+    {
+      "label": "Readspeaker label for incorrect answer",
+      "default": "Incorrect"
     },
     {
       "label": "Erantzun zuzenen zerrendarako etiketa",

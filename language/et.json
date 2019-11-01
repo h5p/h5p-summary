@@ -84,8 +84,12 @@
       "default": "Õige."
     },
     {
-      "label": "Vale vastuse tekstilugeri tekst",
-      "default": "Vale! Palun proovi uuesti."
+      "label": "Readspeaker text for announcing incorrect answer",
+      "default": "Incorrect! Please try again."
+    },
+    {
+      "label": "Readspeaker label for incorrect answer",
+      "default": "Incorrect"
     },
     {
       "label": "Õigete vastuste loetelu silt",
