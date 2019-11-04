@@ -17,7 +17,9 @@
       "ol",
       "h2",
       "h3",
-      "hr"
+      "hr",
+      "pre",
+      "code"
     ],
     "common": false
   },
@@ -80,7 +82,8 @@
                 "p",
                 "br",
                 "strong",
-                "em"
+                "em",
+                "code"
               ],
               "optional": true
             }
