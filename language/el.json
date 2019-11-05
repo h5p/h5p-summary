@@ -84,12 +84,12 @@
       "default": "Σωστό."
     },
     {
-      "label": "Readspeaker text for announcing incorrect answer",
-      "default": "Incorrect! Please try again."
+      "label": "Κείμενο ακουστικής υποβοήθησης για την ανακοίνωση λάθος απάντησης",
+      "default": "Λάθος! Προσπάθησε ξανά."
     },
     {
-      "label": "Readspeaker label for incorrect answer",
-      "default": "Incorrect"
+      "label": "Κείμενο ακουστικής υποβοήθησης για τη λάθος απάντηση",
+      "default": "Λάθος."
     },
     {
       "label": "Ετικέτα λίστας με σωστές απαντήσεις",
