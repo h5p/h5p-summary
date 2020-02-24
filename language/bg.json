@@ -88,6 +88,10 @@
       "default": "Грешно! Опитай пак."
     },
     {
+      "label": "Readspeaker label for incorrect answer",
+      "default": "Incorrect"
+    },
+    {
       "label": "Етикет за списък с верни отговори",
       "default": "Верни отговори."
     },
