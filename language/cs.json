@@ -27,10 +27,10 @@
             }
           },
           {
-            "label": "Tip",
+            "label": "Nápověda",
             "fields": [
               {
-                "label": "Tip text"
+                "label": "Text nápovědy"
               }
             ]
           }
