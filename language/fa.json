@@ -1,0 +1,113 @@
+{
+    "semantics": [
+        {
+            "label": "",
+            "default": "",
+            "description": ""
+        },
+        {
+            "widgets": [
+                {
+                    "label": ""
+                },
+                {
+                    "label": ""
+                }
+            ],
+            "label": "",
+            "entity": "",
+            "field": {
+                "label": "",
+                "fields": [
+                    {
+                        "label": "",
+                        "entity": "",
+                        "field": {
+                            "label": ""
+                        }
+                    },
+                    {
+                        "label": "",
+                        "fields": [
+                            {
+                                "label": ""
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "label": "",
+            "fields": [
+                {
+                    "widgets": [
+                        {
+                            "label": ""
+                        }
+                    ],
+                    "label": "",
+                    "description": "",
+                    "entity": "",
+                    "field": {
+                        "fields": [
+                            {
+                                "label": ""
+                            },
+                            {},
+                            {
+                                "label": "",
+                                "placeholder": ""
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "label": "",
+            "default": "",
+            "description": ""
+        },
+        {
+            "label": "",
+            "default": "",
+            "description": ""
+        },
+        {
+            "label": "",
+            "default": "",
+            "description": ""
+        },
+        {
+            "label": "",
+            "default": ""
+        },
+        {
+            "label": "",
+            "default": ""
+        },
+        {
+            "label": "",
+            "default": ""
+        },
+        {
+            "label": "",
+            "default": ""
+        },
+        {
+            "label": "",
+            "default": ""
+        },
+        {
+            "label": "",
+            "description": "",
+            "default": ""
+        },
+        {
+            "label": "",
+            "description": "",
+            "default": ""
+        }
+    ]
+}
