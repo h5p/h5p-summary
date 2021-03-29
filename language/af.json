@@ -105,9 +105,9 @@
       "default": "Jy het :num uit :total punte gekry"
     },
     {
-      "label": "",
-      "description": "",
-      "default": ""
+      "label": "Teks gebruik vir spreekleser kommunikasie vordering",
+      "description": ":num en :total is spesiale sleutelwoorde wat programmaties opgedateer word",
+      "default": "Vordering :num van :total"
     }
   ]
 }
