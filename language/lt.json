@@ -47,7 +47,7 @@
             }
           ],
           "label": "Apibrėžti pasirinktinį atsiliepimą bet kokiam balų intervalui",
-          "description": "Spustelėkite mygtuką "Pridėti intervalus", kad pridėtumėte tiek intervalų, kiek reikia. Pavyzdys: 0-20% blogas rezultatas, 21-91% vidutinis rezultatas, 91-100% puikus rezultatas!",
+          "description": "Spustelėkite mygtuką \"Pridėti intervalus\", kad pridėtumėte tiek intervalų, kiek reikia. Pavyzdys: 0-20% blogas rezultatas, 21-91% vidutinis rezultatas, 91-100% puikus rezultatas!",
           "entity": "intervalas",
           "field": {
             "fields": [
@@ -66,12 +66,12 @@
     {
       "label": "Tekstas, rodomas prieš santraukos uždavinio išspręstų teiginių skaičių.",
       "default": "Progresas:",
-      "description": "Bus rodomas virš teiginių. Pavyzdys: "Progress: 2/5""
+      "description": "Bus rodomas virš teiginių. Pavyzdys: \"Progress: 2/5\""
     },
     {
       "label": "Tekstas, rodomas prieš santraukos užduotyje pasirinktų klaidingų teiginių skaičių.",
       "default": "Neteisingi atsakymai:",
-      "description": "Bus rodomas virš teiginių. Pavyzdys: "Klaidingi atsakymai: 4""
+      "description": "Bus rodomas virš teiginių. Pavyzdys: \"Klaidingi atsakymai: 4\""
     },
     {
       "label": "Santraukos atsiliepimų antraštė",
@@ -95,7 +95,7 @@
       "default": "Teisingi atsakymai"
     },
     {
-      "label": "Mygtuko "Rodyti patarimus" etiketė",
+      "label": "Mygtuko \"Rodyti patarimus\" etiketė",
       "default": "Rodyti patarimus"
     },
     {
