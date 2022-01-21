@@ -3,7 +3,7 @@
   "description": "Test your users with fill in the summary tasks.",
   "majorVersion": 1,
   "minorVersion": 10,
-  "patchVersion": 11,
+  "patchVersion": 12,
   "runnable": 1,
   "embedTypes": [
     "iframe"
@@ -45,7 +45,7 @@
     {
       "machineName": "H5P.Question",
       "majorVersion": 1,
-      "minorVersion": 4
+      "minorVersion": 5
     }
   ],
   "editorDependencies": [
