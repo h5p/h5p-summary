@@ -171,6 +171,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         summaries: []
       };
 
+      // dataBitMap can contain empty entries as offset for previous panels
+      var emptyEntriesCount = 0;
+
       for (var summaryIndex = 0; summaryIndex < that.summaries[panelIndex].summary.length; summaryIndex++) {
         var isAnswer = (summaryIndex === 0);
         that.answer[id] = isAnswer; // First claim is correct
@@ -179,9 +182,11 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         that.dataBitMap[panelIndex] = this.dataBitMap[panelIndex] || [];
         that.dataBitMap[panelIndex][id] = summaryIndex;
 
+        emptyEntriesCount = that.dataBitMap[panelIndex].length - (that.dataBitMap[panelIndex].filter(function () { return true; })).length;
+
         // checks the answer and updates the user response array
         if(that.answers[panelIndex] && (that.answers[panelIndex].indexOf(id) !== -1)){
-          this.storeUserResponse(panelIndex, summaryIndex);
+          this.storeUserResponse(panelIndex, emptyEntriesCount + summaryIndex);
         }
 
         // adds to elements
@@ -193,7 +198,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
       // if we have progressed passed this point, the success pattern must also be saved
       if(panelIndex < that.progress){
-        this.storeUserResponse(panelIndex, 0);
+        this.storeUserResponse(panelIndex, emptyEntriesCount);
       }
 
       // Randomize elements
