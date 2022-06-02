@@ -105,7 +105,7 @@
       "default": "Conseguiches :num dun total de :total puntos"
     },
     {
-      "label": "Texto do lector de pantalla para para indicar progreso",
+      "label": "Texto do lector de pantalla para indicar progreso",
       "description": ":num e :total son palabras chave especiais actualizadas programaticamente",
       "default": "Progreso :num de :total"
     }
