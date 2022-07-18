@@ -58,10 +58,6 @@
               {
                 "label": "Atsiliepimai apie nustatytą balų intervalą",
                 "placeholder": "Užpildykite atsiliepimus"
-              },
-              {
-                "placeholder": "Užpildyti atsiliepimą",
-                "label": "Atsiliepimai apie apibrėžtą balų diapazoną"
               }
             ]
           }
