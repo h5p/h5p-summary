@@ -210,9 +210,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     var $summary_list = $('<ul role="list" aria-labelledby="answerListHeading-'+that.summaryId+'"></ul>');
     var $evaluation = $('<div class="summary-evaluation"></div>');
     var $evaluation_content = $('<div id="questionDesc-'+that.summaryId+'" class="summary-evaluation-content">' + that.options.intro + '</div>');
-    var $score = $('<div class="summary-score"></div>');
+    var $score = $('<div class="summary-score" role="status"></div>');
     var $options = $('<div class="summary-options"></div>');
-    var $progress = $('<div class="summary-progress" aria-live="polite"></div>');
+    var $progress = $('<div class="summary-progress" aria-live="polite" role="status"></div>');
     var $progressNumeric = $('<div class="summary-progress-numeric" aria-hidden="true"></div>');
     var options_padding = parseInt($options.css('paddingLeft'));
     // content div added for readspeaker that indicates list of correct answers.
