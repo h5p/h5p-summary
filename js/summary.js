@@ -182,7 +182,12 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         that.dataBitMap[panelIndex] = this.dataBitMap[panelIndex] || [];
         that.dataBitMap[panelIndex][id] = summaryIndex;
 
-        emptyEntriesCount = that.dataBitMap[panelIndex].length - (that.dataBitMap[panelIndex].filter(function () { return true; })).length;
+        const filledEntriesCount = (
+          that.dataBitMap[panelIndex].filter(function () {
+            return true; // dataBitMap[panelIndex] can contain "empty" values
+          })
+        ).length;
+        emptyEntriesCount = that.dataBitMap[panelIndex].length - filledEntriesCount;
 
         // checks the answer and updates the user response array
         if(that.answers[panelIndex] && (that.answers[panelIndex].indexOf(id) !== -1)){
