@@ -76,20 +76,20 @@
     },
     {
       "label": "Glava povzetka povratnih informacij",
-      "default": "Vaš rezultat",
+      "default": "Rezultat",
       "description": "Prikazano bo nad povzetkom povratnih informacij."
     },
     {
-      "label": "Besedilo za pravilni odgovor za bralnik zaslona",
+      "label": "Besedilo za pravilen odgovor za bralnik zaslona",
       "default": "Pravilno."
     },
     {
-      "label": "Readspeaker text for announcing incorrect answer",
-      "default": "Incorrect! Please try again."
+      "label": "Besedilo za nepravilen odgovor za bralnik zaslona",
+      "default": "Nepravilno! Poskusi znova."
     },
     {
-      "label": "Readspeaker label for incorrect answer",
-      "default": "Incorrect"
+      "label": "Besedilo za nepravilen odgovor",
+      "default": "Nepravilno"
     },
     {
       "label": "Oznaka seznama pravilnih odgovorov",
@@ -101,12 +101,12 @@
     },
     {
       "label": "Tekstovni prikaz vrstice z rezultati za uporabnike, ki uporabljajo bralnik zaslona",
-      "description": ":num in :total sta posebni ključni besedi, ki se programsko spreminjata",
-      "default": "Dosegli ste :num od :total točk"
+      "description": ":num in :total sta spremenljivki",
+      "default": "Dosežene točke: :num od :total"
     },
     {
       "label": "Besedilo, ki ga bralnik zaslona uporabi za izražanje napredka",
-      "description": ":num in :total sta posebni ključni besedi, ki se programsko spreminjata",
+      "description": ":num in :total sta spremenljivki",
       "default": "Napredek :num od :total"
     }
   ]
