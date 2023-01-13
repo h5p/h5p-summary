@@ -3,7 +3,7 @@
     {
       "label": "Įvadinis tekstas",
       "default": "Pasirinkite teisingą teiginį.",
-      "description": "Bus rodomas virš santraukos užduoties."
+      "description": "Bus rodomas virš užduoties turinio."
     },
     {
       "widgets": [
@@ -67,12 +67,12 @@
     {
       "label": "Tekstas, rodomas prieš santraukos uždavinio išspręstų teiginių skaičių.",
       "default": "Progresas:",
-      "description": "Bus rodomas virš teiginių. Pavyzdys: \"Progress: 2/5\""
+      "description": "Bus rodomas virš teiginių. Pavyzdys: \"Progresas: 2/5\""
     },
     {
       "label": "Tekstas, rodomas prieš santraukos užduotyje pasirinktų klaidingų teiginių skaičių.",
       "default": "Neteisingi atsakymai:",
-      "description": "Bus rodomas virš teiginių. Pavyzdys: \"Klaidingi atsakymai: 4\""
+      "description": "Bus rodomas virš teiginių. Pavyzdys: \"Neteisingi atsakymai: 4\""
     },
     {
       "label": "Santraukos atsiliepimų antraštė",
@@ -93,7 +93,7 @@
     },
     {
       "label": "Teisingų atsakymų sąrašo etiketė",
-      "default": "Teisingi atsakymai"
+      "default": "Teisingi atsakymai."
     },
     {
       "label": "Mygtuko \"Rodyti patarimus\" etiketė",
