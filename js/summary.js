@@ -120,7 +120,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
     this.getCurrentState = function () {
       return {
-        progress: this.progress,
+        progress: this.progress || null,
         answers: this.answers
       };
     };
