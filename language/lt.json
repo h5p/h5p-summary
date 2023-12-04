@@ -8,7 +8,7 @@
     {
       "widgets": [
         {
-          "label": "Numatytas"
+          "label": "Numatytasis"
         },
         {
           "label": "Tekstinis"
@@ -43,7 +43,7 @@
         {
           "widgets": [
             {
-              "label": "Numatytas"
+              "label": "Numatytasis"
             }
           ],
           "label": "Apibrėžti pasirinktinį atsiliepimą bet kokiam balų intervalui",
@@ -56,8 +56,8 @@
               },
               {},
               {
-                "label": "Atsiliepimai apie nustatytą balų intervalą",
-                "placeholder": "Užpildykite atsiliepimus"
+                "label": "Atsiliepimai apibrėžtam balų diapazonui",
+                "placeholder": "Užpildykite atsiliepimą"
               }
             ]
           }

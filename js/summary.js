@@ -120,7 +120,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
     this.getCurrentState = function () {
       return {
-        progress: this.progress,
+        progress: this.progress || null,
         answers: this.answers
       };
     };
@@ -640,11 +640,13 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     this.userResponses = [];
     this.dataBitMap = [];
 
-    const contentWrapper = this.$myDom[0].parentNode;
-    contentWrapper.innerHTML = '';
-    this.createQuestion();
-    contentWrapper.appendChild(this.$myDom[0]);
-    this.removeFeedback();
+    if (this.$myDom) {
+      const contentWrapper = this.$myDom[0].parentNode;
+      contentWrapper.innerHTML = '';
+      this.createQuestion();
+      contentWrapper.appendChild(this.$myDom[0]);
+      this.removeFeedback();
+    }
   };
 
   /**
