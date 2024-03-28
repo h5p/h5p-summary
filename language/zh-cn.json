@@ -3,7 +3,7 @@
     {
       "label": "说明文字",
       "default": "请选择正确的陈述。",
-      "description": "将显示在‘概要’任务的上方。"
+      "description": "将显示在摘要任务的上方。"
     },
     {
       "widgets": [
@@ -20,7 +20,7 @@
         "label": "陈述集",
         "fields": [
           {
-            "label": "概要陈述列表 - 注意：正确的陈述放在第一行。",
+            "label": "摘要语句列表-第一个语句是正确的。",
             "entity": "陈述",
             "field": {
               "label": "陈述"
@@ -65,31 +65,31 @@
       ]
     },
     {
-      "label": "显示进度文本",
+      "label": "摘要任务中解决的语句数前显示的文本。",
       "default": "进度：",
-      "description": "将显示在陈述的上方。例如：‘进度：2/5’"
+      "description": "上面会显示语句。例如:“进度:2/5”"
     },
     {
-      "label": "错误信息文本",
+      "label": "摘要任务中选择的错误语句数前显示文本。",
       "default": "答错：",
-      "description": "将显示在陈述的上方，例如答错：4"
+      "description": "上面会显示语句。例子:“错误答案:4”"
     },
     {
       "label": "反馈信息标题",
-      "default": "你的结果：",
+      "default": "你的结果",
       "description": "将显示在概要反馈的上方。"
     },
     {
       "label": "回答正确时的反馈文本",
-      "default": "正确！"
+      "default": "正确。"
     },
     {
-      "label": "Readspeaker text for announcing incorrect answer",
-      "default": "Incorrect! Please try again."
+      "label": "宣布错误答案的阅读器文本",
+      "default": "不正确的!请再试一次。"
     },
     {
-      "label": "Readspeaker label for incorrect answer",
-      "default": "Incorrect"
+      "label": "错误答案的阅读器标签",
+      "default": "错误"
     },
     {
       "label": "正确答案的标签列表",
@@ -101,13 +101,13 @@
     },
     {
       "label": "得分情况的文本描述",
-      "description": ":num 和:total 是特殊字符，程序会自动进行更新。",
-      "default": "你得到 :num 分，总分 :total 分。"
+      "description": ":num和:total是通过编程方式更新的特殊关键字",
+      "default": "你得到 :num 分，总分 :total 分"
     },
     {
       "label": "答题进度的文本描述",
-      "description": ":num 和:total 是特殊字符，程序会自动进行更新。",
-      "default": "进度：第 :num 题，共 :total 题。"
+      "description": ":num和:total是通过编程方式更新的特殊关键字",
+      "default": "进度：第 :num 题，共 :total 题"
     }
   ]
 }
