@@ -136,7 +136,6 @@
 }
 
 .h5p-summary .summary-score {
-  display: none;
   float: right;
   background: #f7d0d0;
   -moz-border-radius: 0.3em;
@@ -144,6 +143,10 @@
   border-radius: 0.3em;
   padding: 0.1em 0.3em;
   font-weight: normal;
+}
+
+.h5p-summary .summary-score:not(.visible) {
+  display: none;
 }
 
 .h5p-summary .summary-score:before {

@@ -218,9 +218,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     // content div added for readspeaker that indicates list of correct answers.
     var $answersListHeading = $('<div id="answerListHeading-'+that.summaryId+'" class="h5p-hidden-read">' + that.options.labelCorrectAnswers + '</div>');
 
-    if (this.score) {
-      $score.html(that.options.scoreLabel + ' ' + this.score).show();
-    }
+    $score
+      .html(that.options.scoreLabel + ' ' + this.score)
+      .toggleClass('visible', this.score > 0);
 
     // Insert content
     // aria-hidden = true added for readspeaker to avoid reading empty answers list.
@@ -367,7 +367,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         $el.attr('aria-label', label);
         $el.removeClass('summary-claim-unclicked');
         $el.attr("aria-checked", "true");
-        $evaluation.children('.summary-score').css('display', 'block');
+        $evaluation.children('.summary-score').toggleClass('visible', true);
         $score.html(that.options.scoreLabel + ' ' + (++that.score));
         that.errorCounts[panelId]++;
         if (that.answers[panelId] === undefined) {
