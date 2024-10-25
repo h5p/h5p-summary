@@ -318,7 +318,7 @@ H5P.Summary.XApiEventBuilder = (function ($, EventDispatcher) {
               'objectType': "Activity"
             }
           ]
-        },
+        }
       };
 
       if (H5P.xApiSessionId) {
