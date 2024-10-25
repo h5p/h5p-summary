@@ -318,6 +318,9 @@ H5P.Summary.XApiEventBuilder = (function ($, EventDispatcher) {
               'objectType': "Activity"
             }
           ]
+        },
+        'extensions': {
+          'https://h5p.com/xapi/session-id' : H5P.xApiSessionId
         }
       };
     }
