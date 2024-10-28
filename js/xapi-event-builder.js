@@ -320,6 +320,12 @@ H5P.Summary.XApiEventBuilder = (function ($, EventDispatcher) {
           ]
         }
       };
+
+      if (H5P.xApiSessionId) {
+        event.data.statement.context.extensions = {
+          'https://h5p.com/xapi/session-id': H5P.xApiSessionId
+        };
+      }
     }
 
     event.data.statement.object = {
