@@ -6,11 +6,11 @@
 
 .h5p-summary .summary-container {
   margin: 1em 0;
-  background-color: var(--ui-base);
+  background-color: var(--h5p-theme-ui-base);
 }
 
 .h5p-summary .summary-container.has-results {
-  border: 1px solid var(--feedback-correct-third);
+  border: 1px solid var(--h5p-theme-feedback-correct-third);
   border-radius: 0.25em;
 }
 
@@ -39,8 +39,8 @@
   position: relative;
   float: left;
   padding: 0.1em 2em 0.1em 0;
-  font-size: var(--font-size-xl);
-  color: var(--text-primary);
+  font-size: var(--h5p-theme-font-size-xl);
+  color: var(--h5p-theme-text-primary);
   font-weight: 600;
 }
 
@@ -51,18 +51,18 @@
 .h5p-summary .summary-container li,
 .h5p-summary .summary-options li {
   list-style: none;
-  background-color: var(--alternative-base);
+  background-color: var(--h5p-theme-alternative-base);
   -moz-border-radius: 0.3em;
   -webkit-border-radius: 0.3em;
   border-radius: 0.3em;
-  border: 1px solid var(--feedback-correct-third);
-  color: var(--text-primary);
-  font-size: var(--font-size-m);
+  border: 1px solid var(--h5p-theme-feedback-correct-third);
+  color: var(--h5p-theme-text-primary);
+  font-size: var(--h5p-theme-font-size-m);
   font-weight: 600;
-  padding: var(--spacing-xs);
+  padding: var(--h5p-theme-spacing-xs);
   text-decoration: none;
   margin: 0;
-  margin: var(--spacing-xxs) 0;
+  margin: var(--h5p-theme-spacing-xxs) 0;
   -webkit-box-shadow: 0 0.1em 0 rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 0.1em 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 0.1em 0 rgba(0, 0, 0, 0.2);
@@ -76,7 +76,7 @@
   margin: 0;
 }
 .h5p-summary .summary-container li:not(:last-child) {
-  border-bottom: 1px solid var(--feedback-correct-third);
+  border-bottom: 1px solid var(--h5p-theme-feedback-correct-third);
   border-radius: 0;
 }
 .h5p-summary .summary-container li {
@@ -84,8 +84,8 @@
   z-index: 5;
   margin: 0;
   border: 0;
-  color: var(--feedback-correct-main);
-  background: var(--feedback-correct-secondary);
+  color: var(--h5p-theme-feedback-correct-main);
+  background: var(--h5p-theme-feedback-correct-secondary);
  
   filter: none;
   -webkit-box-shadow: none;
@@ -102,7 +102,7 @@
   text-decoration: none;
   content: "\e903";
   font-family: 'h5p-theme';
-  color: var(--feedback-correct-main);
+  color: var(--h5p-theme-feedback-correct-main);
   float: right;
 }
 
@@ -110,50 +110,50 @@
 .h5p-summary .h5p-panel:not(.panel-disabled) .summary-claim-unclicked{
     display: flex;
     align-items: center;
-    padding: var(--spacing-xs);
-      margin: var(--spacing-xxs) 0;
-    background: var(--alternative-base);
-    border-radius: var(--border-radius-medium);
-    border: 1px solid var(--alternative-base);
+    padding: var(--h5p-theme-spacing-xs);
+      margin: var(--h5p-theme-spacing-xxs) 0;
+    background: var(--h5p-theme-alternative-base);
+    border-radius: var(--h5p-theme-border-radius-medium);
+    border: 1px solid var(--h5p-theme-alternative-base);
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
     text-align: left;
     line-height: normal;
     font-weight: 600;
-    color: var(--text-secondary);
+    color: var(--h5p-theme-text-secondary);
 }
 .h5p-summary .h5p-panel:not(.panel-disabled) .summary-claim-unclicked:hover {
   cursor: pointer;
   filter: none;
   border-color: transparent;
-  background-color: var(--alternative-dark);
+  background-color: var(--h5p-theme-alternative-dark);
 }
 
 .h5p-summary li.summary-failed > p,
 .h5p-summary li.summary-failed {
-  color: var(--feedback-incorrect-main);
-  background: var(--feedback-incorrect-secondary);
+  color: var(--h5p-theme-feedback-incorrect-main);
+  background: var(--h5p-theme-feedback-incorrect-secondary);
   font-weight: bold;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
 }
 .h5p-summary li.summary-failed{
-    border: solid 1px var(--feedback-incorrect-third);
+    border: solid 1px var(--h5p-theme-feedback-incorrect-third);
 }
 
 .h5p-summary li.summary-failed:before {
   text-decoration: none;
   content: "\e902";
   font-family: 'h5p-theme';
-  color: var(--feedback-incorrect-main);
+  color: var(--h5p-theme-feedback-incorrect-main);
   float: right;
   line-height: 1.25;
 }
 
 .h5p-summary .summary-options div {
-  font-size: var(--font-size-m);
+  font-size: var(--h5p-theme-font-size-m);
   padding:0;
   background-repeat: no-repeat;
   background-position: top right;
@@ -161,15 +161,15 @@
 
 .h5p-summary .summary-score {
   float: right;
-  color: var(--feedback-incorrect-main);
-  background: var(--feedback-incorrect-secondary);
+  color: var(--h5p-theme-feedback-incorrect-main);
+  background: var(--h5p-theme-feedback-incorrect-secondary);
   -moz-border-radius: 0.3em;
-  border: solid 1px var(--feedback-incorrect-third);
+  border: solid 1px var(--h5p-theme-feedback-incorrect-third);
   -webkit-border-radius: 0.3em;
   border-radius: 0.3em;
   padding: 0.1em 0.3em;
   font-weight: 600;
-  font-size: var(--font-size-m);
+  font-size: var(--h5p-theme-font-size-m);
 }
 
 .h5p-summary .summary-score:not(.visible) {
@@ -180,7 +180,7 @@
   text-decoration: none;
   content: "\e902";
   font-family: 'h5p-theme';
-  color: var(--feedback-incorrect-main);
+  color: var(--h5p-theme-feedback-incorrect-main);
   float: left;
   margin-right: 0.3em;
   top: 0.1em;
@@ -196,29 +196,29 @@
 
 .h5p-summary .summary-progress-numeric {
   float: right;
-  background-color: var(--feedback-correct-secondary);
-  border: 1px solid var(--feedback-correct-third);
+  background-color: var(--h5p-theme-feedback-correct-secondary);
+  border: 1px solid var(--h5p-theme-feedback-correct-third);
   -moz-border-radius: 0.3em;
   -webkit-border-radius: 0.3em;
   border-radius: 0.3em;
   padding: 0.1em 0.3em;
   font-weight: 600;
-  color: var(--feedback-correct-main);
+  color: var(--h5p-theme-feedback-correct-main);
   margin-left: 0.3em;
-  font-size: var(--font-size-m);
+  font-size: var(--h5p-theme-font-size-m);
 }
 
 .h5p-summary .summary-progress-numeric:before {
   text-decoration: none;
   content: "\e903";
   font-family: 'h5p-theme';
-  color: var(--feedback-correct-main);
+  color: var(--h5p-theme-feedback-correct-main);
   float: left;
   margin-right: 0.3em;
 }
 
 .h5p-summary .summary-options h2 {
-  font-size: var(--font-size-xl);
+  font-size: var(--h5p-theme-font-size-xl);
   font-weight: bold;
   padding-bottom: 0.5em;
   margin: 0;
@@ -231,7 +231,7 @@
 }
 .h5p-summary .summary-evaluation .joubel-tip-icon {
   line-height: 1;
-  font-size: var(--font-size-xl);
+  font-size: var(--h5p-theme-font-size-xl);
 }
 
 .h5p-summary .summary-feedback {
