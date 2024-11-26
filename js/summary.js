@@ -93,6 +93,8 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     // Prevent the score bar from interrupting the progress counter
     this.setBehaviour({disableReadSpeaker: true});
 
+    this.createQuestion();
+
     // Required questiontype contract function
     this.showSolutions = function() {
       // intentionally left blank, no solution view exists
@@ -135,7 +137,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
    */
   Summary.prototype.registerDomElements = function () {
     // Register task content area
-    this.setContent(this.createQuestion());
+    this.setContent(this.$myDom);
   };
 
   // Function for attaching the multichoice to a DOM element.
@@ -640,7 +642,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     this.userResponses = [];
     this.dataBitMap = [];
 
-    if (this.$myDom) {
+    if (this.$myDom[0].isConnected) {
       const contentWrapper = this.$myDom[0].parentNode;
       contentWrapper.innerHTML = '';
       this.createQuestion();
