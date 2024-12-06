@@ -285,7 +285,6 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         // Move into position over clicked element
         $answer.css({display: 'block', width: $el.css('width'), height: $el.css('height')});
         $answer.css({position: 'absolute', top: position.top, left: position.left});
-        $answer.css({backgroundColor: '#9dd8bb', border: ''});
         setTimeout(function () {
           $answer.css({backgroundColor: ''});
         }, 1);
