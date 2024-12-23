@@ -232,9 +232,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     this.$myDom.append($options);
     $evaluation.append($evaluation_content);
     $evaluation.append($evaluation);
-    $evaluation.append($progress);
-    $evaluation.append($progressNumeric);
     $evaluation.append($score);
+    $evaluation.append($progressNumeric);
+    $evaluation.append($progress);
 
     /**
      * Handle selected alternative
