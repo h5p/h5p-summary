@@ -65,7 +65,7 @@
   border: 1px solid var(--h5p-theme-feedback-correct-third);
   color: var(--h5p-theme-text-primary);
   font-size: var(--h5p-theme-font-size-m);
-  line-height: var(--h5p-theme-font-size-xxl-large);
+  line-height: normal;
   font-weight: 600;
   padding: var(--h5p-theme-spacing-xs) var(--h5p-theme-spacing-s);
   text-decoration: none;
