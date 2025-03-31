@@ -209,6 +209,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     var $summary_container = $('<div class="summary-container"></div>');
     var $summary_list = $('<ul role="list" aria-labelledby="answerListHeading-'+that.summaryId+'"></ul>');
     var $evaluation = $('<div class="summary-evaluation"></div>');
+    var $evaluationContentContainer = $('<div class="summary-evaluation-content-container"></div>');
     var $evaluation_content = $('<div id="questionDesc-'+that.summaryId+'" class="summary-evaluation-content">' + that.options.intro + '</div>');
     var $score = $('<div class="summary-score" role="status"></div>');
     var $options = $('<div class="summary-options"></div>');
@@ -230,8 +231,8 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     this.$myDom.append($summary_container);
     this.$myDom.append($evaluation);
     this.$myDom.append($options);
-    $evaluation.append($evaluation_content);
-    $evaluation.append($evaluation);
+    $evaluation.append($evaluationContentContainer)
+    $evaluationContentContainer.append($evaluation_content);
     $evaluation.append($score);
     $evaluation.append($progressNumeric);
     $evaluation.append($progress);
