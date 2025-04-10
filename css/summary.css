@@ -102,6 +102,7 @@
   border: 0;
   color: var(--h5p-theme-feedback-correct-main);
   background: var(--h5p-theme-feedback-correct-secondary);
+  font-size: var(--h5p-theme-font-size-m);
  
   filter: none;
   -webkit-box-shadow: none;
