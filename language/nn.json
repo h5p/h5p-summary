@@ -2,8 +2,8 @@
   "semantics": [
     {
       "label": "Introduksjonstekst",
-      "default": "Vel riktig påstand.",
-      "description": "Vil visast øvst i oppsummeringsoppgåva."
+      "default": "Vel rett påstand.",
+      "description": "Denne teksten står over oppgåva."
     },
     {
       "widgets": [
@@ -11,7 +11,7 @@
           "label": "Standard"
         },
         {
-          "label": "Tekstlig"
+          "label": "Tekstleg"
         }
       ],
       "label": "Oppsummering",
@@ -20,7 +20,7 @@
         "label": "Påstandar",
         "fields": [
           {
-            "label": "Påstandar til oppsummeringa - første påstand er riktig.",
+            "label": "Alternative påstandar. Første påstand er rett.",
             "entity": "påstand",
             "field": {
               "label": "Påstand"
@@ -38,7 +38,7 @@
       }
     },
     {
-      "label": "Bakgrunnsopasitet på flyttbare elementer",
+      "label": "Samla tilbakemelding",
       "fields": [
         {
           "widgets": [
@@ -46,18 +46,18 @@
               "label": "Standard"
             }
           ],
-          "label": "Define custom feedback for any score range",
-          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
-          "entity": "range",
+          "label": "Opprett poengområde og legg inn tilbakemeldingar.",
+          "description": "Klikk på knappen \"Legg til poengområde\" og legg til så mange poengområde du treng. Døme: 0–40 % Svakt resultat, 41–80 % Gjennomsnittleg resultat, 81–100 % Flott resultat!",
+          "entity": "poengområde",
           "field": {
             "fields": [
               {
-                "label": "Score Range"
+                "label": "Poengområde"
               },
               {},
               {
-                "label": "Feedback for defined score range",
-                "placeholder": "Fill in the feedback"
+                "label": "Tilbakemelding for definert poengområde",
+                "placeholder": "Skriv inn tilbakemelding"
               }
             ]
           }
@@ -65,49 +65,49 @@
       ]
     },
     {
-      "label": "Tekst som vises før antall påstandar som er løst i oppsummeringsoppgåva.",
-      "default": "Løyst:",
-      "description": "Vil vises over påstandane. Eksempel: 'Løst: 2/5'"
+      "label": "Tekst framfor antal løyste påstandar",
+      "default": "Løyste påstandar:",
+      "description": "Vil bli vist over påstandane. Døme: \"Løyste påstandar: 2/5\""
     },
     {
-      "label": "Tekst som visast før antall feil påstandar som er valde i oppsummeringsoppgåva.",
-      "default": "Tal feil:",
-      "description": "Vil visast over påstandane. Eksempel: 'Antall feil: 4'"
+      "label": "Tekst framfor antal feil svar",
+      "default": "Feil svar:",
+      "description": "Vil bli vist over påstandane. Døme: \"Feil svar: 4\""
     },
     {
       "label": "Overskrift over tilbakemelding",
       "default": "Resultatet ditt:",
-      "description": "Vil visast over tilbakemelding på oppsummeringsoppgåva."
+      "description": "Vil bli vist over poengsum og eventuell tilbakemelding"
     },
     {
-      "label": "Merkelapp for riktig svar",
-      "default": "Riktig"
+      "label": "Skjermlesartekst ved rett svar",
+      "default": "Rett"
     },
     {
-      "label": "Readspeaker text for announcing incorrect answer",
-      "default": "Feil! Prøv igjen."
+      "label": "Skjermlesartekst ved feil svar",
+      "default": "Feil svar. Prøv igjen."
     },
     {
-      "label": "Readspeaker label for incorrect answer",
+      "label": "Skjermlesaretikett for feil svar",
       "default": "Feil"
     },
     {
-      "label": "Label list of correct answers",
-      "default": "Riktig svar"
+      "label": "Etikett for liste over rette svar",
+      "default": "Rette svar"
     },
     {
-      "label": "Label for the show tip button",
+      "label": "Etikett for \"Vis tips\"-knapp",
       "default": "Vis tips"
     },
     {
-      "label": "Textual representation of the score bar for those using a readspeaker",
-      "description": ":num and :total are special keywords which are programmatically updated",
-      "default": "Du fekk :num av :total poeng"
+      "label": "Tekstalternativ til resultatlinja (for skjermlesarar)",
+      "description": ":num er :total er variablar som blir oppdaterte automatisk.",
+      "default": "Du fekk :num av :total poeng."
     },
     {
-      "label": "Text used for readspeakers to communicate progress",
-      "description": ":num and :total are special keywords which are programmatically updated",
-      "default": "Framgang :num av :total"
+      "label": "Skjermlesartekst som informerer om framdrift",
+      "description": ":num og :total er variablar som blir oppdaterte automatisk.",
+      "default": "Progresjon :num av :total"
     }
   ]
 }
