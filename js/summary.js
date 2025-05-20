@@ -10,7 +10,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     this.id = this.contentId = contentId;
     this.contentData = contentData;
     this.summaryId = summaryId;
-    Question.call(this, 'summary', true);
+    Question.call(this, 'summary', { theme: true });
     this.offset = 0;
     this.score = 0;
     this.progress = 0;
