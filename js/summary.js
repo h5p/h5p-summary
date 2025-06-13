@@ -10,7 +10,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     this.id = this.contentId = contentId;
     this.contentData = contentData;
     this.summaryId = summaryId;
-    Question.call(this, 'summary');
+    Question.call(this, 'summary', { theme: true });
     this.offset = 0;
     this.score = 0;
     this.progress = 0;
@@ -209,6 +209,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     var $summary_container = $('<div class="summary-container"></div>');
     var $summary_list = $('<ul role="list" aria-labelledby="answerListHeading-'+that.summaryId+'"></ul>');
     var $evaluation = $('<div class="summary-evaluation"></div>');
+    var $evaluationContentContainer = $('<div class="summary-evaluation-content-container"></div>');
     var $evaluation_content = $('<div id="questionDesc-'+that.summaryId+'" class="summary-evaluation-content">' + that.options.intro + '</div>');
     var $score = $('<div class="summary-score" role="status"></div>');
     var $options = $('<div class="summary-options"></div>');
@@ -230,11 +231,11 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     this.$myDom.append($summary_container);
     this.$myDom.append($evaluation);
     this.$myDom.append($options);
-    $evaluation.append($evaluation_content);
-    $evaluation.append($evaluation);
-    $evaluation.append($progress);
-    $evaluation.append($progressNumeric);
+    $evaluation.append($evaluationContentContainer)
+    $evaluationContentContainer.append($evaluation_content);
     $evaluation.append($score);
+    $evaluation.append($progressNumeric);
+    $evaluation.append($progress);
 
     /**
      * Handle selected alternative
@@ -285,7 +286,6 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         // Move into position over clicked element
         $answer.css({display: 'block', width: $el.css('width'), height: $el.css('height')});
         $answer.css({position: 'absolute', top: position.top, left: position.left});
-        $answer.css({backgroundColor: '#9dd8bb', border: ''});
         setTimeout(function () {
           $answer.css({backgroundColor: ''});
         }, 1);
