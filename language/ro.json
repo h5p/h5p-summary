@@ -1,0 +1,113 @@
+{
+  "semantics": [
+    {
+      "label": "Text introductiv",
+      "default": "Alegeți afirmația corectă.",
+      "description": "Va fi afișat deasupra sarcinii de rezumat."
+    },
+    {
+      "widgets": [
+        {
+          "label": "Implicit"
+        },
+        {
+          "label": "Textual"
+        }
+      ],
+      "label": "Rezumat",
+      "entity": "afirmații",
+      "field": {
+        "label": "Set de afirmații",
+        "fields": [
+          {
+            "label": "Listă de afirmații pentru rezumat - prima afirmație este cea corectă.",
+            "entity": "afirmație",
+            "field": {
+              "label": "Afirmație"
+            }
+          },
+          {
+            "label": "Indiciu",
+            "fields": [
+              {
+                "label": "Text indiciu"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "Feedback general",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "label": "Implicit"
+            }
+          ],
+          "label": "Definiți feedback personalizat pentru orice interval de scor",
+          "description": "Apăsați butonul „Adaugă interval” pentru a adăuga oricâte intervale aveți nevoie. Exemplu: 0-20% Scor slab, 21-91% Scor mediu, 91-100% Scor excelent!",
+          "entity": "interval",
+          "field": {
+            "fields": [
+              {
+                "label": "Interval de scor"
+              },
+              {},
+              {
+                "label": "Feedback pentru intervalul de scor definit",
+                "placeholder": "Completați feedback-ul"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Text afișat înaintea numărului de afirmații rezolvate în sarcina de rezumat.",
+      "default": "Progres:",
+      "description": "Va fi afișat deasupra afirmațiilor. Exemplu: 'Progres: 2/5'"
+    },
+    {
+      "label": "Text afișat înaintea numărului de afirmații greșite selectate în sarcina de rezumat.",
+      "default": "Răspunsuri greșite:",
+      "description": "Va fi afișat deasupra afirmațiilor. Exemplu: 'Răspunsuri greșite: 4'"
+    },
+    {
+      "label": "Antet feedback rezumat",
+      "default": "Rezultatul tău",
+      "description": "Va fi afișat deasupra feedback-ului rezumatului."
+    },
+    {
+      "label": "Text pentru cititorul de ecran pentru răspuns corect",
+      "default": "Corect."
+    },
+    {
+      "label": "Text pentru cititorul de ecran pentru anunțarea răspunsului incorect",
+      "default": "Incorect! Te rugăm să încerci din nou."
+    },
+    {
+      "label": "Etichetă pentru cititorul de ecran pentru răspuns incorect",
+      "default": "Incorect"
+    },
+    {
+      "label": "Etichetă listă de răspunsuri corecte",
+      "default": "Răspunsuri corecte."
+    },
+    {
+      "label": "Etichetă pentru butonul de afișare a indiciului",
+      "default": "Arată indiciu"
+    },
+    {
+      "label": "Reprezentarea textuală a barei de scor pentru cei care utilizează un cititor de ecran",
+      "description": ":num și :total sunt cuvinte cheie speciale care sunt actualizate programatic",
+      "default": "Ați obținut :num din :total puncte"
+    },
+    {
+      "label": "Text utilizat pentru cititoarele de ecran pentru a comunica progresul",
+      "description": ":num și :total sunt cuvinte cheie speciale care sunt actualizate programatic",
+      "default": "Progres :num din :total"
+    }
+  ]
+}
