@@ -84,11 +84,11 @@
       "default": "Correct."
     },
     {
-      "label": "Readspeaker text for announcing incorrect answer",
-      "default": "Incorrect! Please try again."
+      "label": "Texte du lecteur d'écran pour annoncer une réponse incorrecte",
+      "default": "Incorrect ! Veuillez réessayer."
     },
     {
-      "label": "Readspeaker label for incorrect answer",
+      "label": "Libellé du lecteur d'écran pour une réponse incorrecte",
       "default": "Incorrect"
     },
     {
