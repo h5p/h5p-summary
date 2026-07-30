@@ -85,7 +85,7 @@
     },
     {
       "label": "Texte du lecteur d'écran pour annoncer une réponse incorrecte",
-      "default": "Incorrect ! Veuillez réessayer."
+      "default": "Incorrect! Veuillez réessayer."
     },
     {
       "label": "Libellé du lecteur d'écran pour une réponse incorrecte",

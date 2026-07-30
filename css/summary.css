@@ -146,9 +146,9 @@
   border-color: transparent;
   background-color: var(--h5p-theme-alternative-dark);
 }
-.h5p-summary .h5p-panel:not(.panel-disabled) .summary-claim-unclicked:focus,
-.h5p-summary li.summary-failed:focus{
-  outline: 4px ridge var(--h5p-theme-main-cta-base);
+.h5p-summary .h5p-panel:not(.panel-disabled) .summary-claim-unclicked:focus-visible,
+.h5p-summary li.summary-failed:focus-visible{
+  outline: 4px ridge var(--h5p-theme-contrast-cta-white);
   border-radius: 4px;
 }
 
