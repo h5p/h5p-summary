@@ -1,0 +1,113 @@
+{
+  "semantics": [
+    {
+      "label": "Teks pengenalan",
+      "default": "Pilih pernyataan benar.",
+      "description": "Akan ditampilkan di atas tugas ringkasan."
+    },
+    {
+      "widgets": [
+        {
+          "label": "Bawaan"
+        },
+        {
+          "label": "Tekstual"
+        }
+      ],
+      "label": "Ringkasan",
+      "entity": "pernyataan",
+      "field": {
+        "label": "Rangkaian pernyataan",
+        "fields": [
+          {
+            "label": "Daftar pernyataan untuk ringkasan - pernyataan pertama adalah benar.",
+            "entity": "pernyataan",
+            "field": {
+              "label": "Pernyataan"
+            }
+          },
+          {
+            "label": "Petunjuk",
+            "fields": [
+              {
+                "label": "Teks petunjuk"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "Umpan Balik Keseluruhan",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "label": "Bawaan"
+            }
+          ],
+          "label": "Tentukan umpan balik khusus untuk setiap rentang skor",
+          "description": "Klik tombol \"Tambahkan rentang\" untuk menambahkan rentang sebanyak yang Anda perlukan. Contoh: 0-20% Skor Buruk, 21-91% Skor Rata-rata, 91-100% Skor Bagus!",
+          "entity": "rentang",
+          "field": {
+            "fields": [
+              {
+                "label": "Rentang Skor"
+              },
+              {},
+              {
+                "label": "Umpan balik untuk rentang skor ditentukan",
+                "placeholder": "Isi umpan balik"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Teks ditampilkan sebelum jumlah pernyataan diselesaikan di tugas ringkasan.",
+      "default": "Progres:",
+      "description": "Akan ditampilkan di atas pernyataan. Contoh: 'Progres: 2/5'"
+    },
+    {
+      "label": "Teks ditampilkan sebelum jumlah pernyataan salah dipilih di tugas ringkasan.",
+      "default": "Jawaban salah:",
+      "description": "Akan ditampilkan di atas pernyataan. Contoh: 'Jawaban salah: 4'"
+    },
+    {
+      "label": "Header umpan balik ringkasan",
+      "default": "Hasil Anda",
+      "description": "Akan ditampilkan di atas umpan balik ringkasan."
+    },
+    {
+      "label": "Teks readspeaker untuk jawaban benar",
+      "default": "Benar."
+    },
+    {
+      "label": "Teks readspeaker untuk mengumumkan jawaban salah",
+      "default": "Salah! Silakan coba lagi."
+    },
+    {
+      "label": "Label readspeaker untuk jawaban salah",
+      "default": "Salah"
+    },
+    {
+      "label": "Daftar label jawaban benar",
+      "default": "Jawaban benar."
+    },
+    {
+      "label": "Label untuk tombol tampilkan petunjuk",
+      "default": "Tampilkan petunjuk"
+    },
+    {
+      "label": "Representasi tekstual dari bilah skor untuk pengguna readspeaker",
+      "description": ":num dan :total adalah kata kunci khusus diperbarui secara terprogram",
+      "default": "Anda mendapatkan :num dari :total poin"
+    },
+    {
+      "label": "Teks yang digunakan readspeaker untuk mengomunikasikan progres",
+      "description": ":num dan :total adalah kata kunci khusus diperbarui secara terprogram",
+      "default": "Progres :num dari :total"
+    }
+  ]
+}
