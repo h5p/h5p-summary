@@ -392,7 +392,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
       // Trigger overall answered xAPI event when finished
       if (finished) {
-        that.triggerXAPIScored(that.getScore(), that.getMaxScore(), 'answered');
+        that.triggerXAPIScored(
+          that.getScore(), that.getMaxScore(), 'answered', true, that.getScore() === that.getMaxScore()
+        );
       }
     };
 
@@ -796,6 +798,8 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     var result = XApiEventBuilder.createResult()
       .response(userAnswer.join('[,]'))
       .duration(duration)
+      .completion(true)
+      .success(self.correctOnFirstTry(userAnswer))
       .score((self.correctOnFirstTry(userAnswer) ? 1 : 0), 1)
       .build();
 
@@ -834,6 +838,8 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
     var result = XApiEventBuilder.createResult()
       .score(self.getScore(), self.getMaxScore())
       .duration(self.getTotalPassedTime())
+      .completion(true)
+      .success(self.getScore() === self.getMaxScore())
       .build();
 
     // creates the definition object
