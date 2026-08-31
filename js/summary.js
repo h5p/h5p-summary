@@ -1,3 +1,4 @@
+var H5P = window.H5P = window.H5P || {};
 H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
 
   var summaryId = 0;
